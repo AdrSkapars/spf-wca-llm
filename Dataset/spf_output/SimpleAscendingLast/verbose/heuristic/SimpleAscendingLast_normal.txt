@@ -1,0 +1,88 @@
+
+
+Valid constraints of 2 inputs:
+[s00,s01] such that s01 < s00
+
+Valid constraints of 3 inputs:
+[s00,s01,s02] such that s00 < s01, s02 < s00
+
+Valid constraints of 4 inputs:
+[s00,s01,s02,s03] such that s00 < s01, s01 < s02, s03 < s00
+
+Valid constraints of 5 inputs:
+[s00,s01,s02,s03,s04] such that s00 < s01, s01 < s02, s02 < s03, s04 < s00
+
+Valid constraints of 6 inputs:
+[s00,s01,s02,s03,s04,s05] such that s00 < s01, s01 < s02, s02 < s03, s03 < s04, s05 < s00
+
+Valid constraints of 7 inputs:
+[s00,s01,s02,s03,s04,s05,s06] such that s00 < s01, s01 < s02, s02 < s03, s03 < s04, s04 < s05, s06 < s00
+
+Valid constraints of 8 inputs:
+[s00,s01,s02,s03,s04,s05,s06,s07] such that s00 < s01, s01 < s02, s02 < s03, s03 < s04, s04 < s05, s05 < s06, s07 < s00
+
+Valid constraints of 9 inputs:
+[s00,s01,s02,s03,s04,s05,s06,s07,s08] such that s00 < s01, s01 < s02, s02 < s03, s03 < s04, s04 < s05, s05 < s06, s06 < s07, s08 < s00
+
+Valid constraints of 10 inputs:
+[s00,s01,s02,s03,s04,s05,s06,s07,s08,s09] such that s00 < s01, s01 < s02, s02 < s03, s03 < s04, s04 < s05, s05 < s06, s06 < s07, s07 < s08, s09 < s00
+
+Valid constraints of 11 inputs:
+[s00,s01,s02,s03,s04,s05,s06,s07,s08,s09,s10] such that s00 < s01, s01 < s02, s02 < s03, s03 < s04, s04 < s05, s05 < s06, s06 < s07, s07 < s08, s08 < s09, s10 < s00
+
+Valid constraints of 12 inputs:
+[s00,s01,s02,s03,s04,s05,s06,s07,s08,s09,s10,s11] such that s00 < s01, s01 < s02, s02 < s03, s03 < s04, s04 < s05, s05 < s06, s06 < s07, s07 < s08, s08 < s09, s09 < s10, s11 < s00
+
+Valid constraints of 13 inputs:
+[s00,s01,s02,s03,s04,s05,s06,s07,s08,s09,s10,s11,s12] such that s00 < s01, s01 < s02, s02 < s03, s03 < s04, s04 < s05, s05 < s06, s06 < s07, s07 < s08, s08 < s09, s09 < s10, s10 < s11, s12 < s00
+
+Valid constraints of 14 inputs:
+[s00,s01,s02,s03,s04,s05,s06,s07,s08,s09,s10,s11,s12,s13] such that s00 < s01, s01 < s02, s02 < s03, s03 < s04, s04 < s05, s05 < s06, s06 < s07, s07 < s08, s08 < s09, s09 < s10, s10 < s11, s11 < s12, s13 < s00
+
+Valid constraints of 15 inputs:
+[s00,s01,s02,s03,s04,s05,s06,s07,s08,s09,s10,s11,s12,s13,s14] such that s00 < s01, s01 < s02, s02 < s03, s03 < s04, s04 < s05, s05 < s06, s06 < s07, s07 < s08, s08 < s09, s09 < s10, s10 < s11, s11 < s12, s12 < s13, s14 < s00
+
+Valid constraints of 16 inputs:
+[s00,s01,s02,s03,s04,s05,s06,s07,s08,s09,s10,s11,s12,s13,s14,s15] such that s00 < s01, s01 < s02, s02 < s03, s03 < s04, s04 < s05, s05 < s06, s06 < s07, s07 < s08, s08 < s09, s09 < s10, s10 < s11, s11 < s12, s12 < s13, s13 < s14, s15 < s00
+
+Valid constraints of 17 inputs:
+[s00,s01,s02,s03,s04,s05,s06,s07,s08,s09,s10,s11,s12,s13,s14,s15,s16] such that s00 < s01, s01 < s02, s02 < s03, s03 < s04, s04 < s05, s05 < s06, s06 < s07, s07 < s08, s08 < s09, s09 < s10, s10 < s11, s11 < s12, s12 < s13, s13 < s14, s14 < s15, s16 < s00
+
+Valid constraints of 18 inputs:
+[s00,s01,s02,s03,s04,s05,s06,s07,s08,s09,s10,s11,s12,s13,s14,s15,s16,s17] such that s00 < s01, s01 < s02, s02 < s03, s03 < s04, s04 < s05, s05 < s06, s06 < s07, s07 < s08, s08 < s09, s09 < s10, s10 < s11, s11 < s12, s12 < s13, s13 < s14, s14 < s15, s15 < s16, s17 < s00
+
+Valid constraints of 19 inputs:
+[s00,s01,s02,s03,s04,s05,s06,s07,s08,s09,s10,s11,s12,s13,s14,s15,s16,s17,s18] such that s00 < s01, s01 < s02, s02 < s03, s03 < s04, s04 < s05, s05 < s06, s06 < s07, s07 < s08, s08 < s09, s09 < s10, s10 < s11, s11 < s12, s12 < s13, s13 < s14, s14 < s15, s15 < s16, s16 < s17, s18 < s00
+
+Valid constraints of 20 inputs:
+[s00,s01,s02,s03,s04,s05,s06,s07,s08,s09,s10,s11,s12,s13,s14,s15,s16,s17,s18,s19] such that s00 < s01, s01 < s02, s02 < s03, s03 < s04, s04 < s05, s05 < s06, s06 < s07, s07 < s08, s08 < s09, s09 < s10, s10 < s11, s11 < s12, s12 < s13, s13 < s14, s14 < s15, s15 < s16, s16 < s17, s17 < s18, s19 < s00
+
+Valid constraints of 21 inputs:
+[s00,s01,s02,s03,s04,s05,s06,s07,s08,s09,s10,s11,s12,s13,s14,s15,s16,s17,s18,s19,s20] such that s00 < s01, s01 < s02, s02 < s03, s03 < s04, s04 < s05, s05 < s06, s06 < s07, s07 < s08, s08 < s09, s09 < s10, s10 < s11, s11 < s12, s12 < s13, s13 < s14, s14 < s15, s15 < s16, s16 < s17, s17 < s18, s18 < s19, s20 < s00
+
+Valid constraints of 22 inputs:
+[s00,s01,s02,s03,s04,s05,s06,s07,s08,s09,s10,s11,s12,s13,s14,s15,s16,s17,s18,s19,s20,s21] such that s00 < s01, s01 < s02, s02 < s03, s03 < s04, s04 < s05, s05 < s06, s06 < s07, s07 < s08, s08 < s09, s09 < s10, s10 < s11, s11 < s12, s12 < s13, s13 < s14, s14 < s15, s15 < s16, s16 < s17, s17 < s18, s18 < s19, s19 < s20, s21 < s00
+
+Valid constraints of 23 inputs:
+[s00,s01,s02,s03,s04,s05,s06,s07,s08,s09,s10,s11,s12,s13,s14,s15,s16,s17,s18,s19,s20,s21,s22] such that s00 < s01, s01 < s02, s02 < s03, s03 < s04, s04 < s05, s05 < s06, s06 < s07, s07 < s08, s08 < s09, s09 < s10, s10 < s11, s11 < s12, s12 < s13, s13 < s14, s14 < s15, s15 < s16, s16 < s17, s17 < s18, s18 < s19, s19 < s20, s20 < s21, s22 < s00
+
+Valid constraints of 24 inputs:
+[s00,s01,s02,s03,s04,s05,s06,s07,s08,s09,s10,s11,s12,s13,s14,s15,s16,s17,s18,s19,s20,s21,s22,s23] such that s00 < s01, s01 < s02, s02 < s03, s03 < s04, s04 < s05, s05 < s06, s06 < s07, s07 < s08, s08 < s09, s09 < s10, s10 < s11, s11 < s12, s12 < s13, s13 < s14, s14 < s15, s15 < s16, s16 < s17, s17 < s18, s18 < s19, s19 < s20, s20 < s21, s21 < s22, s23 < s00
+
+Valid constraints of 25 inputs:
+[s00,s01,s02,s03,s04,s05,s06,s07,s08,s09,s10,s11,s12,s13,s14,s15,s16,s17,s18,s19,s20,s21,s22,s23,s24] such that s00 < s01, s01 < s02, s02 < s03, s03 < s04, s04 < s05, s05 < s06, s06 < s07, s07 < s08, s08 < s09, s09 < s10, s10 < s11, s11 < s12, s12 < s13, s13 < s14, s14 < s15, s15 < s16, s16 < s17, s17 < s18, s18 < s19, s19 < s20, s20 < s21, s21 < s22, s22 < s23, s24 < s00
+
+Valid constraints of 26 inputs:
+[s00,s01,s02,s03,s04,s05,s06,s07,s08,s09,s10,s11,s12,s13,s14,s15,s16,s17,s18,s19,s20,s21,s22,s23,s24,s25] such that s00 < s01, s01 < s02, s02 < s03, s03 < s04, s04 < s05, s05 < s06, s06 < s07, s07 < s08, s08 < s09, s09 < s10, s10 < s11, s11 < s12, s12 < s13, s13 < s14, s14 < s15, s15 < s16, s16 < s17, s17 < s18, s18 < s19, s19 < s20, s20 < s21, s21 < s22, s22 < s23, s23 < s24, s25 < s00
+
+Valid constraints of 27 inputs:
+[s00,s01,s02,s03,s04,s05,s06,s07,s08,s09,s10,s11,s12,s13,s14,s15,s16,s17,s18,s19,s20,s21,s22,s23,s24,s25,s26] such that s00 < s01, s01 < s02, s02 < s03, s03 < s04, s04 < s05, s05 < s06, s06 < s07, s07 < s08, s08 < s09, s09 < s10, s10 < s11, s11 < s12, s12 < s13, s13 < s14, s14 < s15, s15 < s16, s16 < s17, s17 < s18, s18 < s19, s19 < s20, s20 < s21, s21 < s22, s22 < s23, s23 < s24, s24 < s25, s26 < s00
+
+Valid constraints of 28 inputs:
+[s00,s01,s02,s03,s04,s05,s06,s07,s08,s09,s10,s11,s12,s13,s14,s15,s16,s17,s18,s19,s20,s21,s22,s23,s24,s25,s26,s27] such that s00 < s01, s01 < s02, s02 < s03, s03 < s04, s04 < s05, s05 < s06, s06 < s07, s07 < s08, s08 < s09, s09 < s10, s10 < s11, s11 < s12, s12 < s13, s13 < s14, s14 < s15, s15 < s16, s16 < s17, s17 < s18, s18 < s19, s19 < s20, s20 < s21, s21 < s22, s22 < s23, s23 < s24, s24 < s25, s25 < s26, s27 < s00
+
+Valid constraints of 29 inputs:
+[s00,s01,s02,s03,s04,s05,s06,s07,s08,s09,s10,s11,s12,s13,s14,s15,s16,s17,s18,s19,s20,s21,s22,s23,s24,s25,s26,s27,s28] such that s00 < s01, s01 < s02, s02 < s03, s03 < s04, s04 < s05, s05 < s06, s06 < s07, s07 < s08, s08 < s09, s09 < s10, s10 < s11, s11 < s12, s12 < s13, s13 < s14, s14 < s15, s15 < s16, s16 < s17, s17 < s18, s18 < s19, s19 < s20, s20 < s21, s21 < s22, s22 < s23, s23 < s24, s24 < s25, s25 < s26, s26 < s27, s28 < s00
+
+Valid constraints of 30 inputs:
+[s00,s01,s02,s03,s04,s05,s06,s07,s08,s09,s10,s11,s12,s13,s14,s15,s16,s17,s18,s19,s20,s21,s22,s23,s24,s25,s26,s27,s28,s29] such that s00 < s01, s01 < s02, s02 < s03, s03 < s04, s04 < s05, s05 < s06, s06 < s07, s07 < s08, s08 < s09, s09 < s10, s10 < s11, s11 < s12, s12 < s13, s13 < s14, s14 < s15, s15 < s16, s16 < s17, s17 < s18, s18 < s19, s19 < s20, s20 < s21, s21 < s22, s22 < s23, s23 < s24, s24 < s25, s25 < s26, s26 < s27, s27 < s28, s29 < s00

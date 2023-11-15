@@ -1,0 +1,19 @@
+@using spf-wca
+
+target=own.BadgerHash
+shell=wcanalysis.WorstCaseAnalyzer
+
+### symbolic.min_int=-200
+### symbolic.max_int=200
+symbolic.dp=z3
+
+symbolic.wc.policy.history.size=0
+symbolic.worstcase.policy.inputsize=3
+symbolic.worstcase.input.max=30
+
+### symbolic.worstcase.req.maxres=20
+### symbolic.worstcase.req.maxinputsize=5
+
+symbolic.worstcase.verbose=true
+symbolic.worstcase.outputpath=${spf-wca}/results_own/BadgerHash
+symbolic.method=own.BadgerHash.get(con),own.BadgerHash.put(con#con)

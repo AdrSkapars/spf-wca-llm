@@ -1,0 +1,19 @@
+@using spf-wca
+
+target=own.SameLowercase
+shell=wcanalysis.WorstCaseAnalyzer
+
+### symbolic.min_int=-200
+### symbolic.max_int=200
+symbolic.dp=z3
+
+symbolic.wc.policy.history.size=0
+symbolic.worstcase.policy.inputsize=5
+symbolic.worstcase.input.max=30
+
+### symbolic.worstcase.req.maxres=20
+### symbolic.worstcase.req.maxinputsize=5
+
+symbolic.worstcase.verbose=true
+symbolic.worstcase.outputpath=${spf-wca}/results_own/SameLowercase
+symbolic.method=own.SameLowercase.algo(con)
