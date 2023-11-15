@@ -1,0 +1,193 @@
+
+############################################################
+                    GET INITIAL GENERALISATION
+############################################################
+I'm experimenting with a program and trying to find what makes an increasingly large set of inputs valid. So far I have found one possible set of correct constraints/ conditions (not the only one) which define a valid input. Here they are.
+
+Valid constraints for 1 inputs (N=1):
+None
+
+Valid constraints for 2 inputs (N=2):
+None
+
+Valid constraints for 3 inputs (N=3):
+(in2 - in1) == (in1 - in0)
+
+Valid constraints for 4 inputs (N=4):
+(in3 - in2) == (in2 - in1), (in2 - in1) == (in1 - in0)
+
+Valid constraints for 5 inputs (N=5):
+(in4 - in3) == (in3 - in2), (in3 - in2) == (in2 - in1), (in2 - in1) == (in1 - in0)
+
+Valid constraints for 6 inputs (N=6):
+(in5 - in4) == (in4 - in3), (in4 - in3) == (in3 - in2), (in3 - in2) == (in2 - in1), (in2 - in1) == (in1 - in0)
+
+Valid constraints for 7 inputs (N=7):
+(in6 - in5) == (in5 - in4), (in5 - in4) == (in4 - in3), (in4 - in3) == (in3 - in2), (in3 - in2) == (in2 - in1), (in2 - in1) == (in1 - in0)
+
+Valid constraints for 8 inputs (N=8):
+(in7 - in6) == (in6 - in5), (in6 - in5) == (in5 - in4), (in5 - in4) == (in4 - in3), (in4 - in3) == (in3 - in2), (in3 - in2) == (in2 - in1), (in2 - in1) == (in1 - in0)
+
+Valid constraints for 9 inputs (N=9):
+(in8 - in7) == (in7 - in6), (in7 - in6) == (in6 - in5), (in6 - in5) == (in5 - in4), (in5 - in4) == (in4 - in3), (in4 - in3) == (in3 - in2), (in3 - in2) == (in2 - in1), (in2 - in1) == (in1 - in0)
+
+Valid constraints for 10 inputs (N=10):
+(in9 - in8) == (in8 - in7), (in8 - in7) == (in7 - in6), (in7 - in6) == (in6 - in5), (in6 - in5) == (in5 - in4), (in5 - in4) == (in4 - in3), (in4 - in3) == (in3 - in2), (in3 - in2) == (in2 - in1), (in2 - in1) == (in1 - in0)
+
+Generalise what makes the set of constraints valid such that we can recover a valid set for N inputs. Don't overfit the data here but also dont oversimplify to the point of trivialness. Make sure none of the given examples contradict your generalisation.
+
+Use this code template to formally express the generalisation for N constraints:
+```python
+def generate_constraints(N):
+    constraints = []
+
+    # Do some logic here to append constraints
+
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)```
+
+Each inequality is usually in the form "x op y" where x, y are some variable, constant or some formula of variables and/ or constants, and op is an operation or inequality.
+############################################################
+CASUAL
+The valid constraints seem to be related to the difference between consecutive inputs. For N inputs, the validity conditions are that the differences between consecutive inputs must be equal. This means for N=3, (in2 - in1) == (in1 - in0), for N=4, (in3 - in2) == (in2 - in1) and (in2 - in1) == (in1 - in0), and so on. So the generalization seems to be that for N inputs, we need N-1 inequalities of the form (in(i) - in(i-1)) == (in(i-1) - in(i-2)) for i from 1 to N-1.
+
+FORMAL
+```python
+def generate_constraints(N):
+    constraints = []
+
+    for i in range(1, N):
+        constraints.append(f"(in{i} - in{i-1}) == (in{i-1} - in{i-2})")
+
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)
+```
+############################################################
+                    ATTEMPT NUMBER 1
+############################################################
+                    #1  GET NEW GENERALISATION
+############################################################
+I have run your code for several concrete values of N. Some of the outputs were not correct. Change your generalisation and code to account for the following outputs (Remember to always structure your reply with the headings 'CASUAL' and 'FORMAL').
+
+For N=1, the generalisation output correctly fits the given data
+
+For N=2, the output constraint set should be:
+```
+None
+```
+But your generalisation implies the set:
+```
+(in1 - in0) == (in0 - in-1)
+
+```
+This is not right. Explanation: The correct set is empty but your constraint set is not empty
+
+For N=3, the output constraint set should be:
+```
+(in2 - in1) == (in1 - in0)
+```
+But your generalisation implies the set:
+```
+(in1 - in0) == (in0 - in-1), (in2 - in1) == (in1 - in0)
+
+```
+This is not right. Explanation: The predicted set consists of two inequalities, while the correct set consists of only one inequality. Additionally, the predicted set has a negative value for one of the variables (in-1) which is not in the correct set.
+
+For N=4, the output constraint set should be:
+```
+(in3 - in2) == (in2 - in1), (in2 - in1) == (in1 - in0)
+```
+But your generalisation implies the set:
+```
+(in1 - in0) == (in0 - in-1), (in2 - in1) == (in1 - in0), (in3 - in2) == (in2 - in1)
+
+```
+This is not right. Explanation: The predicted set includes an additional pair (in1 - in0) == (in0 - in-1) not present in the correct set.
+
+For N=5, the output constraint set should be:
+```
+(in4 - in3) == (in3 - in2), (in3 - in2) == (in2 - in1), (in2 - in1) == (in1 - in0)
+```
+But your generalisation implies the set:
+```
+(in1 - in0) == (in0 - in-1), (in2 - in1) == (in1 - in0), (in3 - in2) == (in2 - in1), (in4 - in3) == (in3 - in2)
+
+```
+This is not right. Explanation: There is at least one inequality that doesn't match between the correct set and the predicted set. Specifically, the first inequality in the predicted set doesn't match any inequality in the correct set.
+
+For N=6, the output constraint set should be:
+```
+(in5 - in4) == (in4 - in3), (in4 - in3) == (in3 - in2), (in3 - in2) == (in2 - in1), (in2 - in1) == (in1 - in0)
+```
+But your generalisation implies the set:
+```
+(in1 - in0) == (in0 - in-1), (in2 - in1) == (in1 - in0), (in3 - in2) == (in2 - in1), (in4 - in3) == (in3 - in2), (in5 - in4) == (in4 - in3)
+
+```
+This is not right. Explanation: The inequalities in the two sets are in reverse order, causing a mismatch in the comparison between the sets.
+
+For N=7, the output constraint set should be:
+```
+(in6 - in5) == (in5 - in4), (in5 - in4) == (in4 - in3), (in4 - in3) == (in3 - in2), (in3 - in2) == (in2 - in1), (in2 - in1) == (in1 - in0)
+```
+But your generalisation implies the set:
+```
+(in1 - in0) == (in0 - in-1), (in2 - in1) == (in1 - in0), (in3 - in2) == (in2 - in1), (in4 - in3) == (in3 - in2), (in5 - in4) == (in4 - in3), (in6 - in5) == (in5 - in4)
+
+```
+This is not right. Explanation: The predicted set has an additional inequality: (in1 - in0) == (in0 - in-1), which is not present in the correct set.
+
+For N=8, the generalisation output correctly fits the given data
+
+For N=9, the output constraint set should be:
+```
+(in8 - in7) == (in7 - in6), (in7 - in6) == (in6 - in5), (in6 - in5) == (in5 - in4), (in5 - in4) == (in4 - in3), (in4 - in3) == (in3 - in2), (in3 - in2) == (in2 - in1), (in2 - in1) == (in1 - in0)
+```
+But your generalisation implies the set:
+```
+(in1 - in0) == (in0 - in-1), (in2 - in1) == (in1 - in0), (in3 - in2) == (in2 - in1), (in4 - in3) == (in3 - in2), (in5 - in4) == (in4 - in3), (in6 - in5) == (in5 - in4), (in7 - in6) == (in6 - in5), (in8 - in7) == (in7 - in6)
+
+```
+This is not right. Explanation: The order of subtraction is different in each corresponding inequality between the sets.
+
+For N=10, the output constraint set should be:
+```
+(in9 - in8) == (in8 - in7), (in8 - in7) == (in7 - in6), (in7 - in6) == (in6 - in5), (in6 - in5) == (in5 - in4), (in5 - in4) == (in4 - in3), (in4 - in3) == (in3 - in2), (in3 - in2) == (in2 - in1), (in2 - in1) == (in1 - in0)
+```
+But your generalisation implies the set:
+```
+(in1 - in0) == (in0 - in-1), (in2 - in1) == (in1 - in0), (in3 - in2) == (in2 - in1), (in4 - in3) == (in3 - in2), (in5 - in4) == (in4 - in3), (in6 - in5) == (in5 - in4), (in7 - in6) == (in6 - in5), (in8 - in7) == (in7 - in6), (in9 - in8) == (in8 - in7)
+
+```
+This is not right. Explanation: The variable names and order in the predicted set are different from the correct set. The predicted set also has additional variables.
+############################################################
+CASUAL
+It seems a correction is needed to properly generalize the constraints. For N inputs, the correct generalization must be that for i from 1 to N-1, the constraint is (in(i) - in(i-1)) == (in(i-1) - in(i-2)).
+
+FORMAL
+```python
+def generate_constraints(N):
+    constraints = []
+
+    for i in range(2, N):
+        constraints.append(f"(in{i} - in{i-1}) == (in{i-1} - in{i-2})")
+
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)
+```
+############################################################
+                    ATTEMPT NUMBER 2
+############################################################
+DONE WITH THAT EXAMPLE

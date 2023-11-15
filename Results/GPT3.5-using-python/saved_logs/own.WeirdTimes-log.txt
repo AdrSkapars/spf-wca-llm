@@ -1,0 +1,278 @@
+
+############################################################
+                    GET INITIAL GENERALISATION
+############################################################
+I'm experimenting with a program and trying to find what makes an increasingly large set of inputs valid. So far I have found one possible set of correct constraints/ conditions (not the only one) which define a valid input. Here they are.
+
+Valid constraints for 1 inputs (N=1):
+None
+
+Valid constraints for 2 inputs (N=2):
+in1 == (in0 * 2)
+
+Valid constraints for 3 inputs (N=3):
+in2 == (in0 * 3), in1 == (in0 * 2)
+
+Valid constraints for 4 inputs (N=4):
+in3 == (in0 * 4), in2 == (in0 * 3), in1 == (in0 * 2)
+
+Valid constraints for 5 inputs (N=5):
+in4 == (in0 * 5), in3 == (in0 * 4), in2 == (in0 * 3), in1 == (in0 * 2)
+
+Valid constraints for 6 inputs (N=6):
+in5 == (in0 * 6), in4 == (in0 * 5), in3 == (in0 * 4), in2 == (in0 * 3), in1 == (in0 * 2)
+
+Valid constraints for 7 inputs (N=7):
+in6 == (in0 * 7), in5 == (in0 * 6), in4 == (in0 * 5), in3 == (in0 * 4), in2 == (in0 * 3), in1 == (in0 * 2)
+
+Valid constraints for 8 inputs (N=8):
+in7 == (in0 * 8), in6 == (in0 * 7), in5 == (in0 * 6), in4 == (in0 * 5), in3 == (in0 * 4), in2 == (in0 * 3), in1 == (in0 * 2)
+
+Valid constraints for 9 inputs (N=9):
+in8 == (in0 * 9), in7 == (in0 * 8), in6 == (in0 * 7), in5 == (in0 * 6), in4 == (in0 * 5), in3 == (in0 * 4), in2 == (in0 * 3), in1 == (in0 * 2)
+
+Valid constraints for 10 inputs (N=10):
+in9 == (in0 * 10), in8 == (in0 * 9), in7 == (in0 * 8), in6 == (in0 * 7), in5 == (in0 * 6), in4 == (in0 * 5), in3 == (in0 * 4), in2 == (in0 * 3), in1 == (in0 * 2)
+
+Generalise what makes the set of constraints valid such that we can recover a valid set for N inputs. Don't overfit the data here but also dont oversimplify to the point of trivialness. Make sure none of the given examples contradict your generalisation.
+
+Use this code template to formally express the generalisation for N constraints:
+```python
+def generate_constraints(N):
+    constraints = []
+
+    # Do some logic here to append constraints
+
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)```
+
+Each inequality is usually in the form "x op y" where x, y are some variable, constant or some formula of variables and/ or constants, and op is an operation or inequality.
+############################################################
+CASUAL
+It looks like each input, except the first one, is a multiple of the first input. So for N inputs (where N > 1), the valid constraints are of the form "in(k) == in(0) * k" for k = 1 to N-1. Thus, these constraints ensure that each subsequent input is a multiple of the first input.
+
+FORMAL
+```python
+def generate_constraints(N):
+    constraints = []
+    for k in range(1, N):
+        constraints.append(f"in{k} == (in0 * {k})")
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)
+```
+############################################################
+                    ATTEMPT NUMBER 1
+############################################################
+                    #1  GET NEW GENERALISATION
+############################################################
+I have run your code for several concrete values of N. Some of the outputs were not correct. Change your generalisation and code to account for the following outputs (Remember to always structure your reply with the headings 'CASUAL' and 'FORMAL').
+
+For N=1, the generalisation output correctly fits the given data
+
+For N=2, the output constraint set should be:
+```
+in1 == (in0 * 2)
+```
+But your generalisation implies the set:
+```
+in1 == (in0 * 1)
+
+```
+This is not right. Explanation: The predicted set multiplies the variable "in0" by 1, while in the correct set it is multiplied by 2.
+
+For N=3, the output constraint set should be:
+```
+in2 == (in0 * 3), in1 == (in0 * 2)
+```
+But your generalisation implies the set:
+```
+in1 == (in0 * 1), in2 == (in0 * 2)
+
+```
+This is not right. Explanation: The values of `in1` and `in2` are different between the correct and predicted sets.
+
+For N=4, the output constraint set should be:
+```
+in3 == (in0 * 4), in2 == (in0 * 3), in1 == (in0 * 2)
+```
+But your generalisation implies the set:
+```
+in1 == (in0 * 1), in2 == (in0 * 2), in3 == (in0 * 3)
+
+```
+This is not right. Explanation: The numbers associated with the variable names are different in the predicted set compared to the correct set.
+
+For N=5, the generalisation output correctly fits the given data
+
+For N=6, the output constraint set should be:
+```
+in5 == (in0 * 6), in4 == (in0 * 5), in3 == (in0 * 4), in2 == (in0 * 3), in1 == (in0 * 2)
+```
+But your generalisation implies the set:
+```
+in1 == (in0 * 1), in2 == (in0 * 2), in3 == (in0 * 3), in4 == (in0 * 4), in5 == (in0 * 5)
+
+```
+This is not right. Explanation: The variables are not in ascending order and the coefficients are different.
+
+For N=7, the output constraint set should be:
+```
+in6 == (in0 * 7), in5 == (in0 * 6), in4 == (in0 * 5), in3 == (in0 * 4), in2 == (in0 * 3), in1 == (in0 * 2)
+```
+But your generalisation implies the set:
+```
+in1 == (in0 * 1), in2 == (in0 * 2), in3 == (in0 * 3), in4 == (in0 * 4), in5 == (in0 * 5), in6 == (in0 * 6)
+
+```
+This is not right. Explanation: The variable names and multipliers in the inequalities do not match.
+
+For N=8, the generalisation output correctly fits the given data
+
+For N=9, the generalisation output correctly fits the given data
+
+For N=10, the generalisation output correctly fits the given data
+############################################################
+CASUAL
+I see the issue. It seems the generalization should account for the ascending order of variables and their multipliers. The generalization I provided doesn't guarantee the proper ordering of the variables or their multipliers, resulting in incorrect constraints for specific N values.
+
+FORMAL
+```python
+def generate_constraints(N):
+    constraints = []
+    for k in range(1, N):
+        constraints.append(f"in{k} == (in0 * {k})")
+    constraints.reverse()  # Reverse the order to ensure correct sequence of constraints
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)
+```
+############################################################
+                    ATTEMPT NUMBER 2
+############################################################
+                    #2  GET NEW GENERALISATION
+############################################################
+I have run your code for several concrete values of N. Some of the outputs were not correct. Change your generalisation and code to account for the following outputs (Remember to always structure your reply with the headings 'CASUAL' and 'FORMAL').
+
+For N=1, the generalisation output correctly fits the given data
+
+For N=2, the generalisation output correctly fits the given data
+
+For N=3, the output constraint set should be:
+```
+in2 == (in0 * 3), in1 == (in0 * 2)
+```
+But your generalisation implies the set:
+```
+in2 == (in0 * 2), in1 == (in0 * 1)
+
+```
+This is not right. Explanation: The equation for in2 is different in the correct and predicted sets.
+
+For N=4, the output constraint set should be:
+```
+in3 == (in0 * 4), in2 == (in0 * 3), in1 == (in0 * 2)
+```
+But your generalisation implies the set:
+```
+in3 == (in0 * 3), in2 == (in0 * 2), in1 == (in0 * 1)
+
+```
+This is not right. Explanation: The coefficients in the predicted set do not match the coefficients in the correct set.
+
+For N=5, the output constraint set should be:
+```
+in4 == (in0 * 5), in3 == (in0 * 4), in2 == (in0 * 3), in1 == (in0 * 2)
+```
+But your generalisation implies the set:
+```
+in4 == (in0 * 4), in3 == (in0 * 3), in2 == (in0 * 2), in1 == (in0 * 1)
+
+```
+This is not right. Explanation: The equations in the correct set have a different scaling factor on the right-hand side compared to the predicted set. Specifically, the correct set has a scaling factor that is one larger for each equation.
+
+For N=6, the output constraint set should be:
+```
+in5 == (in0 * 6), in4 == (in0 * 5), in3 == (in0 * 4), in2 == (in0 * 3), in1 == (in0 * 2)
+```
+But your generalisation implies the set:
+```
+in5 == (in0 * 5), in4 == (in0 * 4), in3 == (in0 * 3), in2 == (in0 * 2), in1 == (in0 * 1)
+
+```
+This is not right. Explanation: The predicted set has different multiplication factors for each variable, which do not match the correct set.
+
+For N=7, the output constraint set should be:
+```
+in6 == (in0 * 7), in5 == (in0 * 6), in4 == (in0 * 5), in3 == (in0 * 4), in2 == (in0 * 3), in1 == (in0 * 2)
+```
+But your generalisation implies the set:
+```
+in6 == (in0 * 6), in5 == (in0 * 5), in4 == (in0 * 4), in3 == (in0 * 3), in2 == (in0 * 2), in1 == (in0 * 1)
+
+```
+This is not right. Explanation: The equation `in6 == (in0 * 7)` in the correct set has a coefficient of 7, while the predicted set has a coefficient of 6 in the equation `in6 == (in0 * 6)`.
+
+For N=8, the output constraint set should be:
+```
+in7 == (in0 * 8), in6 == (in0 * 7), in5 == (in0 * 6), in4 == (in0 * 5), in3 == (in0 * 4), in2 == (in0 * 3), in1 == (in0 * 2)
+```
+But your generalisation implies the set:
+```
+in7 == (in0 * 7), in6 == (in0 * 6), in5 == (in0 * 5), in4 == (in0 * 4), in3 == (in0 * 3), in2 == (in0 * 2), in1 == (in0 * 1)
+
+```
+This is not right. Explanation: The predicted set does not match the correct set because the coefficients associated with the variable names are different in the first inequality.
+
+For N=9, the output constraint set should be:
+```
+in8 == (in0 * 9), in7 == (in0 * 8), in6 == (in0 * 7), in5 == (in0 * 6), in4 == (in0 * 5), in3 == (in0 * 4), in2 == (in0 * 3), in1 == (in0 * 2)
+```
+But your generalisation implies the set:
+```
+in8 == (in0 * 8), in7 == (in0 * 7), in6 == (in0 * 6), in5 == (in0 * 5), in4 == (in0 * 4), in3 == (in0 * 3), in2 == (in0 * 2), in1 == (in0 * 1)
+
+```
+This is not right. Explanation: The last inequality in the predicted set is different from the correct set. In the predicted set, it states `in1 == (in0 * 1)` while in the correct set, it states `in1 == (in0 * 2)`.
+
+For N=10, the output constraint set should be:
+```
+in9 == (in0 * 10), in8 == (in0 * 9), in7 == (in0 * 8), in6 == (in0 * 7), in5 == (in0 * 6), in4 == (in0 * 5), in3 == (in0 * 4), in2 == (in0 * 3), in1 == (in0 * 2)
+```
+But your generalisation implies the set:
+```
+in9 == (in0 * 9), in8 == (in0 * 8), in7 == (in0 * 7), in6 == (in0 * 6), in5 == (in0 * 5), in4 == (in0 * 4), in3 == (in0 * 3), in2 == (in0 * 2), in1 == (in0 * 1)
+
+```
+This is not right. Explanation: The predicted set is missing the equation in9 == (in0 * 10).
+############################################################
+CASUAL
+It seems the previous generalization didn't consider the correct scaling factors and order for the inequalities. The coefficients in the predicted sets are incorrect for some N values, which makes them inconsistent with the correct sets.
+
+FORMAL
+```python
+def generate_constraints(N):
+    constraints = []
+    for k in range(1, N):
+        constraints.append(f"in{N-k} == (in0 * {N-k+1})")
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)
+```
+############################################################
+                    ATTEMPT NUMBER 3
+############################################################
+DONE WITH THAT EXAMPLE

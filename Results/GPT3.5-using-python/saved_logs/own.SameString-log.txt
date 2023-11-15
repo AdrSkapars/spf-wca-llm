@@ -1,0 +1,88 @@
+
+############################################################
+                    GET INITIAL GENERALISATION
+############################################################
+I'm experimenting with a program and trying to find what makes an increasingly large set of inputs valid. So far I have found one possible set of correct constraints/ conditions (not the only one) which define a valid input. Here they are.
+
+Valid constraints for 1 inputs (N=1):
+in0 == 120
+
+Valid constraints for 2 inputs (N=2):
+in1 == 120, in0 == 120
+
+Valid constraints for 3 inputs (N=3):
+in2 == 120, in1 == 120, in0 == 120
+
+Valid constraints for 4 inputs (N=4):
+in3 == 120, in2 == 120, in1 == 120, in0 == 120
+
+Valid constraints for 5 inputs (N=5):
+in4 == 120, in3 == 120, in2 == 120, in1 == 120, in0 == 120
+
+Valid constraints for 6 inputs (N=6):
+in5 == 120, in4 == 120, in3 == 120, in2 == 120, in1 == 120, in0 == 120
+
+Valid constraints for 7 inputs (N=7):
+in6 == 120, in5 == 120, in4 == 120, in3 == 120, in2 == 120, in1 == 120, in0 == 120
+
+Valid constraints for 8 inputs (N=8):
+in7 == 120, in6 == 120, in5 == 120, in4 == 120, in3 == 120, in2 == 120, in1 == 120, in0 == 120
+
+Valid constraints for 9 inputs (N=9):
+in8 == 120, in7 == 120, in6 == 120, in5 == 120, in4 == 120, in3 == 120, in2 == 120, in1 == 120, in0 == 120
+
+Valid constraints for 10 inputs (N=10):
+in9 == 120, in8 == 120, in7 == 120, in6 == 120, in5 == 120, in4 == 120, in3 == 120, in2 == 120, in1 == 120, in0 == 120
+
+Generalise what makes the set of constraints valid such that we can recover a valid set for N inputs. Don't overfit the data here but also dont oversimplify to the point of trivialness. Make sure none of the given examples contradict your generalisation.
+
+Use this code template to formally express the generalisation for N constraints:
+```python
+def generate_constraints(N):
+    constraints = []
+
+    # Do some logic here to append constraints
+
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)```
+
+Each inequality is usually in the form "x op y" where x, y are some variable, constant or some formula of variables and/ or constants, and op is an operation or inequality.
+############################################################
+CASUAL: 
+To define the valid constraints for N inputs, we can observe that each input should be equal to 120, and the indices of the inputs should follow a specific pattern. The indices of inputs range from N-1 to 0, and the value of each input should be the same, i.e., 120. Therefore, the general constraints for N inputs can be given as:
+- in_i == 120, where i ranges from N-1 to 0.
+
+Generalization for `N` constraints:
+```python
+def generate_constraints(N):
+    constraints = [f"in{i} == 120" for i in range(N-1, -1, -1)]
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)
+```
+############################################################
+Always respond first with an informal analysis in natural language and maybe some mathematics (under the heading 'CASUAL', all caps), then with a formal Python program answer inside a code block (under the heading 'FORMAL', all caps). Make sure there is only one code block in your answer.
+############################################################
+CASUAL:
+The general rule seems to be that for any given `N`, the constraint `in_i == 120` should hold true for each `i` ranging from `N-1` to `0`. This suggests a pattern where the input indices count down from `N-1` to `0` and are compared to 120.
+
+FORMAL:
+```python
+def generate_constraints(N):
+    constraints = [f"in{i} == 120" for i in range(N-1, -1, -1)]
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)
+```
+############################################################
+                    ATTEMPT NUMBER 1

@@ -1,0 +1,181 @@
+
+############################################################
+                    GET INITIAL GENERALISATION
+############################################################
+I'm experimenting with a program and trying to find what makes an increasingly large set of inputs valid. So far I have found one possible set of correct constraints/ conditions (not the only one) which define a valid input. Here they are.
+
+Valid constraints for 1 inputs (N=1):
+None
+
+Valid constraints for 2 inputs (N=2):
+in0 == in1
+
+Valid constraints for 3 inputs (N=3):
+in1 < in2, in0 == in1
+
+Valid constraints for 4 inputs (N=4):
+in2 < in3, in1 == in2, in0 == in1
+
+Valid constraints for 5 inputs (N=5):
+in3 < in4, in2 < in3, in1 == in2, in0 == in1
+
+Valid constraints for 6 inputs (N=6):
+in4 < in5, in3 < in4, in2 == in3, in1 == in2, in0 == in1
+
+Valid constraints for 7 inputs (N=7):
+in5 < in6, in4 < in5, in3 < in4, in2 == in3, in1 == in2, in0 == in1
+
+Valid constraints for 8 inputs (N=8):
+in6 < in7, in5 < in6, in4 < in5, in3 == in4, in2 == in3, in1 == in2, in0 == in1
+
+Valid constraints for 9 inputs (N=9):
+in7 < in8, in6 < in7, in5 < in6, in4 < in5, in3 == in4, in2 == in3, in1 == in2, in0 == in1
+
+Valid constraints for 10 inputs (N=10):
+in8 < in9, in7 < in8, in6 < in7, in5 < in6, in4 == in5, in3 == in4, in2 == in3, in1 == in2, in0 == in1
+
+Generalise what makes the set of constraints valid such that we can recover a valid set for N inputs. Don't overfit the data here but also dont oversimplify to the point of trivialness. Make sure none of the given examples contradict your generalisation.
+
+Use this code template to formally express the generalisation for N constraints:
+```python
+def generate_constraints(N):
+    constraints = []
+
+    # Do some logic here to append constraints
+
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)```
+
+Each inequality is usually in the form "x op y" where x, y are some variable, constant or some formula of variables and/ or constants, and op is an operation or inequality.
+############################################################
+INFORMAL:
+
+The constraints seem to follow a very specific pattern. 
+
+For sets of 1 constraint, there are none required, so we will ignore that case.
+
+For sets of constraints larger than that, some clear pattern emerges. Starting from the second input, we observe that it must be equal to the first input. Moving to the 2 next inputs, we observe that the next input must be larger than the second input in the same way, the third is also equal to the second input.
+
+It appears that for every n ranging from 1 to N we have:
+- If n is a multiple of 4, in(n-1) should be less than in(n).
+- Otherwise, in(n-1) should be equal to in(n).
+
+In other words, the constraints seem to oscillate between these two rules, depending on whether we are at a multiple of 4 in the sequence.
+
+FORMAL:
+```python
+def generate_constraints(N):
+    constraints = []
+    for i in range(N-1, 0, -1):
+        if i % 4 == 0:    
+            constraints.append(f"in{i-1} < in{i}")
+        else:
+            constraints.append(f"in{i-1} == in{i}")
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)
+```
+This code will generate the sequence of constraints described in the informal explanation. The sequence of constraints starts from N-1 and goes down to 1 (to align with the problem statement pattern). The if-check determines whether we're at a position that's a multiple of 4. If so, the constraint requires in(i-1) to be less than in(i); otherwise it requires in(i-1) to be equal to in(i). Finally, all constraints are joined into a string for printing.
+############################################################
+You haven't given the formal generalisation. Always respond first with an informal analysis in natural language and maybe some mathematics (under the heading 'INFORMAL', all caps), then with a formal Python program answer inside a code block (under the heading 'FORMAL', all caps). Make sure there is only one code block in your answer.
+############################################################
+INFORMAL:
+
+From the given constraints for each N inputs, we can see that there is a pattern. Let's consider the inputs as in0, in1, in2, ..., inN. For each given N, if N is 1, we have no constraints. If N is greater than or equal to 2, we have the following constraints:
+
+For i < (N+2)/2:
+- in(i-1) == in(i)
+
+Then for i >= (N+2)/2 and i <N:
+- in(i-1) < in(i)
+
+The pattern looks like it can be divided into two halves. In the first (N+2)/2 inputs (starting with i=1), the inputs all have to be equal. In the second half (from i=(N+2)/2 to N), each input must be greater than its predecessor. 
+
+We need to note that when the index i>= (N+2)/2, the elements need to be strictly increasing where each element should be greater than the previous element. 
+
+FORMAL:
+
+```python
+def generate_constraints(N):
+    constraints = []
+    for i in range(1, N):
+        if i < (N+2)//2:
+            constraints.append(f"in{i-1} == in{i}")
+        else:
+            constraints.append(f"in{i-1} < in{i}")
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)
+```
+This Python code checks for the conditions mentioned above and generates constraints accordingly. It loops through the range 1 to N and checks if the current value is less than (N+2)/2, if yes, it demands an equality constraint with the previous value else a smaller than constraint. It generates the constraints as per the pattern observed in the informal analysis.
+############################################################
+                    ATTEMPT NUMBER 1
+############################################################
+                    EVALUATING EXAMPLE NUMBER 1
+############################################################
+Input: 1,
+Output: 
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 2
+############################################################
+Input: 2,
+Output: in0 == in1
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 3
+############################################################
+Input: 3,
+Output: in0 == in1, in1 < in2
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 4
+############################################################
+Input: 4,
+Output: in0 == in1, in1 == in2, in2 < in3
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 5
+############################################################
+Input: 5,
+Output: in0 == in1, in1 == in2, in2 < in3, in3 < in4
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 6
+############################################################
+Input: 6,
+Output: in0 == in1, in1 == in2, in2 == in3, in3 < in4, in4 < in5
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 7
+############################################################
+Input: 7,
+Output: in0 == in1, in1 == in2, in2 == in3, in3 < in4, in4 < in5, in5 < in6
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 8
+############################################################
+Input: 8,
+Output: in0 == in1, in1 == in2, in2 == in3, in3 == in4, in4 < in5, in5 < in6, in6 < in7
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 9
+############################################################
+Input: 9,
+Output: in0 == in1, in1 == in2, in2 == in3, in3 == in4, in4 < in5, in5 < in6, in6 < in7, in7 < in8
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 10
+############################################################
+Input: 10,
+Output: in0 == in1, in1 == in2, in2 == in3, in3 == in4, in4 == in5, in5 < in6, in6 < in7, in7 < in8, in8 < in9

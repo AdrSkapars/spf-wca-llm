@@ -1,0 +1,207 @@
+
+############################################################
+                    GET INITIAL GENERALISATION
+############################################################
+I'm experimenting with a program and trying to find what makes an increasingly large set of inputs valid. So far I have found one possible set of correct constraints/ conditions (not the only one) which define a valid input. Here they are.
+
+Valid constraints for 1 inputs (N=1):
+in0 == 1
+
+Valid constraints for 2 inputs (N=2):
+in1 == 0, in0 == 1
+
+Valid constraints for 3 inputs (N=3):
+in2 == 1, in1 == 0, in0 == 1
+
+Valid constraints for 4 inputs (N=4):
+in3 == 0, in2 == 1, in1 == 0, in0 == 1
+
+Valid constraints for 5 inputs (N=5):
+in4 == 1, in3 == 0, in2 == 1, in1 == 0, in0 == 1
+
+Valid constraints for 6 inputs (N=6):
+in5 == 0, in4 == 1, in3 == 0, in2 == 1, in1 == 0, in0 == 1
+
+Valid constraints for 7 inputs (N=7):
+in6 == 1, in5 == 0, in4 == 1, in3 == 0, in2 == 1, in1 == 0, in0 == 1
+
+Valid constraints for 8 inputs (N=8):
+in7 == 0, in6 == 1, in5 == 0, in4 == 1, in3 == 0, in2 == 1, in1 == 0, in0 == 1
+
+Valid constraints for 9 inputs (N=9):
+in8 == 1, in7 == 0, in6 == 1, in5 == 0, in4 == 1, in3 == 0, in2 == 1, in1 == 0, in0 == 1
+
+Valid constraints for 10 inputs (N=10):
+in9 == 0, in8 == 1, in7 == 0, in6 == 1, in5 == 0, in4 == 1, in3 == 0, in2 == 1, in1 == 0, in0 == 1
+
+Generalise what makes the set of constraints valid such that we can recover a valid set for N inputs. Don't overfit the data here but also dont oversimplify to the point of trivialness. Make sure none of the given examples contradict your generalisation.
+
+Use this code template to formally express the generalisation for N constraints:
+```python
+def generate_constraints(N):
+    constraints = []
+
+    # Do some logic here to append constraints
+
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)```
+
+Each inequality is usually in the form "x op y" where x, y are some variable, constant or some formula of variables and/ or constants, and op is an operation or inequality.
+############################################################
+CASUAL
+
+It appears that for N inputs, the valid constraints can be determined as follows:
+- The ith input starts with 1 if i is even, and 0 if i is odd.
+
+So basically, for N inputs, we set in(i) equal to 1 if i is even and equal to 0 if i is odd. 
+
+This can be represented mathematically as in(i) = i % 2, where % is the modulus operator, returning the remainder of i divided by 2.
+
+FORMAL
+
+```python
+def generate_constraints(N):
+    constraints = []
+    for i in range(N):
+        constraints.append(f'in{i} == {i % 2}')
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)
+```
+############################################################
+                    ATTEMPT NUMBER 1
+############################################################
+                    #1  GET NEW GENERALISATION
+############################################################
+I have run your code for several concrete values of N. Some of the outputs were not correct. Change your generalisation and code to account for the following outputs (Remember to always structure your reply with the headings 'CASUAL' and 'FORMAL').
+
+For N=1, the output constraint set should be:
+```
+in0 == 1
+```
+But your generalisation implies the set:
+```
+in0 == 0
+
+```
+This is not right. Explanation: The inequality in the correct set has `1` on the right-hand side, while the predicted set has `0`. Thus, the two sets are not the same.
+
+For N=2, the generalisation output correctly fits the given data
+
+For N=3, the output constraint set should be:
+```
+in2 == 1, in1 == 0, in0 == 1
+```
+But your generalisation implies the set:
+```
+in0 == 0, in1 == 1, in2 == 0
+
+```
+This is not right. Explanation: The two sets of inequalities are different because the values assigned to the variables are not the same in both sets. For example, in the correct set, in2 is equal to 1, while in the predicted set, in2 is equal to 0.
+
+For N=4, the output constraint set should be:
+```
+in3 == 0, in2 == 1, in1 == 0, in0 == 1
+```
+But your generalisation implies the set:
+```
+in0 == 0, in1 == 1, in2 == 0, in3 == 1
+
+```
+This is not right. Explanation: The values of the variables in the two sets are different. For example, in the correct set, `in0 == 1`, but in the predicted set, `in0 == 0`. This discrepancy continues for the other variables as well.
+
+For N=5, the output constraint set should be:
+```
+in4 == 1, in3 == 0, in2 == 1, in1 == 0, in0 == 1
+```
+But your generalisation implies the set:
+```
+in0 == 0, in1 == 1, in2 == 0, in3 == 1, in4 == 0
+
+```
+This is not right. Explanation: The order of the variables in the predicted set is reversed compared to the correct set. Additionally, the values assigned to the variables are different.
+
+For N=6, the output constraint set should be:
+```
+in5 == 0, in4 == 1, in3 == 0, in2 == 1, in1 == 0, in0 == 1
+```
+But your generalisation implies the set:
+```
+in0 == 0, in1 == 1, in2 == 0, in3 == 1, in4 == 0, in5 == 1
+
+```
+This is not right. Explanation: The predicted set has the opposite assignments for each variable compared to the correct set.
+
+For N=7, the output constraint set should be:
+```
+in6 == 1, in5 == 0, in4 == 1, in3 == 0, in2 == 1, in1 == 0, in0 == 1
+```
+But your generalisation implies the set:
+```
+in0 == 0, in1 == 1, in2 == 0, in3 == 1, in4 == 0, in5 == 1, in6 == 0
+
+```
+This is not right. Explanation: The values assigned to the variables in the correct set and the predicted set are different. Specifically, the values assigned to the variables in the correct set are in the order 1, 0, 1, 0, 1, 0, 1, while the values assigned to the variables in the predicted set are in the order 0, 1, 0, 1, 0, 1, 0.
+
+For N=8, the output constraint set should be:
+```
+in7 == 0, in6 == 1, in5 == 0, in4 == 1, in3 == 0, in2 == 1, in1 == 0, in0 == 1
+```
+But your generalisation implies the set:
+```
+in0 == 0, in1 == 1, in2 == 0, in3 == 1, in4 == 0, in5 == 1, in6 == 0, in7 == 1
+
+```
+This is not right. Explanation: The predicted set has the opposite values for each variable compared to the correct set. For example, in the correct set, in0 is equal to 1, while in the predicted set, in0 is equal to 0. This pattern is consistent for all variables.
+
+For N=9, the output constraint set should be:
+```
+in8 == 1, in7 == 0, in6 == 1, in5 == 0, in4 == 1, in3 == 0, in2 == 1, in1 == 0, in0 == 1
+```
+But your generalisation implies the set:
+```
+in0 == 0, in1 == 1, in2 == 0, in3 == 1, in4 == 0, in5 == 1, in6 == 0, in7 == 1, in8 == 0
+
+```
+This is not right. Explanation: The two sets of inequalities have different values for the variables. For example, in8 == 1 in the correct set is different from in0 == 0 in the predicted set.
+
+For N=10, the output constraint set should be:
+```
+in9 == 0, in8 == 1, in7 == 0, in6 == 1, in5 == 0, in4 == 1, in3 == 0, in2 == 1, in1 == 0, in0 == 1
+```
+But your generalisation implies the set:
+```
+in0 == 0, in1 == 1, in2 == 0, in3 == 1, in4 == 0, in5 == 1, in6 == 0, in7 == 1, in8 == 0, in9 == 1
+
+```
+This is not right. Explanation: The order of the variables is reversed in the predicted set compared to the correct set.
+############################################################
+CASUAL
+
+The updated generalisation should take into account that the value assigned to the ith input is 1 if and only if i is odd, and 0 if i is even. This can be mathematically represented as in(i) = 1 - (i % 2).
+
+FORMAL
+
+```python
+def generate_constraints(N):
+    constraints = []
+    for i in range(N):
+        constraints.append(f'in{i} == {1 - (i % 2)}')
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)
+```
+############################################################
+                    ATTEMPT NUMBER 2
+############################################################
+DONE WITH THAT EXAMPLE

@@ -1,0 +1,147 @@
+
+############################################################
+                    GET INITIAL GENERALISATION
+############################################################
+I'm experimenting with a program and trying to find what makes an increasingly large set of inputs valid. So far I have found one possible set of correct constraints/ conditions (not the only one) which define a valid input. Here they are.
+
+Valid constraints for 1 inputs (N=1):
+in0 <= 122, in0 >= 97
+
+Valid constraints for 2 inputs (N=2):
+in1 <= 122, in1 >= 97, in0 <= 122, in0 >= 97
+
+Valid constraints for 3 inputs (N=3):
+in2 <= 122, in2 >= 97, in1 <= 122, in1 >= 97, in0 <= 122, in0 >= 97
+
+Valid constraints for 4 inputs (N=4):
+in3 <= 122, in3 >= 97, in2 <= 122, in2 >= 97, in1 <= 122, in1 >= 97, in0 <= 122, in0 >= 97
+
+Valid constraints for 5 inputs (N=5):
+in4 <= 122, in4 >= 97, in3 <= 122, in3 >= 97, in2 <= 122, in2 >= 97, in1 <= 122, in1 >= 97, in0 <= 122, in0 >= 97
+
+Valid constraints for 6 inputs (N=6):
+in5 <= 122, in5 >= 97, in4 <= 122, in4 >= 97, in3 <= 122, in3 >= 97, in2 <= 122, in2 >= 97, in1 <= 122, in1 >= 97, in0 <= 122, in0 >= 97
+
+Valid constraints for 7 inputs (N=7):
+in6 <= 122, in6 >= 97, in5 <= 122, in5 >= 97, in4 <= 122, in4 >= 97, in3 <= 122, in3 >= 97, in2 <= 122, in2 >= 97, in1 <= 122, in1 >= 97, in0 <= 122, in0 >= 97
+
+Valid constraints for 8 inputs (N=8):
+in7 <= 122, in7 >= 97, in6 <= 122, in6 >= 97, in5 <= 122, in5 >= 97, in4 <= 122, in4 >= 97, in3 <= 122, in3 >= 97, in2 <= 122, in2 >= 97, in1 <= 122, in1 >= 97, in0 <= 122, in0 >= 97
+
+Valid constraints for 9 inputs (N=9):
+in8 <= 122, in8 >= 97, in7 <= 122, in7 >= 97, in6 <= 122, in6 >= 97, in5 <= 122, in5 >= 97, in4 <= 122, in4 >= 97, in3 <= 122, in3 >= 97, in2 <= 122, in2 >= 97, in1 <= 122, in1 >= 97, in0 <= 122, in0 >= 97
+
+Valid constraints for 10 inputs (N=10):
+in9 <= 122, in9 >= 97, in8 <= 122, in8 >= 97, in7 <= 122, in7 >= 97, in6 <= 122, in6 >= 97, in5 <= 122, in5 >= 97, in4 <= 122, in4 >= 97, in3 <= 122, in3 >= 97, in2 <= 122, in2 >= 97, in1 <= 122, in1 >= 97, in0 <= 122, in0 >= 97
+
+Generalise what makes the set of constraints valid such that we can recover a valid set for N inputs. Don't overfit the data here but also dont oversimplify to the point of trivialness. Make sure none of the given examples contradict your generalisation.
+
+Use this code template to formally express the generalisation for N constraints:
+```python
+def generate_constraints(N):
+    constraints = []
+
+    # Do some logic here to append constraints
+
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)```
+
+Each inequality is usually in the form "x op y" where x, y are some variable, constant or some formula of variables and/ or constants, and op is an operation or inequality.
+############################################################
+INFORMAL
+
+Reviewing the given examples, it's evident that the set of constraints is consistent and predictable for each input value N. 
+
+For each input 'inx' (where x runs from 0 to N-1), there are two constraints: 
+
+inx  >= 97 and inx <= 122.
+
+These constraints ensure that each input is within this defined range (inclusive). 
+
+This pattern holds for all N values in the provided examples and so, we could generalise that for any N, we will have a similar pattern of constraints for 'inx' where x ranges from 0 to N-1 (each having both lower and upper bound constraints being 97 and 122 respectively). 
+
+To write a program that generates these constraints for a given N, we can simply create a loop that runs from 0 to N-1 and for each iteration, we creates two constraints: one with the '>= 97' clause and the other with the '<= 122' one, and then appends them to our constraints list.
+
+
+FORMAL
+
+```python
+def generate_constraints(N):
+    constraints = []
+
+    for i in range(N):
+        constraints.append(f'in{i} >= 97')
+        constraints.append(f'in{i} <= 122')
+
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)
+```
+############################################################
+                    ATTEMPT NUMBER 1
+############################################################
+                    EVALUATING EXAMPLE NUMBER 1
+############################################################
+Input: 1,
+Output: in0 >= 97, in0 <= 122
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 2
+############################################################
+Input: 2,
+Output: in0 >= 97, in0 <= 122, in1 >= 97, in1 <= 122
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 3
+############################################################
+Input: 3,
+Output: in0 >= 97, in0 <= 122, in1 >= 97, in1 <= 122, in2 >= 97, in2 <= 122
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 4
+############################################################
+Input: 4,
+Output: in0 >= 97, in0 <= 122, in1 >= 97, in1 <= 122, in2 >= 97, in2 <= 122, in3 >= 97, in3 <= 122
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 5
+############################################################
+Input: 5,
+Output: in0 >= 97, in0 <= 122, in1 >= 97, in1 <= 122, in2 >= 97, in2 <= 122, in3 >= 97, in3 <= 122, in4 >= 97, in4 <= 122
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 6
+############################################################
+Input: 6,
+Output: in0 >= 97, in0 <= 122, in1 >= 97, in1 <= 122, in2 >= 97, in2 <= 122, in3 >= 97, in3 <= 122, in4 >= 97, in4 <= 122, in5 >= 97, in5 <= 122
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 7
+############################################################
+Input: 7,
+Output: in0 >= 97, in0 <= 122, in1 >= 97, in1 <= 122, in2 >= 97, in2 <= 122, in3 >= 97, in3 <= 122, in4 >= 97, in4 <= 122, in5 >= 97, in5 <= 122, in6 >= 97, in6 <= 122
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 8
+############################################################
+Input: 8,
+Output: in0 >= 97, in0 <= 122, in1 >= 97, in1 <= 122, in2 >= 97, in2 <= 122, in3 >= 97, in3 <= 122, in4 >= 97, in4 <= 122, in5 >= 97, in5 <= 122, in6 >= 97, in6 <= 122, in7 >= 97, in7 <= 122
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 9
+############################################################
+Input: 9,
+Output: in0 >= 97, in0 <= 122, in1 >= 97, in1 <= 122, in2 >= 97, in2 <= 122, in3 >= 97, in3 <= 122, in4 >= 97, in4 <= 122, in5 >= 97, in5 <= 122, in6 >= 97, in6 <= 122, in7 >= 97, in7 <= 122, in8 >= 97, in8 <= 122
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 10
+############################################################
+Input: 10,
+Output: in0 >= 97, in0 <= 122, in1 >= 97, in1 <= 122, in2 >= 97, in2 <= 122, in3 >= 97, in3 <= 122, in4 >= 97, in4 <= 122, in5 >= 97, in5 <= 122, in6 >= 97, in6 <= 122, in7 >= 97, in7 <= 122, in8 >= 97, in8 <= 122, in9 >= 97, in9 <= 122

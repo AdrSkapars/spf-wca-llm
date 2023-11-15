@@ -1,0 +1,76 @@
+
+############################################################
+                    GET INITIAL GENERALISATION
+############################################################
+I'm experimenting with a program and trying to find what makes an increasingly large set of inputs valid. So far I have found one possible set of correct constraints/ conditions (not the only one) which define a valid input. Here they are.
+
+Valid constraints for 1 inputs (N=1):
+None
+
+Valid constraints for 2 inputs (N=2):
+None
+
+Valid constraints for 3 inputs (N=3):
+in2 == 0
+
+Valid constraints for 4 inputs (N=4):
+in2 == 0
+
+Valid constraints for 5 inputs (N=5):
+in2 == 0
+
+Valid constraints for 6 inputs (N=6):
+in2 == 0
+
+Valid constraints for 7 inputs (N=7):
+in2 == 0
+
+Valid constraints for 8 inputs (N=8):
+in2 == 0
+
+Valid constraints for 9 inputs (N=9):
+in2 == 0
+
+Valid constraints for 10 inputs (N=10):
+in2 == 0
+
+Generalise what makes the set of constraints valid such that we can recover a valid set for N inputs. Don't overfit the data here but also dont oversimplify to the point of trivialness. Make sure none of the given examples contradict your generalisation.
+
+Use this code template to formally express the generalisation for N constraints:
+```python
+def generate_constraints(N):
+    constraints = []
+
+    # Do some logic here to append constraints
+
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)```
+
+Each inequality is usually in the form "x op y" where x, y are some variable, constant or some formula of variables and/ or constants, and op is an operation or inequality.
+############################################################
+CASUAL
+
+The given set of constraints for N inputs seems to have a common pattern: in2 == 0. This pattern holds for N = 3, 4, 5, 6, 7, 8, 9, and 10, and is missing for N = 1 and 2. From this, we can generalize that the valid set of constraints for N inputs is "in2 == 0" for N > 2.
+
+FORMAL
+
+```python
+def generate_constraints(N):
+    constraints = []
+
+    if N > 2:
+        constraints.append("in2 == 0")
+
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)
+```
+############################################################
+                    ATTEMPT NUMBER 1

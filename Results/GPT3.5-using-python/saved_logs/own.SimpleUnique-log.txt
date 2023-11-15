@@ -1,0 +1,168 @@
+
+############################################################
+                    GET INITIAL GENERALISATION
+############################################################
+I'm experimenting with a program and trying to find what makes an increasingly large set of inputs valid. So far I have found one possible set of correct constraints/ conditions (not the only one) which define a valid input. Here they are.
+
+Valid constraints for 1 inputs (N=1):
+None
+
+Valid constraints for 2 inputs (N=2):
+in0 != in1
+
+Valid constraints for 3 inputs (N=3):
+in1 != in2, in0 != in2, in0 != in1
+
+Valid constraints for 4 inputs (N=4):
+in2 != in3, in1 != in3, in1 != in2, in0 != in3, in0 != in2, in0 != in1
+
+Valid constraints for 5 inputs (N=5):
+in3 != in4, in2 != in4, in2 != in3, in1 != in4, in1 != in3, in1 != in2, in0 != in4, in0 != in3, in0 != in2, in0 != in1
+
+Valid constraints for 6 inputs (N=6):
+in4 != in5, in3 != in5, in3 != in4, in2 != in5, in2 != in4, in2 != in3, in1 != in5, in1 != in4, in1 != in3, in1 != in2, in0 != in5, in0 != in4, in0 != in3, in0 != in2, in0 != in1
+
+Valid constraints for 7 inputs (N=7):
+in5 != in6, in4 != in6, in4 != in5, in3 != in6, in3 != in5, in3 != in4, in2 != in6, in2 != in5, in2 != in4, in2 != in3, in1 != in6, in1 != in5, in1 != in4, in1 != in3, in1 != in2, in0 != in6, in0 != in5, in0 != in4, in0 != in3, in0 != in2, in0 != in1
+
+Valid constraints for 8 inputs (N=8):
+in6 != in7, in5 != in7, in5 != in6, in4 != in7, in4 != in6, in4 != in5, in3 != in7, in3 != in6, in3 != in5, in3 != in4, in2 != in7, in2 != in6, in2 != in5, in2 != in4, in2 != in3, in1 != in7, in1 != in6, in1 != in5, in1 != in4, in1 != in3, in1 != in2, in0 != in7, in0 != in6, in0 != in5, in0 != in4, in0 != in3, in0 != in2, in0 != in1
+
+Valid constraints for 9 inputs (N=9):
+in7 != in8, in6 != in8, in6 != in7, in5 != in8, in5 != in7, in5 != in6, in4 != in8, in4 != in7, in4 != in6, in4 != in5, in3 != in8, in3 != in7, in3 != in6, in3 != in5, in3 != in4, in2 != in8, in2 != in7, in2 != in6, in2 != in5, in2 != in4, in2 != in3, in1 != in8, in1 != in7, in1 != in6, in1 != in5, in1 != in4, in1 != in3, in1 != in2, in0 != in8, in0 != in7, in0 != in6, in0 != in5, in0 != in4, in0 != in3, in0 != in2, in0 != in1
+
+Valid constraints for 10 inputs (N=10):
+in8 != in9, in7 != in9, in7 != in8, in6 != in9, in6 != in8, in6 != in7, in5 != in9, in5 != in8, in5 != in7, in5 != in6, in4 != in9, in4 != in8, in4 != in7, in4 != in6, in4 != in5, in3 != in9, in3 != in8, in3 != in7, in3 != in6, in3 != in5, in3 != in4, in2 != in9, in2 != in8, in2 != in7, in2 != in6, in2 != in5, in2 != in4, in2 != in3, in1 != in9, in1 != in8, in1 != in7, in1 != in6, in1 != in5, in1 != in4, in1 != in3, in1 != in2, in0 != in9, in0 != in8, in0 != in7, in0 != in6, in0 != in5, in0 != in4, in0 != in3, in0 != in2, in0 != in1
+
+Generalise what makes the set of constraints valid such that we can recover a valid set for N inputs. Don't overfit the data here but also dont oversimplify to the point of trivialness. Make sure none of the given examples contradict your generalisation.
+
+Use this code template to formally express the generalisation for N constraints:
+```python
+def generate_constraints(N):
+    constraints = []
+
+    # Do some logic here to append constraints
+
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)```
+
+Each inequality is usually in the form "x op y" where x, y are some variable, constant or some formula of variables and/ or constants, and op is an operation or inequality.
+############################################################
+CASUAL
+It seems that the valid constraints for N inputs have the pattern of ensuring that each input is not equal to any of the preceding inputs. Therefore, for N inputs, we need to generate constraints of the form "in(i) != in(j)" for all i < j.
+
+FORMAL
+```python
+def generate_constraints(N):
+    constraints = []
+
+    for i in range(N):
+        for j in range(i):
+            constraints.append(f'in{i} != in{j}')
+
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)
+```
+############################################################
+                    ATTEMPT NUMBER 1
+############################################################
+                    #1  GET NEW GENERALISATION
+############################################################
+I have run your code for several concrete values of N. Some of the outputs were not correct. Change your generalisation and code to account for the following outputs (Remember to always structure your reply with the headings 'CASUAL' and 'FORMAL').
+
+For N=1, the generalisation output correctly fits the given data
+
+For N=2, the generalisation output correctly fits the given data
+
+For N=3, the output constraint set should be:
+```
+in1 != in2, in0 != in2, in0 != in1
+```
+But your generalisation implies the set:
+```
+in1 != in0, in2 != in0, in2 != in1
+
+```
+This is not right. Explanation: The two sets of inequalities are different because the order of variables is different in the predicted set. In the predicted set, the variables are in1, in0, and in2, whereas in the correct set, the variables are in2, in0, and in1. Therefore, the predicted set does not match the correct set.
+
+For N=4, the generalisation output correctly fits the given data
+
+For N=5, the generalisation output correctly fits the given data
+
+For N=6, the output constraint set should be:
+```
+in4 != in5, in3 != in5, in3 != in4, in2 != in5, in2 != in4, in2 != in3, in1 != in5, in1 != in4, in1 != in3, in1 != in2, in0 != in5, in0 != in4, in0 != in3, in0 != in2, in0 != in1
+```
+But your generalisation implies the set:
+```
+in1 != in0, in2 != in0, in2 != in1, in3 != in0, in3 != in1, in3 != in2, in4 != in0, in4 != in1, in4 != in2, in4 != in3, in5 != in0, in5 != in1, in5 != in2, in5 != in3, in5 != in4
+
+```
+This is not right. Explanation: At least one inequality from each set does not appear in the other set, indicating that they are not the same.
+
+For N=7, the output constraint set should be:
+```
+in5 != in6, in4 != in6, in4 != in5, in3 != in6, in3 != in5, in3 != in4, in2 != in6, in2 != in5, in2 != in4, in2 != in3, in1 != in6, in1 != in5, in1 != in4, in1 != in3, in1 != in2, in0 != in6, in0 != in5, in0 != in4, in0 != in3, in0 != in2, in0 != in1
+```
+But your generalisation implies the set:
+```
+in1 != in0, in2 != in0, in2 != in1, in3 != in0, in3 != in1, in3 != in2, in4 != in0, in4 != in1, in4 != in2, in4 != in3, in5 != in0, in5 != in1, in5 != in2, in5 != in3, in5 != in4, in6 != in0, in6 != in1, in6 != in2, in6 != in3, in6 != in4, in6 != in5
+
+```
+This is not right. Explanation: The first inequality in the correct set is "in5 != in6", while the first inequality in the predicted set is "in1 != in0", which are not the same pair of variables.
+
+For N=8, the output constraint set should be:
+```
+in6 != in7, in5 != in7, in5 != in6, in4 != in7, in4 != in6, in4 != in5, in3 != in7, in3 != in6, in3 != in5, in3 != in4, in2 != in7, in2 != in6, in2 != in5, in2 != in4, in2 != in3, in1 != in7, in1 != in6, in1 != in5, in1 != in4, in1 != in3, in1 != in2, in0 != in7, in0 != in6, in0 != in5, in0 != in4, in0 != in3, in0 != in2, in0 != in1
+```
+But your generalisation implies the set:
+```
+in1 != in0, in2 != in0, in2 != in1, in3 != in0, in3 != in1, in3 != in2, in4 != in0, in4 != in1, in4 != in2, in4 != in3, in5 != in0, in5 != in1, in5 != in2, in5 != in3, in5 != in4, in6 != in0, in6 != in1, in6 != in2, in6 != in3, in6 != in4, in6 != in5, in7 != in0, in7 != in1, in7 != in2, in7 != in3, in7 != in4, in7 != in5, in7 != in6
+
+```
+This is not right. Explanation: The two sets of inequalities are different because the order of the variables in the predicted set is different from the correct set. Although both sets follow the same pattern, the variables are not in the same order.
+
+For N=9, the output constraint set should be:
+```
+in7 != in8, in6 != in8, in6 != in7, in5 != in8, in5 != in7, in5 != in6, in4 != in8, in4 != in7, in4 != in6, in4 != in5, in3 != in8, in3 != in7, in3 != in6, in3 != in5, in3 != in4, in2 != in8, in2 != in7, in2 != in6, in2 != in5, in2 != in4, in2 != in3, in1 != in8, in1 != in7, in1 != in6, in1 != in5, in1 != in4, in1 != in3, in1 != in2, in0 != in8, in0 != in7, in0 != in6, in0 != in5, in0 != in4, in0 != in3, in0 != in2, in0 != in1
+```
+But your generalisation implies the set:
+```
+in1 != in0, in2 != in0, in2 != in1, in3 != in0, in3 != in1, in3 != in2, in4 != in0, in4 != in1, in4 != in2, in4 != in3, in5 != in0, in5 != in1, in5 != in2, in5 != in3, in5 != in4, in6 != in0, in6 != in1, in6 != in2, in6 != in3, in6 != in4, in6 != in5, in7 != in0, in7 != in1, in7 != in2, in7 != in3, in7 != in4, in7 != in5, in7 != in6, in8 != in0, in8 != in1, in8 != in2, in8 != in3, in8 != in4, in8 != in5, in8 != in6, in8 != in7
+
+```
+This is not right. Explanation: The two sets of inequalities are in a different order.
+
+For N=10, the generalisation output correctly fits the given data
+############################################################
+CASUAL
+It looks like the previous generalization did not account for the order of the variables in the inequalities. The correct set of inequalities should strictly enforce the order of the variables. We should ensure that for each constraint, the left variable comes before the right variable.
+
+FORMAL
+```python
+def generate_constraints(N):
+    constraints = []
+
+    for i in range(N):
+        for j in range(i):
+            constraints.append(f'in{j} != in{i}')
+
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)
+```
+############################################################
+                    ATTEMPT NUMBER 2
+############################################################
+DONE WITH THAT EXAMPLE

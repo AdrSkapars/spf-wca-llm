@@ -1,0 +1,154 @@
+
+############################################################
+                    GET INITIAL GENERALISATION
+############################################################
+I'm experimenting with a program and trying to find what makes an increasingly large set of inputs valid. So far I have found one possible set of correct constraints/ conditions (not the only one) which define a valid input. Here they are.
+
+Valid constraints for 1 inputs (N=1):
+put0_0 != get0, 0 == ((get1 + get0) % 1), 0 == ((put0_1 + put0_0) % 1)
+
+Valid constraints for 2 inputs (N=2):
+put1_0 != get0, put0_0 != get0, 0 == ((get1 + get0) % 2), 0 == ((put1_1 + put1_0) % 2), 0 == ((put0_1 + put0_0) % 2)
+
+Valid constraints for 3 inputs (N=3):
+put2_0 != get0, put1_0 != get0, put0_0 != get0, 0 == ((get1 + get0) % 3), 0 == ((put2_1 + put2_0) % 3), 0 == ((put1_1 + put1_0) % 3), 0 == ((put0_1 + put0_0) % 3)
+
+Valid constraints for 4 inputs (N=4):
+put3_0 != get0, put2_0 != get0, put1_0 != get0, put0_0 != get0, 0 == ((get1 + get0) % 4), 0 == ((put3_1 + put3_0) % 4), 0 == ((put2_1 + put2_0) % 4), 0 == ((put1_1 + put1_0) % 4), 0 == ((put0_1 + put0_0) % 4)
+
+Valid constraints for 5 inputs (N=5):
+put4_0 != get0, put3_0 != get0, put2_0 != get0, put1_0 != get0, put0_0 != get0, 0 == ((get1 + get0) % 5), 0 == ((put4_1 + put4_0) % 5), 0 == ((put3_1 + put3_0) % 5), 0 == ((put2_1 + put2_0) % 5), 0 == ((put1_1 + put1_0) % 5), 0 == ((put0_1 + put0_0) % 5)
+
+Valid constraints for 6 inputs (N=6):
+put5_0 != get0, put4_0 != get0, put3_0 != get0, put2_0 != get0, put1_0 != get0, put0_0 != get0, 0 == ((get1 + get0) % 6), 0 == ((put5_1 + put5_0) % 6), 0 == ((put4_1 + put4_0) % 6), 0 == ((put3_1 + put3_0) % 6), 0 == ((put2_1 + put2_0) % 6), 0 == ((put1_1 + put1_0) % 6), 0 == ((put0_1 + put0_0) % 6)
+
+Valid constraints for 7 inputs (N=7):
+put6_0 != get0, put5_0 != get0, put4_0 != get0, put3_0 != get0, put2_0 != get0, put1_0 != get0, put0_0 != get0, 0 == ((get1 + get0) % 7), 0 == ((put6_1 + put6_0) % 7), 0 == ((put5_1 + put5_0) % 7), 0 == ((put4_1 + put4_0) % 7), 0 == ((put3_1 + put3_0) % 7), 0 == ((put2_1 + put2_0) % 7), 0 == ((put1_1 + put1_0) % 7), 0 == ((put0_1 + put0_0) % 7)
+
+Valid constraints for 8 inputs (N=8):
+put7_0 != get0, put6_0 != get0, put5_0 != get0, put4_0 != get0, put3_0 != get0, put2_0 != get0, put1_0 != get0, put0_0 != get0, 0 == ((get1 + get0) % 8), 0 == ((put7_1 + put7_0) % 8), 0 == ((put6_1 + put6_0) % 8), 0 == ((put5_1 + put5_0) % 8), 0 == ((put4_1 + put4_0) % 8), 0 == ((put3_1 + put3_0) % 8), 0 == ((put2_1 + put2_0) % 8), 0 == ((put1_1 + put1_0) % 8), 0 == ((put0_1 + put0_0) % 8)
+
+Valid constraints for 9 inputs (N=9):
+put8_0 != get0, put7_0 != get0, put6_0 != get0, put5_0 != get0, put4_0 != get0, put3_0 != get0, put2_0 != get0, put1_0 != get0, put0_0 != get0, 0 == ((get1 + get0) % 9), 0 == ((put8_1 + put8_0) % 9), 0 == ((put7_1 + put7_0) % 9), 0 == ((put6_1 + put6_0) % 9), 0 == ((put5_1 + put5_0) % 9), 0 == ((put4_1 + put4_0) % 9), 0 == ((put3_1 + put3_0) % 9), 0 == ((put2_1 + put2_0) % 9), 0 == ((put1_1 + put1_0) % 9), 0 == ((put0_1 + put0_0) % 9)
+
+Valid constraints for 10 inputs (N=10):
+put9_0 != get0, put8_0 != get0, put7_0 != get0, put6_0 != get0, put5_0 != get0, put4_0 != get0, put3_0 != get0, put2_0 != get0, put1_0 != get0, put0_0 != get0, 0 == ((get1 + get0) % 10), 0 == ((put9_1 + put9_0) % 10), 0 == ((put8_1 + put8_0) % 10), 0 == ((put7_1 + put7_0) % 10), 0 == ((put6_1 + put6_0) % 10), 0 == ((put5_1 + put5_0) % 10), 0 == ((put4_1 + put4_0) % 10), 0 == ((put3_1 + put3_0) % 10), 0 == ((put2_1 + put2_0) % 10), 0 == ((put1_1 + put1_0) % 10), 0 == ((put0_1 + put0_0) % 10)
+
+Generalise what makes the set of constraints valid such that we can recover a valid set for N inputs. Don't overfit the data here but also dont oversimplify to the point of trivialness. Make sure none of the given examples contradict your generalisation.
+
+Use this code template to formally express the generalisation for N constraints:
+```python
+def generate_constraints(N):
+    constraints = []
+
+    # Do some logic here to append constraints
+
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)```
+
+Each inequality is usually in the form "x op y" where x, y are some variable, constant or some formula of variables and/ or constants, and op is an operation or inequality.
+############################################################
+INFORMAL 
+
+Looking at the given constraints, we notice some regular patterns:
+
+1. For each integer from 0 to N - 1 (inclusive), there is a constraint of the form "putK_0 != get0", where K is that integer. This implies that "putN-N_0 != get0", "putN-N+1_0 != get0", "putN-N+2_0 != get0", ..., "putN-1_0 != get0" should be part of our constraints.
+
+2. For each integer from 0 to N - 1 (inclusive), there is another constraint of the form "0 == ((putK_1 + putK_0) % N)". This implies that "0 == ((putN-N_1 + putN-N_0) % N)", "0 == ((putN-N+1_1 + putN-N+1_0) % N)", ..., "0 == ((putN-1_1 + putN-1_0) % N)" should also be part of our constraints.
+
+3. Besides the above, there is also a constraint of the form "0 == ((get1 + get0) % N)".
+
+Note that the variable names correspond to the integer values in reverse (i.e., the '0'th input variable name starts with the highest number).
+
+Therefore, a valid set of N constraints can be generated as follows:
+
+  - For i from N-1 down to 0, generate a constraint "put{N-i-1}_0 != get0".
+  - For i from N-1 down to 0, generate a constraint "0 == ((put{N-i-1}_1 + put{N-i-1}_0) % N)".
+  - Lastly, also generate the constraint "0 == ((get1 + get0) % N)".
+
+FORMAL
+
+```python
+def generate_constraints(N):
+    constraints = []
+
+    for i in range(N-1, -1, -1):
+        constraints.append("put{}_0 != get0".format(N-i-1))
+
+    for i in range(N-1, -1, -1):
+        constraints.append("0 == ((put{}_1 + put{}_0) % {})".format(N-i-1, N-i-1, N))
+
+    constraints.append("0 == ((get1 + get0) % {})".format(N))
+
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)
+```
+############################################################
+                    ATTEMPT NUMBER 1
+############################################################
+                    EVALUATING EXAMPLE NUMBER 1
+############################################################
+Input: 1,
+Output: put0_0 != get0, 0 == ((put0_1 + put0_0) % 1), 0 == ((get1 + get0) % 1)
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 2
+############################################################
+Input: 2,
+Output: put0_0 != get0, put1_0 != get0, 0 == ((put0_1 + put0_0) % 2), 0 == ((put1_1 + put1_0) % 2), 0 == ((get1 + get0) % 2)
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 3
+############################################################
+Input: 3,
+Output: put0_0 != get0, put1_0 != get0, put2_0 != get0, 0 == ((put0_1 + put0_0) % 3), 0 == ((put1_1 + put1_0) % 3), 0 == ((put2_1 + put2_0) % 3), 0 == ((get1 + get0) % 3)
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 4
+############################################################
+Input: 4,
+Output: put0_0 != get0, put1_0 != get0, put2_0 != get0, put3_0 != get0, 0 == ((put0_1 + put0_0) % 4), 0 == ((put1_1 + put1_0) % 4), 0 == ((put2_1 + put2_0) % 4), 0 == ((put3_1 + put3_0) % 4), 0 == ((get1 + get0) % 4)
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 5
+############################################################
+Input: 5,
+Output: put0_0 != get0, put1_0 != get0, put2_0 != get0, put3_0 != get0, put4_0 != get0, 0 == ((put0_1 + put0_0) % 5), 0 == ((put1_1 + put1_0) % 5), 0 == ((put2_1 + put2_0) % 5), 0 == ((put3_1 + put3_0) % 5), 0 == ((put4_1 + put4_0) % 5), 0 == ((get1 + get0) % 5)
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 6
+############################################################
+Input: 6,
+Output: put0_0 != get0, put1_0 != get0, put2_0 != get0, put3_0 != get0, put4_0 != get0, put5_0 != get0, 0 == ((put0_1 + put0_0) % 6), 0 == ((put1_1 + put1_0) % 6), 0 == ((put2_1 + put2_0) % 6), 0 == ((put3_1 + put3_0) % 6), 0 == ((put4_1 + put4_0) % 6), 0 == ((put5_1 + put5_0) % 6), 0 == ((get1 + get0) % 6)
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 7
+############################################################
+Input: 7,
+Output: put0_0 != get0, put1_0 != get0, put2_0 != get0, put3_0 != get0, put4_0 != get0, put5_0 != get0, put6_0 != get0, 0 == ((put0_1 + put0_0) % 7), 0 == ((put1_1 + put1_0) % 7), 0 == ((put2_1 + put2_0) % 7), 0 == ((put3_1 + put3_0) % 7), 0 == ((put4_1 + put4_0) % 7), 0 == ((put5_1 + put5_0) % 7), 0 == ((put6_1 + put6_0) % 7), 0 == ((get1 + get0) % 7)
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 8
+############################################################
+Input: 8,
+Output: put0_0 != get0, put1_0 != get0, put2_0 != get0, put3_0 != get0, put4_0 != get0, put5_0 != get0, put6_0 != get0, put7_0 != get0, 0 == ((put0_1 + put0_0) % 8), 0 == ((put1_1 + put1_0) % 8), 0 == ((put2_1 + put2_0) % 8), 0 == ((put3_1 + put3_0) % 8), 0 == ((put4_1 + put4_0) % 8), 0 == ((put5_1 + put5_0) % 8), 0 == ((put6_1 + put6_0) % 8), 0 == ((put7_1 + put7_0) % 8), 0 == ((get1 + get0) % 8)
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 9
+############################################################
+Input: 9,
+Output: put0_0 != get0, put1_0 != get0, put2_0 != get0, put3_0 != get0, put4_0 != get0, put5_0 != get0, put6_0 != get0, put7_0 != get0, put8_0 != get0, 0 == ((put0_1 + put0_0) % 9), 0 == ((put1_1 + put1_0) % 9), 0 == ((put2_1 + put2_0) % 9), 0 == ((put3_1 + put3_0) % 9), 0 == ((put4_1 + put4_0) % 9), 0 == ((put5_1 + put5_0) % 9), 0 == ((put6_1 + put6_0) % 9), 0 == ((put7_1 + put7_0) % 9), 0 == ((put8_1 + put8_0) % 9), 0 == ((get1 + get0) % 9)
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 10
+############################################################
+Input: 10,
+Output: put0_0 != get0, put1_0 != get0, put2_0 != get0, put3_0 != get0, put4_0 != get0, put5_0 != get0, put6_0 != get0, put7_0 != get0, put8_0 != get0, put9_0 != get0, 0 == ((put0_1 + put0_0) % 10), 0 == ((put1_1 + put1_0) % 10), 0 == ((put2_1 + put2_0) % 10), 0 == ((put3_1 + put3_0) % 10), 0 == ((put4_1 + put4_0) % 10), 0 == ((put5_1 + put5_0) % 10), 0 == ((put6_1 + put6_0) % 10), 0 == ((put7_1 + put7_0) % 10), 0 == ((put8_1 + put8_0) % 10), 0 == ((put9_1 + put9_0) % 10), 0 == ((get1 + get0) % 10)

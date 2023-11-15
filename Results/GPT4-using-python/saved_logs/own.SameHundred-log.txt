@@ -1,0 +1,135 @@
+
+############################################################
+                    GET INITIAL GENERALISATION
+############################################################
+I'm experimenting with a program and trying to find what makes an increasingly large set of inputs valid. So far I have found one possible set of correct constraints/ conditions (not the only one) which define a valid input. Here they are.
+
+Valid constraints for 1 inputs (N=1):
+None
+
+Valid constraints for 2 inputs (N=2):
+in1 >= 100
+
+Valid constraints for 3 inputs (N=3):
+in2 >= 100, in1 >= 100
+
+Valid constraints for 4 inputs (N=4):
+in3 >= 100, in2 >= 100, in1 >= 100
+
+Valid constraints for 5 inputs (N=5):
+in4 >= 100, in3 >= 100, in2 >= 100, in1 >= 100
+
+Valid constraints for 6 inputs (N=6):
+in5 >= 100, in4 >= 100, in3 >= 100, in2 >= 100, in1 >= 100
+
+Valid constraints for 7 inputs (N=7):
+in6 >= 100, in5 >= 100, in4 >= 100, in3 >= 100, in2 >= 100, in1 >= 100
+
+Valid constraints for 8 inputs (N=8):
+in7 >= 100, in6 >= 100, in5 >= 100, in4 >= 100, in3 >= 100, in2 >= 100, in1 >= 100
+
+Valid constraints for 9 inputs (N=9):
+in8 >= 100, in7 >= 100, in6 >= 100, in5 >= 100, in4 >= 100, in3 >= 100, in2 >= 100, in1 >= 100
+
+Valid constraints for 10 inputs (N=10):
+in9 >= 100, in8 >= 100, in7 >= 100, in6 >= 100, in5 >= 100, in4 >= 100, in3 >= 100, in2 >= 100, in1 >= 100
+
+Generalise what makes the set of constraints valid such that we can recover a valid set for N inputs. Don't overfit the data here but also dont oversimplify to the point of trivialness. Make sure none of the given examples contradict your generalisation.
+
+Use this code template to formally express the generalisation for N constraints:
+```python
+def generate_constraints(N):
+    constraints = []
+
+    # Do some logic here to append constraints
+
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)```
+
+Each inequality is usually in the form "x op y" where x, y are some variable, constant or some formula of variables and/ or constants, and op is an operation or inequality.
+############################################################
+INFORMAL
+
+Looking at the constraints laid out for each number of inputs (from N=2 to N=10), we can see a pattern emerging. In each case, the condition for a valid input is that each input from in1 to in(N-1) (or from the second input up to the Nth input) is greater than or equal to 100. If we were to express this as a generalisation, we could say that to determine the set of constraints for N inputs, for each input from in1 to in(N-1), add a constraint that the input must be greater than or equal to 100.
+
+FORMAL
+
+```python
+def generate_constraints(N):
+    constraints = []
+    for i in range(1, N):
+        constraints.append("in{} >= 100".format(i))
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)
+``` 
+
+This function uses a loop to generate a list of strings, each one representing a constraint for an input, requiring it to be greater than or equal to 100. After generating all the constraints, it joins them into a single string separated by commas, and then prints that string.
+############################################################
+                    ATTEMPT NUMBER 1
+############################################################
+                    EVALUATING EXAMPLE NUMBER 1
+############################################################
+Input: 1,
+Output: 
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 2
+############################################################
+Input: 2,
+Output: in1 >= 100
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 3
+############################################################
+Input: 3,
+Output: in1 >= 100, in2 >= 100
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 4
+############################################################
+Input: 4,
+Output: in1 >= 100, in2 >= 100, in3 >= 100
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 5
+############################################################
+Input: 5,
+Output: in1 >= 100, in2 >= 100, in3 >= 100, in4 >= 100
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 6
+############################################################
+Input: 6,
+Output: in1 >= 100, in2 >= 100, in3 >= 100, in4 >= 100, in5 >= 100
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 7
+############################################################
+Input: 7,
+Output: in1 >= 100, in2 >= 100, in3 >= 100, in4 >= 100, in5 >= 100, in6 >= 100
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 8
+############################################################
+Input: 8,
+Output: in1 >= 100, in2 >= 100, in3 >= 100, in4 >= 100, in5 >= 100, in6 >= 100, in7 >= 100
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 9
+############################################################
+Input: 9,
+Output: in1 >= 100, in2 >= 100, in3 >= 100, in4 >= 100, in5 >= 100, in6 >= 100, in7 >= 100, in8 >= 100
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 10
+############################################################
+Input: 10,
+Output: in1 >= 100, in2 >= 100, in3 >= 100, in4 >= 100, in5 >= 100, in6 >= 100, in7 >= 100, in8 >= 100, in9 >= 100

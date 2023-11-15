@@ -1,0 +1,1150 @@
+
+############################################################
+                    GET INITIAL GENERALISATION
+############################################################
+I'm experimenting with a program and trying to find what makes an increasingly large set of inputs valid. So far I have found one possible set of correct constraints/ conditions (not the only one) which define a valid input. Here they are.
+
+Valid constraints for 1 inputs (N=1):
+None
+
+Valid constraints for 2 inputs (N=2):
+in0 == in1
+
+Valid constraints for 3 inputs (N=3):
+in1 < in2, in0 == in1
+
+Valid constraints for 4 inputs (N=4):
+in2 == in3, in1 < in2, in0 == in1
+
+Valid constraints for 5 inputs (N=5):
+in3 < in4, in2 == in3, in1 < in2, in0 == in1
+
+Valid constraints for 6 inputs (N=6):
+in4 == in5, in3 < in4, in2 == in3, in1 < in2, in0 == in1
+
+Valid constraints for 7 inputs (N=7):
+in5 < in6, in4 == in5, in3 < in4, in2 == in3, in1 < in2, in0 == in1
+
+Valid constraints for 8 inputs (N=8):
+in6 == in7, in5 < in6, in4 == in5, in3 < in4, in2 == in3, in1 < in2, in0 == in1
+
+Valid constraints for 9 inputs (N=9):
+in7 < in8, in6 == in7, in5 < in6, in4 == in5, in3 < in4, in2 == in3, in1 < in2, in0 == in1
+
+Valid constraints for 10 inputs (N=10):
+in8 == in9, in7 < in8, in6 == in7, in5 < in6, in4 == in5, in3 < in4, in2 == in3, in1 < in2, in0 == in1
+
+Generalise what makes the set of constraints valid such that we can recover a valid set for N inputs. Don't overfit the data here but also dont oversimplify to the point of trivialness. Make sure none of the given examples contradict your generalisation.
+
+Use this code template to formally express the generalisation for N constraints:
+```python
+def generate_constraints(N):
+    constraints = []
+
+    # Do some logic here to append constraints
+
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)```
+
+Each inequality is usually in the form "x op y" where x, y are some variable, constant or some formula of variables and/ or constants, and op is an operation or inequality.
+############################################################
+INFORMAL:
+Paying close attention to the given constraints, we can notice a clear pattern emerging. The constraints always alternate between an equality with the prior index and a less than inequality with the next index. The first constraint (beginning at 0) is always a less than inequality with the next index. Starting from the second constraint, we start the alternating pattern (equality then less than, rinse and repeat).
+
+The constraints can be generated in a for loop from the last (i.e., N-1) down to the first (i.e., 1). To clarify, in0 always equals in1 and is always less than in2. In2 is the first position where the alternating pattern begins, with in2 always equalling in3 and always being less than in4, and so forth.
+
+To generate the constraint string, apply the following steps:
+- When the current iteration index is even, append an equality constraint.
+- When the current iteration index is odd, append a less-than constraint.
+- Continue until you have generated all constraints needed for N-inputs.
+
+___
+FORMAL:
+Now we can translate our observations into code to generate our valid constraints.
+```python
+def generate_constraints(N):
+    constraints = []
+
+    for i in range(N-1, 0, -1):
+        # Append constraints based on whether i is even or odd
+        if i % 2 == 0:
+            constraints.append("in{} == in{}".format(i-1, i))
+        else:
+            constraints.append("in{} < in{}".format(i-1, i))
+
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)
+```
+############################################################
+                    ATTEMPT NUMBER 1
+############################################################
+                    EVALUATING EXAMPLE NUMBER 1
+############################################################
+Input: 1,
+Output: 
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 2
+############################################################
+Input: 2,
+Output: in0 < in1
+
+############################################################
+I have two sets of inequalities over variables. Tell me if these two sets are the same or not, and how they differ if they do. Ignore differences in formatting (like spaces, newline characters and exact variable names) though the numbers associated with variable names should be the same. 'None' is equivalent to '' or the empty set/ string.
+
+Here is the correct set:
+```
+in0 == in1
+```
+
+Here is the predicted set:
+```
+in0 < in1
+
+```
+############################################################
+THINKING
+
+The correct set has only one equality asserting that in0 is exactly equal to in1.
+The predicted set instead has an inequality asserting that in0 is less than in1.
+
+ANSWER
+
+DIFFERENT
+
+REASON
+
+The correct set states that in0 equals in1. On the other hand, the predicted set indicates that in0 is less than in1. These sets are different as they express dissimilar relationships between in0 and in1.
+############################################################
+                    EVALUATING EXAMPLE NUMBER 3
+############################################################
+Input: 3,
+Output: in1 == in2, in0 < in1
+
+############################################################
+I have two sets of inequalities over variables. Tell me if these two sets are the same or not, and how they differ if they do. Ignore differences in formatting (like spaces, newline characters and exact variable names) though the numbers associated with variable names should be the same. 'None' is equivalent to '' or the empty set/ string.
+
+Here is the correct set:
+```
+in1 < in2, in0 == in1
+```
+
+Here is the predicted set:
+```
+in1 == in2, in0 < in1
+
+```
+############################################################
+THINKING:
+First, I should compare each of the inequalities in the "correct" set to the "predicted" set:
+
+1. 'in1 < in2' vs 'in1 == in2'
+2. 'in0 == in1' vs 'in0 < in1'
+
+Clearly, both sets are different. In the first pair, the correct set suggests in1 is less than in2, while the predicted set suggests in1 is equal to in2. In the second pair, the correct set suggests in0 is equal to in1, while the predicted set suggests in0 is less than in1.
+
+ANSWER:
+DIFFERENT
+
+REASON:
+The first inequality in the correct set 'in1 < in2' is different from the first inequality in the predicted set 'in1 == in2'. The second inequality in the correct set 'in0 == in1' is also different from the second inequality in the predicted set 'in0 < in1'. Thus, the two sets of inequalities are different.
+############################################################
+                    EVALUATING EXAMPLE NUMBER 4
+############################################################
+Input: 4,
+Output: in2 < in3, in1 == in2, in0 < in1
+
+############################################################
+I have two sets of inequalities over variables. Tell me if these two sets are the same or not, and how they differ if they do. Ignore differences in formatting (like spaces, newline characters and exact variable names) though the numbers associated with variable names should be the same. 'None' is equivalent to '' or the empty set/ string.
+
+Here is the correct set:
+```
+in2 == in3, in1 < in2, in0 == in1
+```
+
+Here is the predicted set:
+```
+in2 < in3, in1 == in2, in0 < in1
+
+```
+############################################################
+THINKING
+
+Looking at both sets, it's clear that they contain different inequalities:
+
+- The first inequality of the correct set says 'in2 == in3' while the predicted set 'in2 < in3'.
+- The second inequality of the correct set says 'in1 < in2' while in the predicted set it's 'in1 == in2'.
+- The last inequality is also different between the two sets with the correct set saying 'in0 == in1' and the predicted one 'in0 < in1'.
+
+All of these discrepancies lead to differences in the set of valid values for the variables. 
+
+ANSWER
+
+DIFFERENT
+
+REASON
+
+The inequalities differ in all three statements, as in the correct set they are 'in2 == in3', 'in1 < in2' and 'in0 == in1' while for the predicted set these are 'in2 < in3', 'in1 == in2' and 'in0 < in1'. Due to these differences, the set of solutions for the variables in the correct set and in the predicted set will be also different.
+############################################################
+                    EVALUATING EXAMPLE NUMBER 5
+############################################################
+Input: 5,
+Output: in3 == in4, in2 < in3, in1 == in2, in0 < in1
+
+############################################################
+I have two sets of inequalities over variables. Tell me if these two sets are the same or not, and how they differ if they do. Ignore differences in formatting (like spaces, newline characters and exact variable names) though the numbers associated with variable names should be the same. 'None' is equivalent to '' or the empty set/ string.
+
+Here is the correct set:
+```
+in3 < in4, in2 == in3, in1 < in2, in0 == in1
+```
+
+Here is the predicted set:
+```
+in3 == in4, in2 < in3, in1 == in2, in0 < in1
+
+```
+############################################################
+THINKING
+First, I will go through each of the inequalities in the correct set and the predicted set one by one and compare them.
+The first inequality in the correct set is 'in3 < in4' and in the predicted set it is 'in3 == in4'. These two are not the same.
+The second inequality in the correct set is 'in2 == in3' and in the predicted set it is 'in2 < in3'. These are also not the same.
+The rest of the inequalities could be matching or not, but that first inequality tells me that these two sets are not the same. 
+
+ANSWER
+DIFFERENT
+
+REASON
+The sets are different because the first inequality in the correct set ('in3 < in4') does not match with the first inequality in the predicted set ('in3 == in4'). Furthermore, the second inequality in the correct set 'in2 == in3' also does not match the second inequality in the predicted set 'in2 < in3'.
+############################################################
+                    EVALUATING EXAMPLE NUMBER 6
+############################################################
+Input: 6,
+Output: in4 < in5, in3 == in4, in2 < in3, in1 == in2, in0 < in1
+
+############################################################
+I have two sets of inequalities over variables. Tell me if these two sets are the same or not, and how they differ if they do. Ignore differences in formatting (like spaces, newline characters and exact variable names) though the numbers associated with variable names should be the same. 'None' is equivalent to '' or the empty set/ string.
+
+Here is the correct set:
+```
+in4 == in5, in3 < in4, in2 == in3, in1 < in2, in0 == in1
+```
+
+Here is the predicted set:
+```
+in4 < in5, in3 == in4, in2 < in3, in1 == in2, in0 < in1
+
+```
+############################################################
+THINKING
+Looking at the two sets of inequalities provided, I will compare them line by line. The first lines 'in4 == in5' does not match with 'in4 < in5'. The second lines 'in3 < in4' don't match with 'in3 == in4'. The third lines 'in2 == in3' does not correlate with 'in2 < in3'. The fourth lines 'in1 < in2' and 'in1 == in2' are also not the same. Lastly, the fifth lines 'in0 == in1' and 'in0 < in1' are not same as well. Therefore, they are different.
+
+ANSWER
+DIFFERENT
+
+REASON
+The sets differ in the following places: 
+1. The first correct set inequality 'in4 == in5' does not match with the first predicted set inequality 'in4 < in5'.
+2. The second correct set inequality 'in3 < in4' does not match with the second predicted set inequality 'in3 == in4'.
+3. The third correct set inequality 'in2 == in3' does not match with the third predicted set inequality 'in2 < in3'.
+4. The fourth correct set inequality 'in1 < in2' does not match with the fourth predicted set inequality 'in1 == in2'.
+5. The fifth correct set inequality 'in0 == in1' does not match with the fifth predicted set inequality 'in0 < in1'.
+############################################################
+                    EVALUATING EXAMPLE NUMBER 7
+############################################################
+Input: 7,
+Output: in5 == in6, in4 < in5, in3 == in4, in2 < in3, in1 == in2, in0 < in1
+
+############################################################
+I have two sets of inequalities over variables. Tell me if these two sets are the same or not, and how they differ if they do. Ignore differences in formatting (like spaces, newline characters and exact variable names) though the numbers associated with variable names should be the same. 'None' is equivalent to '' or the empty set/ string.
+
+Here is the correct set:
+```
+in5 < in6, in4 == in5, in3 < in4, in2 == in3, in1 < in2, in0 == in1
+```
+
+Here is the predicted set:
+```
+in5 == in6, in4 < in5, in3 == in4, in2 < in3, in1 == in2, in0 < in1
+
+```
+############################################################
+THINKING
+I will compare the inequalities in the correct set and the predicted set one by one. 
+First inequality: 'in5 < in6' from correct set, 'in5 == in6' from predicted set. 
+Second inequality: 'in4 == in5' from correct set, 'in4 < in5' from predicted set. 
+So, from the first two comparisons, it is observed that inequalities in the predicted set are different from the correct set. 
+
+ANSWER
+DIFFERENT
+
+REASON
+In the correct set the first inequality is 'in5 < in6' but in the predicted set it is 'in5 == in6'. Similarly, the second inequality is 'in4 == in5' in the correct set and 'in4 < in5' in the predicted set. Therefore, the two sets of inequalities are different.
+############################################################
+                    EVALUATING EXAMPLE NUMBER 8
+############################################################
+Input: 8,
+Output: in6 < in7, in5 == in6, in4 < in5, in3 == in4, in2 < in3, in1 == in2, in0 < in1
+
+############################################################
+I have two sets of inequalities over variables. Tell me if these two sets are the same or not, and how they differ if they do. Ignore differences in formatting (like spaces, newline characters and exact variable names) though the numbers associated with variable names should be the same. 'None' is equivalent to '' or the empty set/ string.
+
+Here is the correct set:
+```
+in6 == in7, in5 < in6, in4 == in5, in3 < in4, in2 == in3, in1 < in2, in0 == in1
+```
+
+Here is the predicted set:
+```
+in6 < in7, in5 == in6, in4 < in5, in3 == in4, in2 < in3, in1 == in2, in0 < in1
+
+```
+############################################################
+THINKING:
+The task at hand is to compare two sets of inequalities. The inequalities are over variables. The stipulation is to ignore differences in formatting like spaces, newline characters and exact variable names. However, it is required to respect the equivalences of 'None' to '' or the empty set/ string. The most importnat task is to compare the numbers associated with each variable name in both sets.
+
+In the correct set, the inequality sequences are: 
+'in6 == in7', 'in5 < in6', 'in4 == in5', 'in3 < in4', 'in2 == in3', 'in1 < in2', 'in0 == in1'
+while in the predicted set the inequalities are :
+'in6 < in7', 'in5 == in6', 'in4 < in5', 'in3 == in4', 'in2 < in3', 'in1 == in2', 'in0 < in1'.
+
+Clearly, the nature of the comparisons (i.e., equalities or inequalities) and the relationships between the variables are different.
+
+ANSWER:
+DIFFERENT
+
+REASON:
+The differences appear in each correspondence of inequalities. For example, in the first pair, the correct set refers to 'in6' equal to 'in7', while the predicted one states 'in6' is less than 'in7'. And similar differences can be found across all paired inequalities.
+############################################################
+                    EVALUATING EXAMPLE NUMBER 9
+############################################################
+Input: 9,
+Output: in7 == in8, in6 < in7, in5 == in6, in4 < in5, in3 == in4, in2 < in3, in1 == in2, in0 < in1
+
+############################################################
+I have two sets of inequalities over variables. Tell me if these two sets are the same or not, and how they differ if they do. Ignore differences in formatting (like spaces, newline characters and exact variable names) though the numbers associated with variable names should be the same. 'None' is equivalent to '' or the empty set/ string.
+
+Here is the correct set:
+```
+in7 < in8, in6 == in7, in5 < in6, in4 == in5, in3 < in4, in2 == in3, in1 < in2, in0 == in1
+```
+
+Here is the predicted set:
+```
+in7 == in8, in6 < in7, in5 == in6, in4 < in5, in3 == in4, in2 < in3, in1 == in2, in0 < in1
+
+```
+############################################################
+THINKING:
+I'll compare each inequality pair in sequence, starting from the first. 
+
+1. in7 < in8 (correct) vs in7 == in8 (predicted)
+2. in6 == in7 (correct) vs in6 < in7 (predicted)
+3. in5 < in6 (correct) vs in5 == in6 (predicted)
+4. in4 == in5 (correct) vs in4 < in5 (predicted)
+5. in3 < in4 (correct) vs in3 == in4 (predicted)
+6. in2 == in3 (correct) vs in2 < in3 (predicted)
+7. in1 < in2 (correct) vs in1 == in2 (predicted)
+8. in0 == in1 (correct) vs in0 < in1 (predicted)
+
+Following this comparison, it appears that in each pair, the predicted set has either "==" when the correct set has "<" or "<" when the correct set has "==". This conclusion would mean that no pair in the set matches and the whole set of inequalities is different.
+
+ANSWER:
+DIFFERENT
+
+REASON:
+All pair of inequalities in the correct set and predicted set do not match. They either differ by "==" and "<" or vice-versa.
+############################################################
+                    EVALUATING EXAMPLE NUMBER 10
+############################################################
+Input: 10,
+Output: in8 < in9, in7 == in8, in6 < in7, in5 == in6, in4 < in5, in3 == in4, in2 < in3, in1 == in2, in0 < in1
+
+############################################################
+I have two sets of inequalities over variables. Tell me if these two sets are the same or not, and how they differ if they do. Ignore differences in formatting (like spaces, newline characters and exact variable names) though the numbers associated with variable names should be the same. 'None' is equivalent to '' or the empty set/ string.
+
+Here is the correct set:
+```
+in8 == in9, in7 < in8, in6 == in7, in5 < in6, in4 == in5, in3 < in4, in2 == in3, in1 < in2, in0 == in1
+```
+
+Here is the predicted set:
+```
+in8 < in9, in7 == in8, in6 < in7, in5 == in6, in4 < in5, in3 == in4, in2 < in3, in1 == in2, in0 < in1
+
+```
+############################################################
+THINKING:
+I'll start by comparing each inequality in the correct set with the corresponding inequality in the predicted set, ignoring formatting differences. In the correct set, every inequality has an '==' symbol between even index and then a '<' symbol with the preceding odd index, but in the predicted set '==' and '<' are oppositely placed with a '<' symbol between even index and then a '==' symbol with the preceding odd index. Therefore, the two sets of inequalities are different. 
+
+ANSWER:
+DIFFERENT
+
+REASON:
+The inequality for each pair of variables does not match between the correct set and the predicted set.
+############################################################
+                    GET NEW GENERALISATION
+############################################################
+INFORMAL:
+
+Looking carefully at the examples, we can see a pattern whereby for each constraint, we first have a less than (<) or equal to (==) constraint between a higher index and a smaller index.
+
+The pattern alternates with the initial constraint being an equality (==) for even number of inputs (N) and an inequality (<) for the odd number of inputs (N). This pattern continues by flipping between equalities and inequalities as we go to lower indexes. 
+
+Let's modify our previous approach accordingly:
+
+To produce an inequality or equality constraint, consider if the total number of inputs (N) is even or odd. 
+
+1. If N is even, the first constraint (highest index) must be an equality constraint, and it should alternate from there. 
+
+2. If N is odd, the first constraint should be a less-than inequality, and it should alternate from there.
+
+FORMAL:
+
+Now we can translate our observations into updated code to successfully generate our constraints.
+
+```python
+def generate_constraints(N):
+    constraints = []
+    for i in range(N-1, 0, -1):
+        if N % 2 == 0:
+            if i % 2 == 0:
+                constraints.append("in{} == in{}".format(i, i-1))
+            else:
+                constraints.append("in{} < in{}".format(i, i-1))
+        else:
+            if i % 2 == 0:
+                constraints.append("in{} < in{}".format(i, i-1))
+            else:
+                constraints.append("in{} == in{}".format(i, i-1))
+    
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)
+```
+############################################################
+                    ATTEMPT NUMBER 2
+############################################################
+                    EVALUATING EXAMPLE NUMBER 1
+############################################################
+Input: 1,
+Output: 
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 2
+############################################################
+Input: 2,
+Output: in1 < in0
+
+############################################################
+I have two sets of inequalities over variables. Tell me if these two sets are the same or not, and how they differ if they do. Ignore differences in formatting (like spaces, newline characters and exact variable names) though the numbers associated with variable names should be the same. 'None' is equivalent to '' or the empty set/ string.
+
+Here is the correct set:
+```
+in0 == in1
+```
+
+Here is the predicted set:
+```
+in1 < in0
+
+```
+############################################################
+THINKING
+
+I'll compare the two sets regardless of formatting and variable names. The correct set states that 'in0' is equal to 'in1', implying no difference in the value of the two variables mentioned. However, the predicted set states that 'in1' is less than 'in0', indicating a difference in the value between 'in0' and 'in1'. Here 'in0' is suggested to be bigger than 'in1'.
+
+ANSWER
+
+DIFFERENT
+
+REASON
+
+The correct set indicates that the variables 'in0' and 'in1' are equal, whereas the predicted set indicates that 'in1' is less than 'in0'. Therefore, these two sets of inequalities are different.
+############################################################
+                    EVALUATING EXAMPLE NUMBER 3
+############################################################
+Input: 3,
+Output: in2 < in1, in1 == in0
+
+############################################################
+I have two sets of inequalities over variables. Tell me if these two sets are the same or not, and how they differ if they do. Ignore differences in formatting (like spaces, newline characters and exact variable names) though the numbers associated with variable names should be the same. 'None' is equivalent to '' or the empty set/ string.
+
+Here is the correct set:
+```
+in1 < in2, in0 == in1
+```
+
+Here is the predicted set:
+```
+in2 < in1, in1 == in0
+
+```
+############################################################
+THINKING
+
+I need to look at each inequality and its counterpart in the other set individually and see if they match. 
+
+The first inequality of the correct set is "in1 < in2", and the equivalent inequality in the predicted set is "in2 < in1". The relationship between the variables in1 and in2 is reversed in the predicted set compared to the correct set. 
+
+The second inequality of the correct set is "in0 == in1", and the equivalent inequality in the predicted set is "in1 == in0". The order of the variables is different, but the relationship between them (equal) remains the same. 
+
+ANSWER
+
+DIFFERENT
+
+REASON
+
+The inequality 'in1 < in2' from the correct set doesn't match with 'in2 < in1' from the predicted set. The relationship between the variables in1 and in2 is reversed in the predicted inequality when compared to the correct one.
+############################################################
+                    EVALUATING EXAMPLE NUMBER 4
+############################################################
+Input: 4,
+Output: in3 < in2, in2 == in1, in1 < in0
+
+############################################################
+I have two sets of inequalities over variables. Tell me if these two sets are the same or not, and how they differ if they do. Ignore differences in formatting (like spaces, newline characters and exact variable names) though the numbers associated with variable names should be the same. 'None' is equivalent to '' or the empty set/ string.
+
+Here is the correct set:
+```
+in2 == in3, in1 < in2, in0 == in1
+```
+
+Here is the predicted set:
+```
+in3 < in2, in2 == in1, in1 < in0
+
+```
+############################################################
+THINKING
+
+The correct set of inequalities has the following relationships defined: 
+1. `in2` is equal to `in3`
+2. `in1` is less than `in2`
+3. `in0` is equal to `in1`
+
+The predicted set has the following relationships defined: 
+1. `in3` is less than `in2`
+2. `in2` is equal to `in1`
+3. `in1` is less than `in0`
+
+Even ignoring differences in formatting, it can be seen that the relationships between variable names and their associated numbers do not match in both sets. The relationships themselves are also different.
+
+ANSWER
+
+DIFFERENT
+
+REASON
+
+The inequalities defined between the variables differ in both sets. Apart from `in2` being equal to `in1`, all other comparisons are distinct. In the correct set, `in1` is less than `in2`, but in the predicted one, `in1` is less than `in0`. Also, `in2` is equal to `in3` in the correct set and `in3` is less than `in2` in the predicted set which are contradictory.
+############################################################
+                    EVALUATING EXAMPLE NUMBER 5
+############################################################
+Input: 5,
+Output: in4 < in3, in3 == in2, in2 < in1, in1 == in0
+
+############################################################
+I have two sets of inequalities over variables. Tell me if these two sets are the same or not, and how they differ if they do. Ignore differences in formatting (like spaces, newline characters and exact variable names) though the numbers associated with variable names should be the same. 'None' is equivalent to '' or the empty set/ string.
+
+Here is the correct set:
+```
+in3 < in4, in2 == in3, in1 < in2, in0 == in1
+```
+
+Here is the predicted set:
+```
+in4 < in3, in3 == in2, in2 < in1, in1 == in0
+
+```
+############################################################
+THINKING:
+First, I'm going to normalize both sets and then compare them Step by step. The first item is 'in3 < in4' in the correct set which translates to 'in4 > in3' not 'in4 < in3' in the predicted set. This constitutes a mismatch. Further, 'in2 == in3'in the correct set which in the predicted set is 'in3 == in2'. They are the same since equality is non-directional. The third item 'in1 < in2' in the correct set corresponds to 'in2 > in1', not 'in2 < in1' like given in the predicted set. This is another mismatch. Finally, 'in0 == in1' in the correct set translates to 'in1 == in0' in the predicted set. They match because equality is non-directional.
+
+ANSWER:
+DIFFERENT
+
+REASON:
+The first and the third inequalities do not match:
+
+1. The first inequality in the correct set is 'in3 < in4' while in the predicted set it is 'in4 < in3'.  
+2. The third inequality in the correct set is 'in1 < in2' but in the predicted set it's 'in2 < in1'. The inequalities are reversed.
+############################################################
+                    EVALUATING EXAMPLE NUMBER 6
+############################################################
+Input: 6,
+Output: in5 < in4, in4 == in3, in3 < in2, in2 == in1, in1 < in0
+
+############################################################
+I have two sets of inequalities over variables. Tell me if these two sets are the same or not, and how they differ if they do. Ignore differences in formatting (like spaces, newline characters and exact variable names) though the numbers associated with variable names should be the same. 'None' is equivalent to '' or the empty set/ string.
+
+Here is the correct set:
+```
+in4 == in5, in3 < in4, in2 == in3, in1 < in2, in0 == in1
+```
+
+Here is the predicted set:
+```
+in5 < in4, in4 == in3, in3 < in2, in2 == in1, in1 < in0
+
+```
+############################################################
+THINKING
+
+After going through both given sets, I identified that the inequalities vary in sequence and relational comparisons. The "correct set" is listed in ascending order (from in0 to in5), and the predicted set is listed in descending order (from in5 to in0). 
+However, the order is not the main condition specified. 
+The in4 == in5 of correct set doesn't match with the in5 < in4 of predicted set.
+Similarly, in1 < in2 of correct set doesn't match with the in3 < in2 of predicted set.
+And also, in0 == in1 of the correct set doesn't match with the in1 < in0 of predicted set.
+
+ANSWER
+
+DIFFERENT
+
+REASON
+
+The inequalities and relations among the variables in these two sets are not the same. The inequalities for in4 to in5, in1 to in2 and in0 to in1 in both sets are different. The correct set has in4 == in5, in1 < in2, in0 == in1, while the predicted set has in5 < in4, in3 < in2, in1 < in0, which do not align.
+############################################################
+                    EVALUATING EXAMPLE NUMBER 7
+############################################################
+Input: 7,
+Output: in6 < in5, in5 == in4, in4 < in3, in3 == in2, in2 < in1, in1 == in0
+
+############################################################
+I have two sets of inequalities over variables. Tell me if these two sets are the same or not, and how they differ if they do. Ignore differences in formatting (like spaces, newline characters and exact variable names) though the numbers associated with variable names should be the same. 'None' is equivalent to '' or the empty set/ string.
+
+Here is the correct set:
+```
+in5 < in6, in4 == in5, in3 < in4, in2 == in3, in1 < in2, in0 == in1
+```
+
+Here is the predicted set:
+```
+in6 < in5, in5 == in4, in4 < in3, in3 == in2, in2 < in1, in1 == in0
+
+```
+############################################################
+THINKING
+
+The two sets of inequalities provided need to be identical in order to match. For this, not only the variables and operators should be the same, but they should also be arranged in the same order. In the given sets of inequalities, while the variables and operators look identical, their orders are different. Each inequality is a mirror image of the corresponding inequality in the other set. This means that the variable on left hand side in first set is on right hand side in second set, and hence the inequalities are not equal.
+
+ANSWER
+
+DIFFERENT
+
+REASON
+
+While the variables and operators in both sets are the same, their ordering is different. For example, 'in5 < in6' in the correct set has been predicted as 'in6 < in5'. These two inequalities are not the same. This pattern is repeated for all inequalities, making these two sets different.
+############################################################
+                    EVALUATING EXAMPLE NUMBER 8
+############################################################
+Input: 8,
+Output: in7 < in6, in6 == in5, in5 < in4, in4 == in3, in3 < in2, in2 == in1, in1 < in0
+
+############################################################
+I have two sets of inequalities over variables. Tell me if these two sets are the same or not, and how they differ if they do. Ignore differences in formatting (like spaces, newline characters and exact variable names) though the numbers associated with variable names should be the same. 'None' is equivalent to '' or the empty set/ string.
+
+Here is the correct set:
+```
+in6 == in7, in5 < in6, in4 == in5, in3 < in4, in2 == in3, in1 < in2, in0 == in1
+```
+
+Here is the predicted set:
+```
+in7 < in6, in6 == in5, in5 < in4, in4 == in3, in3 < in2, in2 == in1, in1 < in0
+
+```
+############################################################
+THINKING:
+By comparing each inequality and the values on its left and right in both sets, it can be seen that none of them match exactly. Although the variable names are the same, the numerical ordering and the relationship between each number indicated by the inequality sign have changed. In the correct set, the numerical ordering is from in6 to in0 with the pattern of "==, <, ==" while in the predicted set, the pattern is reversed starting from in7 to in0 "<, ==, <". 
+
+ANSWER:
+DIFFERENT
+
+REASON:
+The ordering of variables and their relationships represented by the inequality signs are different in both sets. The correct set has descending numerical order starting from in6 and shows an equal relationship followed by a lesser relationship. However, the predicted set starts from in7 and the relationship between the variables is reversed compared to the correct set.
+############################################################
+                    EVALUATING EXAMPLE NUMBER 9
+############################################################
+Input: 9,
+Output: in8 < in7, in7 == in6, in6 < in5, in5 == in4, in4 < in3, in3 == in2, in2 < in1, in1 == in0
+
+############################################################
+I have two sets of inequalities over variables. Tell me if these two sets are the same or not, and how they differ if they do. Ignore differences in formatting (like spaces, newline characters and exact variable names) though the numbers associated with variable names should be the same. 'None' is equivalent to '' or the empty set/ string.
+
+Here is the correct set:
+```
+in7 < in8, in6 == in7, in5 < in6, in4 == in5, in3 < in4, in2 == in3, in1 < in2, in0 == in1
+```
+
+Here is the predicted set:
+```
+in8 < in7, in7 == in6, in6 < in5, in5 == in4, in4 < in3, in3 == in2, in2 < in1, in1 == in0
+
+```
+############################################################
+THINKING:
+
+I will compare the two sets of inequalities provided. On a preliminary observation, the variable names and their associated numbers in both sets have the same pattern but the operators between them seem to be in reverse order. In the correct set, the 'less than' symbol is always followed by the 'equal to' symbol but in the predicted set, the pattern is reversed. Since the order matters in inequalities, this difference is crucial and determines whether the two sets are equivalent or not.
+
+ANSWER:
+
+DIFFERENT
+
+REASON:
+
+When comparing the sets, in the first set in7 is less than in8 whereas in the second set in8 is less than in7. Similar pattern is followed in all the equations. So the inequalities are reversed in the predicted set, hence they do not match.
+############################################################
+                    EVALUATING EXAMPLE NUMBER 10
+############################################################
+Input: 10,
+Output: in9 < in8, in8 == in7, in7 < in6, in6 == in5, in5 < in4, in4 == in3, in3 < in2, in2 == in1, in1 < in0
+
+############################################################
+I have two sets of inequalities over variables. Tell me if these two sets are the same or not, and how they differ if they do. Ignore differences in formatting (like spaces, newline characters and exact variable names) though the numbers associated with variable names should be the same. 'None' is equivalent to '' or the empty set/ string.
+
+Here is the correct set:
+```
+in8 == in9, in7 < in8, in6 == in7, in5 < in6, in4 == in5, in3 < in4, in2 == in3, in1 < in2, in0 == in1
+```
+
+Here is the predicted set:
+```
+in9 < in8, in8 == in7, in7 < in6, in6 == in5, in5 < in4, in4 == in3, in3 < in2, in2 == in1, in1 < in0
+
+```
+############################################################
+THINKING
+
+Looking at the two sets of inequalities, it's easy to notice that both of them have the same variables in the same order. So the next step is to match the relational operators between each pair of variables. Here, I noticed that the equality and inequality operators are not the same between the two sets, the direction of the inequality ("<") is reversed, and where there was an equality ("=="), now there is an inequality ("<"), and vice versa.
+
+ANSWER
+
+DIFFERENT
+
+REASON
+
+There exists differences in the relational inequalities between the two sets. While '==' and '<' inequalities are flipped in the predicted set in comparison with the correct set.
+############################################################
+                    GET NEW GENERALISATION
+############################################################
+INFORMAL:
+
+Looking carefully at the examples and the errors made by the previous approach, it appears the pattern in the constraints alternates between == and < starting at N-1 index and works its way down to 1. 
+
+With the correct pattern, the highest index always has an equality constraint to the previous index if the current index is even, otherwise it's a less than constraint. We will iterate from the highest even index down to 0. The constraints should be read starting from the smallest index up to N-1 index.
+
+FORMAL:
+
+Here is an updated Python code to generate the constraints that reflect the correct pattern observed above:
+
+```python
+def generate_constraints(N):
+    constraints = []
+
+    # Start iterating from the highest possible even index down to 0
+    for i in range(N-1, 0, -1):
+        # if i is even
+        if i % 2 == 0:
+            constraints.append(f'in{i-1} == in{i}')
+        else:
+            constraints.append(f'in{i-1} < in{i}')
+    
+    # Reverse the constraints to start from the smallest index
+    constraints = constraints[::-1]
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)
+```
+This code should now correctly generate the constraints for a given number of inputs (N), matching the required pattern.
+############################################################
+                    ATTEMPT NUMBER 3
+############################################################
+                    EVALUATING EXAMPLE NUMBER 1
+############################################################
+Input: 1,
+Output: 
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 2
+############################################################
+Input: 2,
+Output: in0 < in1
+
+############################################################
+I have two sets of inequalities over variables. Tell me if these two sets are the same or not, and how they differ if they do. Ignore differences in formatting (like spaces, newline characters and exact variable names) though the numbers associated with variable names should be the same. 'None' is equivalent to '' or the empty set/ string.
+
+Here is the correct set:
+```
+in0 == in1
+```
+
+Here is the predicted set:
+```
+in0 < in1
+
+```
+############################################################
+THINKING
+
+I am comparing the conditions in both sets. The correct set states that the variables 'in0' and 'in1' are equal (in0 == in1). However, the predicted set mentions that the variable 'in0' is lesser than 'in1' (in0 < in1). Thus, the conditions stated in both sets are not the same.
+
+ANSWER
+
+DIFFERENT
+
+REASON
+
+The condition in the correct set "in0 == in1" specifies that 'in0' is equal to 'in1'. In contrast, the condition in the predicted set "in0 < in1" specifies that 'in0' is less than 'in1'. Thus, these two conditions do not match.
+############################################################
+                    EVALUATING EXAMPLE NUMBER 3
+############################################################
+Input: 3,
+Output: in0 < in1, in1 == in2
+
+############################################################
+I have two sets of inequalities over variables. Tell me if these two sets are the same or not, and how they differ if they do. Ignore differences in formatting (like spaces, newline characters and exact variable names) though the numbers associated with variable names should be the same. 'None' is equivalent to '' or the empty set/ string.
+
+Here is the correct set:
+```
+in1 < in2, in0 == in1
+```
+
+Here is the predicted set:
+```
+in0 < in1, in1 == in2
+
+```
+############################################################
+THINKING
+The correct set specifies that 'in1' is less than 'in2' and 'in0' is equal to 'in1'. The predicted set states that 'in0' is less than 'in1' and 'in1' is equal to 'in2'. To see if the two sets are the same, we can try to figure out if the conditions stated in the first set also hold in the second set, and vice versa. In the first set, 'in0' is less than 'in2'. Given the conditions in the second set, if 'in0' is less than 'in1' and 'in1' is equal to 'in2', then 'in0' would also be less than 'in2'. Therefore, this part holds. The second part of the first set claims 'in0' is equal to 'in1', while in the second set 'in1' is equal to 'in2'. This suggests that 'in0' equals 'in2' in the second set, which contradicts the first part in the first set. So, the two sets of inequalities are not the same.
+
+ANSWER
+DIFFERENT
+
+REASON
+The conflict lies in the equality relation to 'in0''. In the first set, 'in0' is equal to 'in1', however, in the second set, given the conditions, 'in0' is equal to 'in2', which creates a difference between the two sets.
+############################################################
+                    EVALUATING EXAMPLE NUMBER 4
+############################################################
+Input: 4,
+Output: in0 < in1, in1 == in2, in2 < in3
+
+############################################################
+I have two sets of inequalities over variables. Tell me if these two sets are the same or not, and how they differ if they do. Ignore differences in formatting (like spaces, newline characters and exact variable names) though the numbers associated with variable names should be the same. 'None' is equivalent to '' or the empty set/ string.
+
+Here is the correct set:
+```
+in2 == in3, in1 < in2, in0 == in1
+```
+
+Here is the predicted set:
+```
+in0 < in1, in1 == in2, in2 < in3
+
+```
+############################################################
+THINKING
+The correct set asserts that in2 and in3 are equal (in2 == in3), in1 is less than in2 (in1 < in2), and in0 and in1 are equal (in0 == in1). 
+In the predicted set, it states in0 is less than in1 (in0 < in1), in1 and in2 are equal (in1 == in2) and in2 is less than in3 (in2 < in3). 
+Comparing these, the only equivalent part between the correct and predicted sets is in1 == in2. 
+The correct set tells us in0 == in1 which contradicts the predicted set of in0 < in1 and similarly, the correct set tells us in2 == in3 which contradicts the predicted set of in2 < in3.
+
+ANSWER
+DIFFERENT
+
+REASON
+The inequalities do not match. In the correct set, in2 is equal to in3 and in0 is equal to in1. However, in the predicted set, in2 is less than in3 and in0 is less than in1 which is different from the correct set.
+############################################################
+                    EVALUATING EXAMPLE NUMBER 5
+############################################################
+Input: 5,
+Output: in0 < in1, in1 == in2, in2 < in3, in3 == in4
+
+############################################################
+I have two sets of inequalities over variables. Tell me if these two sets are the same or not, and how they differ if they do. Ignore differences in formatting (like spaces, newline characters and exact variable names) though the numbers associated with variable names should be the same. 'None' is equivalent to '' or the empty set/ string.
+
+Here is the correct set:
+```
+in3 < in4, in2 == in3, in1 < in2, in0 == in1
+```
+
+Here is the predicted set:
+```
+in0 < in1, in1 == in2, in2 < in3, in3 == in4
+
+```
+############################################################
+THINKING:
+I will start by comparing each inequality from the correct set with the corresponding one from the predicted set to see if there are any differences:
+- in3 < in4 vs in0 < in1: Here, we see a variation in variable names and although we are ignoring the variable names, the integers associated with them (3 vs 0 and 4 vs 1) are different.
+- in2 == in3 vs in1 == in2: The comparison in the correct set is made between variables in2 and in3, while in the predicted set it's between in1 and in2; again a discrepancy exists.
+- in1 < in2 vs in2 < in3: Again, there is a mismatch between the variables compared in both sets.
+- in0 == in1 vs in3 == in4: Once more, different pairs of variables are compared in each set.
+
+ANSWER:
+DIFFERENT
+
+REASON:
+None of the inequalities from the 'correct' set match with the corresponding ones from the 'predicted' set. This discrepancy exists even when disregarding variable names and choosing to focus exclusively on the numbers associated with those variables.
+############################################################
+                    EVALUATING EXAMPLE NUMBER 6
+############################################################
+Input: 6,
+Output: in0 < in1, in1 == in2, in2 < in3, in3 == in4, in4 < in5
+
+############################################################
+I have two sets of inequalities over variables. Tell me if these two sets are the same or not, and how they differ if they do. Ignore differences in formatting (like spaces, newline characters and exact variable names) though the numbers associated with variable names should be the same. 'None' is equivalent to '' or the empty set/ string.
+
+Here is the correct set:
+```
+in4 == in5, in3 < in4, in2 == in3, in1 < in2, in0 == in1
+```
+
+Here is the predicted set:
+```
+in0 < in1, in1 == in2, in2 < in3, in3 == in4, in4 < in5
+
+```
+############################################################
+THINKING:
+Firstly, I will line up the inequalities of both sets to easily compare them. It seems like the sequences in both sets are different but they follow a similar pattern of conversion in their sequences. The pattern in both sets is that a "<" sign is followed by a "==" sign. Additionally, it is noteworthy that the order of the variables is also different in both sets. 
+
+ANSWER:
+DIFFERENT
+
+REASON:
+The sequence of variables in both sets is different. The correct set follows the sequence from in4 to in0, whereas, the predicted set starts from in0 and goes till in5. Therefore, the sequence in which variables are written is not the same in the predicted set and the correct set. Also, the comparison between variables is not the same in both sets.
+############################################################
+                    EVALUATING EXAMPLE NUMBER 7
+############################################################
+Input: 7,
+Output: in0 < in1, in1 == in2, in2 < in3, in3 == in4, in4 < in5, in5 == in6
+
+############################################################
+I have two sets of inequalities over variables. Tell me if these two sets are the same or not, and how they differ if they do. Ignore differences in formatting (like spaces, newline characters and exact variable names) though the numbers associated with variable names should be the same. 'None' is equivalent to '' or the empty set/ string.
+
+Here is the correct set:
+```
+in5 < in6, in4 == in5, in3 < in4, in2 == in3, in1 < in2, in0 == in1
+```
+
+Here is the predicted set:
+```
+in0 < in1, in1 == in2, in2 < in3, in3 == in4, in4 < in5, in5 == in6
+
+```
+############################################################
+THINKING:
+Looking at these two sets of inequalities, it seems like there is no numerical difference in the sequences of the inequalities. Both sequences go from equality to less than as you move from one number to the next, and the sequence of numbers is consistent in both sets. The only real difference between them is the order in which they are listed - the 'correct' set starts with 'in5 < in6' and works downward, while the 'predicted' set starts with 'in0 < in1' and works upward. This wouldn't alter the logic or function of the inequalities, however, so for our purposes I believe the two sets can be considered identical.
+
+ANSWER:
+MATCHES
+
+REASON:
+The principle reason why the two inequality sets match is because both preserve the sequential logic of the inequalities, despite the reverse order. All operational relationships (equal or less than) between corresponding (same pair) elements are in place. The predicted and correct sets reflect the same sequence of inequalities, just expressed in reverse order, so they are conceptually the same.
+############################################################
+                    EVALUATING EXAMPLE NUMBER 8
+############################################################
+Input: 8,
+Output: in0 < in1, in1 == in2, in2 < in3, in3 == in4, in4 < in5, in5 == in6, in6 < in7
+
+############################################################
+I have two sets of inequalities over variables. Tell me if these two sets are the same or not, and how they differ if they do. Ignore differences in formatting (like spaces, newline characters and exact variable names) though the numbers associated with variable names should be the same. 'None' is equivalent to '' or the empty set/ string.
+
+Here is the correct set:
+```
+in6 == in7, in5 < in6, in4 == in5, in3 < in4, in2 == in3, in1 < in2, in0 == in1
+```
+
+Here is the predicted set:
+```
+in0 < in1, in1 == in2, in2 < in3, in3 == in4, in4 < in5, in5 == in6, in6 < in7
+
+```
+############################################################
+THINKING:
+To assess whether the two sets of inequalities are the same or not, let's analyze them step by step:
+
+1. 'in6 == in7' is equivalent to 'in6 == in7'
+2. 'in5 < in6' is equivalent to 'in5 < in6'
+3. 'in4 == in5' is equivalent to 'in4 == in5'
+4. 'in3 < in4' is equivalent to 'in3 < in4'
+5. 'in2 == in3' is equivalent to 'in2 == in3'
+6. 'in1 < in2' is equivalent to 'in1 < in2'
+7. 'in0 == in1' is not equivalent to 'in0 < in1'
+
+Hence, comparison of each inequality reveals one instance where there is no match.
+
+ANSWER:
+DIFFERENT
+
+REASON:
+The last inequality in the correct set is 'in0 == in1' while in the predicted set it's 'in0 < in1'. Hence, the two sets aren't same.
+############################################################
+                    EVALUATING EXAMPLE NUMBER 9
+############################################################
+Input: 9,
+Output: in0 < in1, in1 == in2, in2 < in3, in3 == in4, in4 < in5, in5 == in6, in6 < in7, in7 == in8
+
+############################################################
+I have two sets of inequalities over variables. Tell me if these two sets are the same or not, and how they differ if they do. Ignore differences in formatting (like spaces, newline characters and exact variable names) though the numbers associated with variable names should be the same. 'None' is equivalent to '' or the empty set/ string.
+
+Here is the correct set:
+```
+in7 < in8, in6 == in7, in5 < in6, in4 == in5, in3 < in4, in2 == in3, in1 < in2, in0 == in1
+```
+
+Here is the predicted set:
+```
+in0 < in1, in1 == in2, in2 < in3, in3 == in4, in4 < in5, in5 == in6, in6 < in7, in7 == in8
+
+```
+############################################################
+THINKING:
+From the first glance, it seems that both the correct set and the predicted set has the same pattern of inequalities and equalities. However, to ascertain this, we would compare the variables and their respective relations. The correct set starts with 'in7 < in8' which is mirrored in the predicted set as 'in0 < in1'. Both suggest that a defined variable is less than the next immediate variable. This pattern is consistent throughout both sets till 'in0 == in1' in the correct set and 'in7 == in8' in the predicted set, where it is indicated that the defined variable is equal to the next immediate variable. However, on closer observation, the order of the variable pairs are in reverse between the two sets. While the correct set is organized in a descending direction starting from 'in7' to 'in0', the predicted set is organized in ascending order from 'in0' to 'in7'. This signals that there is a difference in the placement order of the variables.
+
+ANSWER:
+DIFFERENT
+
+REASON:
+The order of the variable pairs in the predicted set is in reverse of the order in the correct set. While the correct set is organized in a descending direction from 'in7' to 'in0', the predicted set is organized in ascending order from 'in0' to 'in7'.
+############################################################
+                    EVALUATING EXAMPLE NUMBER 10
+############################################################
+Input: 10,
+Output: in0 < in1, in1 == in2, in2 < in3, in3 == in4, in4 < in5, in5 == in6, in6 < in7, in7 == in8, in8 < in9
+
+############################################################
+I have two sets of inequalities over variables. Tell me if these two sets are the same or not, and how they differ if they do. Ignore differences in formatting (like spaces, newline characters and exact variable names) though the numbers associated with variable names should be the same. 'None' is equivalent to '' or the empty set/ string.
+
+Here is the correct set:
+```
+in8 == in9, in7 < in8, in6 == in7, in5 < in6, in4 == in5, in3 < in4, in2 == in3, in1 < in2, in0 == in1
+```
+
+Here is the predicted set:
+```
+in0 < in1, in1 == in2, in2 < in3, in3 == in4, in4 < in5, in5 == in6, in6 < in7, in7 == in8, in8 < in9
+
+```
+############################################################
+THINKING:
+First, I will analyze the order of variables by comparing the correct set with the predicted set. Then, I will compare the inequality operators between the two sets. If there is a deviation in either the sequence of the variables or the type of inequality used, they will be considered different.
+
+ANSWER:
+DIFFERENT
+
+REASON:
+The sequence of variables is in reverse order from the correct set to the predicted set. Moreover, the inequalities don't match. In the correct set, the equivalent operator(==) and less than operator(<) are alternating, starting with equivalent, whereas in the predicted set they also alternate but starting with less than.
+############################################################
+                    GET NEW GENERALISATION
+############################################################
+INFORMAL:
+
+Reexamining the examples and the errors, I see that the pattern alternates between == and <, not based on the index itself, but based on the position of the inequality in the sequence, with the first inequality being "==". 
+
+If we order the inX variables from 0 to N-1, then the general pattern is:
+
+i==i+1, if the both i, i+1 are odd or i, i+1 are even (starting from 0). 
+otherwise
+i<i+1.
+
+The previous approach reversed the sequence, which caused an incorrect pattern to be followed. We should first process the minimum index so the constraints should be added to the end of the list.
+
+FORMAL:
+
+Following the observed pattern, the Python code to generate the constraints would look like:
+
+```python
+def generate_constraints(N):
+    constraints = []
+
+    for i in range(N-1):
+        if i % 2 == 0:
+            constraints.append(f'in{i} == in{i+1}')
+        else:
+            constraints.append(f'in{i} < in{i+1}')
+    
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)
+```
+This code will now follow the correct pattern and generate the constraints for a given number of inputs (N).
+############################################################
+                    ATTEMPT NUMBER 4
+############################################################
+                    EVALUATING EXAMPLE NUMBER 1
+############################################################
+Input: 1,
+Output: 
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 2
+############################################################
+Input: 2,
+Output: in0 == in1
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 3
+############################################################
+Input: 3,
+Output: in0 == in1, in1 < in2
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 4
+############################################################
+Input: 4,
+Output: in0 == in1, in1 < in2, in2 == in3
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 5
+############################################################
+Input: 5,
+Output: in0 == in1, in1 < in2, in2 == in3, in3 < in4
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 6
+############################################################
+Input: 6,
+Output: in0 == in1, in1 < in2, in2 == in3, in3 < in4, in4 == in5
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 7
+############################################################
+Input: 7,
+Output: in0 == in1, in1 < in2, in2 == in3, in3 < in4, in4 == in5, in5 < in6
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 8
+############################################################
+Input: 8,
+Output: in0 == in1, in1 < in2, in2 == in3, in3 < in4, in4 == in5, in5 < in6, in6 == in7
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 9
+############################################################
+Input: 9,
+Output: in0 == in1, in1 < in2, in2 == in3, in3 < in4, in4 == in5, in5 < in6, in6 == in7, in7 < in8
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 10
+############################################################
+Input: 10,
+Output: in0 == in1, in1 < in2, in2 == in3, in3 < in4, in4 == in5, in5 < in6, in6 == in7, in7 < in8, in8 == in9

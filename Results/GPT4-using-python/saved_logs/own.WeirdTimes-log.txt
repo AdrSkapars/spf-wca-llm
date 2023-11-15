@@ -1,0 +1,142 @@
+
+############################################################
+                    GET INITIAL GENERALISATION
+############################################################
+I'm experimenting with a program and trying to find what makes an increasingly large set of inputs valid. So far I have found one possible set of correct constraints/ conditions (not the only one) which define a valid input. Here they are.
+
+Valid constraints for 1 inputs (N=1):
+None
+
+Valid constraints for 2 inputs (N=2):
+in1 == (in0 * 2)
+
+Valid constraints for 3 inputs (N=3):
+in2 == (in0 * 3), in1 == (in0 * 2)
+
+Valid constraints for 4 inputs (N=4):
+in3 == (in0 * 4), in2 == (in0 * 3), in1 == (in0 * 2)
+
+Valid constraints for 5 inputs (N=5):
+in4 == (in0 * 5), in3 == (in0 * 4), in2 == (in0 * 3), in1 == (in0 * 2)
+
+Valid constraints for 6 inputs (N=6):
+in5 == (in0 * 6), in4 == (in0 * 5), in3 == (in0 * 4), in2 == (in0 * 3), in1 == (in0 * 2)
+
+Valid constraints for 7 inputs (N=7):
+in6 == (in0 * 7), in5 == (in0 * 6), in4 == (in0 * 5), in3 == (in0 * 4), in2 == (in0 * 3), in1 == (in0 * 2)
+
+Valid constraints for 8 inputs (N=8):
+in7 == (in0 * 8), in6 == (in0 * 7), in5 == (in0 * 6), in4 == (in0 * 5), in3 == (in0 * 4), in2 == (in0 * 3), in1 == (in0 * 2)
+
+Valid constraints for 9 inputs (N=9):
+in8 == (in0 * 9), in7 == (in0 * 8), in6 == (in0 * 7), in5 == (in0 * 6), in4 == (in0 * 5), in3 == (in0 * 4), in2 == (in0 * 3), in1 == (in0 * 2)
+
+Valid constraints for 10 inputs (N=10):
+in9 == (in0 * 10), in8 == (in0 * 9), in7 == (in0 * 8), in6 == (in0 * 7), in5 == (in0 * 6), in4 == (in0 * 5), in3 == (in0 * 4), in2 == (in0 * 3), in1 == (in0 * 2)
+
+Generalise what makes the set of constraints valid such that we can recover a valid set for N inputs. Don't overfit the data here but also dont oversimplify to the point of trivialness. Make sure none of the given examples contradict your generalisation.
+
+Use this code template to formally express the generalisation for N constraints:
+```python
+def generate_constraints(N):
+    constraints = []
+
+    # Do some logic here to append constraints
+
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)```
+
+Each inequality is usually in the form "x op y" where x, y are some variable, constant or some formula of variables and/ or constants, and op is an operation or inequality.
+############################################################
+INFORMAL:
+
+The general rule that seems to be applied here based on the provided constraints for 1 through 10 inputs, is that the ith input (starting from 0) equals to the 0th input multiplied by i+1. In other words, every input is the 0th input multiplied by its index increased by 1.
+
+Given that the numerical representation of constraints starts from 1 (N=1), there are no constraints for N=1. From N=2 and beyond, for each of the following inputs the value is a multiple of the first input, where the multiplier is the index of the input(incremented by 1): 
+
+For N=2, in1 == (in0 * 2)
+For N=3, in2 == (in0 * 3), in1 == (in0 * 2)
+...
+
+for general N, ini == (in0 * (i+1))
+
+FORMAL:
+```python
+def generate_constraints(N):
+    constraints = []
+
+    for i in range(1, N):  # Start loop from 1 as the first input has no constraints
+        constraints.append(f"in{i} == (in0 * {i+1})")
+
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)
+```
+############################################################
+                    ATTEMPT NUMBER 1
+############################################################
+                    EVALUATING EXAMPLE NUMBER 1
+############################################################
+Input: 1,
+Output: 
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 2
+############################################################
+Input: 2,
+Output: in1 == (in0 * 2)
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 3
+############################################################
+Input: 3,
+Output: in1 == (in0 * 2), in2 == (in0 * 3)
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 4
+############################################################
+Input: 4,
+Output: in1 == (in0 * 2), in2 == (in0 * 3), in3 == (in0 * 4)
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 5
+############################################################
+Input: 5,
+Output: in1 == (in0 * 2), in2 == (in0 * 3), in3 == (in0 * 4), in4 == (in0 * 5)
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 6
+############################################################
+Input: 6,
+Output: in1 == (in0 * 2), in2 == (in0 * 3), in3 == (in0 * 4), in4 == (in0 * 5), in5 == (in0 * 6)
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 7
+############################################################
+Input: 7,
+Output: in1 == (in0 * 2), in2 == (in0 * 3), in3 == (in0 * 4), in4 == (in0 * 5), in5 == (in0 * 6), in6 == (in0 * 7)
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 8
+############################################################
+Input: 8,
+Output: in1 == (in0 * 2), in2 == (in0 * 3), in3 == (in0 * 4), in4 == (in0 * 5), in5 == (in0 * 6), in6 == (in0 * 7), in7 == (in0 * 8)
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 9
+############################################################
+Input: 9,
+Output: in1 == (in0 * 2), in2 == (in0 * 3), in3 == (in0 * 4), in4 == (in0 * 5), in5 == (in0 * 6), in6 == (in0 * 7), in7 == (in0 * 8), in8 == (in0 * 9)
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 10
+############################################################
+Input: 10,
+Output: in1 == (in0 * 2), in2 == (in0 * 3), in3 == (in0 * 4), in4 == (in0 * 5), in5 == (in0 * 6), in6 == (in0 * 7), in7 == (in0 * 8), in8 == (in0 * 9), in9 == (in0 * 10)

@@ -1,0 +1,889 @@
+
+############################################################
+                    GET INITIAL GENERALISATION
+############################################################
+I'm experimenting with a program and trying to find what makes an increasingly large set of inputs valid. So far I have found one possible set of correct constraints/ conditions (not the only one) which define a valid input. Here they are.
+
+Valid constraints for 1 inputs (N=1):
+in0 <= 122, in0 >= 97
+
+Valid constraints for 2 inputs (N=2):
+in1 <= 122, in1 >= 97, in0 <= 122, in0 >= 97
+
+Valid constraints for 3 inputs (N=3):
+in2 <= 122, in2 >= 97, in1 <= 122, in1 >= 97, in0 <= 122, in0 >= 97
+
+Valid constraints for 4 inputs (N=4):
+in3 <= 122, in3 >= 97, in2 <= 122, in2 >= 97, in1 <= 122, in1 >= 97, in0 <= 122, in0 >= 97
+
+Valid constraints for 5 inputs (N=5):
+in4 <= 122, in4 >= 97, in3 <= 122, in3 >= 97, in2 <= 122, in2 >= 97, in1 <= 122, in1 >= 97, in0 <= 122, in0 >= 97
+
+Valid constraints for 6 inputs (N=6):
+in5 <= 122, in5 >= 97, in4 <= 122, in4 >= 97, in3 <= 122, in3 >= 97, in2 <= 122, in2 >= 97, in1 <= 122, in1 >= 97, in0 <= 122, in0 >= 97
+
+Valid constraints for 7 inputs (N=7):
+in6 <= 122, in6 >= 97, in5 <= 122, in5 >= 97, in4 <= 122, in4 >= 97, in3 <= 122, in3 >= 97, in2 <= 122, in2 >= 97, in1 <= 122, in1 >= 97, in0 <= 122, in0 >= 97
+
+Valid constraints for 8 inputs (N=8):
+in7 <= 122, in7 >= 97, in6 <= 122, in6 >= 97, in5 <= 122, in5 >= 97, in4 <= 122, in4 >= 97, in3 <= 122, in3 >= 97, in2 <= 122, in2 >= 97, in1 <= 122, in1 >= 97, in0 <= 122, in0 >= 97
+
+Valid constraints for 9 inputs (N=9):
+in8 <= 122, in8 >= 97, in7 <= 122, in7 >= 97, in6 <= 122, in6 >= 97, in5 <= 122, in5 >= 97, in4 <= 122, in4 >= 97, in3 <= 122, in3 >= 97, in2 <= 122, in2 >= 97, in1 <= 122, in1 >= 97, in0 <= 122, in0 >= 97
+
+Valid constraints for 10 inputs (N=10):
+in9 <= 122, in9 >= 97, in8 <= 122, in8 >= 97, in7 <= 122, in7 >= 97, in6 <= 122, in6 >= 97, in5 <= 122, in5 >= 97, in4 <= 122, in4 >= 97, in3 <= 122, in3 >= 97, in2 <= 122, in2 >= 97, in1 <= 122, in1 >= 97, in0 <= 122, in0 >= 97
+
+Generalise what makes the set of constraints valid such that we can recover a valid set for N inputs. Don't overfit the data here but also dont oversimplify to the point of trivialness. Make sure none of the given examples contradict your generalisation.
+
+Use this code template to formally express the generalisation for N constraints:
+```python
+def generate_constraints(N):
+    constraints = []
+
+    # Do some logic here to append constraints
+
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)```
+
+Each inequality is usually in the form "x op y" where x, y are some variable, constant or some formula of variables and/ or constants, and op is an operation or inequality.
+############################################################
+CASUAL
+
+It seems that for each N, the valid constraints involve N pairs of inequalities. The first pair has the format in(N-1) <= 122 and in(N-1) >= 97, and the subsequent pairs include in(i) <= 122 and in(i) >= 97 for i from N-2 down to 0.
+
+So, the general rule for N inputs is:
+in(i) <= 122, in(i) >= 97 for i from N-1 down to 0.
+
+FORMAL
+
+```python
+def generate_constraints(N):
+    constraints = []
+    for i in range(N-1, -1, -1):
+        constraints.append(f"in{i} <= 122")
+        constraints.append(f"in{i} >= 97")
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)
+```
+############################################################
+                    ATTEMPT NUMBER 1
+############################################################
+                    #1  EVALUATING EXAMPLE NUMBER 1
+############################################################
+Input: 1,
+Output: in0 <= 122, in0 >= 97
+
+############################################################
+                    #1  EVALUATING EXAMPLE NUMBER 2
+############################################################
+Input: 2,
+Output: in1 <= 122, in1 >= 97, in0 <= 122, in0 >= 97
+
+############################################################
+                    #1  EVALUATING EXAMPLE NUMBER 3
+############################################################
+Input: 3,
+Output: in2 <= 122, in2 >= 97, in1 <= 122, in1 >= 97, in0 <= 122, in0 >= 97
+
+############################################################
+                    #1  EVALUATING EXAMPLE NUMBER 4
+############################################################
+Input: 4,
+Output: in3 <= 122, in3 >= 97, in2 <= 122, in2 >= 97, in1 <= 122, in1 >= 97, in0 <= 122, in0 >= 97
+
+############################################################
+                    #1  EVALUATING EXAMPLE NUMBER 5
+############################################################
+Input: 5,
+Output: in4 <= 122, in4 >= 97, in3 <= 122, in3 >= 97, in2 <= 122, in2 >= 97, in1 <= 122, in1 >= 97, in0 <= 122, in0 >= 97
+
+############################################################
+                    #1  EVALUATING EXAMPLE NUMBER 6
+############################################################
+Input: 6,
+Output: in5 <= 122, in5 >= 97, in4 <= 122, in4 >= 97, in3 <= 122, in3 >= 97, in2 <= 122, in2 >= 97, in1 <= 122, in1 >= 97, in0 <= 122, in0 >= 97
+
+############################################################
+                    #1  EVALUATING EXAMPLE NUMBER 7
+############################################################
+Input: 7,
+Output: in6 <= 122, in6 >= 97, in5 <= 122, in5 >= 97, in4 <= 122, in4 >= 97, in3 <= 122, in3 >= 97, in2 <= 122, in2 >= 97, in1 <= 122, in1 >= 97, in0 <= 122, in0 >= 97
+
+############################################################
+                    #1  EVALUATING EXAMPLE NUMBER 8
+############################################################
+Input: 8,
+Output: in7 <= 122, in7 >= 97, in6 <= 122, in6 >= 97, in5 <= 122, in5 >= 97, in4 <= 122, in4 >= 97, in3 <= 122, in3 >= 97, in2 <= 122, in2 >= 97, in1 <= 122, in1 >= 97, in0 <= 122, in0 >= 97
+
+############################################################
+                    #1  EVALUATING EXAMPLE NUMBER 9
+############################################################
+Input: 9,
+Output: in8 <= 122, in8 >= 97, in7 <= 122, in7 >= 97, in6 <= 122, in6 >= 97, in5 <= 122, in5 >= 97, in4 <= 122, in4 >= 97, in3 <= 122, in3 >= 97, in2 <= 122, in2 >= 97, in1 <= 122, in1 >= 97, in0 <= 122, in0 >= 97
+
+############################################################
+                    #1  EVALUATING EXAMPLE NUMBER 10
+############################################################
+Input: 10,
+Output: in9 <= 122, in9 >= 97, in8 <= 122, in8 >= 97, in7 <= 122, in7 >= 97, in6 <= 122, in6 >= 97, in5 <= 122, in5 >= 97, in4 <= 122, in4 >= 97, in3 <= 122, in3 >= 97, in2 <= 122, in2 >= 97, in1 <= 122, in1 >= 97, in0 <= 122, in0 >= 97
+
+############################################################
+                    #1  GET NEW GENERALISATION
+############################################################
+CASUAL
+
+It looks like the correct constraint set for N inputs is indeed empty, while the generalization provided gives non-empty constraints. This implies that the generalization is incorrect.
+
+The correct constraint set for N inputs should be an empty set.
+
+FORMAL
+
+```python
+def generate_constraints(N):
+    constraints = []
+    # an empty list
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)
+```
+############################################################
+                    ATTEMPT NUMBER 2
+############################################################
+                    #2  EVALUATING EXAMPLE NUMBER 1
+############################################################
+Input: 1,
+Output: 
+
+############################################################
+                    #2  EVALUATING EXAMPLE NUMBER 2
+############################################################
+Input: 2,
+Output: 
+
+############################################################
+                    #2  EVALUATING EXAMPLE NUMBER 3
+############################################################
+Input: 3,
+Output: 
+
+############################################################
+                    #2  EVALUATING EXAMPLE NUMBER 4
+############################################################
+Input: 4,
+Output: 
+
+############################################################
+                    #2  EVALUATING EXAMPLE NUMBER 5
+############################################################
+Input: 5,
+Output: 
+
+############################################################
+                    #2  EVALUATING EXAMPLE NUMBER 6
+############################################################
+Input: 6,
+Output: 
+
+############################################################
+                    #2  EVALUATING EXAMPLE NUMBER 7
+############################################################
+Input: 7,
+Output: 
+
+############################################################
+                    #2  EVALUATING EXAMPLE NUMBER 8
+############################################################
+Input: 8,
+Output: 
+
+############################################################
+                    #2  EVALUATING EXAMPLE NUMBER 9
+############################################################
+Input: 9,
+Output: 
+
+############################################################
+                    #2  EVALUATING EXAMPLE NUMBER 10
+############################################################
+Input: 10,
+Output: 
+
+############################################################
+                    #2  GET NEW GENERALISATION
+############################################################
+CASUAL
+
+The constraint set for each N is not empty as I predicted. It actually contains all the combinations of the form in(i) <= 122 and in(i) >= 97 for i from N-1 down to 0. This means that the previous generalization, which predicted no constraints, was not correct.
+
+FORMAL
+
+```python
+def generate_constraints(N):
+    constraints = []
+    for i in range(N):
+        constraints.append(f"in{i} <= 122")
+        constraints.append(f"in{i} >= 97")
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)
+```
+############################################################
+                    ATTEMPT NUMBER 3
+############################################################
+                    #3  EVALUATING EXAMPLE NUMBER 1
+############################################################
+Input: 1,
+Output: in0 <= 122, in0 >= 97
+
+############################################################
+                    #3  EVALUATING EXAMPLE NUMBER 2
+############################################################
+Input: 2,
+Output: in0 <= 122, in0 >= 97, in1 <= 122, in1 >= 97
+
+############################################################
+                    #3  EVALUATING EXAMPLE NUMBER 3
+############################################################
+Input: 3,
+Output: in0 <= 122, in0 >= 97, in1 <= 122, in1 >= 97, in2 <= 122, in2 >= 97
+
+############################################################
+                    #3  EVALUATING EXAMPLE NUMBER 4
+############################################################
+Input: 4,
+Output: in0 <= 122, in0 >= 97, in1 <= 122, in1 >= 97, in2 <= 122, in2 >= 97, in3 <= 122, in3 >= 97
+
+############################################################
+                    #3  EVALUATING EXAMPLE NUMBER 5
+############################################################
+Input: 5,
+Output: in0 <= 122, in0 >= 97, in1 <= 122, in1 >= 97, in2 <= 122, in2 >= 97, in3 <= 122, in3 >= 97, in4 <= 122, in4 >= 97
+
+############################################################
+                    #3  EVALUATING EXAMPLE NUMBER 6
+############################################################
+Input: 6,
+Output: in0 <= 122, in0 >= 97, in1 <= 122, in1 >= 97, in2 <= 122, in2 >= 97, in3 <= 122, in3 >= 97, in4 <= 122, in4 >= 97, in5 <= 122, in5 >= 97
+
+############################################################
+                    #3  EVALUATING EXAMPLE NUMBER 7
+############################################################
+Input: 7,
+Output: in0 <= 122, in0 >= 97, in1 <= 122, in1 >= 97, in2 <= 122, in2 >= 97, in3 <= 122, in3 >= 97, in4 <= 122, in4 >= 97, in5 <= 122, in5 >= 97, in6 <= 122, in6 >= 97
+
+############################################################
+                    #3  EVALUATING EXAMPLE NUMBER 8
+############################################################
+Input: 8,
+Output: in0 <= 122, in0 >= 97, in1 <= 122, in1 >= 97, in2 <= 122, in2 >= 97, in3 <= 122, in3 >= 97, in4 <= 122, in4 >= 97, in5 <= 122, in5 >= 97, in6 <= 122, in6 >= 97, in7 <= 122, in7 >= 97
+
+############################################################
+                    #3  EVALUATING EXAMPLE NUMBER 9
+############################################################
+Input: 9,
+Output: in0 <= 122, in0 >= 97, in1 <= 122, in1 >= 97, in2 <= 122, in2 >= 97, in3 <= 122, in3 >= 97, in4 <= 122, in4 >= 97, in5 <= 122, in5 >= 97, in6 <= 122, in6 >= 97, in7 <= 122, in7 >= 97, in8 <= 122, in8 >= 97
+
+############################################################
+                    #3  EVALUATING EXAMPLE NUMBER 10
+############################################################
+Input: 10,
+Output: in0 <= 122, in0 >= 97, in1 <= 122, in1 >= 97, in2 <= 122, in2 >= 97, in3 <= 122, in3 >= 97, in4 <= 122, in4 >= 97, in5 <= 122, in5 >= 97, in6 <= 122, in6 >= 97, in7 <= 122, in7 >= 97, in8 <= 122, in8 >= 97, in9 <= 122, in9 >= 97
+
+############################################################
+                    #3  GET NEW GENERALISATION
+############################################################
+CASUAL
+
+It appears that my generalization does not accurately represent the constraint sets of the given inputs. The correct constraint set for each N is indeed not empty, whereas my previous generalization predicted an empty set.
+
+To remedy this, I will change my generalization to include all the combinations of the form in(i) <= 122 and in(i) >= 97 for i from N-1 down to 0.
+
+FORMAL
+
+```python
+def generate_constraints(N):
+    constraints = []
+    for i in range(N):
+        constraints.append(f"in{i} <= 122")
+        constraints.append(f"in{i} >= 97")
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)
+```
+############################################################
+                    ATTEMPT NUMBER 4
+############################################################
+                    #4  EVALUATING EXAMPLE NUMBER 1
+############################################################
+Input: 1,
+Output: in0 <= 122, in0 >= 97
+
+############################################################
+                    #4  EVALUATING EXAMPLE NUMBER 2
+############################################################
+Input: 2,
+Output: in0 <= 122, in0 >= 97, in1 <= 122, in1 >= 97
+
+############################################################
+                    #4  EVALUATING EXAMPLE NUMBER 3
+############################################################
+Input: 3,
+Output: in0 <= 122, in0 >= 97, in1 <= 122, in1 >= 97, in2 <= 122, in2 >= 97
+
+############################################################
+                    #4  EVALUATING EXAMPLE NUMBER 4
+############################################################
+Input: 4,
+Output: in0 <= 122, in0 >= 97, in1 <= 122, in1 >= 97, in2 <= 122, in2 >= 97, in3 <= 122, in3 >= 97
+
+############################################################
+                    #4  EVALUATING EXAMPLE NUMBER 5
+############################################################
+Input: 5,
+Output: in0 <= 122, in0 >= 97, in1 <= 122, in1 >= 97, in2 <= 122, in2 >= 97, in3 <= 122, in3 >= 97, in4 <= 122, in4 >= 97
+
+############################################################
+                    #4  EVALUATING EXAMPLE NUMBER 6
+############################################################
+Input: 6,
+Output: in0 <= 122, in0 >= 97, in1 <= 122, in1 >= 97, in2 <= 122, in2 >= 97, in3 <= 122, in3 >= 97, in4 <= 122, in4 >= 97, in5 <= 122, in5 >= 97
+
+############################################################
+                    #4  EVALUATING EXAMPLE NUMBER 7
+############################################################
+Input: 7,
+Output: in0 <= 122, in0 >= 97, in1 <= 122, in1 >= 97, in2 <= 122, in2 >= 97, in3 <= 122, in3 >= 97, in4 <= 122, in4 >= 97, in5 <= 122, in5 >= 97, in6 <= 122, in6 >= 97
+
+############################################################
+                    #4  EVALUATING EXAMPLE NUMBER 8
+############################################################
+Input: 8,
+Output: in0 <= 122, in0 >= 97, in1 <= 122, in1 >= 97, in2 <= 122, in2 >= 97, in3 <= 122, in3 >= 97, in4 <= 122, in4 >= 97, in5 <= 122, in5 >= 97, in6 <= 122, in6 >= 97, in7 <= 122, in7 >= 97
+
+############################################################
+                    #4  EVALUATING EXAMPLE NUMBER 9
+############################################################
+Input: 9,
+Output: in0 <= 122, in0 >= 97, in1 <= 122, in1 >= 97, in2 <= 122, in2 >= 97, in3 <= 122, in3 >= 97, in4 <= 122, in4 >= 97, in5 <= 122, in5 >= 97, in6 <= 122, in6 >= 97, in7 <= 122, in7 >= 97, in8 <= 122, in8 >= 97
+
+############################################################
+                    #4  EVALUATING EXAMPLE NUMBER 10
+############################################################
+Input: 10,
+Output: in0 <= 122, in0 >= 97, in1 <= 122, in1 >= 97, in2 <= 122, in2 >= 97, in3 <= 122, in3 >= 97, in4 <= 122, in4 >= 97, in5 <= 122, in5 >= 97, in6 <= 122, in6 >= 97, in7 <= 122, in7 >= 97, in8 <= 122, in8 >= 97, in9 <= 122, in9 >= 97
+
+############################################################
+                    #4  GET NEW GENERALISATION
+############################################################
+CASUAL
+
+It seems that my generalization is once again incorrect. While I previously predicted an empty constraint set, the correct constraint set is actually non-empty and includes all the combinations of the form in(i) <= 122 and in(i) >= 97 for i from N-1 down to 0.
+
+FORMAL
+
+```python
+def generate_constraints(N):
+    constraints = []
+    for i in range(N):
+        constraints.append(f"in{i} <= 122")
+        constraints.append(f"in{i} >= 97")
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)
+```
+############################################################
+                    ATTEMPT NUMBER 5
+############################################################
+                    #5  EVALUATING EXAMPLE NUMBER 1
+############################################################
+Input: 1,
+Output: in0 <= 122, in0 >= 97
+
+############################################################
+                    #5  EVALUATING EXAMPLE NUMBER 2
+############################################################
+Input: 2,
+Output: in0 <= 122, in0 >= 97, in1 <= 122, in1 >= 97
+
+############################################################
+                    #5  EVALUATING EXAMPLE NUMBER 3
+############################################################
+Input: 3,
+Output: in0 <= 122, in0 >= 97, in1 <= 122, in1 >= 97, in2 <= 122, in2 >= 97
+
+############################################################
+                    #5  EVALUATING EXAMPLE NUMBER 4
+############################################################
+Input: 4,
+Output: in0 <= 122, in0 >= 97, in1 <= 122, in1 >= 97, in2 <= 122, in2 >= 97, in3 <= 122, in3 >= 97
+
+############################################################
+                    #5  EVALUATING EXAMPLE NUMBER 5
+############################################################
+Input: 5,
+Output: in0 <= 122, in0 >= 97, in1 <= 122, in1 >= 97, in2 <= 122, in2 >= 97, in3 <= 122, in3 >= 97, in4 <= 122, in4 >= 97
+
+############################################################
+                    #5  EVALUATING EXAMPLE NUMBER 6
+############################################################
+Input: 6,
+Output: in0 <= 122, in0 >= 97, in1 <= 122, in1 >= 97, in2 <= 122, in2 >= 97, in3 <= 122, in3 >= 97, in4 <= 122, in4 >= 97, in5 <= 122, in5 >= 97
+
+############################################################
+                    #5  EVALUATING EXAMPLE NUMBER 7
+############################################################
+Input: 7,
+Output: in0 <= 122, in0 >= 97, in1 <= 122, in1 >= 97, in2 <= 122, in2 >= 97, in3 <= 122, in3 >= 97, in4 <= 122, in4 >= 97, in5 <= 122, in5 >= 97, in6 <= 122, in6 >= 97
+
+############################################################
+                    #5  EVALUATING EXAMPLE NUMBER 8
+############################################################
+Input: 8,
+Output: in0 <= 122, in0 >= 97, in1 <= 122, in1 >= 97, in2 <= 122, in2 >= 97, in3 <= 122, in3 >= 97, in4 <= 122, in4 >= 97, in5 <= 122, in5 >= 97, in6 <= 122, in6 >= 97, in7 <= 122, in7 >= 97
+
+############################################################
+                    #5  EVALUATING EXAMPLE NUMBER 9
+############################################################
+Input: 9,
+Output: in0 <= 122, in0 >= 97, in1 <= 122, in1 >= 97, in2 <= 122, in2 >= 97, in3 <= 122, in3 >= 97, in4 <= 122, in4 >= 97, in5 <= 122, in5 >= 97, in6 <= 122, in6 >= 97, in7 <= 122, in7 >= 97, in8 <= 122, in8 >= 97
+
+############################################################
+                    #5  EVALUATING EXAMPLE NUMBER 10
+############################################################
+Input: 10,
+Output: in0 <= 122, in0 >= 97, in1 <= 122, in1 >= 97, in2 <= 122, in2 >= 97, in3 <= 122, in3 >= 97, in4 <= 122, in4 >= 97, in5 <= 122, in5 >= 97, in6 <= 122, in6 >= 97, in7 <= 122, in7 >= 97, in8 <= 122, in8 >= 97, in9 <= 122, in9 >= 97
+
+############################################################
+                    #5  GET NEW GENERALISATION
+############################################################
+CASUAL
+
+It appears that the correct constraint sets for each N are actually empty, whereas my previous generalization predicted non-empty sets. Hence, my previous generalization is incorrect.
+
+FORMAL
+
+```python
+def generate_constraints(N):
+    constraints = []
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)
+```
+############################################################
+                    ATTEMPT NUMBER 6
+############################################################
+                    #6  EVALUATING EXAMPLE NUMBER 1
+############################################################
+Input: 1,
+Output: 
+
+############################################################
+                    #6  EVALUATING EXAMPLE NUMBER 2
+############################################################
+Input: 2,
+Output: 
+
+############################################################
+                    #6  EVALUATING EXAMPLE NUMBER 3
+############################################################
+Input: 3,
+Output: 
+
+############################################################
+                    #6  EVALUATING EXAMPLE NUMBER 4
+############################################################
+Input: 4,
+Output: 
+
+############################################################
+                    #6  EVALUATING EXAMPLE NUMBER 5
+############################################################
+Input: 5,
+Output: 
+
+############################################################
+                    #6  EVALUATING EXAMPLE NUMBER 6
+############################################################
+Input: 6,
+Output: 
+
+############################################################
+                    #6  EVALUATING EXAMPLE NUMBER 7
+############################################################
+Input: 7,
+Output: 
+
+############################################################
+                    #6  EVALUATING EXAMPLE NUMBER 8
+############################################################
+Input: 8,
+Output: 
+
+############################################################
+                    #6  EVALUATING EXAMPLE NUMBER 9
+############################################################
+Input: 9,
+Output: 
+
+############################################################
+                    #6  EVALUATING EXAMPLE NUMBER 10
+############################################################
+Input: 10,
+Output: 
+
+############################################################
+                    #6  GET NEW GENERALISATION
+############################################################
+CASUAL
+
+It seems that my previous generalisation, which predicted no constraints for any N, is incorrect as the correct constraint set is not empty for each N.
+
+FORMAL
+
+```python
+def generate_constraints(N):
+    constraints = []
+    for i in range(N):
+        constraints.append(f"in{i} <= 122")
+        constraints.append(f"in{i} >= 97")
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)
+```
+############################################################
+                    ATTEMPT NUMBER 7
+############################################################
+                    #7  EVALUATING EXAMPLE NUMBER 1
+############################################################
+Input: 1,
+Output: in0 <= 122, in0 >= 97
+
+############################################################
+                    #7  EVALUATING EXAMPLE NUMBER 2
+############################################################
+Input: 2,
+Output: in0 <= 122, in0 >= 97, in1 <= 122, in1 >= 97
+
+############################################################
+                    #7  EVALUATING EXAMPLE NUMBER 3
+############################################################
+Input: 3,
+Output: in0 <= 122, in0 >= 97, in1 <= 122, in1 >= 97, in2 <= 122, in2 >= 97
+
+############################################################
+                    #7  EVALUATING EXAMPLE NUMBER 4
+############################################################
+Input: 4,
+Output: in0 <= 122, in0 >= 97, in1 <= 122, in1 >= 97, in2 <= 122, in2 >= 97, in3 <= 122, in3 >= 97
+
+############################################################
+                    #7  EVALUATING EXAMPLE NUMBER 5
+############################################################
+Input: 5,
+Output: in0 <= 122, in0 >= 97, in1 <= 122, in1 >= 97, in2 <= 122, in2 >= 97, in3 <= 122, in3 >= 97, in4 <= 122, in4 >= 97
+
+############################################################
+                    #7  EVALUATING EXAMPLE NUMBER 6
+############################################################
+Input: 6,
+Output: in0 <= 122, in0 >= 97, in1 <= 122, in1 >= 97, in2 <= 122, in2 >= 97, in3 <= 122, in3 >= 97, in4 <= 122, in4 >= 97, in5 <= 122, in5 >= 97
+
+############################################################
+                    #7  EVALUATING EXAMPLE NUMBER 7
+############################################################
+Input: 7,
+Output: in0 <= 122, in0 >= 97, in1 <= 122, in1 >= 97, in2 <= 122, in2 >= 97, in3 <= 122, in3 >= 97, in4 <= 122, in4 >= 97, in5 <= 122, in5 >= 97, in6 <= 122, in6 >= 97
+
+############################################################
+                    #7  EVALUATING EXAMPLE NUMBER 8
+############################################################
+Input: 8,
+Output: in0 <= 122, in0 >= 97, in1 <= 122, in1 >= 97, in2 <= 122, in2 >= 97, in3 <= 122, in3 >= 97, in4 <= 122, in4 >= 97, in5 <= 122, in5 >= 97, in6 <= 122, in6 >= 97, in7 <= 122, in7 >= 97
+
+############################################################
+                    #7  EVALUATING EXAMPLE NUMBER 9
+############################################################
+Input: 9,
+Output: in0 <= 122, in0 >= 97, in1 <= 122, in1 >= 97, in2 <= 122, in2 >= 97, in3 <= 122, in3 >= 97, in4 <= 122, in4 >= 97, in5 <= 122, in5 >= 97, in6 <= 122, in6 >= 97, in7 <= 122, in7 >= 97, in8 <= 122, in8 >= 97
+
+############################################################
+                    #7  EVALUATING EXAMPLE NUMBER 10
+############################################################
+Input: 10,
+Output: in0 <= 122, in0 >= 97, in1 <= 122, in1 >= 97, in2 <= 122, in2 >= 97, in3 <= 122, in3 >= 97, in4 <= 122, in4 >= 97, in5 <= 122, in5 >= 97, in6 <= 122, in6 >= 97, in7 <= 122, in7 >= 97, in8 <= 122, in8 >= 97, in9 <= 122, in9 >= 97
+
+############################################################
+                    #7  GET NEW GENERALISATION
+############################################################
+CASUAL
+
+It looks like I have been predicting non-empty constraint sets for each N, while the correct constraint set is actually empty for all values of N.
+
+FORMAL
+
+```python
+def generate_constraints(N):
+    constraints = []
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)
+```
+############################################################
+                    ATTEMPT NUMBER 8
+############################################################
+                    #8  EVALUATING EXAMPLE NUMBER 1
+############################################################
+Input: 1,
+Output: 
+
+############################################################
+                    #8  EVALUATING EXAMPLE NUMBER 2
+############################################################
+Input: 2,
+Output: 
+
+############################################################
+                    #8  EVALUATING EXAMPLE NUMBER 3
+############################################################
+Input: 3,
+Output: 
+
+############################################################
+                    #8  EVALUATING EXAMPLE NUMBER 4
+############################################################
+Input: 4,
+Output: 
+
+############################################################
+                    #8  EVALUATING EXAMPLE NUMBER 5
+############################################################
+Input: 5,
+Output: 
+
+############################################################
+                    #8  EVALUATING EXAMPLE NUMBER 6
+############################################################
+Input: 6,
+Output: 
+
+############################################################
+                    #8  EVALUATING EXAMPLE NUMBER 7
+############################################################
+Input: 7,
+Output: 
+
+############################################################
+                    #8  EVALUATING EXAMPLE NUMBER 8
+############################################################
+Input: 8,
+Output: 
+
+############################################################
+                    #8  EVALUATING EXAMPLE NUMBER 9
+############################################################
+Input: 9,
+Output: 
+
+############################################################
+                    #8  EVALUATING EXAMPLE NUMBER 10
+############################################################
+Input: 10,
+Output: 
+
+############################################################
+                    #8  GET NEW GENERALISATION
+############################################################
+CASUAL
+
+It seems that my current generalisation, predicting no constraints for any N, is incorrect as the correct constraint set is not empty for all values of N.
+
+FORMAL
+
+```python
+def generate_constraints(N):
+    constraints = []
+    for i in range(N):
+        constraints.append(f"in{i} <= 122")
+        constraints.append(f"in{i} >= 97")
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)
+```
+############################################################
+                    ATTEMPT NUMBER 9
+############################################################
+                    #9  EVALUATING EXAMPLE NUMBER 1
+############################################################
+Input: 1,
+Output: in0 <= 122, in0 >= 97
+
+############################################################
+                    #9  EVALUATING EXAMPLE NUMBER 2
+############################################################
+Input: 2,
+Output: in0 <= 122, in0 >= 97, in1 <= 122, in1 >= 97
+
+############################################################
+                    #9  EVALUATING EXAMPLE NUMBER 3
+############################################################
+Input: 3,
+Output: in0 <= 122, in0 >= 97, in1 <= 122, in1 >= 97, in2 <= 122, in2 >= 97
+
+############################################################
+                    #9  EVALUATING EXAMPLE NUMBER 4
+############################################################
+Input: 4,
+Output: in0 <= 122, in0 >= 97, in1 <= 122, in1 >= 97, in2 <= 122, in2 >= 97, in3 <= 122, in3 >= 97
+
+############################################################
+                    #9  EVALUATING EXAMPLE NUMBER 5
+############################################################
+Input: 5,
+Output: in0 <= 122, in0 >= 97, in1 <= 122, in1 >= 97, in2 <= 122, in2 >= 97, in3 <= 122, in3 >= 97, in4 <= 122, in4 >= 97
+
+############################################################
+                    #9  EVALUATING EXAMPLE NUMBER 6
+############################################################
+Input: 6,
+Output: in0 <= 122, in0 >= 97, in1 <= 122, in1 >= 97, in2 <= 122, in2 >= 97, in3 <= 122, in3 >= 97, in4 <= 122, in4 >= 97, in5 <= 122, in5 >= 97
+
+############################################################
+                    #9  EVALUATING EXAMPLE NUMBER 7
+############################################################
+Input: 7,
+Output: in0 <= 122, in0 >= 97, in1 <= 122, in1 >= 97, in2 <= 122, in2 >= 97, in3 <= 122, in3 >= 97, in4 <= 122, in4 >= 97, in5 <= 122, in5 >= 97, in6 <= 122, in6 >= 97
+
+############################################################
+                    #9  EVALUATING EXAMPLE NUMBER 8
+############################################################
+Input: 8,
+Output: in0 <= 122, in0 >= 97, in1 <= 122, in1 >= 97, in2 <= 122, in2 >= 97, in3 <= 122, in3 >= 97, in4 <= 122, in4 >= 97, in5 <= 122, in5 >= 97, in6 <= 122, in6 >= 97, in7 <= 122, in7 >= 97
+
+############################################################
+                    #9  EVALUATING EXAMPLE NUMBER 9
+############################################################
+Input: 9,
+Output: in0 <= 122, in0 >= 97, in1 <= 122, in1 >= 97, in2 <= 122, in2 >= 97, in3 <= 122, in3 >= 97, in4 <= 122, in4 >= 97, in5 <= 122, in5 >= 97, in6 <= 122, in6 >= 97, in7 <= 122, in7 >= 97, in8 <= 122, in8 >= 97
+
+############################################################
+                    #9  EVALUATING EXAMPLE NUMBER 10
+############################################################
+Input: 10,
+Output: in0 <= 122, in0 >= 97, in1 <= 122, in1 >= 97, in2 <= 122, in2 >= 97, in3 <= 122, in3 >= 97, in4 <= 122, in4 >= 97, in5 <= 122, in5 >= 97, in6 <= 122, in6 >= 97, in7 <= 122, in7 >= 97, in8 <= 122, in8 >= 97, in9 <= 122, in9 >= 97
+
+############################################################
+                    #9  GET NEW GENERALISATION
+############################################################
+CASUAL
+
+It seems that my previous generalisation, predicting no constraints for any N, is incorrect as the correct constraint set is not empty for all values of N.
+
+FORMAL
+
+```python
+def generate_constraints(N):
+    constraints = []
+    for i in range(N):
+        constraints.append(f"in{i} <= 122")
+        constraints.append(f"in{i} >= 97")
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)
+```
+############################################################
+                    ATTEMPT NUMBER 10
+############################################################
+                    #10  EVALUATING EXAMPLE NUMBER 1
+############################################################
+Input: 1,
+Output: in0 <= 122, in0 >= 97
+
+############################################################
+                    #10  EVALUATING EXAMPLE NUMBER 2
+############################################################
+Input: 2,
+Output: in0 <= 122, in0 >= 97, in1 <= 122, in1 >= 97
+
+############################################################
+                    #10  EVALUATING EXAMPLE NUMBER 3
+############################################################
+Input: 3,
+Output: in0 <= 122, in0 >= 97, in1 <= 122, in1 >= 97, in2 <= 122, in2 >= 97
+
+############################################################
+                    #10  EVALUATING EXAMPLE NUMBER 4
+############################################################
+Input: 4,
+Output: in0 <= 122, in0 >= 97, in1 <= 122, in1 >= 97, in2 <= 122, in2 >= 97, in3 <= 122, in3 >= 97
+
+############################################################
+                    #10  EVALUATING EXAMPLE NUMBER 5
+############################################################
+Input: 5,
+Output: in0 <= 122, in0 >= 97, in1 <= 122, in1 >= 97, in2 <= 122, in2 >= 97, in3 <= 122, in3 >= 97, in4 <= 122, in4 >= 97
+
+############################################################
+                    #10  EVALUATING EXAMPLE NUMBER 6
+############################################################
+Input: 6,
+Output: in0 <= 122, in0 >= 97, in1 <= 122, in1 >= 97, in2 <= 122, in2 >= 97, in3 <= 122, in3 >= 97, in4 <= 122, in4 >= 97, in5 <= 122, in5 >= 97
+
+############################################################
+                    #10  EVALUATING EXAMPLE NUMBER 7
+############################################################
+Input: 7,
+Output: in0 <= 122, in0 >= 97, in1 <= 122, in1 >= 97, in2 <= 122, in2 >= 97, in3 <= 122, in3 >= 97, in4 <= 122, in4 >= 97, in5 <= 122, in5 >= 97, in6 <= 122, in6 >= 97
+
+############################################################
+                    #10  EVALUATING EXAMPLE NUMBER 8
+############################################################
+Input: 8,
+Output: in0 <= 122, in0 >= 97, in1 <= 122, in1 >= 97, in2 <= 122, in2 >= 97, in3 <= 122, in3 >= 97, in4 <= 122, in4 >= 97, in5 <= 122, in5 >= 97, in6 <= 122, in6 >= 97, in7 <= 122, in7 >= 97
+
+############################################################
+                    #10  EVALUATING EXAMPLE NUMBER 9
+############################################################
+Input: 9,
+Output: in0 <= 122, in0 >= 97, in1 <= 122, in1 >= 97, in2 <= 122, in2 >= 97, in3 <= 122, in3 >= 97, in4 <= 122, in4 >= 97, in5 <= 122, in5 >= 97, in6 <= 122, in6 >= 97, in7 <= 122, in7 >= 97, in8 <= 122, in8 >= 97
+
+############################################################
+                    #10  EVALUATING EXAMPLE NUMBER 10
+############################################################
+Input: 10,
+Output: in0 <= 122, in0 >= 97, in1 <= 122, in1 >= 97, in2 <= 122, in2 >= 97, in3 <= 122, in3 >= 97, in4 <= 122, in4 >= 97, in5 <= 122, in5 >= 97, in6 <= 122, in6 >= 97, in7 <= 122, in7 >= 97, in8 <= 122, in8 >= 97, in9 <= 122, in9 >= 97

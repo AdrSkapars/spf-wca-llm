@@ -1,0 +1,217 @@
+
+############################################################
+                    GET INITIAL GENERALISATION
+############################################################
+I'm experimenting with a program and trying to find what makes an increasingly large set of inputs valid. So far I have found one possible set of correct constraints/ conditions (not the only one) which define a valid input. Here they are.
+
+Valid constraints for 1 inputs (N=1):
+put0_0 != get0, 0 == ((get1 + get0) % 1), 0 == ((put0_1 + put0_0) % 1)
+
+Valid constraints for 2 inputs (N=2):
+put1_0 != get0, put0_0 != get0, 0 == ((get1 + get0) % 2), 0 == ((put1_1 + put1_0) % 2), 0 == ((put0_1 + put0_0) % 2)
+
+Valid constraints for 3 inputs (N=3):
+put2_0 != get0, put1_0 != get0, put0_0 != get0, 0 == ((get1 + get0) % 3), 0 == ((put2_1 + put2_0) % 3), 0 == ((put1_1 + put1_0) % 3), 0 == ((put0_1 + put0_0) % 3)
+
+Valid constraints for 4 inputs (N=4):
+put3_0 != get0, put2_0 != get0, put1_0 != get0, put0_0 != get0, 0 == ((get1 + get0) % 4), 0 == ((put3_1 + put3_0) % 4), 0 == ((put2_1 + put2_0) % 4), 0 == ((put1_1 + put1_0) % 4), 0 == ((put0_1 + put0_0) % 4)
+
+Valid constraints for 5 inputs (N=5):
+put4_0 != get0, put3_0 != get0, put2_0 != get0, put1_0 != get0, put0_0 != get0, 0 == ((get1 + get0) % 5), 0 == ((put4_1 + put4_0) % 5), 0 == ((put3_1 + put3_0) % 5), 0 == ((put2_1 + put2_0) % 5), 0 == ((put1_1 + put1_0) % 5), 0 == ((put0_1 + put0_0) % 5)
+
+Valid constraints for 6 inputs (N=6):
+put5_0 != get0, put4_0 != get0, put3_0 != get0, put2_0 != get0, put1_0 != get0, put0_0 != get0, 0 == ((get1 + get0) % 6), 0 == ((put5_1 + put5_0) % 6), 0 == ((put4_1 + put4_0) % 6), 0 == ((put3_1 + put3_0) % 6), 0 == ((put2_1 + put2_0) % 6), 0 == ((put1_1 + put1_0) % 6), 0 == ((put0_1 + put0_0) % 6)
+
+Valid constraints for 7 inputs (N=7):
+put6_0 != get0, put5_0 != get0, put4_0 != get0, put3_0 != get0, put2_0 != get0, put1_0 != get0, put0_0 != get0, 0 == ((get1 + get0) % 7), 0 == ((put6_1 + put6_0) % 7), 0 == ((put5_1 + put5_0) % 7), 0 == ((put4_1 + put4_0) % 7), 0 == ((put3_1 + put3_0) % 7), 0 == ((put2_1 + put2_0) % 7), 0 == ((put1_1 + put1_0) % 7), 0 == ((put0_1 + put0_0) % 7)
+
+Valid constraints for 8 inputs (N=8):
+put7_0 != get0, put6_0 != get0, put5_0 != get0, put4_0 != get0, put3_0 != get0, put2_0 != get0, put1_0 != get0, put0_0 != get0, 0 == ((get1 + get0) % 8), 0 == ((put7_1 + put7_0) % 8), 0 == ((put6_1 + put6_0) % 8), 0 == ((put5_1 + put5_0) % 8), 0 == ((put4_1 + put4_0) % 8), 0 == ((put3_1 + put3_0) % 8), 0 == ((put2_1 + put2_0) % 8), 0 == ((put1_1 + put1_0) % 8), 0 == ((put0_1 + put0_0) % 8)
+
+Valid constraints for 9 inputs (N=9):
+put8_0 != get0, put7_0 != get0, put6_0 != get0, put5_0 != get0, put4_0 != get0, put3_0 != get0, put2_0 != get0, put1_0 != get0, put0_0 != get0, 0 == ((get1 + get0) % 9), 0 == ((put8_1 + put8_0) % 9), 0 == ((put7_1 + put7_0) % 9), 0 == ((put6_1 + put6_0) % 9), 0 == ((put5_1 + put5_0) % 9), 0 == ((put4_1 + put4_0) % 9), 0 == ((put3_1 + put3_0) % 9), 0 == ((put2_1 + put2_0) % 9), 0 == ((put1_1 + put1_0) % 9), 0 == ((put0_1 + put0_0) % 9)
+
+Valid constraints for 10 inputs (N=10):
+put9_0 != get0, put8_0 != get0, put7_0 != get0, put6_0 != get0, put5_0 != get0, put4_0 != get0, put3_0 != get0, put2_0 != get0, put1_0 != get0, put0_0 != get0, 0 == ((get1 + get0) % 10), 0 == ((put9_1 + put9_0) % 10), 0 == ((put8_1 + put8_0) % 10), 0 == ((put7_1 + put7_0) % 10), 0 == ((put6_1 + put6_0) % 10), 0 == ((put5_1 + put5_0) % 10), 0 == ((put4_1 + put4_0) % 10), 0 == ((put3_1 + put3_0) % 10), 0 == ((put2_1 + put2_0) % 10), 0 == ((put1_1 + put1_0) % 10), 0 == ((put0_1 + put0_0) % 10)
+
+Generalise what makes the set of constraints valid such that we can recover a valid set for N inputs. Don't overfit the data here but also dont oversimplify to the point of trivialness. Make sure none of the given examples contradict your generalisation.
+
+Use this code template to formally express the generalisation for N constraints:
+```python
+def generate_constraints(N):
+    constraints = []
+
+    # Do some logic here to append constraints
+
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)```
+
+Each inequality is usually in the form "x op y" where x, y are some variable, constant or some formula of variables and/ or constants, and op is an operation or inequality.
+############################################################
+CASUAL
+
+It seems that for each number of inputs N, the following constraints are valid:
+- For each put_i_0, it must not be equal to get0, where i goes from N-1 to 0.
+- There is an equation 0 == ((get1 + get0) % N)
+- For each put_i_1, it must satisfy an equation 0 == ((put_i_1 + put_i_0) % N), where i goes from N-1 to 0.
+
+It seems that the generalization for the constraints for N inputs is:
+- For each put_i_0, where i goes from N-1 to 0, it must not be equal to get0.
+- There is an equation 0 == ((get1 + get0) % N).
+- For each put_i_1, where i goes from N-1 to 0, it must satisfy an equation 0 == ((put_i_1 + put_i_0) % N).
+
+FORMAL
+
+```python
+def generate_constraints(N):
+    constraints = []
+
+    for i in range(N-1, -1, -1):
+        constraints.append(f"put{i}_0 != get0")
+    
+    constraints.append(f"0 == ((get1 + get0) % {N})")
+
+    for i in range(N-1, -1, -1):
+        constraints.append(f"0 == ((put{i}_1 + put{i}_0) % {N}")
+
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)
+```
+############################################################
+                    ATTEMPT NUMBER 1
+############################################################
+                    #1  GET NEW GENERALISATION
+############################################################
+I have run your code for several concrete values of N. Some of the outputs were not correct. Change your generalisation and code to account for the following outputs (Remember to always structure your reply with the headings 'CASUAL' and 'FORMAL').
+
+For N=1, the generalisation output correctly fits the given data
+
+For N=2, the output constraint set should be:
+```
+put1_0 != get0, put0_0 != get0, 0 == ((get1 + get0) % 2), 0 == ((put1_1 + put1_0) % 2), 0 == ((put0_1 + put0_0) % 2)
+```
+But your generalisation implies the set:
+```
+put1_0 != get0, put0_0 != get0, 0 == ((get1 + get0) % 2), 0 == ((put1_1 + put1_0) % 2, 0 == ((put0_1 + put0_0) % 2
+
+```
+This is not right. Explanation: The predicted set has a formatting error in the last inequality. It is missing a closing parenthesis.
+
+For N=3, the output constraint set should be:
+```
+put2_0 != get0, put1_0 != get0, put0_0 != get0, 0 == ((get1 + get0) % 3), 0 == ((put2_1 + put2_0) % 3), 0 == ((put1_1 + put1_0) % 3), 0 == ((put0_1 + put0_0) % 3)
+```
+But your generalisation implies the set:
+```
+put2_0 != get0, put1_0 != get0, put0_0 != get0, 0 == ((get1 + get0) % 3), 0 == ((put2_1 + put2_0) % 3, 0 == ((put1_1 + put1_0) % 3, 0 == ((put0_1 + put0_0) % 3
+
+```
+This is not right. Explanation: The predicted set is missing commas and closing parentheses in the last three inequalities.
+
+For N=4, the output constraint set should be:
+```
+put3_0 != get0, put2_0 != get0, put1_0 != get0, put0_0 != get0, 0 == ((get1 + get0) % 4), 0 == ((put3_1 + put3_0) % 4), 0 == ((put2_1 + put2_0) % 4), 0 == ((put1_1 + put1_0) % 4), 0 == ((put0_1 + put0_0) % 4)
+```
+But your generalisation implies the set:
+```
+put3_0 != get0, put2_0 != get0, put1_0 != get0, put0_0 != get0, 0 == ((get1 + get0) % 4), 0 == ((put3_1 + put3_0) % 4, 0 == ((put2_1 + put2_0) % 4, 0 == ((put1_1 + put1_0) % 4, 0 == ((put0_1 + put0_0) % 4
+
+```
+This is not right. Explanation: The predicted set has missing closing parentheses after the modulo operation for the three inequalities starting from `put3_1` to `put0_0`.
+
+For N=5, the output constraint set should be:
+```
+put4_0 != get0, put3_0 != get0, put2_0 != get0, put1_0 != get0, put0_0 != get0, 0 == ((get1 + get0) % 5), 0 == ((put4_1 + put4_0) % 5), 0 == ((put3_1 + put3_0) % 5), 0 == ((put2_1 + put2_0) % 5), 0 == ((put1_1 + put1_0) % 5), 0 == ((put0_1 + put0_0) % 5)
+```
+But your generalisation implies the set:
+```
+put4_0 != get0, put3_0 != get0, put2_0 != get0, put1_0 != get0, put0_0 != get0, 0 == ((get1 + get0) % 5), 0 == ((put4_1 + put4_0) % 5, 0 == ((put3_1 + put3_0) % 5, 0 == ((put2_1 + put2_0) % 5, 0 == ((put1_1 + put1_0) % 5, 0 == ((put0_1 + put0_0) % 5
+
+```
+This is not right. Explanation: The predicted set of inequalities is not the same as the correct set because of the difference in formatting and the missing closing brackets in the last few inequalities.
+
+For N=6, the output constraint set should be:
+```
+put5_0 != get0, put4_0 != get0, put3_0 != get0, put2_0 != get0, put1_0 != get0, put0_0 != get0, 0 == ((get1 + get0) % 6), 0 == ((put5_1 + put5_0) % 6), 0 == ((put4_1 + put4_0) % 6), 0 == ((put3_1 + put3_0) % 6), 0 == ((put2_1 + put2_0) % 6), 0 == ((put1_1 + put1_0) % 6), 0 == ((put0_1 + put0_0) % 6)
+```
+But your generalisation implies the set:
+```
+put5_0 != get0, put4_0 != get0, put3_0 != get0, put2_0 != get0, put1_0 != get0, put0_0 != get0, 0 == ((get1 + get0) % 6), 0 == ((put5_1 + put5_0) % 6, 0 == ((put4_1 + put4_0) % 6, 0 == ((put3_1 + put3_0) % 6, 0 == ((put2_1 + put2_0) % 6, 0 == ((put1_1 + put1_0) % 6, 0 == ((put0_1 + put0_0) % 6
+
+```
+This is not right. Explanation: The predicted set does not match the correct set because the commas are missing after each inequality.
+
+For N=7, the output constraint set should be:
+```
+put6_0 != get0, put5_0 != get0, put4_0 != get0, put3_0 != get0, put2_0 != get0, put1_0 != get0, put0_0 != get0, 0 == ((get1 + get0) % 7), 0 == ((put6_1 + put6_0) % 7), 0 == ((put5_1 + put5_0) % 7), 0 == ((put4_1 + put4_0) % 7), 0 == ((put3_1 + put3_0) % 7), 0 == ((put2_1 + put2_0) % 7), 0 == ((put1_1 + put1_0) % 7), 0 == ((put0_1 + put0_0) % 7)
+```
+But your generalisation implies the set:
+```
+put6_0 != get0, put5_0 != get0, put4_0 != get0, put3_0 != get0, put2_0 != get0, put1_0 != get0, put0_0 != get0, 0 == ((get1 + get0) % 7), 0 == ((put6_1 + put6_0) % 7, 0 == ((put5_1 + put5_0) % 7, 0 == ((put4_1 + put4_0) % 7, 0 == ((put3_1 + put3_0) % 7, 0 == ((put2_1 + put2_0) % 7, 0 == ((put1_1 + put1_0) % 7, 0 == ((put0_1 + put0_0) % 7
+
+```
+This is not right. Explanation: The predicted set is missing closing parentheses for multiple expressions and the last expression is incomplete.
+
+For N=8, the output constraint set should be:
+```
+put7_0 != get0, put6_0 != get0, put5_0 != get0, put4_0 != get0, put3_0 != get0, put2_0 != get0, put1_0 != get0, put0_0 != get0, 0 == ((get1 + get0) % 8), 0 == ((put7_1 + put7_0) % 8), 0 == ((put6_1 + put6_0) % 8), 0 == ((put5_1 + put5_0) % 8), 0 == ((put4_1 + put4_0) % 8), 0 == ((put3_1 + put3_0) % 8), 0 == ((put2_1 + put2_0) % 8), 0 == ((put1_1 + put1_0) % 8), 0 == ((put0_1 + put0_0) % 8)
+```
+But your generalisation implies the set:
+```
+put7_0 != get0, put6_0 != get0, put5_0 != get0, put4_0 != get0, put3_0 != get0, put2_0 != get0, put1_0 != get0, put0_0 != get0, 0 == ((get1 + get0) % 8), 0 == ((put7_1 + put7_0) % 8, 0 == ((put6_1 + put6_0) % 8, 0 == ((put5_1 + put5_0) % 8, 0 == ((put4_1 + put4_0) % 8, 0 == ((put3_1 + put3_0) % 8, 0 == ((put2_1 + put2_0) % 8, 0 == ((put1_1 + put1_0) % 8, 0 == ((put0_1 + put0_0) % 8
+
+```
+This is not right. Explanation: The predicted set is missing closing parentheses in the last 8 inequalities, which is a significant difference.
+
+For N=9, the output constraint set should be:
+```
+put8_0 != get0, put7_0 != get0, put6_0 != get0, put5_0 != get0, put4_0 != get0, put3_0 != get0, put2_0 != get0, put1_0 != get0, put0_0 != get0, 0 == ((get1 + get0) % 9), 0 == ((put8_1 + put8_0) % 9), 0 == ((put7_1 + put7_0) % 9), 0 == ((put6_1 + put6_0) % 9), 0 == ((put5_1 + put5_0) % 9), 0 == ((put4_1 + put4_0) % 9), 0 == ((put3_1 + put3_0) % 9), 0 == ((put2_1 + put2_0) % 9), 0 == ((put1_1 + put1_0) % 9), 0 == ((put0_1 + put0_0) % 9)
+```
+But your generalisation implies the set:
+```
+put8_0 != get0, put7_0 != get0, put6_0 != get0, put5_0 != get0, put4_0 != get0, put3_0 != get0, put2_0 != get0, put1_0 != get0, put0_0 != get0, 0 == ((get1 + get0) % 9), 0 == ((put8_1 + put8_0) % 9, 0 == ((put7_1 + put7_0) % 9, 0 == ((put6_1 + put6_0) % 9, 0 == ((put5_1 + put5_0) % 9, 0 == ((put4_1 + put4_0) % 9, 0 == ((put3_1 + put3_0) % 9, 0 == ((put2_1 + put2_0) % 9, 0 == ((put1_1 + put1_0) % 9, 0 == ((put0_1 + put0_0) % 9
+
+```
+This is not right. Explanation: The predicted set is missing closing parentheses ')' after each modulo operation, which is not present in the correct set.
+
+For N=10, the generalisation output correctly fits the given data
+############################################################
+CASUAL
+
+In each case, the generalization seems to be missing some commas and closing parentheses in the final set of inequalities. These formatting errors are causing the actual outputs to differ from the expected outputs.
+
+To formally describe the generalisation, I should make sure to include the correct formatting for each inequality with the appropriate commas and closing parentheses at the end of each separate inequality expression.
+
+FORMAL
+
+```python
+def generate_constraints(N):
+    constraints = []
+
+    for i in range(N-1, -1, -1):
+        constraints.append(f"put{i}_0 != get0")
+    
+    constraints.append(f"0 == ((get1 + get0) % {N})")
+
+    for i in range(N-1, -1, -1):
+        constraints.append(f"0 == ((put{i}_1 + put{i}_0) % {N})")
+
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)
+```
+############################################################
+                    ATTEMPT NUMBER 2
+############################################################
+DONE WITH THAT EXAMPLE

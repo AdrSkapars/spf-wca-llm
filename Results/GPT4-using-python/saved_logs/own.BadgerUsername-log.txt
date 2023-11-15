@@ -1,0 +1,144 @@
+
+############################################################
+                    GET INITIAL GENERALISATION
+############################################################
+I'm experimenting with a program and trying to find what makes an increasingly large set of inputs valid. So far I have found one possible set of correct constraints/ conditions (not the only one) which define a valid input. Here they are.
+
+Valid constraints for 1 inputs (N=1):
+None
+
+Valid constraints for 2 inputs (N=2):
+None
+
+Valid constraints for 3 inputs (N=3):
+in2 == 45, in2 != 95, in1 == 45, in1 != 95, in0 == 45, in0 != 95
+
+Valid constraints for 4 inputs (N=4):
+in3 == 45, in3 != 95, in2 == 45, in2 != 95, in1 == 45, in1 != 95, in0 == 45, in0 != 95
+
+Valid constraints for 5 inputs (N=5):
+in4 == 45, in4 != 95, in3 == 45, in3 != 95, in2 == 45, in2 != 95, in1 == 45, in1 != 95, in0 == 45, in0 != 95
+
+Valid constraints for 6 inputs (N=6):
+in5 == 45, in5 != 95, in4 == 45, in4 != 95, in3 == 45, in3 != 95, in2 == 45, in2 != 95, in1 == 45, in1 != 95, in0 == 45, in0 != 95
+
+Valid constraints for 7 inputs (N=7):
+in6 == 45, in6 != 95, in5 == 45, in5 != 95, in4 == 45, in4 != 95, in3 == 45, in3 != 95, in2 == 45, in2 != 95, in1 == 45, in1 != 95, in0 == 45, in0 != 95
+
+Valid constraints for 8 inputs (N=8):
+in7 == 45, in7 != 95, in6 == 45, in6 != 95, in5 == 45, in5 != 95, in4 == 45, in4 != 95, in3 == 45, in3 != 95, in2 == 45, in2 != 95, in1 == 45, in1 != 95, in0 == 45, in0 != 95
+
+Valid constraints for 9 inputs (N=9):
+in8 == 45, in8 != 95, in7 == 45, in7 != 95, in6 == 45, in6 != 95, in5 == 45, in5 != 95, in4 == 45, in4 != 95, in3 == 45, in3 != 95, in2 == 45, in2 != 95, in1 == 45, in1 != 95, in0 == 45, in0 != 95
+
+Valid constraints for 10 inputs (N=10):
+in9 == 45, in9 != 95, in8 == 45, in8 != 95, in7 == 45, in7 != 95, in6 == 45, in6 != 95, in5 == 45, in5 != 95, in4 == 45, in4 != 95, in3 == 45, in3 != 95, in2 == 45, in2 != 95, in1 == 45, in1 != 95, in0 == 45, in0 != 95
+
+Generalise what makes the set of constraints valid such that we can recover a valid set for N inputs. Don't overfit the data here but also dont oversimplify to the point of trivialness. Make sure none of the given examples contradict your generalisation.
+
+Use this code template to formally express the generalisation for N constraints:
+```python
+def generate_constraints(N):
+    constraints = []
+
+    # Do some logic here to append constraints
+
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)```
+
+Each inequality is usually in the form "x op y" where x, y are some variable, constant or some formula of variables and/ or constants, and op is an operation or inequality.
+############################################################
+INFORMAL
+
+Looking at the provided valid constraints, it appears that they are the same for each input from N=3 onwards. The constraints seem to have the following format for each input i from 0 to N-1 (assuming N >= 3):
+
+in[i] == 45, in[i] != 95
+
+It's interesting to note that these two conditions appear to contradict each other (if some input equals 45, it most definitely does not equal 95), but given the information provided, this seems to be the pattern.
+
+In summary, for any number of inputs N >= 3, each input i from 0 to N-1 should satisfy two conditions: it equals 45 and it does not equal 95. For N < 3, there are no constraints.
+
+FORMAL
+
+```python
+def generate_constraints(N):
+    constraints = []
+
+    if N>=3:
+        for i in range(N):
+            constraints.append('in' + str(i) + ' == 45')
+            constraints.append('in' + str(i) + ' != 95')
+
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)
+```
+This Python function follows the above identified pattern to generate the valid constraints for each input i from 0 to N-1, if N is 3 or more. If N is less than 3, it leaves the constraints empty, as no constraints were given for such cases.
+############################################################
+                    ATTEMPT NUMBER 1
+############################################################
+                    EVALUATING EXAMPLE NUMBER 1
+############################################################
+Input: 1,
+Output: 
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 2
+############################################################
+Input: 2,
+Output: 
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 3
+############################################################
+Input: 3,
+Output: in0 == 45, in0 != 95, in1 == 45, in1 != 95, in2 == 45, in2 != 95
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 4
+############################################################
+Input: 4,
+Output: in0 == 45, in0 != 95, in1 == 45, in1 != 95, in2 == 45, in2 != 95, in3 == 45, in3 != 95
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 5
+############################################################
+Input: 5,
+Output: in0 == 45, in0 != 95, in1 == 45, in1 != 95, in2 == 45, in2 != 95, in3 == 45, in3 != 95, in4 == 45, in4 != 95
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 6
+############################################################
+Input: 6,
+Output: in0 == 45, in0 != 95, in1 == 45, in1 != 95, in2 == 45, in2 != 95, in3 == 45, in3 != 95, in4 == 45, in4 != 95, in5 == 45, in5 != 95
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 7
+############################################################
+Input: 7,
+Output: in0 == 45, in0 != 95, in1 == 45, in1 != 95, in2 == 45, in2 != 95, in3 == 45, in3 != 95, in4 == 45, in4 != 95, in5 == 45, in5 != 95, in6 == 45, in6 != 95
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 8
+############################################################
+Input: 8,
+Output: in0 == 45, in0 != 95, in1 == 45, in1 != 95, in2 == 45, in2 != 95, in3 == 45, in3 != 95, in4 == 45, in4 != 95, in5 == 45, in5 != 95, in6 == 45, in6 != 95, in7 == 45, in7 != 95
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 9
+############################################################
+Input: 9,
+Output: in0 == 45, in0 != 95, in1 == 45, in1 != 95, in2 == 45, in2 != 95, in3 == 45, in3 != 95, in4 == 45, in4 != 95, in5 == 45, in5 != 95, in6 == 45, in6 != 95, in7 == 45, in7 != 95, in8 == 45, in8 != 95
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 10
+############################################################
+Input: 10,
+Output: in0 == 45, in0 != 95, in1 == 45, in1 != 95, in2 == 45, in2 != 95, in3 == 45, in3 != 95, in4 == 45, in4 != 95, in5 == 45, in5 != 95, in6 == 45, in6 != 95, in7 == 45, in7 != 95, in8 == 45, in8 != 95, in9 == 45, in9 != 95

@@ -1,0 +1,464 @@
+
+############################################################
+                    GET INITIAL GENERALISATION
+############################################################
+I'm experimenting with a program and trying to find what makes an increasingly large set of inputs valid. So far I have found one possible set of correct constraints/ conditions (not the only one) which define a valid input. Here they are.
+
+Valid constraints for 1 inputs (N=1):
+in0 == 1
+
+Valid constraints for 2 inputs (N=2):
+in1 == 0, in0 == 1
+
+Valid constraints for 3 inputs (N=3):
+in2 == 1, in1 == 0, in0 == 1
+
+Valid constraints for 4 inputs (N=4):
+in3 == 0, in2 == 1, in1 == 0, in0 == 1
+
+Valid constraints for 5 inputs (N=5):
+in4 == 1, in3 == 0, in2 == 1, in1 == 0, in0 == 1
+
+Valid constraints for 6 inputs (N=6):
+in5 == 0, in4 == 1, in3 == 0, in2 == 1, in1 == 0, in0 == 1
+
+Valid constraints for 7 inputs (N=7):
+in6 == 1, in5 == 0, in4 == 1, in3 == 0, in2 == 1, in1 == 0, in0 == 1
+
+Valid constraints for 8 inputs (N=8):
+in7 == 0, in6 == 1, in5 == 0, in4 == 1, in3 == 0, in2 == 1, in1 == 0, in0 == 1
+
+Valid constraints for 9 inputs (N=9):
+in8 == 1, in7 == 0, in6 == 1, in5 == 0, in4 == 1, in3 == 0, in2 == 1, in1 == 0, in0 == 1
+
+Valid constraints for 10 inputs (N=10):
+in9 == 0, in8 == 1, in7 == 0, in6 == 1, in5 == 0, in4 == 1, in3 == 0, in2 == 1, in1 == 0, in0 == 1
+
+Generalise what makes the set of constraints valid such that we can recover a valid set for N inputs. Don't overfit the data here but also dont oversimplify to the point of trivialness. Make sure none of the given examples contradict your generalisation.
+
+Use this code template to formally express the generalisation for N constraints:
+```python
+def generate_constraints(N):
+    constraints = []
+
+    # Do some logic here to append constraints
+
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)```
+
+Each inequality is usually in the form "x op y" where x, y are some variable, constant or some formula of variables and/ or constants, and op is an operation or inequality.
+############################################################
+INFORMAL
+
+After observing the constraints for each number of inputs (N), we can see a pattern that alternates between 0 and 1, starting from N=1 where the constraint in0 == 1 . For every Nth input in the list, if N is odd, the constraint for that specific "inN" variable seems to be equal to 1 (inN == 1), while it seems to be 0 if the input N is even (inN == 0). Therefore, the generalisation I can deduce from the given constraints is:
+
+For the Nth input in the list of constraints, if N (0 indexed) is even, inN == 1. If N is odd, inN == 0.
+
+FORMAL
+
+```python
+def generate_constraints(N):
+    constraints = ["in" + str(i) + " == " + str(i%2) for i in range(N-1, -1, -1)]
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)
+```
+
+This script generates constraints that alternate values between 0's and 1's for even and odd number indexes respectively as observed in the pattern. It starts generating from end (N-1) to start (0) to maintain the constraints order same as in the examples. For example, if N=4, this would output 'in3 == 1, in2 == 0, in1 == 1, in0 == 0'.
+############################################################
+                    ATTEMPT NUMBER 1
+############################################################
+                    EVALUATING EXAMPLE NUMBER 1
+############################################################
+Input: 1,
+Output: in0 == 0
+
+############################################################
+I have two sets of inequalities over variables. Tell me if these two sets are the same or not, and how they differ if they do. Ignore differences in formatting (like spaces, newline characters and exact variable names) though the numbers associated with variable names should be the same. 'None' is equivalent to '' or the empty set/ string.
+
+Here is the correct set:
+```
+in0 == 1
+```
+
+Here is the predicted set:
+```
+in0 == 0
+
+```
+############################################################
+THINKING: 
+The task on hand requires comparing two sets of inequalities. The comparison does not include the variations in formatting or in the variable names. Thus, only the content of the inequalities: i.e., the relations between variables and their associated numerical values need to be examined. In this case, we are comparing 'in0 == 1' and 'in0 == 0'. Both equations deal with the variable 'in0', but the numerical value associated with this variable is different for the correct set and the predicted set. In the correct set, 'in0' equals 1, while in the predicted set, 'in0' equals 0.
+
+ANSWER: 
+DIFFERENT 
+
+REASON:  
+The numerical value associated with variable 'in0' is different in the two sets. In the correct set, 'in0' is equal to 1 whereas in the predicted set, 'in0' equals 0.
+############################################################
+                    EVALUATING EXAMPLE NUMBER 2
+############################################################
+Input: 2,
+Output: in1 == 1, in0 == 0
+
+############################################################
+I have two sets of inequalities over variables. Tell me if these two sets are the same or not, and how they differ if they do. Ignore differences in formatting (like spaces, newline characters and exact variable names) though the numbers associated with variable names should be the same. 'None' is equivalent to '' or the empty set/ string.
+
+Here is the correct set:
+```
+in1 == 0, in0 == 1
+```
+
+Here is the predicted set:
+```
+in1 == 1, in0 == 0
+
+```
+############################################################
+THINKING
+Looking at the inequalities, the first one has 'in1 == 0, in0 == 1', while the second one has 'in1 == 1, in0 == 0'. Although they consist of the same variables, the associated values for in1 and in0 are switched between the two sets. The first clause has in1 associated with 0 and in0 associated with 1, while the second clause has in1 associated with 1 and in0 associated with 0.
+
+ANSWER
+DIFFERENT
+
+REASON
+The values associated with the variables 'in1' and 'in0' are different in the two sets. In the correct set, 'in1' is equated with 0 and 'in0' is equated with 1. However, in the predicted set, 'in1' is equated with 1 and 'in0' is equated with 0.
+############################################################
+                    EVALUATING EXAMPLE NUMBER 3
+############################################################
+Input: 3,
+Output: in2 == 0, in1 == 1, in0 == 0
+
+############################################################
+I have two sets of inequalities over variables. Tell me if these two sets are the same or not, and how they differ if they do. Ignore differences in formatting (like spaces, newline characters and exact variable names) though the numbers associated with variable names should be the same. 'None' is equivalent to '' or the empty set/ string.
+
+Here is the correct set:
+```
+in2 == 1, in1 == 0, in0 == 1
+```
+
+Here is the predicted set:
+```
+in2 == 0, in1 == 1, in0 == 0
+
+```
+############################################################
+THINKING:
+The two sets of inequalities are different. I'll compare each inequality pair one at a time:
+
+1. 'in2 == 1' does not match 'in2 == 0' as their right-hand side values are different (1 vs. 0).
+2. 'in1 == 0' does not match 'in1 == 1' since their right-hand side values are different (0 vs. 1).
+3. 'in0 == 1' does not match 'in0 == 0' as their right-hand sides are different (1 vs.0).
+
+All inequalities in the two sets are different from one to another.
+
+ANSWER:
+DIFFERENT
+
+REASON:
+The predicted set has different right-hand side values in each of the inequalities compared to the correct set. 'in2', 'in1', and 'in0' all have different corresponding values in the correct set versus the predicted set.
+############################################################
+                    EVALUATING EXAMPLE NUMBER 4
+############################################################
+Input: 4,
+Output: in3 == 1, in2 == 0, in1 == 1, in0 == 0
+
+############################################################
+I have two sets of inequalities over variables. Tell me if these two sets are the same or not, and how they differ if they do. Ignore differences in formatting (like spaces, newline characters and exact variable names) though the numbers associated with variable names should be the same. 'None' is equivalent to '' or the empty set/ string.
+
+Here is the correct set:
+```
+in3 == 0, in2 == 1, in1 == 0, in0 == 1
+```
+
+Here is the predicted set:
+```
+in3 == 1, in2 == 0, in1 == 1, in0 == 0
+
+```
+############################################################
+THINKING
+The task asks me to compare two sets of inequalities, disregarding differences in formatting and variable names, with the focus being on the numbers associated with variable names. 
+
+On comparison, I notice the structure of the inequalities is identical but the numbers assigned to the variables differ in each set. For example, in the first set, 'in3' equals 0, but in the second set 'in3' equals 1. 
+
+So, my thinking is that these two sets of inequalities are different based on their numeric values.
+
+ANSWER
+DIFFERENT
+
+REASON
+Though the structure and variable names in the inequalities are the same, their assigned values differ in each set. For example, 'in3' equals 0 in the correct set, but 'in3' equals 1 in the predicted set. So, the two sets are different.
+############################################################
+                    EVALUATING EXAMPLE NUMBER 5
+############################################################
+Input: 5,
+Output: in4 == 0, in3 == 1, in2 == 0, in1 == 1, in0 == 0
+
+############################################################
+I have two sets of inequalities over variables. Tell me if these two sets are the same or not, and how they differ if they do. Ignore differences in formatting (like spaces, newline characters and exact variable names) though the numbers associated with variable names should be the same. 'None' is equivalent to '' or the empty set/ string.
+
+Here is the correct set:
+```
+in4 == 1, in3 == 0, in2 == 1, in1 == 0, in0 == 1
+```
+
+Here is the predicted set:
+```
+in4 == 0, in3 == 1, in2 == 0, in1 == 1, in0 == 0
+
+```
+############################################################
+THINKING
+I am comparing the two provided sets of inequalities. For the comparison, I am paying attention to the variable names and their associated values. I am ignoring aspects such as spacing, newline characters, and the exact variable names, as long as the associated numbers are the same. I am also treating 'None', '' and the empty set/ string as equivalent.
+
+Let's compare the inequalities one by one. 
+
+For the first inequality in both sets: 'in4 == 1' in the correct set and 'in4 == 0' in the predicted set. The variable names are the same, but the associated values are different. 
+
+Similarly, for the second, third, fourth and fifth inequalities, both the variable names are the same but the values associated with each variable are different in both sets.
+
+This shows that the two sets of inequalities are different.
+
+ANSWER
+DIFFERENT
+
+REASON
+The two sets of inequalities do not match. The differences are in the values assigned to the variables. For instance, in the correct set, 'in4' is associated with the value 1, while in the predicted set, 'in4' is associated with the value 0. The same discrepancy applies to all the other variables in the sets.
+############################################################
+                    EVALUATING EXAMPLE NUMBER 6
+############################################################
+Input: 6,
+Output: in5 == 1, in4 == 0, in3 == 1, in2 == 0, in1 == 1, in0 == 0
+
+############################################################
+I have two sets of inequalities over variables. Tell me if these two sets are the same or not, and how they differ if they do. Ignore differences in formatting (like spaces, newline characters and exact variable names) though the numbers associated with variable names should be the same. 'None' is equivalent to '' or the empty set/ string.
+
+Here is the correct set:
+```
+in5 == 0, in4 == 1, in3 == 0, in2 == 1, in1 == 0, in0 == 1
+```
+
+Here is the predicted set:
+```
+in5 == 1, in4 == 0, in3 == 1, in2 == 0, in1 == 1, in0 == 0
+
+```
+############################################################
+THINKING:
+I'm going to compare each element from the two sets individually.
+Correct Set: in5 == 0, in4 == 1, in3 == 0, in2 == 1, in1 == 0, in0 == 1
+Predicted Set: in5 == 1, in4 == 0, in3 == 1, in2 == 0, in1 == 1, in0 == 0
+Each line from the Correct Set is not equal to the corresponding line from the Predicted Set. All the assignments are switched form 0 to 1 or vice versa.
+
+ANSWER:
+DIFFERENT
+
+REASON:
+Every line in the predicted set is the opposite of the correct set.  For example, in the correct set 'in5' is equal to 0, but in the predicted set, 'in5' is equal to 1. This pattern holds for all the elements in each set.
+############################################################
+                    EVALUATING EXAMPLE NUMBER 7
+############################################################
+Input: 7,
+Output: in6 == 0, in5 == 1, in4 == 0, in3 == 1, in2 == 0, in1 == 1, in0 == 0
+
+############################################################
+I have two sets of inequalities over variables. Tell me if these two sets are the same or not, and how they differ if they do. Ignore differences in formatting (like spaces, newline characters and exact variable names) though the numbers associated with variable names should be the same. 'None' is equivalent to '' or the empty set/ string.
+
+Here is the correct set:
+```
+in6 == 1, in5 == 0, in4 == 1, in3 == 0, in2 == 1, in1 == 0, in0 == 1
+```
+
+Here is the predicted set:
+```
+in6 == 0, in5 == 1, in4 == 0, in3 == 1, in2 == 0, in1 == 1, in0 == 0
+
+```
+############################################################
+THINKING
+
+The approach to solve this task is to directly compare each inequality from the correct set and the predicted set if both sets contain the same variables and the inequalities have the same values. The inequalities are ordered therefore no need to worry about the positions of the inequalities within the sets too.
+
+ANSWER
+
+DIFFERENT
+
+REASON
+
+The inequalities in the predicted set are different from the correct set, the difference comes in the values assigned to the variables. In the correct set, each variable has a value of 1 followed by a value of 0, this pattern repeats all through. In the predicted set however, each variable has a value of 0 followed by a value of 1, this pattern repeats all through. This hence makes the two sets different.
+############################################################
+                    EVALUATING EXAMPLE NUMBER 8
+############################################################
+Input: 8,
+Output: in7 == 1, in6 == 0, in5 == 1, in4 == 0, in3 == 1, in2 == 0, in1 == 1, in0 == 0
+
+############################################################
+I have two sets of inequalities over variables. Tell me if these two sets are the same or not, and how they differ if they do. Ignore differences in formatting (like spaces, newline characters and exact variable names) though the numbers associated with variable names should be the same. 'None' is equivalent to '' or the empty set/ string.
+
+Here is the correct set:
+```
+in7 == 0, in6 == 1, in5 == 0, in4 == 1, in3 == 0, in2 == 1, in1 == 0, in0 == 1
+```
+
+Here is the predicted set:
+```
+in7 == 1, in6 == 0, in5 == 1, in4 == 0, in3 == 1, in2 == 0, in1 == 1, in0 == 0
+
+```
+############################################################
+THINKING:
+I am comparing the correct set and the predicted set line by line. The inequality pairs represent the same variables; however, the values assigned to each variable in the correct set are the opposite of those in the predicted set. For example, in the correct set, 'in7' is equal to 0, but in the predicted set, 'in7' is equal to 1. This same discrepancy is present for all variables in the sets.
+
+ANSWER:
+DIFFERENT
+
+REASON:
+The inequalities are different because the values predicted for each variable in the predicted set are the opposite of the correct set. For example, in the correct set 'in7' is equal to 0, but in the predicted set, 'in7' is equal to 1. This pattern continues for all the variables in the sets.
+############################################################
+                    EVALUATING EXAMPLE NUMBER 9
+############################################################
+Input: 9,
+Output: in8 == 0, in7 == 1, in6 == 0, in5 == 1, in4 == 0, in3 == 1, in2 == 0, in1 == 1, in0 == 0
+
+############################################################
+I have two sets of inequalities over variables. Tell me if these two sets are the same or not, and how they differ if they do. Ignore differences in formatting (like spaces, newline characters and exact variable names) though the numbers associated with variable names should be the same. 'None' is equivalent to '' or the empty set/ string.
+
+Here is the correct set:
+```
+in8 == 1, in7 == 0, in6 == 1, in5 == 0, in4 == 1, in3 == 0, in2 == 1, in1 == 0, in0 == 1
+```
+
+Here is the predicted set:
+```
+in8 == 0, in7 == 1, in6 == 0, in5 == 1, in4 == 0, in3 == 1, in2 == 0, in1 == 1, in0 == 0
+
+```
+############################################################
+THINKING:
+I'll begin by comparing the two sets of inequalities line by line. The comparison starts from "in8 == 1" vs "in8 == 0" and continues until "in0 == 1" vs "in0 == 0". I notice that each of the comparisons presents a different result: in each case, the variable is set to 1 in the correct set, but to 0 in the predicted set, and vice versa.
+
+ANSWER:
+DIFFERENT
+
+REASON:
+Every variable in the correct set has a different value in the predicted set: for example, "in8" is equal to 1 in the correct set but equal to 0 in the predicted set. The same occurs for all variables from "in8" to "in0".
+############################################################
+                    EVALUATING EXAMPLE NUMBER 10
+############################################################
+Input: 10,
+Output: in9 == 1, in8 == 0, in7 == 1, in6 == 0, in5 == 1, in4 == 0, in3 == 1, in2 == 0, in1 == 1, in0 == 0
+
+############################################################
+I have two sets of inequalities over variables. Tell me if these two sets are the same or not, and how they differ if they do. Ignore differences in formatting (like spaces, newline characters and exact variable names) though the numbers associated with variable names should be the same. 'None' is equivalent to '' or the empty set/ string.
+
+Here is the correct set:
+```
+in9 == 0, in8 == 1, in7 == 0, in6 == 1, in5 == 0, in4 == 1, in3 == 0, in2 == 1, in1 == 0, in0 == 1
+```
+
+Here is the predicted set:
+```
+in9 == 1, in8 == 0, in7 == 1, in6 == 0, in5 == 1, in4 == 0, in3 == 1, in2 == 0, in1 == 1, in0 == 0
+
+```
+############################################################
+THINKING:
+Looking at both sets carefully, all the variable names are synonyms and ordered. However, for values associated with variable names, there is an obvious difference. In the correct set, each variable equals 0 or 1. But in contrast, the predicted set has the exact opposite values for the variables. That is, whenever a variable is 0 in the correct set, it is 1 in the predicted set and vice versa. Therefore, the two sets are not equivalent. 
+
+ANSWER:
+DIFFERENT
+
+REASON:
+The values associated with each variable in the predicted set are the exact inverse of those in the correct set.
+############################################################
+                    GET NEW GENERALISATION
+############################################################
+INFORMAL
+
+After reevaluating the available data, it can be observed that a pattern exists which alternates between 1 and 0, starting from the last condition and moving towards the first one. The pattern begins from the first condition 'in0 == 1' and holds the alternating sequence where the 'in' variable increases with each step while its corresponding value alternates between 1 and 0. However, the data contradicts the generalization made in the previous attempt, because the pattern doesn't hold for even-indexed input variables corresponding to 1 and odd-indexed input variables corresponding to 0. Instead, the pattern observed can be generalized as follows: 
+
+Starting from 0 index, for any integer N, each input variable in the sequence starts from 'in0 == 1' and alternates between 1 and 0 as the index increases.
+
+FORMAL
+
+```python
+def generate_constraints(N):
+    constraints = ["in" + str(i) + " == " + str((i + 1) % 2) for i in range(N-1, -1, -1)]
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)
+```
+
+Following this new pattern and adjusting the generalization, the code snippet generates constraints for N = 4 as 'in3 == 0, in2 == 1, in1 == 0, in0 == 1' instead of 'in3 == 1, in2 == 0, in1 == 1, in0 == 0'. The code starts generating the constraints from end (N-1) to start (0) to maintain the same order of constraints as presented in the examples.
+############################################################
+                    ATTEMPT NUMBER 2
+############################################################
+                    EVALUATING EXAMPLE NUMBER 1
+############################################################
+Input: 1,
+Output: in0 == 1
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 2
+############################################################
+Input: 2,
+Output: in1 == 0, in0 == 1
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 3
+############################################################
+Input: 3,
+Output: in2 == 1, in1 == 0, in0 == 1
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 4
+############################################################
+Input: 4,
+Output: in3 == 0, in2 == 1, in1 == 0, in0 == 1
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 5
+############################################################
+Input: 5,
+Output: in4 == 1, in3 == 0, in2 == 1, in1 == 0, in0 == 1
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 6
+############################################################
+Input: 6,
+Output: in5 == 0, in4 == 1, in3 == 0, in2 == 1, in1 == 0, in0 == 1
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 7
+############################################################
+Input: 7,
+Output: in6 == 1, in5 == 0, in4 == 1, in3 == 0, in2 == 1, in1 == 0, in0 == 1
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 8
+############################################################
+Input: 8,
+Output: in7 == 0, in6 == 1, in5 == 0, in4 == 1, in3 == 0, in2 == 1, in1 == 0, in0 == 1
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 9
+############################################################
+Input: 9,
+Output: in8 == 1, in7 == 0, in6 == 1, in5 == 0, in4 == 1, in3 == 0, in2 == 1, in1 == 0, in0 == 1
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 10
+############################################################
+Input: 10,
+Output: in9 == 0, in8 == 1, in7 == 0, in6 == 1, in5 == 0, in4 == 1, in3 == 0, in2 == 1, in1 == 0, in0 == 1

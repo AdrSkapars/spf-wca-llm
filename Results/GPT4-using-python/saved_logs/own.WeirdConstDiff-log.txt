@@ -1,0 +1,137 @@
+
+############################################################
+                    GET INITIAL GENERALISATION
+############################################################
+I'm experimenting with a program and trying to find what makes an increasingly large set of inputs valid. So far I have found one possible set of correct constraints/ conditions (not the only one) which define a valid input. Here they are.
+
+Valid constraints for 1 inputs (N=1):
+None
+
+Valid constraints for 2 inputs (N=2):
+None
+
+Valid constraints for 3 inputs (N=3):
+(in2 - in1) == (in1 - in0)
+
+Valid constraints for 4 inputs (N=4):
+(in3 - in2) == (in2 - in1), (in2 - in1) == (in1 - in0)
+
+Valid constraints for 5 inputs (N=5):
+(in4 - in3) == (in3 - in2), (in3 - in2) == (in2 - in1), (in2 - in1) == (in1 - in0)
+
+Valid constraints for 6 inputs (N=6):
+(in5 - in4) == (in4 - in3), (in4 - in3) == (in3 - in2), (in3 - in2) == (in2 - in1), (in2 - in1) == (in1 - in0)
+
+Valid constraints for 7 inputs (N=7):
+(in6 - in5) == (in5 - in4), (in5 - in4) == (in4 - in3), (in4 - in3) == (in3 - in2), (in3 - in2) == (in2 - in1), (in2 - in1) == (in1 - in0)
+
+Valid constraints for 8 inputs (N=8):
+(in7 - in6) == (in6 - in5), (in6 - in5) == (in5 - in4), (in5 - in4) == (in4 - in3), (in4 - in3) == (in3 - in2), (in3 - in2) == (in2 - in1), (in2 - in1) == (in1 - in0)
+
+Valid constraints for 9 inputs (N=9):
+(in8 - in7) == (in7 - in6), (in7 - in6) == (in6 - in5), (in6 - in5) == (in5 - in4), (in5 - in4) == (in4 - in3), (in4 - in3) == (in3 - in2), (in3 - in2) == (in2 - in1), (in2 - in1) == (in1 - in0)
+
+Valid constraints for 10 inputs (N=10):
+(in9 - in8) == (in8 - in7), (in8 - in7) == (in7 - in6), (in7 - in6) == (in6 - in5), (in6 - in5) == (in5 - in4), (in5 - in4) == (in4 - in3), (in4 - in3) == (in3 - in2), (in3 - in2) == (in2 - in1), (in2 - in1) == (in1 - in0)
+
+Generalise what makes the set of constraints valid such that we can recover a valid set for N inputs. Don't overfit the data here but also dont oversimplify to the point of trivialness. Make sure none of the given examples contradict your generalisation.
+
+Use this code template to formally express the generalisation for N constraints:
+```python
+def generate_constraints(N):
+    constraints = []
+
+    # Do some logic here to append constraints
+
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)```
+
+Each inequality is usually in the form "x op y" where x, y are some variable, constant or some formula of variables and/ or constants, and op is an operation or inequality.
+############################################################
+INFORMAL
+
+From the given examples, we can infer that for 'N' inputs, there are 'N-2' constraints and each constraint observes a consistent difference between subsequent inputs. i.e., the difference between the 3rd and 2nd input is the same as the difference between 2nd and 1st input and so on. 
+
+Essentially, for each input 'i', the difference between the 'i-1'th and 'i-2'th input should be equal to the difference between 'i'th and 'i-1'th input. The constraints start from i=2 and go up to N-1. 
+
+This seems to indicate the inputs are in arithmetic progression.
+
+FORMAL
+```python
+def generate_constraints(N):
+    constraints = []
+    for i in range(2, N):
+        constraint = "(in{} - in{}) == (in{} - in{})".format(i, i-1, i-1, i-2)
+        constraints.append(constraint)
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)
+```
+############################################################
+                    ATTEMPT NUMBER 1
+############################################################
+                    EVALUATING EXAMPLE NUMBER 1
+############################################################
+Input: 1,
+Output: 
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 2
+############################################################
+Input: 2,
+Output: 
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 3
+############################################################
+Input: 3,
+Output: (in2 - in1) == (in1 - in0)
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 4
+############################################################
+Input: 4,
+Output: (in2 - in1) == (in1 - in0), (in3 - in2) == (in2 - in1)
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 5
+############################################################
+Input: 5,
+Output: (in2 - in1) == (in1 - in0), (in3 - in2) == (in2 - in1), (in4 - in3) == (in3 - in2)
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 6
+############################################################
+Input: 6,
+Output: (in2 - in1) == (in1 - in0), (in3 - in2) == (in2 - in1), (in4 - in3) == (in3 - in2), (in5 - in4) == (in4 - in3)
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 7
+############################################################
+Input: 7,
+Output: (in2 - in1) == (in1 - in0), (in3 - in2) == (in2 - in1), (in4 - in3) == (in3 - in2), (in5 - in4) == (in4 - in3), (in6 - in5) == (in5 - in4)
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 8
+############################################################
+Input: 8,
+Output: (in2 - in1) == (in1 - in0), (in3 - in2) == (in2 - in1), (in4 - in3) == (in3 - in2), (in5 - in4) == (in4 - in3), (in6 - in5) == (in5 - in4), (in7 - in6) == (in6 - in5)
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 9
+############################################################
+Input: 9,
+Output: (in2 - in1) == (in1 - in0), (in3 - in2) == (in2 - in1), (in4 - in3) == (in3 - in2), (in5 - in4) == (in4 - in3), (in6 - in5) == (in5 - in4), (in7 - in6) == (in6 - in5), (in8 - in7) == (in7 - in6)
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 10
+############################################################
+Input: 10,
+Output: (in2 - in1) == (in1 - in0), (in3 - in2) == (in2 - in1), (in4 - in3) == (in3 - in2), (in5 - in4) == (in4 - in3), (in6 - in5) == (in5 - in4), (in7 - in6) == (in6 - in5), (in8 - in7) == (in7 - in6), (in9 - in8) == (in8 - in7)

@@ -1,0 +1,141 @@
+
+############################################################
+                    GET INITIAL GENERALISATION
+############################################################
+I'm experimenting with a program and trying to find what makes an increasingly large set of inputs valid. So far I have found one possible set of correct constraints/ conditions (not the only one) which define a valid input. Here they are.
+
+Valid constraints for 1 inputs (N=1):
+in0 == 120
+
+Valid constraints for 2 inputs (N=2):
+in1 == 120, in0 == 120
+
+Valid constraints for 3 inputs (N=3):
+in2 == 120, in1 == 120, in0 == 120
+
+Valid constraints for 4 inputs (N=4):
+in3 == 120, in2 == 120, in1 == 120, in0 == 120
+
+Valid constraints for 5 inputs (N=5):
+in4 == 120, in3 == 120, in2 == 120, in1 == 120, in0 == 120
+
+Valid constraints for 6 inputs (N=6):
+in5 == 120, in4 == 120, in3 == 120, in2 == 120, in1 == 120, in0 == 120
+
+Valid constraints for 7 inputs (N=7):
+in6 == 120, in5 == 120, in4 == 120, in3 == 120, in2 == 120, in1 == 120, in0 == 120
+
+Valid constraints for 8 inputs (N=8):
+in7 == 120, in6 == 120, in5 == 120, in4 == 120, in3 == 120, in2 == 120, in1 == 120, in0 == 120
+
+Valid constraints for 9 inputs (N=9):
+in8 == 120, in7 == 120, in6 == 120, in5 == 120, in4 == 120, in3 == 120, in2 == 120, in1 == 120, in0 == 120
+
+Valid constraints for 10 inputs (N=10):
+in9 == 120, in8 == 120, in7 == 120, in6 == 120, in5 == 120, in4 == 120, in3 == 120, in2 == 120, in1 == 120, in0 == 120
+
+Generalise what makes the set of constraints valid such that we can recover a valid set for N inputs. Don't overfit the data here but also dont oversimplify to the point of trivialness. Make sure none of the given examples contradict your generalisation.
+
+Use this code template to formally express the generalisation for N constraints:
+```python
+def generate_constraints(N):
+    constraints = []
+
+    # Do some logic here to append constraints
+
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)```
+
+Each inequality is usually in the form "x op y" where x, y are some variable, constant or some formula of variables and/ or constants, and op is an operation or inequality.
+############################################################
+INFORMAL
+
+Upon reviewing the constraints for the various numbers of inputs given, it is evident that there is a common trend across all constraints. The general pattern that can be detected is that for each input 'N', a constraint is created in the form of "inX == 120", where 'X' is the number attached to the input. It starts from 0 up to N-1.
+
+For instance, in the case of N=3 inputs, the following three constraints are generated:
+
+in0 == 120,
+in1 == 120,
+in2 == 120.
+
+Observing all examples, the consistency of this pattern reinforces its generalizability to any number of inputs (N). Therefore, the generalized constraint for valid inputs of size N would be all inputs such that every input 'inI' where 0 <= I < N, maintaining the condition 'inI == 120'.
+
+FORMAL
+```python
+def generate_constraints(N):
+    constraints = []
+    for i in range(N):
+        constraints.append(f'in{i} == 120')
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)
+```
+This function generates a list of constraints such that each 'inI' for 0 <= I < N satisfies the condition 'inI == 120'. After the constraints are generated, they are then converted to a single string separated by commas and printed.
+############################################################
+                    ATTEMPT NUMBER 1
+############################################################
+                    EVALUATING EXAMPLE NUMBER 1
+############################################################
+Input: 1,
+Output: in0 == 120
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 2
+############################################################
+Input: 2,
+Output: in0 == 120, in1 == 120
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 3
+############################################################
+Input: 3,
+Output: in0 == 120, in1 == 120, in2 == 120
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 4
+############################################################
+Input: 4,
+Output: in0 == 120, in1 == 120, in2 == 120, in3 == 120
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 5
+############################################################
+Input: 5,
+Output: in0 == 120, in1 == 120, in2 == 120, in3 == 120, in4 == 120
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 6
+############################################################
+Input: 6,
+Output: in0 == 120, in1 == 120, in2 == 120, in3 == 120, in4 == 120, in5 == 120
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 7
+############################################################
+Input: 7,
+Output: in0 == 120, in1 == 120, in2 == 120, in3 == 120, in4 == 120, in5 == 120, in6 == 120
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 8
+############################################################
+Input: 8,
+Output: in0 == 120, in1 == 120, in2 == 120, in3 == 120, in4 == 120, in5 == 120, in6 == 120, in7 == 120
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 9
+############################################################
+Input: 9,
+Output: in0 == 120, in1 == 120, in2 == 120, in3 == 120, in4 == 120, in5 == 120, in6 == 120, in7 == 120, in8 == 120
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 10
+############################################################
+Input: 10,
+Output: in0 == 120, in1 == 120, in2 == 120, in3 == 120, in4 == 120, in5 == 120, in6 == 120, in7 == 120, in8 == 120, in9 == 120

@@ -1,0 +1,170 @@
+
+############################################################
+                    GET INITIAL GENERALISATION
+############################################################
+I'm experimenting with a program and trying to find what makes an increasingly large set of inputs valid. So far I have found one possible set of correct constraints/ conditions (not the only one) which define a valid input. Here they are.
+
+Valid constraints for 1 inputs (N=1):
+None
+
+Valid constraints for 2 inputs (N=2):
+in1x0 == in0x1
+
+Valid constraints for 3 inputs (N=3):
+in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+
+Valid constraints for 4 inputs (N=4):
+in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+
+Valid constraints for 5 inputs (N=5):
+in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+
+Valid constraints for 6 inputs (N=6):
+in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+
+Valid constraints for 7 inputs (N=7):
+in6x5 == in5x6, in6x4 == in4x6, in6x3 == in3x6, in6x2 == in2x6, in6x1 == in1x6, in6x0 == in0x6, in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+
+Valid constraints for 8 inputs (N=8):
+in7x6 == in6x7, in7x5 == in5x7, in7x4 == in4x7, in7x3 == in3x7, in7x2 == in2x7, in7x1 == in1x7, in7x0 == in0x7, in6x5 == in5x6, in6x4 == in4x6, in6x3 == in3x6, in6x2 == in2x6, in6x1 == in1x6, in6x0 == in0x6, in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+
+Valid constraints for 9 inputs (N=9):
+in8x7 == in7x8, in8x6 == in6x8, in8x5 == in5x8, in8x4 == in4x8, in8x3 == in3x8, in8x2 == in2x8, in8x1 == in1x8, in8x0 == in0x8, in7x6 == in6x7, in7x5 == in5x7, in7x4 == in4x7, in7x3 == in3x7, in7x2 == in2x7, in7x1 == in1x7, in7x0 == in0x7, in6x5 == in5x6, in6x4 == in4x6, in6x3 == in3x6, in6x2 == in2x6, in6x1 == in1x6, in6x0 == in0x6, in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+
+Valid constraints for 10 inputs (N=10):
+in9x8 == in8x9, in9x7 == in7x9, in9x6 == in6x9, in9x5 == in5x9, in9x4 == in4x9, in9x3 == in3x9, in9x2 == in2x9, in9x1 == in1x9, in9x0 == in0x9, in8x7 == in7x8, in8x6 == in6x8, in8x5 == in5x8, in8x4 == in4x8, in8x3 == in3x8, in8x2 == in2x8, in8x1 == in1x8, in8x0 == in0x8, in7x6 == in6x7, in7x5 == in5x7, in7x4 == in4x7, in7x3 == in3x7, in7x2 == in2x7, in7x1 == in1x7, in7x0 == in0x7, in6x5 == in5x6, in6x4 == in4x6, in6x3 == in3x6, in6x2 == in2x6, in6x1 == in1x6, in6x0 == in0x6, in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+
+Generalise what makes the set of constraints valid such that we can recover a valid set for N inputs. Don't overfit the data here but also dont oversimplify to the point of trivialness. Make sure none of the given examples contradict your generalisation.
+
+Use this code template to formally express the generalisation for N constraints:
+```python
+def generate_constraints(N):
+    constraints = []
+
+    # Do some logic here to append constraints
+
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)```
+
+Each inequality is usually in the form "x op y" where x, y are some variable, constant or some formula of variables and/ or constants, and op is an operation or inequality.
+############################################################
+CASUAL
+
+It seems that for each valid set of constraints, the "x op y" inequalities are symmetric with respect to the variable indices. In other words, for each x op y, there is also a y op x in the constraints. Additionally, for larger N, the valid constraints for N-1 inputs seem to be a subset of the valid constraints for N inputs.
+
+So, we can generalize the valid constraints for N inputs as follows: for each pair of distinct indices i and j (0 <= i, j < N), include the constraint "inxj == jxn" in the set of constraints.
+
+FORMAL
+
+```python
+def generate_constraints(N):
+    constraints = []
+    for i in range(N):
+        for j in range(i+1, N):
+            constraints.append("in{}x{} == {}x{}".format(i, j, j, i))
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)
+```
+############################################################
+                    ATTEMPT NUMBER 1
+############################################################
+                    #1  GET NEW GENERALISATION
+############################################################
+I have run your code for several concrete values of N. Some of the outputs were not correct. Change your generalisation and code to account for the following outputs (Remember to always structure your reply with the headings 'CASUAL' and 'FORMAL').
+
+For N=1, the generalisation output correctly fits the given data
+
+For N=2, the generalisation output correctly fits the given data
+
+For N=3, the generalisation output correctly fits the given data
+
+For N=4, the output constraint set should be:
+```
+in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+But your generalisation implies the set:
+```
+in0x1 == 1x0, in0x2 == 2x0, in0x3 == 3x0, in1x2 == 2x1, in1x3 == 3x1, in2x3 == 3x2
+
+```
+This is not right. Explanation: None of the inequalities in the predicted set match the corresponding inequalities in the correct set. The variable names and the numbers associated with them are different.
+
+For N=5, the output constraint set should be:
+```
+in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+But your generalisation implies the set:
+```
+in0x1 == 1x0, in0x2 == 2x0, in0x3 == 3x0, in0x4 == 4x0, in1x2 == 2x1, in1x3 == 3x1, in1x4 == 4x1, in2x3 == 3x2, in2x4 == 4x2, in3x4 == 4x3
+
+```
+This is not right. Explanation: The variable names in the predicted set are different from the correct set.
+
+For N=6, the generalisation output correctly fits the given data
+
+For N=7, the generalisation output correctly fits the given data
+
+For N=8, the output constraint set should be:
+```
+in7x6 == in6x7, in7x5 == in5x7, in7x4 == in4x7, in7x3 == in3x7, in7x2 == in2x7, in7x1 == in1x7, in7x0 == in0x7, in6x5 == in5x6, in6x4 == in4x6, in6x3 == in3x6, in6x2 == in2x6, in6x1 == in1x6, in6x0 == in0x6, in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+But your generalisation implies the set:
+```
+in0x1 == 1x0, in0x2 == 2x0, in0x3 == 3x0, in0x4 == 4x0, in0x5 == 5x0, in0x6 == 6x0, in0x7 == 7x0, in1x2 == 2x1, in1x3 == 3x1, in1x4 == 4x1, in1x5 == 5x1, in1x6 == 6x1, in1x7 == 7x1, in2x3 == 3x2, in2x4 == 4x2, in2x5 == 5x2, in2x6 == 6x2, in2x7 == 7x2, in3x4 == 4x3, in3x5 == 5x3, in3x6 == 6x3, in3x7 == 7x3, in4x5 == 5x4, in4x6 == 6x4, in4x7 == 7x4, in5x6 == 6x5, in5x7 == 7x5, in6x7 == 7x6
+
+```
+This is not right. Explanation: The first inequality in the predicted set has different variable names and the numbers are ordered differently.
+
+For N=9, the output constraint set should be:
+```
+in8x7 == in7x8, in8x6 == in6x8, in8x5 == in5x8, in8x4 == in4x8, in8x3 == in3x8, in8x2 == in2x8, in8x1 == in1x8, in8x0 == in0x8, in7x6 == in6x7, in7x5 == in5x7, in7x4 == in4x7, in7x3 == in3x7, in7x2 == in2x7, in7x1 == in1x7, in7x0 == in0x7, in6x5 == in5x6, in6x4 == in4x6, in6x3 == in3x6, in6x2 == in2x6, in6x1 == in1x6, in6x0 == in0x6, in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+But your generalisation implies the set:
+```
+in0x1 == 1x0, in0x2 == 2x0, in0x3 == 3x0, in0x4 == 4x0, in0x5 == 5x0, in0x6 == 6x0, in0x7 == 7x0, in0x8 == 8x0, in1x2 == 2x1, in1x3 == 3x1, in1x4 == 4x1, in1x5 == 5x1, in1x6 == 6x1, in1x7 == 7x1, in1x8 == 8x1, in2x3 == 3x2, in2x4 == 4x2, in2x5 == 5x2, in2x6 == 6x2, in2x7 == 7x2, in2x8 == 8x2, in3x4 == 4x3, in3x5 == 5x3, in3x6 == 6x3, in3x7 == 7x3, in3x8 == 8x3, in4x5 == 5x4, in4x6 == 6x4, in4x7 == 7x4, in4x8 == 8x4, in5x6 == 6x5, in5x7 == 7x5, in5x8 == 8x5, in6x7 == 7x6, in6x8 == 8x6, in7x8 == 8x7
+
+```
+This is not right. Explanation: The two sets of inequalities are different because they have different variable names and slight variations in formatting.
+
+For N=10, the output constraint set should be:
+```
+in9x8 == in8x9, in9x7 == in7x9, in9x6 == in6x9, in9x5 == in5x9, in9x4 == in4x9, in9x3 == in3x9, in9x2 == in2x9, in9x1 == in1x9, in9x0 == in0x9, in8x7 == in7x8, in8x6 == in6x8, in8x5 == in5x8, in8x4 == in4x8, in8x3 == in3x8, in8x2 == in2x8, in8x1 == in1x8, in8x0 == in0x8, in7x6 == in6x7, in7x5 == in5x7, in7x4 == in4x7, in7x3 == in3x7, in7x2 == in2x7, in7x1 == in1x7, in7x0 == in0x7, in6x5 == in5x6, in6x4 == in4x6, in6x3 == in3x6, in6x2 == in2x6, in6x1 == in1x6, in6x0 == in0x6, in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+But your generalisation implies the set:
+```
+in0x1 == 1x0, in0x2 == 2x0, in0x3 == 3x0, in0x4 == 4x0, in0x5 == 5x0, in0x6 == 6x0, in0x7 == 7x0, in0x8 == 8x0, in0x9 == 9x0, in1x2 == 2x1, in1x3 == 3x1, in1x4 == 4x1, in1x5 == 5x1, in1x6 == 6x1, in1x7 == 7x1, in1x8 == 8x1, in1x9 == 9x1, in2x3 == 3x2, in2x4 == 4x2, in2x5 == 5x2, in2x6 == 6x2, in2x7 == 7x2, in2x8 == 8x2, in2x9 == 9x2, in3x4 == 4x3, in3x5 == 5x3, in3x6 == 6x3, in3x7 == 7x3, in3x8 == 8x3, in3x9 == 9x3, in4x5 == 5x4, in4x6 == 6x4, in4x7 == 7x4, in4x8 == 8x4, in4x9 == 9x4, in5x6 == 6x5, in5x7 == 7x5, in5x8 == 8x5, in5x9 == 9x5, in6x7 == 7x6, in6x8 == 8x6, in6x9 == 9x6, in7x8 == 8x7, in7x9 == 9x7, in8x9 == 9x8
+
+```
+This is not right. Explanation: The predicted set is different from the correct set because the inequalities in the predicted set have the format number1xnumber2 == number2xnumber1, while the correct set has the format in{number1}x{number2} == in{number2}x{number1}. The variable "in" is missing from the predicted set, which makes the two sets different.
+############################################################
+CASUAL
+
+It seems that the original approach was incorrect in assuming a symmetric relationship between the inequalities. It appears that for a set of N inputs, the constraints should be structured in a way such that the variable "in" is present and with a specific index ordering. Furthermore, the constraints should be such that they correspond to the combinations of indices, with each combination appearing only once. For instance, for N=5 the correct set of constraints should start with "in4x3 == in3x4" and not "in0x1 == 1x0". 
+
+FORMAL
+
+```python
+def generate_constraints(N):
+    constraints = []
+    for i in range(N):
+        for j in range(i+1, N):
+            constraints.append("in{}x{} == in{}x{}".format(j, i, i, j))
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)
+```
+############################################################
+                    ATTEMPT NUMBER 2
+############################################################
+DONE WITH THAT EXAMPLE

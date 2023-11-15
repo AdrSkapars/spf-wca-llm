@@ -1,0 +1,952 @@
+
+############################################################
+                    GET INITIAL GENERALISATION
+############################################################
+I'm experimenting with a program and trying to find what makes an increasingly large set of inputs valid. So far I have found one possible set of correct constraints/ conditions (not the only one) which define a valid input. Here they are.
+
+Valid constraints for 1 inputs (N=1):
+None
+
+Valid constraints for 2 inputs (N=2):
+None
+
+Valid constraints for 3 inputs (N=3):
+in2 == 0
+
+Valid constraints for 4 inputs (N=4):
+in2 == 0
+
+Valid constraints for 5 inputs (N=5):
+in2 == 0
+
+Valid constraints for 6 inputs (N=6):
+in2 == 0
+
+Valid constraints for 7 inputs (N=7):
+in2 == 0
+
+Valid constraints for 8 inputs (N=8):
+in2 == 0
+
+Valid constraints for 9 inputs (N=9):
+in2 == 0
+
+Valid constraints for 10 inputs (N=10):
+in2 == 0
+
+Generalise what makes the set of constraints valid such that we can recover a valid set for N inputs. Don't overfit the data here but also dont oversimplify to the point of trivialness. Make sure none of the given examples contradict your generalisation.
+
+Use this code template to formally express the generalisation for N constraints:
+```python
+def generate_constraints(N):
+    constraints = []
+
+    # Do some logic here to append constraints
+
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)```
+
+Each inequality is usually in the form "x op y" where x, y are some variable, constant or some formula of variables and/ or constants, and op is an operation or inequality.
+############################################################
+CASUAL
+It seems that the constraints are all of the form "in2 == 0", regardless of the number of inputs N. It appears that the equality in2 == 0 is the condition that defines a valid set of constraints.
+
+FORMAL
+```python
+def generate_constraints(N):
+    constraints = []
+    constraints.append("in2 == 0")
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)
+```
+############################################################
+                    ATTEMPT NUMBER 1
+############################################################
+                    #1  EVALUATING EXAMPLE NUMBER 1
+############################################################
+Input: 1,
+Output: in2 == 0
+
+############################################################
+I have two sets of inequalities over variables. Tell me if these two sets are the same or not, and how they differ if they do. Ignore differences in formatting (like spaces, newline characters and exact variable names) though the numbers associated with variable names should be the same. 'None' is equivalent to '' or the empty set/ string. Try to keep your final reasons short and without using bullet points or numbered lists.
+
+Here is the correct set:
+```
+None
+```
+
+Here is the predicted set:
+```
+in2 == 0
+
+```
+############################################################
+THINKING:
+The correct set has no inequalities, while the predicted set has one inequality `in2 == 0`. Therefore, the two sets are different.
+
+ANSWER:
+DIFFERENT
+
+REASON:
+The correct set has no inequalities, while the predicted set has one inequality `in2 == 0`.
+############################################################
+                    #1  EVALUATING EXAMPLE NUMBER 2
+############################################################
+Input: 2,
+Output: in2 == 0
+
+############################################################
+I have two sets of inequalities over variables. Tell me if these two sets are the same or not, and how they differ if they do. Ignore differences in formatting (like spaces, newline characters and exact variable names) though the numbers associated with variable names should be the same. 'None' is equivalent to '' or the empty set/ string. Try to keep your final reasons short and without using bullet points or numbered lists.
+
+Here is the correct set:
+```
+None
+```
+
+Here is the predicted set:
+```
+in2 == 0
+
+```
+############################################################
+THINKING:
+The correct set is empty, meaning that there are no inequalities in the set. However, the predicted set contains one inequality, which is `in2 == 0`. Therefore, the two sets are different.
+
+ANSWER:
+DIFFERENT
+
+REASON:
+The predicted set contains the inequality `in2 == 0`, while the correct set is empty.
+############################################################
+                    #1  EVALUATING EXAMPLE NUMBER 3
+############################################################
+Input: 3,
+Output: in2 == 0
+
+############################################################
+                    #1  EVALUATING EXAMPLE NUMBER 4
+############################################################
+Input: 4,
+Output: in2 == 0
+
+############################################################
+                    #1  EVALUATING EXAMPLE NUMBER 5
+############################################################
+Input: 5,
+Output: in2 == 0
+
+############################################################
+                    #1  EVALUATING EXAMPLE NUMBER 6
+############################################################
+Input: 6,
+Output: in2 == 0
+
+############################################################
+                    #1  EVALUATING EXAMPLE NUMBER 7
+############################################################
+Input: 7,
+Output: in2 == 0
+
+############################################################
+                    #1  EVALUATING EXAMPLE NUMBER 8
+############################################################
+Input: 8,
+Output: in2 == 0
+
+############################################################
+                    #1  EVALUATING EXAMPLE NUMBER 9
+############################################################
+Input: 9,
+Output: in2 == 0
+
+############################################################
+                    #1  EVALUATING EXAMPLE NUMBER 10
+############################################################
+Input: 10,
+Output: in2 == 0
+
+############################################################
+                    #1  GET NEW GENERALISATION
+############################################################
+CASUAL
+It seems that the correct constraints are actually empty for all values of N, while the previous generalization was too specific and included the inequality "in2 == 0" unnecessarily.
+
+FORMAL
+```python
+def generate_constraints(N):
+    constraints = []
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)
+```
+############################################################
+                    ATTEMPT NUMBER 2
+############################################################
+                    #2  EVALUATING EXAMPLE NUMBER 1
+############################################################
+Input: 1,
+Output: 
+
+############################################################
+                    #2  EVALUATING EXAMPLE NUMBER 2
+############################################################
+Input: 2,
+Output: 
+
+############################################################
+                    #2  EVALUATING EXAMPLE NUMBER 3
+############################################################
+Input: 3,
+Output: 
+
+############################################################
+                    #2  EVALUATING EXAMPLE NUMBER 4
+############################################################
+Input: 4,
+Output: 
+
+############################################################
+                    #2  EVALUATING EXAMPLE NUMBER 5
+############################################################
+Input: 5,
+Output: 
+
+############################################################
+                    #2  EVALUATING EXAMPLE NUMBER 6
+############################################################
+Input: 6,
+Output: 
+
+############################################################
+                    #2  EVALUATING EXAMPLE NUMBER 7
+############################################################
+Input: 7,
+Output: 
+
+############################################################
+                    #2  EVALUATING EXAMPLE NUMBER 8
+############################################################
+Input: 8,
+Output: 
+
+############################################################
+                    #2  EVALUATING EXAMPLE NUMBER 9
+############################################################
+Input: 9,
+Output: 
+
+############################################################
+                    #2  EVALUATING EXAMPLE NUMBER 10
+############################################################
+Input: 10,
+Output: 
+
+############################################################
+                    #2  GET NEW GENERALISATION
+############################################################
+CASUAL
+It seems that the correct constraints consist of the inequality "in2 == 0" for N greater than or equal to 3. This means the previous generalisation of having an empty set may be too restrictive, and we need to include "in2 == 0" for N greater than or equal to 3.
+
+FORMAL
+```python
+def generate_constraints(N):
+    constraints = []
+    if N >= 3:
+        constraints.append("in2 == 0")
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)
+```
+############################################################
+                    ATTEMPT NUMBER 3
+############################################################
+                    #3  EVALUATING EXAMPLE NUMBER 1
+############################################################
+Input: 1,
+Output: 
+
+############################################################
+                    #3  EVALUATING EXAMPLE NUMBER 2
+############################################################
+Input: 2,
+Output: 
+
+############################################################
+                    #3  EVALUATING EXAMPLE NUMBER 3
+############################################################
+Input: 3,
+Output: in2 == 0
+
+############################################################
+                    #3  EVALUATING EXAMPLE NUMBER 4
+############################################################
+Input: 4,
+Output: in2 == 0
+
+############################################################
+                    #3  EVALUATING EXAMPLE NUMBER 5
+############################################################
+Input: 5,
+Output: in2 == 0
+
+############################################################
+                    #3  EVALUATING EXAMPLE NUMBER 6
+############################################################
+Input: 6,
+Output: in2 == 0
+
+############################################################
+                    #3  EVALUATING EXAMPLE NUMBER 7
+############################################################
+Input: 7,
+Output: in2 == 0
+
+############################################################
+                    #3  EVALUATING EXAMPLE NUMBER 8
+############################################################
+Input: 8,
+Output: in2 == 0
+
+############################################################
+                    #3  EVALUATING EXAMPLE NUMBER 9
+############################################################
+Input: 9,
+Output: in2 == 0
+
+############################################################
+                    #3  EVALUATING EXAMPLE NUMBER 10
+############################################################
+Input: 10,
+Output: in2 == 0
+
+############################################################
+                    #3  GET NEW GENERALISATION
+############################################################
+CASUAL
+It seems that the correct set of constraints is actually empty for all values of N. This suggests that the previous generalization was too specific.
+
+FORMAL
+```python
+def generate_constraints(N):
+    constraints = []
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)
+```
+############################################################
+                    ATTEMPT NUMBER 4
+############################################################
+                    #4  EVALUATING EXAMPLE NUMBER 1
+############################################################
+Input: 1,
+Output: 
+
+############################################################
+                    #4  EVALUATING EXAMPLE NUMBER 2
+############################################################
+Input: 2,
+Output: 
+
+############################################################
+                    #4  EVALUATING EXAMPLE NUMBER 3
+############################################################
+Input: 3,
+Output: 
+
+############################################################
+                    #4  EVALUATING EXAMPLE NUMBER 4
+############################################################
+Input: 4,
+Output: 
+
+############################################################
+                    #4  EVALUATING EXAMPLE NUMBER 5
+############################################################
+Input: 5,
+Output: 
+
+############################################################
+                    #4  EVALUATING EXAMPLE NUMBER 6
+############################################################
+Input: 6,
+Output: 
+
+############################################################
+                    #4  EVALUATING EXAMPLE NUMBER 7
+############################################################
+Input: 7,
+Output: 
+
+############################################################
+                    #4  EVALUATING EXAMPLE NUMBER 8
+############################################################
+Input: 8,
+Output: 
+
+############################################################
+                    #4  EVALUATING EXAMPLE NUMBER 9
+############################################################
+Input: 9,
+Output: 
+
+############################################################
+                    #4  EVALUATING EXAMPLE NUMBER 10
+############################################################
+Input: 10,
+Output: 
+
+############################################################
+                    #4  GET NEW GENERALISATION
+############################################################
+CASUAL
+It appears that the correct set of constraints is actually empty for N greater than or equal to 3. This suggests that the previous attempts at generalization were too specific and that there are no constraints on the inputs beyond N=2.
+
+FORMAL
+```python
+def generate_constraints(N):
+    constraints = []
+    if N > 2:
+        return constraints
+    else:
+        return None
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+if constraints:
+    constraints = ", ".join(constraints)
+else:
+    constraints = "None"
+print(constraints)
+```
+############################################################
+                    ATTEMPT NUMBER 5
+############################################################
+                    #5  EVALUATING EXAMPLE NUMBER 1
+############################################################
+Input: 1,
+Output: None
+
+############################################################
+                    #5  EVALUATING EXAMPLE NUMBER 2
+############################################################
+Input: 2,
+Output: None
+
+############################################################
+                    #5  EVALUATING EXAMPLE NUMBER 3
+############################################################
+Input: 3,
+Output: None
+
+############################################################
+                    #5  EVALUATING EXAMPLE NUMBER 4
+############################################################
+Input: 4,
+Output: None
+
+############################################################
+                    #5  EVALUATING EXAMPLE NUMBER 5
+############################################################
+Input: 5,
+Output: None
+
+############################################################
+                    #5  EVALUATING EXAMPLE NUMBER 6
+############################################################
+Input: 6,
+Output: None
+
+############################################################
+                    #5  EVALUATING EXAMPLE NUMBER 7
+############################################################
+Input: 7,
+Output: None
+
+############################################################
+                    #5  EVALUATING EXAMPLE NUMBER 8
+############################################################
+Input: 8,
+Output: None
+
+############################################################
+                    #5  EVALUATING EXAMPLE NUMBER 9
+############################################################
+Input: 9,
+Output: None
+
+############################################################
+                    #5  EVALUATING EXAMPLE NUMBER 10
+############################################################
+Input: 10,
+Output: None
+
+############################################################
+                    #5  GET NEW GENERALISATION
+############################################################
+CASUAL
+It seems that irrespective of N, the constraint "in2 == 0" needs to be included. Thus, regardless of the value of N, this constraint must always be present.
+
+FORMAL
+```python
+def generate_constraints(N):
+    constraints = ["in2 == 0"]
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)
+```
+############################################################
+                    ATTEMPT NUMBER 6
+############################################################
+                    #6  EVALUATING EXAMPLE NUMBER 1
+############################################################
+Input: 1,
+Output: in2 == 0
+
+############################################################
+I have two sets of inequalities over variables. Tell me if these two sets are the same or not, and how they differ if they do. Ignore differences in formatting (like spaces, newline characters and exact variable names) though the numbers associated with variable names should be the same. 'None' is equivalent to '' or the empty set/ string. Try to keep your final reasons short and without using bullet points or numbered lists.
+
+Here is the correct set:
+```
+None
+```
+
+Here is the predicted set:
+```
+in2 == 0
+
+```
+############################################################
+THINKING:
+
+The correct set is 'None', meaning there are no inequalities present. 
+
+The predicted set is 'in2 == 0', which is an inequality stating that the variable 'in2' is equal to 0. 
+
+Since the correct set has no inequalities and the predicted set has an inequality, they are different.
+
+ANSWER:
+DIFFERENT
+
+REASON:
+The correct set has no inequalities while the predicted set has an inequality stating that 'in2' is equal to 0.
+############################################################
+                    #6  EVALUATING EXAMPLE NUMBER 2
+############################################################
+Input: 2,
+Output: in2 == 0
+
+############################################################
+I have two sets of inequalities over variables. Tell me if these two sets are the same or not, and how they differ if they do. Ignore differences in formatting (like spaces, newline characters and exact variable names) though the numbers associated with variable names should be the same. 'None' is equivalent to '' or the empty set/ string. Try to keep your final reasons short and without using bullet points or numbered lists.
+
+Here is the correct set:
+```
+None
+```
+
+Here is the predicted set:
+```
+in2 == 0
+
+```
+############################################################
+THINKING
+
+The correct set has no inequalities while the predicted set has one inequality. Therefore, the sets are different.
+
+ANSWER
+
+DIFFERENT
+
+REASON
+
+The correct set has no inequalities while the predicted set has one inequality.
+############################################################
+                    #6  EVALUATING EXAMPLE NUMBER 3
+############################################################
+Input: 3,
+Output: in2 == 0
+
+############################################################
+                    #6  EVALUATING EXAMPLE NUMBER 4
+############################################################
+Input: 4,
+Output: in2 == 0
+
+############################################################
+                    #6  EVALUATING EXAMPLE NUMBER 5
+############################################################
+Input: 5,
+Output: in2 == 0
+
+############################################################
+                    #6  EVALUATING EXAMPLE NUMBER 6
+############################################################
+Input: 6,
+Output: in2 == 0
+
+############################################################
+                    #6  EVALUATING EXAMPLE NUMBER 7
+############################################################
+Input: 7,
+Output: in2 == 0
+
+############################################################
+                    #6  EVALUATING EXAMPLE NUMBER 8
+############################################################
+Input: 8,
+Output: in2 == 0
+
+############################################################
+                    #6  EVALUATING EXAMPLE NUMBER 9
+############################################################
+Input: 9,
+Output: in2 == 0
+
+############################################################
+                    #6  EVALUATING EXAMPLE NUMBER 10
+############################################################
+Input: 10,
+Output: in2 == 0
+
+############################################################
+                    #6  GET NEW GENERALISATION
+############################################################
+CASUAL
+It seems that the correct set of constraints is empty for all values of N. The previous generalization which included the inequality "in2 == 0" for all N is too restrictive.
+
+FORMAL
+```python
+def generate_constraints(N):
+    constraints = []
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints) if constraints else "None"
+print(constraints)
+```
+############################################################
+                    ATTEMPT NUMBER 7
+############################################################
+                    #7  EVALUATING EXAMPLE NUMBER 1
+############################################################
+Input: 1,
+Output: None
+
+############################################################
+                    #7  EVALUATING EXAMPLE NUMBER 2
+############################################################
+Input: 2,
+Output: None
+
+############################################################
+                    #7  EVALUATING EXAMPLE NUMBER 3
+############################################################
+Input: 3,
+Output: None
+
+############################################################
+                    #7  EVALUATING EXAMPLE NUMBER 4
+############################################################
+Input: 4,
+Output: None
+
+############################################################
+                    #7  EVALUATING EXAMPLE NUMBER 5
+############################################################
+Input: 5,
+Output: None
+
+############################################################
+                    #7  EVALUATING EXAMPLE NUMBER 6
+############################################################
+Input: 6,
+Output: None
+
+############################################################
+                    #7  EVALUATING EXAMPLE NUMBER 7
+############################################################
+Input: 7,
+Output: None
+
+############################################################
+                    #7  EVALUATING EXAMPLE NUMBER 8
+############################################################
+Input: 8,
+Output: None
+
+############################################################
+                    #7  EVALUATING EXAMPLE NUMBER 9
+############################################################
+Input: 9,
+Output: None
+
+############################################################
+                    #7  EVALUATING EXAMPLE NUMBER 10
+############################################################
+Input: 10,
+Output: None
+
+############################################################
+                    #7  GET NEW GENERALISATION
+############################################################
+CASUAL
+It seems that the correct set of constraints is actually "in2 == 0" for N greater than or equal to 3. This suggests that the previous generalisation of having an empty set may be too restrictive and we need to include "in2 == 0" for N greater than or equal to 3.
+
+FORMAL
+```python
+def generate_constraints(N):
+    if N >= 3:
+        return ["in2 == 0"]
+    else:
+        return None
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints) if constraints else "None"
+print(constraints)
+```
+############################################################
+                    ATTEMPT NUMBER 8
+############################################################
+                    #8  EVALUATING EXAMPLE NUMBER 1
+############################################################
+Input: 1,
+Output: None
+
+############################################################
+                    #8  EVALUATING EXAMPLE NUMBER 2
+############################################################
+Input: 2,
+Output: None
+
+############################################################
+                    #8  EVALUATING EXAMPLE NUMBER 3
+############################################################
+Input: 3,
+Output: in2 == 0
+
+############################################################
+                    #8  EVALUATING EXAMPLE NUMBER 4
+############################################################
+Input: 4,
+Output: in2 == 0
+
+############################################################
+                    #8  EVALUATING EXAMPLE NUMBER 5
+############################################################
+Input: 5,
+Output: in2 == 0
+
+############################################################
+                    #8  EVALUATING EXAMPLE NUMBER 6
+############################################################
+Input: 6,
+Output: in2 == 0
+
+############################################################
+                    #8  EVALUATING EXAMPLE NUMBER 7
+############################################################
+Input: 7,
+Output: in2 == 0
+
+############################################################
+                    #8  EVALUATING EXAMPLE NUMBER 8
+############################################################
+Input: 8,
+Output: in2 == 0
+
+############################################################
+                    #8  EVALUATING EXAMPLE NUMBER 9
+############################################################
+Input: 9,
+Output: in2 == 0
+
+############################################################
+                    #8  EVALUATING EXAMPLE NUMBER 10
+############################################################
+Input: 10,
+Output: in2 == 0
+
+############################################################
+                    #8  GET NEW GENERALISATION
+############################################################
+CASUAL
+It seems that the correct set of constraints is actually empty for all values of N. This suggests that the previous attempts at generalization were too specific and that there are no constraints on the inputs beyond N=2.
+
+FORMAL
+```python
+def generate_constraints(N):
+    if N > 2:
+        return []
+    else:
+        return None
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+if constraints:
+    constraints = ", ".join(constraints)
+else:
+    constraints = "None"
+print(constraints)
+```
+############################################################
+                    ATTEMPT NUMBER 9
+############################################################
+                    #9  EVALUATING EXAMPLE NUMBER 1
+############################################################
+Input: 1,
+Output: None
+
+############################################################
+                    #9  EVALUATING EXAMPLE NUMBER 2
+############################################################
+Input: 2,
+Output: None
+
+############################################################
+                    #9  EVALUATING EXAMPLE NUMBER 3
+############################################################
+Input: 3,
+Output: None
+
+############################################################
+                    #9  EVALUATING EXAMPLE NUMBER 4
+############################################################
+Input: 4,
+Output: None
+
+############################################################
+                    #9  EVALUATING EXAMPLE NUMBER 5
+############################################################
+Input: 5,
+Output: None
+
+############################################################
+                    #9  EVALUATING EXAMPLE NUMBER 6
+############################################################
+Input: 6,
+Output: None
+
+############################################################
+                    #9  EVALUATING EXAMPLE NUMBER 7
+############################################################
+Input: 7,
+Output: None
+
+############################################################
+                    #9  EVALUATING EXAMPLE NUMBER 8
+############################################################
+Input: 8,
+Output: None
+
+############################################################
+                    #9  EVALUATING EXAMPLE NUMBER 9
+############################################################
+Input: 9,
+Output: None
+
+############################################################
+                    #9  EVALUATING EXAMPLE NUMBER 10
+############################################################
+Input: 10,
+Output: None
+
+############################################################
+                    #9  GET NEW GENERALISATION
+############################################################
+CASUAL
+It appears that the correct set of constraints is empty for all values of N. The previous generalization, which included "in2 == 0" for N greater than or equal to 3, is too restrictive.
+
+FORMAL
+```python
+def generate_constraints(N):
+    constraints = []
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints) if constraints else "None"
+print(constraints)
+```
+############################################################
+                    ATTEMPT NUMBER 10
+############################################################
+                    #10  EVALUATING EXAMPLE NUMBER 1
+############################################################
+Input: 1,
+Output: None
+
+############################################################
+                    #10  EVALUATING EXAMPLE NUMBER 2
+############################################################
+Input: 2,
+Output: None
+
+############################################################
+                    #10  EVALUATING EXAMPLE NUMBER 3
+############################################################
+Input: 3,
+Output: None
+
+############################################################
+                    #10  EVALUATING EXAMPLE NUMBER 4
+############################################################
+Input: 4,
+Output: None
+
+############################################################
+                    #10  EVALUATING EXAMPLE NUMBER 5
+############################################################
+Input: 5,
+Output: None
+
+############################################################
+                    #10  EVALUATING EXAMPLE NUMBER 6
+############################################################
+Input: 6,
+Output: None
+
+############################################################
+                    #10  EVALUATING EXAMPLE NUMBER 7
+############################################################
+Input: 7,
+Output: None
+
+############################################################
+                    #10  EVALUATING EXAMPLE NUMBER 8
+############################################################
+Input: 8,
+Output: None
+
+############################################################
+                    #10  EVALUATING EXAMPLE NUMBER 9
+############################################################
+Input: 9,
+Output: None
+
+############################################################
+                    #10  EVALUATING EXAMPLE NUMBER 10
+############################################################
+Input: 10,
+Output: None

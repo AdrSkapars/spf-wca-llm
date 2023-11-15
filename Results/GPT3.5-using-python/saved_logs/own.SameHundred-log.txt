@@ -1,0 +1,604 @@
+
+############################################################
+                    GET INITIAL GENERALISATION
+############################################################
+I'm experimenting with a program and trying to find what makes an increasingly large set of inputs valid. So far I have found one possible set of correct constraints/ conditions (not the only one) which define a valid input. Here they are.
+
+Valid constraints for 1 inputs (N=1):
+None
+
+Valid constraints for 2 inputs (N=2):
+in1 >= 100
+
+Valid constraints for 3 inputs (N=3):
+in2 >= 100, in1 >= 100
+
+Valid constraints for 4 inputs (N=4):
+in3 >= 100, in2 >= 100, in1 >= 100
+
+Valid constraints for 5 inputs (N=5):
+in4 >= 100, in3 >= 100, in2 >= 100, in1 >= 100
+
+Valid constraints for 6 inputs (N=6):
+in5 >= 100, in4 >= 100, in3 >= 100, in2 >= 100, in1 >= 100
+
+Valid constraints for 7 inputs (N=7):
+in6 >= 100, in5 >= 100, in4 >= 100, in3 >= 100, in2 >= 100, in1 >= 100
+
+Valid constraints for 8 inputs (N=8):
+in7 >= 100, in6 >= 100, in5 >= 100, in4 >= 100, in3 >= 100, in2 >= 100, in1 >= 100
+
+Valid constraints for 9 inputs (N=9):
+in8 >= 100, in7 >= 100, in6 >= 100, in5 >= 100, in4 >= 100, in3 >= 100, in2 >= 100, in1 >= 100
+
+Valid constraints for 10 inputs (N=10):
+in9 >= 100, in8 >= 100, in7 >= 100, in6 >= 100, in5 >= 100, in4 >= 100, in3 >= 100, in2 >= 100, in1 >= 100
+
+Generalise what makes the set of constraints valid such that we can recover a valid set for N inputs. Don't overfit the data here but also dont oversimplify to the point of trivialness. Make sure none of the given examples contradict your generalisation.
+
+Use this code template to formally express the generalisation for N constraints:
+```python
+def generate_constraints(N):
+    constraints = []
+
+    # Do some logic here to append constraints
+
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)```
+
+Each inequality is usually in the form "x op y" where x, y are some variable, constant or some formula of variables and/ or constants, and op is an operation or inequality.
+############################################################
+CASUAL
+It seems that for each N, the valid constraints require the ith input to be greater than or equal to 100, where i ranges from 1 to N. Essentially, each input after the first one needs to be greater than or equal to 100. This can be generalized as: in(N-i) >= 100 for i from 0 to N-1.
+
+FORMAL
+```python
+def generate_constraints(N):
+    constraints = []
+    for i in range(N):
+        constraints.append(f"in{N-i-1} >= 100")
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)
+```
+############################################################
+                    ATTEMPT NUMBER 1
+############################################################
+                    #1  GET NEW GENERALISATION
+############################################################
+I have run your code for several concrete values of N. Some of the outputs were not correct. Change your generalisation and code to account for the following outputs (Remember to always structure your reply with the headings 'CASUAL' and 'FORMAL').
+
+For N=1, the output constraint set should be:
+```
+None
+```
+But your generalisation implies the set:
+```
+in0 >= 100
+
+```
+This is not right. Explanation: The correct set is empty but your constraint set is not empty
+
+For N=2, the output constraint set should be:
+```
+in1 >= 100
+```
+But your generalisation implies the set:
+```
+in1 >= 100, in0 >= 100
+
+```
+This is not right. Explanation: The predicted set has an extra inequality compared to the correct set.
+
+For N=3, the output constraint set should be:
+```
+in2 >= 100, in1 >= 100
+```
+But your generalisation implies the set:
+```
+in2 >= 100, in1 >= 100, in0 >= 100
+
+```
+This is not right. Explanation: The predicted set contains an additional inequality "in0 >= 100" which is not present in the correct set.
+
+For N=4, the output constraint set should be:
+```
+in3 >= 100, in2 >= 100, in1 >= 100
+```
+But your generalisation implies the set:
+```
+in3 >= 100, in2 >= 100, in1 >= 100, in0 >= 100
+
+```
+This is not right. Explanation: The predicted set has one additional inequality "in0 >= 100", which is not present in the correct set.
+
+For N=5, the output constraint set should be:
+```
+in4 >= 100, in3 >= 100, in2 >= 100, in1 >= 100
+```
+But your generalisation implies the set:
+```
+in4 >= 100, in3 >= 100, in2 >= 100, in1 >= 100, in0 >= 100
+
+```
+This is not right. Explanation: The predicted set includes an additional inequality "in0 >= 100" that is not present in the correct set.
+
+For N=6, the output constraint set should be:
+```
+in5 >= 100, in4 >= 100, in3 >= 100, in2 >= 100, in1 >= 100
+```
+But your generalisation implies the set:
+```
+in5 >= 100, in4 >= 100, in3 >= 100, in2 >= 100, in1 >= 100, in0 >= 100
+
+```
+This is not right. Explanation: The predicted set has an additional inequality involving the variable in0, which is not present in the correct set.
+
+For N=7, the output constraint set should be:
+```
+in6 >= 100, in5 >= 100, in4 >= 100, in3 >= 100, in2 >= 100, in1 >= 100
+```
+But your generalisation implies the set:
+```
+in6 >= 100, in5 >= 100, in4 >= 100, in3 >= 100, in2 >= 100, in1 >= 100, in0 >= 100
+
+```
+This is not right. Explanation: The predicted set includes an additional inequality for the variable "in0", which is not present in the correct set.
+
+For N=8, the output constraint set should be:
+```
+in7 >= 100, in6 >= 100, in5 >= 100, in4 >= 100, in3 >= 100, in2 >= 100, in1 >= 100
+```
+But your generalisation implies the set:
+```
+in7 >= 100, in6 >= 100, in5 >= 100, in4 >= 100, in3 >= 100, in2 >= 100, in1 >= 100, in0 >= 100
+
+```
+This is not right. Explanation: The predicted set contains the inequality "in0 >= 100", which is not present in the correct set.
+
+For N=9, the output constraint set should be:
+```
+in8 >= 100, in7 >= 100, in6 >= 100, in5 >= 100, in4 >= 100, in3 >= 100, in2 >= 100, in1 >= 100
+```
+But your generalisation implies the set:
+```
+in8 >= 100, in7 >= 100, in6 >= 100, in5 >= 100, in4 >= 100, in3 >= 100, in2 >= 100, in1 >= 100, in0 >= 100
+
+```
+This is not right. Explanation: The predicted set contains an additional inequality for variable `in0` which is not present in the correct set.
+
+For N=10, the output constraint set should be:
+```
+in9 >= 100, in8 >= 100, in7 >= 100, in6 >= 100, in5 >= 100, in4 >= 100, in3 >= 100, in2 >= 100, in1 >= 100
+```
+But your generalisation implies the set:
+```
+in9 >= 100, in8 >= 100, in7 >= 100, in6 >= 100, in5 >= 100, in4 >= 100, in3 >= 100, in2 >= 100, in1 >= 100, in0 >= 100
+
+```
+This is not right. Explanation: The predicted set includes an extra inequality, `in0 >= 100`, which is not present in the correct set.
+############################################################
+CASUAL
+Oops! It seems that I made an oversight in my generalization. The correct pattern for the valid constraints is that for each N, the constraint is that the (N-i)th input needs to be greater than or equal to 100, where i ranges from 1 to N. Thanks for pointing that out! Let me update the code accordingly.
+
+FORMAL
+```python
+def generate_constraints(N):
+    constraints = []
+    for i in range(N):
+        constraints.append(f"in{N-i} >= 100")
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)
+```
+############################################################
+                    ATTEMPT NUMBER 2
+############################################################
+                    #2  GET NEW GENERALISATION
+############################################################
+I have run your code for several concrete values of N. Some of the outputs were not correct. Change your generalisation and code to account for the following outputs (Remember to always structure your reply with the headings 'CASUAL' and 'FORMAL').
+
+For N=1, the output constraint set should be:
+```
+None
+```
+But your generalisation implies the set:
+```
+in1 >= 100
+
+```
+This is not right. Explanation: The correct set is empty but your constraint set is not empty
+
+For N=2, the output constraint set should be:
+```
+in1 >= 100
+```
+But your generalisation implies the set:
+```
+in2 >= 100, in1 >= 100
+
+```
+This is not right. Explanation: The predicted set contains an additional inequality in2 >= 100 that is not present in the correct set.
+
+For N=3, the output constraint set should be:
+```
+in2 >= 100, in1 >= 100
+```
+But your generalisation implies the set:
+```
+in3 >= 100, in2 >= 100, in1 >= 100
+
+```
+This is not right. Explanation: The second set contains an additional inequality, `in3 >= 100`.
+
+For N=4, the output constraint set should be:
+```
+in3 >= 100, in2 >= 100, in1 >= 100
+```
+But your generalisation implies the set:
+```
+in4 >= 100, in3 >= 100, in2 >= 100, in1 >= 100
+
+```
+This is not right. Explanation: The predicted set has an extra inequality starting from in4, which is not present in the correct set.
+
+For N=5, the output constraint set should be:
+```
+in4 >= 100, in3 >= 100, in2 >= 100, in1 >= 100
+```
+But your generalisation implies the set:
+```
+in5 >= 100, in4 >= 100, in3 >= 100, in2 >= 100, in1 >= 100
+
+```
+This is not right. Explanation: The predicted set has an additional inequality for in5, which is not present in the correct set.
+
+For N=6, the output constraint set should be:
+```
+in5 >= 100, in4 >= 100, in3 >= 100, in2 >= 100, in1 >= 100
+```
+But your generalisation implies the set:
+```
+in6 >= 100, in5 >= 100, in4 >= 100, in3 >= 100, in2 >= 100, in1 >= 100
+
+```
+This is not right. Explanation: The predicted set of inequalities includes an extra variable in6 that is not present in the correct set of inequalities.
+
+For N=7, the output constraint set should be:
+```
+in6 >= 100, in5 >= 100, in4 >= 100, in3 >= 100, in2 >= 100, in1 >= 100
+```
+But your generalisation implies the set:
+```
+in7 >= 100, in6 >= 100, in5 >= 100, in4 >= 100, in3 >= 100, in2 >= 100, in1 >= 100
+
+```
+This is not right. Explanation: The predicted set has an additional inequality for `in7 >= 100` which is not present in the correct set.
+
+For N=8, the output constraint set should be:
+```
+in7 >= 100, in6 >= 100, in5 >= 100, in4 >= 100, in3 >= 100, in2 >= 100, in1 >= 100
+```
+But your generalisation implies the set:
+```
+in8 >= 100, in7 >= 100, in6 >= 100, in5 >= 100, in4 >= 100, in3 >= 100, in2 >= 100, in1 >= 100
+
+```
+This is not right. Explanation: The predicted set includes the inequality with variable in8, which is not present in the correct set.
+
+For N=9, the output constraint set should be:
+```
+in8 >= 100, in7 >= 100, in6 >= 100, in5 >= 100, in4 >= 100, in3 >= 100, in2 >= 100, in1 >= 100
+```
+But your generalisation implies the set:
+```
+in9 >= 100, in8 >= 100, in7 >= 100, in6 >= 100, in5 >= 100, in4 >= 100, in3 >= 100, in2 >= 100, in1 >= 100
+
+```
+This is not right. Explanation: The predicted set has an extra inequality (in9 >= 100) compared to the correct set.
+
+For N=10, the output constraint set should be:
+```
+in9 >= 100, in8 >= 100, in7 >= 100, in6 >= 100, in5 >= 100, in4 >= 100, in3 >= 100, in2 >= 100, in1 >= 100
+```
+But your generalisation implies the set:
+```
+in10 >= 100, in9 >= 100, in8 >= 100, in7 >= 100, in6 >= 100, in5 >= 100, in4 >= 100, in3 >= 100, in2 >= 100, in1 >= 100
+
+```
+This is not right. Explanation: The predicted set has an additional inequality (in10 >= 100) compared to the correct set.
+############################################################
+CASUAL
+I see my oversight now. It looks like I've been starting the index from 1 instead of 0 in the generalization. Let me fix it.
+
+FORMAL
+```python
+def generate_constraints(N):
+    constraints = []
+    for i in range(N):
+        constraints.append(f"in{N-i-1} >= 100")
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)
+```
+############################################################
+                    ATTEMPT NUMBER 3
+############################################################
+                    #3  GET NEW GENERALISATION
+############################################################
+I have run your code for several concrete values of N. Some of the outputs were not correct. Change your generalisation and code to account for the following outputs (Remember to always structure your reply with the headings 'CASUAL' and 'FORMAL').
+
+For N=1, the output constraint set should be:
+```
+None
+```
+But your generalisation implies the set:
+```
+in0 >= 100
+
+```
+This is not right. Explanation: The correct set is empty but your constraint set is not empty
+
+For N=2, the output constraint set should be:
+```
+in1 >= 100
+```
+But your generalisation implies the set:
+```
+in1 >= 100, in0 >= 100
+
+```
+This is not right. Explanation: The predicted set has an extra inequality `in0 >= 100` that is not present in the correct set.
+
+For N=3, the output constraint set should be:
+```
+in2 >= 100, in1 >= 100
+```
+But your generalisation implies the set:
+```
+in2 >= 100, in1 >= 100, in0 >= 100
+
+```
+This is not right. Explanation: The predicted set has an extra inequality in0 >= 100, which is not present in the correct set.
+
+For N=4, the output constraint set should be:
+```
+in3 >= 100, in2 >= 100, in1 >= 100
+```
+But your generalisation implies the set:
+```
+in3 >= 100, in2 >= 100, in1 >= 100, in0 >= 100
+
+```
+This is not right. Explanation: The predicted set of inequalities has an additional variable, in0, which is not present in the correct set of inequalities.
+
+For N=5, the output constraint set should be:
+```
+in4 >= 100, in3 >= 100, in2 >= 100, in1 >= 100
+```
+But your generalisation implies the set:
+```
+in4 >= 100, in3 >= 100, in2 >= 100, in1 >= 100, in0 >= 100
+
+```
+This is not right. Explanation: The predicted set has an additional inequality in0 >= 100 which is not present in the correct set.
+
+For N=6, the output constraint set should be:
+```
+in5 >= 100, in4 >= 100, in3 >= 100, in2 >= 100, in1 >= 100
+```
+But your generalisation implies the set:
+```
+in5 >= 100, in4 >= 100, in3 >= 100, in2 >= 100, in1 >= 100, in0 >= 100
+
+```
+This is not right. Explanation: The predicted set has an additional inequality `in0 >= 100` that is not present in the correct set.
+
+For N=7, the output constraint set should be:
+```
+in6 >= 100, in5 >= 100, in4 >= 100, in3 >= 100, in2 >= 100, in1 >= 100
+```
+But your generalisation implies the set:
+```
+in6 >= 100, in5 >= 100, in4 >= 100, in3 >= 100, in2 >= 100, in1 >= 100, in0 >= 100
+
+```
+This is not right. Explanation: The predicted set has an additional variable "in0" which is not present in the correct set.
+
+For N=8, the output constraint set should be:
+```
+in7 >= 100, in6 >= 100, in5 >= 100, in4 >= 100, in3 >= 100, in2 >= 100, in1 >= 100
+```
+But your generalisation implies the set:
+```
+in7 >= 100, in6 >= 100, in5 >= 100, in4 >= 100, in3 >= 100, in2 >= 100, in1 >= 100, in0 >= 100
+
+```
+This is not right. Explanation: The predicted set includes an additional variable in0, which is not present in the correct set.
+
+For N=9, the output constraint set should be:
+```
+in8 >= 100, in7 >= 100, in6 >= 100, in5 >= 100, in4 >= 100, in3 >= 100, in2 >= 100, in1 >= 100
+```
+But your generalisation implies the set:
+```
+in8 >= 100, in7 >= 100, in6 >= 100, in5 >= 100, in4 >= 100, in3 >= 100, in2 >= 100, in1 >= 100, in0 >= 100
+
+```
+This is not right. Explanation: The predicted set has an extra variable "in0" compared to the correct set.
+
+For N=10, the output constraint set should be:
+```
+in9 >= 100, in8 >= 100, in7 >= 100, in6 >= 100, in5 >= 100, in4 >= 100, in3 >= 100, in2 >= 100, in1 >= 100
+```
+But your generalisation implies the set:
+```
+in9 >= 100, in8 >= 100, in7 >= 100, in6 >= 100, in5 >= 100, in4 >= 100, in3 >= 100, in2 >= 100, in1 >= 100, in0 >= 100
+
+```
+This is not right. Explanation: The predicted set has an additional variable `in0` that is not present in the correct set.
+############################################################
+CASUAL
+Looks like I made the same mistake again. The correct pattern for the valid constraints is that for each N, the (N-i)th input needs to be greater than or equal to 100, where i ranges from 1 to N. Let me fix my generalization accordingly.
+
+FORMAL
+```python
+def generate_constraints(N):
+    constraints = []
+    for i in range(N):
+        constraints.append(f"in{N-i} >= 100")
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)
+```
+############################################################
+                    ATTEMPT NUMBER 4
+############################################################
+                    #4  GET NEW GENERALISATION
+############################################################
+I have run your code for several concrete values of N. Some of the outputs were not correct. Change your generalisation and code to account for the following outputs (Remember to always structure your reply with the headings 'CASUAL' and 'FORMAL').
+
+For N=1, the output constraint set should be:
+```
+None
+```
+But your generalisation implies the set:
+```
+in1 >= 100
+
+```
+This is not right. Explanation: The correct set is empty but your constraint set is not empty
+
+For N=2, the output constraint set should be:
+```
+in1 >= 100
+```
+But your generalisation implies the set:
+```
+in2 >= 100, in1 >= 100
+
+```
+This is not right. Explanation: The predicted set has an additional inequality involving variable `in2`, which is not present in the correct set.
+
+For N=3, the output constraint set should be:
+```
+in2 >= 100, in1 >= 100
+```
+But your generalisation implies the set:
+```
+in3 >= 100, in2 >= 100, in1 >= 100
+
+```
+This is not right. Explanation: The predicted set has an additional inequality and introduces a new variable that is not present in the correct set.
+
+For N=4, the output constraint set should be:
+```
+in3 >= 100, in2 >= 100, in1 >= 100
+```
+But your generalisation implies the set:
+```
+in4 >= 100, in3 >= 100, in2 >= 100, in1 >= 100
+
+```
+This is not right. Explanation: The correct set does not include the `in4 >= 100` inequality.
+
+For N=5, the output constraint set should be:
+```
+in4 >= 100, in3 >= 100, in2 >= 100, in1 >= 100
+```
+But your generalisation implies the set:
+```
+in5 >= 100, in4 >= 100, in3 >= 100, in2 >= 100, in1 >= 100
+
+```
+This is not right. Explanation: The first inequality in the predicted set (in5 >= 100) does not appear in the correct set.
+
+For N=6, the output constraint set should be:
+```
+in5 >= 100, in4 >= 100, in3 >= 100, in2 >= 100, in1 >= 100
+```
+But your generalisation implies the set:
+```
+in6 >= 100, in5 >= 100, in4 >= 100, in3 >= 100, in2 >= 100, in1 >= 100
+
+```
+This is not right. Explanation: The predicted set has an additional variable in6 >= 100 compared to the correct set.
+
+For N=7, the output constraint set should be:
+```
+in6 >= 100, in5 >= 100, in4 >= 100, in3 >= 100, in2 >= 100, in1 >= 100
+```
+But your generalisation implies the set:
+```
+in7 >= 100, in6 >= 100, in5 >= 100, in4 >= 100, in3 >= 100, in2 >= 100, in1 >= 100
+
+```
+This is not right. Explanation: The predicted set includes an additional inequality for variable in7, which is not in the correct set.
+
+For N=8, the output constraint set should be:
+```
+in7 >= 100, in6 >= 100, in5 >= 100, in4 >= 100, in3 >= 100, in2 >= 100, in1 >= 100
+```
+But your generalisation implies the set:
+```
+in8 >= 100, in7 >= 100, in6 >= 100, in5 >= 100, in4 >= 100, in3 >= 100, in2 >= 100, in1 >= 100
+
+```
+This is not right. Explanation: - The predicted set has an additional variable in8 that is not present in the correct set.
+
+For N=9, the output constraint set should be:
+```
+in8 >= 100, in7 >= 100, in6 >= 100, in5 >= 100, in4 >= 100, in3 >= 100, in2 >= 100, in1 >= 100
+```
+But your generalisation implies the set:
+```
+in9 >= 100, in8 >= 100, in7 >= 100, in6 >= 100, in5 >= 100, in4 >= 100, in3 >= 100, in2 >= 100, in1 >= 100
+
+```
+This is not right. Explanation: The predicted set has an additional inequality for variable in9, which is not present in the correct set.
+
+For N=10, the output constraint set should be:
+```
+in9 >= 100, in8 >= 100, in7 >= 100, in6 >= 100, in5 >= 100, in4 >= 100, in3 >= 100, in2 >= 100, in1 >= 100
+```
+But your generalisation implies the set:
+```
+in10 >= 100, in9 >= 100, in8 >= 100, in7 >= 100, in6 >= 100, in5 >= 100, in4 >= 100, in3 >= 100, in2 >= 100, in1 >= 100
+
+```
+This is not right. Explanation: The predicted set has an extra inequality `in10 >= 100` that is not present in the correct set.
+############################################################
+CASUAL
+It seems I've made the same mistake again. Let me correct my generalization.
+
+FORMAL
+```python
+def generate_constraints(N):
+    constraints = []
+    for i in range(N-1, 0, -1):
+        constraints.append(f"in{i} >= 100")
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)
+```
+############################################################
+                    ATTEMPT NUMBER 5

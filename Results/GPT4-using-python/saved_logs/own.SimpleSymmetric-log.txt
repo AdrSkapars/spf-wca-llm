@@ -1,0 +1,142 @@
+
+############################################################
+                    GET INITIAL GENERALISATION
+############################################################
+I'm experimenting with a program and trying to find what makes an increasingly large set of inputs valid. So far I have found one possible set of correct constraints/ conditions (not the only one) which define a valid input. Here they are.
+
+Valid constraints for 1 inputs (N=1):
+None
+
+Valid constraints for 2 inputs (N=2):
+in1x0 == in0x1
+
+Valid constraints for 3 inputs (N=3):
+in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+
+Valid constraints for 4 inputs (N=4):
+in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+
+Valid constraints for 5 inputs (N=5):
+in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+
+Valid constraints for 6 inputs (N=6):
+in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+
+Valid constraints for 7 inputs (N=7):
+in6x5 == in5x6, in6x4 == in4x6, in6x3 == in3x6, in6x2 == in2x6, in6x1 == in1x6, in6x0 == in0x6, in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+
+Valid constraints for 8 inputs (N=8):
+in7x6 == in6x7, in7x5 == in5x7, in7x4 == in4x7, in7x3 == in3x7, in7x2 == in2x7, in7x1 == in1x7, in7x0 == in0x7, in6x5 == in5x6, in6x4 == in4x6, in6x3 == in3x6, in6x2 == in2x6, in6x1 == in1x6, in6x0 == in0x6, in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+
+Valid constraints for 9 inputs (N=9):
+in8x7 == in7x8, in8x6 == in6x8, in8x5 == in5x8, in8x4 == in4x8, in8x3 == in3x8, in8x2 == in2x8, in8x1 == in1x8, in8x0 == in0x8, in7x6 == in6x7, in7x5 == in5x7, in7x4 == in4x7, in7x3 == in3x7, in7x2 == in2x7, in7x1 == in1x7, in7x0 == in0x7, in6x5 == in5x6, in6x4 == in4x6, in6x3 == in3x6, in6x2 == in2x6, in6x1 == in1x6, in6x0 == in0x6, in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+
+Valid constraints for 10 inputs (N=10):
+in9x8 == in8x9, in9x7 == in7x9, in9x6 == in6x9, in9x5 == in5x9, in9x4 == in4x9, in9x3 == in3x9, in9x2 == in2x9, in9x1 == in1x9, in9x0 == in0x9, in8x7 == in7x8, in8x6 == in6x8, in8x5 == in5x8, in8x4 == in4x8, in8x3 == in3x8, in8x2 == in2x8, in8x1 == in1x8, in8x0 == in0x8, in7x6 == in6x7, in7x5 == in5x7, in7x4 == in4x7, in7x3 == in3x7, in7x2 == in2x7, in7x1 == in1x7, in7x0 == in0x7, in6x5 == in5x6, in6x4 == in4x6, in6x3 == in3x6, in6x2 == in2x6, in6x1 == in1x6, in6x0 == in0x6, in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+
+Generalise what makes the set of constraints valid such that we can recover a valid set for N inputs. Don't overfit the data here but also dont oversimplify to the point of trivialness. Make sure none of the given examples contradict your generalisation.
+
+Use this code template to formally express the generalisation for N constraints:
+```python
+def generate_constraints(N):
+    constraints = []
+
+    # Do some logic here to append constraints
+
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)```
+
+Each inequality is usually in the form "x op y" where x, y are some variable, constant or some formula of variables and/ or constants, and op is an operation or inequality.
+############################################################
+INFORMAL:
+
+From the examples given, it appears that every constraint is a pair of terms equated to each other, with one term being 'inx*y' and the other being 'iny*x'. In these terms, 'x' and 'y' are variables corresponding to integer values, which are the indices of the inputs for the constraint. The way the variables change for each constraint creates a pattern. 
+
+For any constraint, the first digit of term 'inx*y' (and the index of input in 'iny*x') decreases by 1 (starting from N-1) until it becomes equal to the second digit y (and the index of input in 'inx*y'). After that, the next constraint starts over with the initial index again, and the pattern continues. 
+
+Mathematically, the general formula to generate the constraints could be represented as:
+inx*y = iny*x
+where 0 <= y < x <= N-1
+
+FORMAL:
+
+```python
+def generate_constraints(N):
+    constraints = []
+    
+    for i in reversed(range(N)):
+        for j in range(i):
+            constraints.append(f'in{i}x{j} == in{j}x{i}')
+            
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)
+```
+############################################################
+                    ATTEMPT NUMBER 1
+############################################################
+                    EVALUATING EXAMPLE NUMBER 1
+############################################################
+Input: 1,
+Output: 
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 2
+############################################################
+Input: 2,
+Output: in1x0 == in0x1
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 3
+############################################################
+Input: 3,
+Output: in2x0 == in0x2, in2x1 == in1x2, in1x0 == in0x1
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 4
+############################################################
+Input: 4,
+Output: in3x0 == in0x3, in3x1 == in1x3, in3x2 == in2x3, in2x0 == in0x2, in2x1 == in1x2, in1x0 == in0x1
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 5
+############################################################
+Input: 5,
+Output: in4x0 == in0x4, in4x1 == in1x4, in4x2 == in2x4, in4x3 == in3x4, in3x0 == in0x3, in3x1 == in1x3, in3x2 == in2x3, in2x0 == in0x2, in2x1 == in1x2, in1x0 == in0x1
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 6
+############################################################
+Input: 6,
+Output: in5x0 == in0x5, in5x1 == in1x5, in5x2 == in2x5, in5x3 == in3x5, in5x4 == in4x5, in4x0 == in0x4, in4x1 == in1x4, in4x2 == in2x4, in4x3 == in3x4, in3x0 == in0x3, in3x1 == in1x3, in3x2 == in2x3, in2x0 == in0x2, in2x1 == in1x2, in1x0 == in0x1
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 7
+############################################################
+Input: 7,
+Output: in6x0 == in0x6, in6x1 == in1x6, in6x2 == in2x6, in6x3 == in3x6, in6x4 == in4x6, in6x5 == in5x6, in5x0 == in0x5, in5x1 == in1x5, in5x2 == in2x5, in5x3 == in3x5, in5x4 == in4x5, in4x0 == in0x4, in4x1 == in1x4, in4x2 == in2x4, in4x3 == in3x4, in3x0 == in0x3, in3x1 == in1x3, in3x2 == in2x3, in2x0 == in0x2, in2x1 == in1x2, in1x0 == in0x1
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 8
+############################################################
+Input: 8,
+Output: in7x0 == in0x7, in7x1 == in1x7, in7x2 == in2x7, in7x3 == in3x7, in7x4 == in4x7, in7x5 == in5x7, in7x6 == in6x7, in6x0 == in0x6, in6x1 == in1x6, in6x2 == in2x6, in6x3 == in3x6, in6x4 == in4x6, in6x5 == in5x6, in5x0 == in0x5, in5x1 == in1x5, in5x2 == in2x5, in5x3 == in3x5, in5x4 == in4x5, in4x0 == in0x4, in4x1 == in1x4, in4x2 == in2x4, in4x3 == in3x4, in3x0 == in0x3, in3x1 == in1x3, in3x2 == in2x3, in2x0 == in0x2, in2x1 == in1x2, in1x0 == in0x1
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 9
+############################################################
+Input: 9,
+Output: in8x0 == in0x8, in8x1 == in1x8, in8x2 == in2x8, in8x3 == in3x8, in8x4 == in4x8, in8x5 == in5x8, in8x6 == in6x8, in8x7 == in7x8, in7x0 == in0x7, in7x1 == in1x7, in7x2 == in2x7, in7x3 == in3x7, in7x4 == in4x7, in7x5 == in5x7, in7x6 == in6x7, in6x0 == in0x6, in6x1 == in1x6, in6x2 == in2x6, in6x3 == in3x6, in6x4 == in4x6, in6x5 == in5x6, in5x0 == in0x5, in5x1 == in1x5, in5x2 == in2x5, in5x3 == in3x5, in5x4 == in4x5, in4x0 == in0x4, in4x1 == in1x4, in4x2 == in2x4, in4x3 == in3x4, in3x0 == in0x3, in3x1 == in1x3, in3x2 == in2x3, in2x0 == in0x2, in2x1 == in1x2, in1x0 == in0x1
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 10
+############################################################
+Input: 10,
+Output: in9x0 == in0x9, in9x1 == in1x9, in9x2 == in2x9, in9x3 == in3x9, in9x4 == in4x9, in9x5 == in5x9, in9x6 == in6x9, in9x7 == in7x9, in9x8 == in8x9, in8x0 == in0x8, in8x1 == in1x8, in8x2 == in2x8, in8x3 == in3x8, in8x4 == in4x8, in8x5 == in5x8, in8x6 == in6x8, in8x7 == in7x8, in7x0 == in0x7, in7x1 == in1x7, in7x2 == in2x7, in7x3 == in3x7, in7x4 == in4x7, in7x5 == in5x7, in7x6 == in6x7, in6x0 == in0x6, in6x1 == in1x6, in6x2 == in2x6, in6x3 == in3x6, in6x4 == in4x6, in6x5 == in5x6, in5x0 == in0x5, in5x1 == in1x5, in5x2 == in2x5, in5x3 == in3x5, in5x4 == in4x5, in4x0 == in0x4, in4x1 == in1x4, in4x2 == in2x4, in4x3 == in3x4, in3x0 == in0x3, in3x1 == in1x3, in3x2 == in2x3, in2x0 == in0x2, in2x1 == in1x2, in1x0 == in0x1

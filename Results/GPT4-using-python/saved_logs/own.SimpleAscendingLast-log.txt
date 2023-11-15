@@ -1,0 +1,501 @@
+
+############################################################
+                    GET INITIAL GENERALISATION
+############################################################
+I'm experimenting with a program and trying to find what makes an increasingly large set of inputs valid. So far I have found one possible set of correct constraints/ conditions (not the only one) which define a valid input. Here they are.
+
+Valid constraints for 1 inputs (N=1):
+None
+
+Valid constraints for 2 inputs (N=2):
+in1 < in0
+
+Valid constraints for 3 inputs (N=3):
+in2 < in0, in0 < in1
+
+Valid constraints for 4 inputs (N=4):
+in3 < in0, in1 < in2, in0 < in1
+
+Valid constraints for 5 inputs (N=5):
+in4 < in0, in2 < in3, in1 < in2, in0 < in1
+
+Valid constraints for 6 inputs (N=6):
+in5 < in0, in3 < in4, in2 < in3, in1 < in2, in0 < in1
+
+Valid constraints for 7 inputs (N=7):
+in6 < in0, in4 < in5, in3 < in4, in2 < in3, in1 < in2, in0 < in1
+
+Valid constraints for 8 inputs (N=8):
+in7 < in0, in5 < in6, in4 < in5, in3 < in4, in2 < in3, in1 < in2, in0 < in1
+
+Valid constraints for 9 inputs (N=9):
+in8 < in0, in6 < in7, in5 < in6, in4 < in5, in3 < in4, in2 < in3, in1 < in2, in0 < in1
+
+Valid constraints for 10 inputs (N=10):
+in9 < in0, in7 < in8, in6 < in7, in5 < in6, in4 < in5, in3 < in4, in2 < in3, in1 < in2, in0 < in1
+
+Generalise what makes the set of constraints valid such that we can recover a valid set for N inputs. Don't overfit the data here but also dont oversimplify to the point of trivialness. Make sure none of the given examples contradict your generalisation.
+
+Use this code template to formally express the generalisation for N constraints:
+```python
+def generate_constraints(N):
+    constraints = []
+
+    # Do some logic here to append constraints
+
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)```
+
+Each inequality is usually in the form "x op y" where x, y are some variable, constant or some formula of variables and/ or constants, and op is an operation or inequality.
+############################################################
+INFORMAL
+
+The observed pattern suggests that for N inputs, the set of constraints results in pairs of increasing integers that are divided by two. These paired numbers (with the exception of N-1, 0) run through a sequence where the smaller number i is on the RHS and the larger number (i+1) is on the LHS of the inequality. These paired inequalities are ordered by decreasing LHS. There is a special case for the pair N-1 and 0 which always occurs first in the sequence but isn't part of the normal pair sequence. Therefore a generalisation of a valid set of constraints for N inputs could be:
+
+- For k from (N//2) down to 1, append the constraint "ink < ink+1"
+- Then append the constraint "in(N-1) < in0"
+
+Note that you always have floor(N/2) constraints, except when N=1, where there are no constraints.
+
+FORMAL
+
+```python
+def generate_constraints(N):
+    constraints = []
+
+    for k in range(N//2, 0, -1): 
+        constraints.append(f"in{k} < in{k+1}") 
+    if N!=1: # only append when N is not equal to 1
+        constraints.append(f"in{N-1} < in0")
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)
+```
+############################################################
+                    ATTEMPT NUMBER 1
+############################################################
+                    EVALUATING EXAMPLE NUMBER 1
+############################################################
+Input: 1,
+Output: 
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 2
+############################################################
+Input: 2,
+Output: in1 < in2, in1 < in0
+
+############################################################
+I have two sets of inequalities over variables. Tell me if these two sets are the same or not, and how they differ if they do. Ignore differences in formatting (like spaces, newline characters and exact variable names) though the numbers associated with variable names should be the same. 'None' is equivalent to '' or the empty set/ string.
+
+Here is the correct set:
+```
+in1 < in0
+```
+
+Here is the predicted set:
+```
+in1 < in2, in1 < in0
+
+```
+############################################################
+THINKING
+The correct set given has only one inequality: "in1 < in0". The predicted set has two inequalities: "in1 < in2" and "in1 < in0". To determine if the sets are the same, I have to compare each inequality in the two sets. The inequality "in1 < in0" is present in both sets but the inequality "in1 < in2" is only present in the predicted set and not in the correct set. Even though some of the inequalities match, the fact that there is an extra inequality in the predicted set makes the sets different.
+
+ANSWER
+DIFFERENT
+
+REASON
+The predicted set of inequalities has an extra inequality "in1 < in2" that is not present in the correct set.
+############################################################
+                    EVALUATING EXAMPLE NUMBER 3
+############################################################
+Input: 3,
+Output: in1 < in2, in2 < in0
+
+############################################################
+I have two sets of inequalities over variables. Tell me if these two sets are the same or not, and how they differ if they do. Ignore differences in formatting (like spaces, newline characters and exact variable names) though the numbers associated with variable names should be the same. 'None' is equivalent to '' or the empty set/ string.
+
+Here is the correct set:
+```
+in2 < in0, in0 < in1
+```
+
+Here is the predicted set:
+```
+in1 < in2, in2 < in0
+
+```
+############################################################
+THINKING
+The two sets are given:
+Set 1: in2 < in0, in0 < in1 and
+Set 2: in1 < in2, in2 < in0
+Now, these two sets can be compared by looking at the ordering of the variables "in1", "in2" and "in0. If the orderings are the same, it means that the sets are the same and if the orderings are different, it indicates that the sets are different.
+
+In Set 1, the order of variables from lowest to highest is in2, in0, in1
+While in Set 2, from lowest to highest, the variables are arranged as in1, in2, in0
+
+ANSWER
+DIFFERENT
+
+REASON
+The order of variables in both sets is different. In Set 1, the order is in2 < in0 < in1 while in Set 2, the order is in1 < in2 < in0. Hence, the two sets are not the same.
+############################################################
+                    EVALUATING EXAMPLE NUMBER 4
+############################################################
+Input: 4,
+Output: in2 < in3, in1 < in2, in3 < in0
+
+############################################################
+I have two sets of inequalities over variables. Tell me if these two sets are the same or not, and how they differ if they do. Ignore differences in formatting (like spaces, newline characters and exact variable names) though the numbers associated with variable names should be the same. 'None' is equivalent to '' or the empty set/ string.
+
+Here is the correct set:
+```
+in3 < in0, in1 < in2, in0 < in1
+```
+
+Here is the predicted set:
+```
+in2 < in3, in1 < in2, in3 < in0
+
+```
+############################################################
+THINKING
+
+In both sets, there are three inequalities and the same four variables are used: in0, in1, in2, and in3. However, the conditions for each variable relationship seems to be different in each set.
+
+In the correct set, we have in3 < in0, in1 < in2, and in0 < in1. This implies that in3 is less than in0, in1 is less than in2, and in0 is less than in1.
+
+In the predicted set, we have in2 < in3, in1 < in2, and in3 < in0. This infers that in2 is less than in3, in1 is less than in2 (same as in the correct set), and in3 is less than in0 (same order, but different direction than the correct set).
+
+Therefore, the two sets are not the same because the inequalities are not exactly the same, though some of the relationships among the variables are.
+
+ANSWER
+
+DIFFERENT
+
+REASON
+
+The reason these two sets are different is because the inequalities aren't identical, even if they involve the same variables. For example, in the correct set, in3 < in0 while in the predicted set, in3 > in0. Similarly, in the correct set in1 < in0, while in the predicted set in1 < in2.
+############################################################
+                    EVALUATING EXAMPLE NUMBER 5
+############################################################
+Input: 5,
+Output: in2 < in3, in1 < in2, in4 < in0
+
+############################################################
+I have two sets of inequalities over variables. Tell me if these two sets are the same or not, and how they differ if they do. Ignore differences in formatting (like spaces, newline characters and exact variable names) though the numbers associated with variable names should be the same. 'None' is equivalent to '' or the empty set/ string.
+
+Here is the correct set:
+```
+in4 < in0, in2 < in3, in1 < in2, in0 < in1
+```
+
+Here is the predicted set:
+```
+in2 < in3, in1 < in2, in4 < in0
+
+```
+############################################################
+THINKING:
+I will compare each inequality of the correct set with the predicted set. Both sets should have the same inequalities for them to be considered the same.
+
+ANSWER:
+DIFFERENT
+
+REASON:
+The inequality 'in0 < in1' from the correct set is missing in the predicted set.
+############################################################
+                    EVALUATING EXAMPLE NUMBER 6
+############################################################
+Input: 6,
+Output: in3 < in4, in2 < in3, in1 < in2, in5 < in0
+
+############################################################
+I have two sets of inequalities over variables. Tell me if these two sets are the same or not, and how they differ if they do. Ignore differences in formatting (like spaces, newline characters and exact variable names) though the numbers associated with variable names should be the same. 'None' is equivalent to '' or the empty set/ string.
+
+Here is the correct set:
+```
+in5 < in0, in3 < in4, in2 < in3, in1 < in2, in0 < in1
+```
+
+Here is the predicted set:
+```
+in3 < in4, in2 < in3, in1 < in2, in5 < in0
+
+```
+############################################################
+THINKING
+First, I will compare each inequality of the two sets. At first glance, I see that all the inequalities in the predicted set are present in the correct set. However, one inequality "in0 < in1" which is in the correct set is missing in the predicted set. While the predicted set has all the other inequalities, the lack of one makes it different from the correct set.
+
+ANSWER
+DIFFERENT
+
+REASON
+The inequality "in0 < in1" is missing from the predicted set.
+############################################################
+                    EVALUATING EXAMPLE NUMBER 7
+############################################################
+Input: 7,
+Output: in3 < in4, in2 < in3, in1 < in2, in6 < in0
+
+############################################################
+I have two sets of inequalities over variables. Tell me if these two sets are the same or not, and how they differ if they do. Ignore differences in formatting (like spaces, newline characters and exact variable names) though the numbers associated with variable names should be the same. 'None' is equivalent to '' or the empty set/ string.
+
+Here is the correct set:
+```
+in6 < in0, in4 < in5, in3 < in4, in2 < in3, in1 < in2, in0 < in1
+```
+
+Here is the predicted set:
+```
+in3 < in4, in2 < in3, in1 < in2, in6 < in0
+
+```
+############################################################
+THINKING:
+To compare the two sets, I will go through each inequality in both sets one by one. If an inequality in the correct set is not found in the predicted set, or vice versa, then they are not the same. Checking the provided sets, it's clear that there are disparities not only in terms of their lengths but also in terms of their contents.
+
+ANSWER:
+DIFFERENT
+
+REASON:
+The inequalities 'in4 < in5' and 'in0 < in1' are present in the correct set but they are missing in the predicted set.
+############################################################
+                    EVALUATING EXAMPLE NUMBER 8
+############################################################
+Input: 8,
+Output: in4 < in5, in3 < in4, in2 < in3, in1 < in2, in7 < in0
+
+############################################################
+I have two sets of inequalities over variables. Tell me if these two sets are the same or not, and how they differ if they do. Ignore differences in formatting (like spaces, newline characters and exact variable names) though the numbers associated with variable names should be the same. 'None' is equivalent to '' or the empty set/ string.
+
+Here is the correct set:
+```
+in7 < in0, in5 < in6, in4 < in5, in3 < in4, in2 < in3, in1 < in2, in0 < in1
+```
+
+Here is the predicted set:
+```
+in4 < in5, in3 < in4, in2 < in3, in1 < in2, in7 < in0
+
+```
+############################################################
+THINKING
+
+I can see that both sets present inequalities between numbered variables. They seem to be of the format "inX < inY", where "X" and "Y" are numbers. To determine if these two sets are the same, I need to compare all inequalities. 
+
+In the correct set, there are seven inequalities: 
+1. in7 < in0
+2. in5 < in6
+3. in4 < in5
+4. in3 < in4
+5. in2 < in3
+6. in1 < in2
+7. in0 < in1
+
+And in the predicted set, there are five inequalities:
+1. in4 < in5
+2. in3 < in4
+3. in2 < in3
+4. in1 < in2
+5. in7 < in0
+
+Upon comparison, there are two inequalities present in the correct set that are not found in the predicted set: 
+in5 < in6 and in0 < in1. Therefore, these two sets are not the same.
+
+ANSWER
+
+DIFFERENT
+
+REASON
+
+The predicted set does not contain the inequalities in5 < in6 and in0 < in1, which are present in the correct set.
+############################################################
+                    EVALUATING EXAMPLE NUMBER 9
+############################################################
+Input: 9,
+Output: in4 < in5, in3 < in4, in2 < in3, in1 < in2, in8 < in0
+
+############################################################
+I have two sets of inequalities over variables. Tell me if these two sets are the same or not, and how they differ if they do. Ignore differences in formatting (like spaces, newline characters and exact variable names) though the numbers associated with variable names should be the same. 'None' is equivalent to '' or the empty set/ string.
+
+Here is the correct set:
+```
+in8 < in0, in6 < in7, in5 < in6, in4 < in5, in3 < in4, in2 < in3, in1 < in2, in0 < in1
+```
+
+Here is the predicted set:
+```
+in4 < in5, in3 < in4, in2 < in3, in1 < in2, in8 < in0
+
+```
+############################################################
+THINKING
+Looking at both sets of inequalities, it appears that major discrepancy between the correct and predicted sets lies in the number of inequalities present and the inequalities themselves. I will comparison each inequality in the correct set with the predicted set. 
+
+ANSWER
+DIFFERENT
+
+REASON
+Not all inequalities from the correct set appear in the predicted set. The missing inequalities from the predicted set are "in6 < in7", "in5 < in6", "in0 < in1".
+############################################################
+                    EVALUATING EXAMPLE NUMBER 10
+############################################################
+Input: 10,
+Output: in5 < in6, in4 < in5, in3 < in4, in2 < in3, in1 < in2, in9 < in0
+
+############################################################
+I have two sets of inequalities over variables. Tell me if these two sets are the same or not, and how they differ if they do. Ignore differences in formatting (like spaces, newline characters and exact variable names) though the numbers associated with variable names should be the same. 'None' is equivalent to '' or the empty set/ string.
+
+Here is the correct set:
+```
+in9 < in0, in7 < in8, in6 < in7, in5 < in6, in4 < in5, in3 < in4, in2 < in3, in1 < in2, in0 < in1
+```
+
+Here is the predicted set:
+```
+in5 < in6, in4 < in5, in3 < in4, in2 < in3, in1 < in2, in9 < in0
+
+```
+############################################################
+THINKING
+
+To check whether the two sets are the same or not, I will compare each inequality one by one from both sets. In the correct set, there are 9 inequalities, while in the predicted set, there are only 6 inequalities. 
+
+We can already see that the numbers of inequalities in both sets are not equal, which indicates that both sets are probably not the same. But for a more precise result, let's match the inequalities:
+
+From the correct set, the inequalities are:
+
+1. in9 < in0
+2. in7 < in8
+3. in6 < in7
+4. in5 < in6
+5. in4 < in5
+6. in3 < in4
+7. in2 < in3
+8. in1 < in2
+9. in0 < in1
+
+From the predicted set, the inequalities are:
+
+1. in5 < in6
+2. in4 < in5
+3. in3 < in4
+4. in2 < in3
+5. in1 < in2
+6. in9 < in0
+
+Comparing these inequalities, it's obvious that not all of them are represented in the predicted set. The inequalities "in7 < in8", "in6 < in7", and "in0 < in1" from the correct set are missing in the predicted set.
+
+ANSWER
+
+DIFFERENT
+
+REASON
+
+The predicted set of inequalities is missing the inequalities "in7 < in8", "in6 < in7", and "in0 < in1" which are present in the correct set. Therefore, the correct set and the predicted set are different.
+############################################################
+                    GET NEW GENERALISATION
+############################################################
+INFORMAL
+
+Upon re-evaluation of the constraints for N inputs, there seems to be a specific pattern. 
+
+For N inputs, excluding the first constraint, the pattern is that the i-th constraint (1-indexed) is always "in(i-1) < in(i)". 
+
+For the first constraint though, it is always "in(N-1) < in0". This pattern is both non-trivial and seems to explain the constraints well for N>1.
+
+Therefore, the new generalisation of a valid set of constraints for N inputs would be:
+
+- If N is not 1, append the constraint "in(N-1) < in0"
+- For i from 1 to N-2, append the constraint "in(i-1) < in(i)"
+
+FORMAL
+
+```python
+def generate_constraints(N):
+    constraints = []
+    # Special case for the first constraint
+    if N != 1:
+        constraints.append(f"in{N-1} < in0")
+    # General case for the rest of the constraints
+    for i in range(1, N-1):
+        constraints.append(f"in{i-1} < in{i}")
+
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)
+```
+############################################################
+                    ATTEMPT NUMBER 2
+############################################################
+                    EVALUATING EXAMPLE NUMBER 1
+############################################################
+Input: 1,
+Output: 
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 2
+############################################################
+Input: 2,
+Output: in1 < in0
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 3
+############################################################
+Input: 3,
+Output: in2 < in0, in0 < in1
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 4
+############################################################
+Input: 4,
+Output: in3 < in0, in0 < in1, in1 < in2
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 5
+############################################################
+Input: 5,
+Output: in4 < in0, in0 < in1, in1 < in2, in2 < in3
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 6
+############################################################
+Input: 6,
+Output: in5 < in0, in0 < in1, in1 < in2, in2 < in3, in3 < in4
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 7
+############################################################
+Input: 7,
+Output: in6 < in0, in0 < in1, in1 < in2, in2 < in3, in3 < in4, in4 < in5
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 8
+############################################################
+Input: 8,
+Output: in7 < in0, in0 < in1, in1 < in2, in2 < in3, in3 < in4, in4 < in5, in5 < in6
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 9
+############################################################
+Input: 9,
+Output: in8 < in0, in0 < in1, in1 < in2, in2 < in3, in3 < in4, in4 < in5, in5 < in6, in6 < in7
+
+############################################################
+                    EVALUATING EXAMPLE NUMBER 10
+############################################################
+Input: 10,
+Output: in9 < in0, in0 < in1, in1 < in2, in2 < in3, in3 < in4, in4 < in5, in5 < in6, in6 < in7, in7 < in8

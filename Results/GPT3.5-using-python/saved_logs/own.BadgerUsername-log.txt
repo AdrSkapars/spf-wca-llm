@@ -1,0 +1,138 @@
+
+############################################################
+                    GET INITIAL GENERALISATION
+############################################################
+I'm experimenting with a program and trying to find what makes an increasingly large set of inputs valid. So far I have found one possible set of correct constraints/ conditions (not the only one) which define a valid input. Here they are.
+
+Valid constraints for 1 inputs (N=1):
+None
+
+Valid constraints for 2 inputs (N=2):
+None
+
+Valid constraints for 3 inputs (N=3):
+in2 == 45, in2 != 95, in1 == 45, in1 != 95, in0 == 45, in0 != 95
+
+Valid constraints for 4 inputs (N=4):
+in3 == 45, in3 != 95, in2 == 45, in2 != 95, in1 == 45, in1 != 95, in0 == 45, in0 != 95
+
+Valid constraints for 5 inputs (N=5):
+in4 == 45, in4 != 95, in3 == 45, in3 != 95, in2 == 45, in2 != 95, in1 == 45, in1 != 95, in0 == 45, in0 != 95
+
+Valid constraints for 6 inputs (N=6):
+in5 == 45, in5 != 95, in4 == 45, in4 != 95, in3 == 45, in3 != 95, in2 == 45, in2 != 95, in1 == 45, in1 != 95, in0 == 45, in0 != 95
+
+Valid constraints for 7 inputs (N=7):
+in6 == 45, in6 != 95, in5 == 45, in5 != 95, in4 == 45, in4 != 95, in3 == 45, in3 != 95, in2 == 45, in2 != 95, in1 == 45, in1 != 95, in0 == 45, in0 != 95
+
+Valid constraints for 8 inputs (N=8):
+in7 == 45, in7 != 95, in6 == 45, in6 != 95, in5 == 45, in5 != 95, in4 == 45, in4 != 95, in3 == 45, in3 != 95, in2 == 45, in2 != 95, in1 == 45, in1 != 95, in0 == 45, in0 != 95
+
+Valid constraints for 9 inputs (N=9):
+in8 == 45, in8 != 95, in7 == 45, in7 != 95, in6 == 45, in6 != 95, in5 == 45, in5 != 95, in4 == 45, in4 != 95, in3 == 45, in3 != 95, in2 == 45, in2 != 95, in1 == 45, in1 != 95, in0 == 45, in0 != 95
+
+Valid constraints for 10 inputs (N=10):
+in9 == 45, in9 != 95, in8 == 45, in8 != 95, in7 == 45, in7 != 95, in6 == 45, in6 != 95, in5 == 45, in5 != 95, in4 == 45, in4 != 95, in3 == 45, in3 != 95, in2 == 45, in2 != 95, in1 == 45, in1 != 95, in0 == 45, in0 != 95
+
+Generalise what makes the set of constraints valid such that we can recover a valid set for N inputs. Don't overfit the data here but also dont oversimplify to the point of trivialness. Make sure none of the given examples contradict your generalisation.
+
+Use this code template to formally express the generalisation for N constraints:
+```python
+def generate_constraints(N):
+    constraints = []
+
+    # Do some logic here to append constraints
+
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)```
+
+Each inequality is usually in the form "x op y" where x, y are some variable, constant or some formula of variables and/ or constants, and op is an operation or inequality.
+############################################################
+CASUAL
+It seems that the valid constraints for each N follow a pattern. For N inputs, the valid constraints are of the form "in(i) == 45, in(i) != 95" for i from 0 to N-1. So, the generalisation for N constraints would be to have "in(i) == 45, in(i) != 95" for i from 0 to N-1. This ensures that every input is equal to 45 and not equal to 95.
+
+FORMAL
+```python
+def generate_constraints(N):
+    constraints = []
+    for i in range(N):
+        constraints.append(f"in{i} == 45")
+        constraints.append(f"in{i} != 95")
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)
+```
+############################################################
+                    ATTEMPT NUMBER 1
+############################################################
+                    #1  GET NEW GENERALISATION
+############################################################
+I have run your code for several concrete values of N. Some of the outputs were not correct. Change your generalisation and code to account for the following outputs (Remember to always structure your reply with the headings 'CASUAL' and 'FORMAL').
+
+For N=1, the output constraint set should be:
+```
+None
+```
+But your generalisation implies the set:
+```
+in0 == 45, in0 != 95
+
+```
+This is not right. Explanation: The correct set is empty but your constraint set is not empty
+
+For N=2, the output constraint set should be:
+```
+None
+```
+But your generalisation implies the set:
+```
+in0 == 45, in0 != 95, in1 == 45, in1 != 95
+
+```
+This is not right. Explanation: The correct set is empty but your constraint set is not empty
+
+For N=3, the generalisation output correctly fits the given data
+
+For N=4, the generalisation output correctly fits the given data
+
+For N=5, the generalisation output correctly fits the given data
+
+For N=6, the generalisation output correctly fits the given data
+
+For N=7, the generalisation output correctly fits the given data
+
+For N=8, the generalisation output correctly fits the given data
+
+For N=9, the generalisation output correctly fits the given data
+
+For N=10, the generalisation output correctly fits the given data
+############################################################
+CASUAL
+It seems that the correct constraint set for N=1 and N=2 should be empty, as opposed to the generalization. For N=3 and above, the generalization seems to hold true.
+
+FORMAL
+```python
+def generate_constraints(N):
+    constraints = []
+    if N > 2:
+        for i in range(N):
+            constraints.append(f"in{i} == 45")
+            constraints.append(f"in{i} != 95")
+    return constraints if N > 2 else []
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)
+```
+############################################################
+                    ATTEMPT NUMBER 2
+############################################################
+DONE WITH THAT EXAMPLE
