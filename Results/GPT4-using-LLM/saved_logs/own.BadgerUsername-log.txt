@@ -1,0 +1,86 @@
+
+############################################################
+                    GET INITIAL GENERALISATION
+############################################################
+I'm experimenting with a program and trying to find what makes an increasingly large set of inputs valid. So far I have found one possible set of correct constraints/ conditions (not the only one) which define a valid input. Here they are.
+
+Valid constraints for 1 inputs (N=1):
+None
+
+Valid constraints for 2 inputs (N=2):
+None
+
+Valid constraints for 3 inputs (N=3):
+in2 == 45, in2 != 95, in1 == 45, in1 != 95, in0 == 45, in0 != 95
+
+Valid constraints for 4 inputs (N=4):
+in3 == 45, in3 != 95, in2 == 45, in2 != 95, in1 == 45, in1 != 95, in0 == 45, in0 != 95
+
+Valid constraints for 5 inputs (N=5):
+in4 == 45, in4 != 95, in3 == 45, in3 != 95, in2 == 45, in2 != 95, in1 == 45, in1 != 95, in0 == 45, in0 != 95
+
+Valid constraints for 6 inputs (N=6):
+in5 == 45, in5 != 95, in4 == 45, in4 != 95, in3 == 45, in3 != 95, in2 == 45, in2 != 95, in1 == 45, in1 != 95, in0 == 45, in0 != 95
+
+Valid constraints for 7 inputs (N=7):
+in6 == 45, in6 != 95, in5 == 45, in5 != 95, in4 == 45, in4 != 95, in3 == 45, in3 != 95, in2 == 45, in2 != 95, in1 == 45, in1 != 95, in0 == 45, in0 != 95
+
+Valid constraints for 8 inputs (N=8):
+in7 == 45, in7 != 95, in6 == 45, in6 != 95, in5 == 45, in5 != 95, in4 == 45, in4 != 95, in3 == 45, in3 != 95, in2 == 45, in2 != 95, in1 == 45, in1 != 95, in0 == 45, in0 != 95
+
+Valid constraints for 9 inputs (N=9):
+in8 == 45, in8 != 95, in7 == 45, in7 != 95, in6 == 45, in6 != 95, in5 == 45, in5 != 95, in4 == 45, in4 != 95, in3 == 45, in3 != 95, in2 == 45, in2 != 95, in1 == 45, in1 != 95, in0 == 45, in0 != 95
+
+Valid constraints for 10 inputs (N=10):
+in9 == 45, in9 != 95, in8 == 45, in8 != 95, in7 == 45, in7 != 95, in6 == 45, in6 != 95, in5 == 45, in5 != 95, in4 == 45, in4 != 95, in3 == 45, in3 != 95, in2 == 45, in2 != 95, in1 == 45, in1 != 95, in0 == 45, in0 != 95
+
+Generalise what makes the set of constraints valid such that we can recover a valid set for N inputs. Don't overfit the data here but also dont oversimplify to the point of trivialness. Make sure none of the given examples contradict your generalisation.
+############################################################
+CASUAL:
+Looking at the input constraints above, a pattern can be seen. It's pretty clear that there is no constraint on the first two lengths of inputs (N=1 and N=2). However, beyond that, for each subsequent length of input (N=3 and onwards), there seem to be two specific conditions for each input, one demanding equality with 45 and the other imposing non-equality with 95. This rule is applicable for every input in the list considering that they are labelled 'in' followed by an index from 0 to N-1. In simpler terms, the valid range of each input 'in' is limited to a single value, 45, and it distinctly shouldn't be 95.
+
+FORMAL:
+
+Given a set of N inputs labeled as in0, in1, ..., inN-1, the valid constraints for each input 'in' are as follows:
+
+For N = 1, 2, there are no constraints. 
+
+For N > 2,
+
+for k from 0 to N-1:
+1) ink == 45,
+2) ink != 95.
+############################################################
+                    ATTEMPT NUMBER 1
+############################################################
+Here is the correct set:
+```
+in4 == 45, in4 != 95, in3 == 45, in3 != 95, in2 == 45, in2 != 95, in1 == 45, in1 != 95, in0 == 45, in0 != 95
+```
+
+Here is the predicted set:
+```
+in0 == 45, in0 != 95, in1 == 45, in1 != 95, in2 == 45, in2 != 95, in3 == 45, in3 != 95, in4 == 45, in4 != 95.
+```
+############################################################
+Here is the correct set:
+```
+in5 == 45, in5 != 95, in4 == 45, in4 != 95, in3 == 45, in3 != 95, in2 == 45, in2 != 95, in1 == 45, in1 != 95, in0 == 45, in0 != 95
+```
+
+Here is the predicted set:
+```
+'in0 == 45', 'in0 != 95', 'in1 == 45', 'in1 != 95', 'in2 == 45', 'in2 != 95', 'in3 == 45', 'in3 != 95', 'in4 == 45', 'in4 != 95', 'in5 == 45', 'in5 != 95'
+```
+############################################################
+Here is the correct set:
+```
+in8 == 45, in8 != 95, in7 == 45, in7 != 95, in6 == 45, in6 != 95, in5 == 45, in5 != 95, in4 == 45, in4 != 95, in3 == 45, in3 != 95, in2 == 45, in2 != 95, in1 == 45, in1 != 95, in0 == 45, in0 != 95
+```
+
+Here is the predicted set:
+```
+in0 == 45, in0 != 95, in1 == 45, in1 != 95, in2 == 45, in2 != 95, in3 == 45, in3 != 95, in4 == 45, in4 != 95, in5 == 45, in5 != 95, in6 == 45, in6 != 95, in7 == 45, in7 != 95, in8 == 45, in8 != 95.
+```
+############################################################
+DONE WITH THAT EXAMPLE

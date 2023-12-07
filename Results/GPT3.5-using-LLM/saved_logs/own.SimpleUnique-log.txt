@@ -1,0 +1,48 @@
+
+############################################################
+                    GET INITIAL GENERALISATION
+############################################################
+I'm experimenting with a program and trying to find what makes an increasingly large set of inputs valid. So far I have found one possible set of correct constraints/ conditions (not the only one) which define a valid input. Here they are.
+
+Valid constraints for 1 inputs (N=1):
+None
+
+Valid constraints for 2 inputs (N=2):
+in0 != in1
+
+Valid constraints for 3 inputs (N=3):
+in1 != in2, in0 != in2, in0 != in1
+
+Valid constraints for 4 inputs (N=4):
+in2 != in3, in1 != in3, in1 != in2, in0 != in3, in0 != in2, in0 != in1
+
+Valid constraints for 5 inputs (N=5):
+in3 != in4, in2 != in4, in2 != in3, in1 != in4, in1 != in3, in1 != in2, in0 != in4, in0 != in3, in0 != in2, in0 != in1
+
+Valid constraints for 6 inputs (N=6):
+in4 != in5, in3 != in5, in3 != in4, in2 != in5, in2 != in4, in2 != in3, in1 != in5, in1 != in4, in1 != in3, in1 != in2, in0 != in5, in0 != in4, in0 != in3, in0 != in2, in0 != in1
+
+Valid constraints for 7 inputs (N=7):
+in5 != in6, in4 != in6, in4 != in5, in3 != in6, in3 != in5, in3 != in4, in2 != in6, in2 != in5, in2 != in4, in2 != in3, in1 != in6, in1 != in5, in1 != in4, in1 != in3, in1 != in2, in0 != in6, in0 != in5, in0 != in4, in0 != in3, in0 != in2, in0 != in1
+
+Valid constraints for 8 inputs (N=8):
+in6 != in7, in5 != in7, in5 != in6, in4 != in7, in4 != in6, in4 != in5, in3 != in7, in3 != in6, in3 != in5, in3 != in4, in2 != in7, in2 != in6, in2 != in5, in2 != in4, in2 != in3, in1 != in7, in1 != in6, in1 != in5, in1 != in4, in1 != in3, in1 != in2, in0 != in7, in0 != in6, in0 != in5, in0 != in4, in0 != in3, in0 != in2, in0 != in1
+
+Valid constraints for 9 inputs (N=9):
+in7 != in8, in6 != in8, in6 != in7, in5 != in8, in5 != in7, in5 != in6, in4 != in8, in4 != in7, in4 != in6, in4 != in5, in3 != in8, in3 != in7, in3 != in6, in3 != in5, in3 != in4, in2 != in8, in2 != in7, in2 != in6, in2 != in5, in2 != in4, in2 != in3, in1 != in8, in1 != in7, in1 != in6, in1 != in5, in1 != in4, in1 != in3, in1 != in2, in0 != in8, in0 != in7, in0 != in6, in0 != in5, in0 != in4, in0 != in3, in0 != in2, in0 != in1
+
+Valid constraints for 10 inputs (N=10):
+in8 != in9, in7 != in9, in7 != in8, in6 != in9, in6 != in8, in6 != in7, in5 != in9, in5 != in8, in5 != in7, in5 != in6, in4 != in9, in4 != in8, in4 != in7, in4 != in6, in4 != in5, in3 != in9, in3 != in8, in3 != in7, in3 != in6, in3 != in5, in3 != in4, in2 != in9, in2 != in8, in2 != in7, in2 != in6, in2 != in5, in2 != in4, in2 != in3, in1 != in9, in1 != in8, in1 != in7, in1 != in6, in1 != in5, in1 != in4, in1 != in3, in1 != in2, in0 != in9, in0 != in8, in0 != in7, in0 != in6, in0 != in5, in0 != in4, in0 != in3, in0 != in2, in0 != in1
+
+Generalise what makes the set of constraints valid such that we can recover a valid set for N inputs. Don't overfit the data here but also dont oversimplify to the point of trivialness. Make sure none of the given examples contradict your generalisation.
+############################################################
+CASUAL
+It seems like the constraints for a valid set of inputs are related to the number of inputs, N. For each N, there are no repeated conditions of the form "inX != inY" where X and Y are unique integers from 0 to N-1. In other words, for N inputs, the valid constraints consist of all possible combinations of pairwise inequalities between the inputs.
+
+FORMAL
+For a set of N inputs {in0, in1, ..., inN-1}, the valid constraints can be defined as follows:
+- For each i in {0, 1, ..., N-2}, there should be constraints of the form in(i) != in(j) for all j in {i+1, i+2, ..., N-1}. This means that for each input index i, it should be unequal to all subsequent inputs indices j.
+############################################################
+                    ATTEMPT NUMBER 1
+############################################################
+(done with that example)

@@ -1,0 +1,77 @@
+
+############################################################
+                    GET INITIAL GENERALISATION
+############################################################
+I'm experimenting with a program and trying to find what makes an increasingly large set of inputs valid. So far I have found one possible set of correct constraints/ conditions (not the only one) which define a valid input. Here they are.
+
+Valid constraints for 1 inputs (N=1):
+in0 == 1
+
+Valid constraints for 2 inputs (N=2):
+in1 == 0, in0 == 1
+
+Valid constraints for 3 inputs (N=3):
+in2 == 1, in1 == 0, in0 == 1
+
+Valid constraints for 4 inputs (N=4):
+in3 == 0, in2 == 1, in1 == 0, in0 == 1
+
+Valid constraints for 5 inputs (N=5):
+in4 == 1, in3 == 0, in2 == 1, in1 == 0, in0 == 1
+
+Valid constraints for 6 inputs (N=6):
+in5 == 0, in4 == 1, in3 == 0, in2 == 1, in1 == 0, in0 == 1
+
+Valid constraints for 7 inputs (N=7):
+in6 == 1, in5 == 0, in4 == 1, in3 == 0, in2 == 1, in1 == 0, in0 == 1
+
+Valid constraints for 8 inputs (N=8):
+in7 == 0, in6 == 1, in5 == 0, in4 == 1, in3 == 0, in2 == 1, in1 == 0, in0 == 1
+
+Valid constraints for 9 inputs (N=9):
+in8 == 1, in7 == 0, in6 == 1, in5 == 0, in4 == 1, in3 == 0, in2 == 1, in1 == 0, in0 == 1
+
+Valid constraints for 10 inputs (N=10):
+in9 == 0, in8 == 1, in7 == 0, in6 == 1, in5 == 0, in4 == 1, in3 == 0, in2 == 1, in1 == 0, in0 == 1
+
+Generalise what makes the set of constraints valid such that we can recover a valid set for N inputs. Don't overfit the data here but also dont oversimplify to the point of trivialness. Make sure none of the given examples contradict your generalisation.
+############################################################
+CASUAL
+
+Examining these input constraints, we see a clear pattern in which the value alternates between 1 and 0 as we move from in0 to inN. The smallest index (in0) always equals 1 and then it steps up by 1 and we switch in the following order: 0, 1, 0, 1, 0, and so on. Therefore we can say that the value at any given index (say, inX) in the input constraints, depends on whether X is even or odd. Thus, we can generalize these constraints to say that for any even index inX, the value equal 1 and for any odd inX, the value equals 0.
+
+FORMAL
+
+Given a number of inputs N and an index X in the input constraints (0 <= X < N), the generalized constraints for valid inputs can be given by:
+
+for inX:
+- if X is even then inX == 1
+- if X is odd then inX == 0
+
+This can also be represented mathematically as:
+
+inX == 1 - (X mod 2)
+############################################################
+                    ATTEMPT NUMBER 1
+############################################################
+Here is the correct set:
+```
+in6 == 1, in5 == 0, in4 == 1, in3 == 0, in2 == 1, in1 == 0, in0 == 1
+```
+
+Here is the predicted set:
+```
+in_0 == 1, in_1 == 0, in_2 == 1, in_3 == 0, in_4 == 1, in_5 == 0, in_6 == 1
+```
+############################################################
+Here is the correct set:
+```
+in9 == 0, in8 == 1, in7 == 0, in6 == 1, in5 == 0, in4 == 1, in3 == 0, in2 == 1, in1 == 0, in0 == 1
+```
+
+Here is the predicted set:
+```
+in0 == 1, in1 == 0, in2 == 1, in3 == 0, in4 == 1, in5 == 0, in6 == 1, in7 == 0, in8 == 1, in9 == 0.
+```
+############################################################
+DONE WITH THAT EXAMPLE

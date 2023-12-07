@@ -1,0 +1,226 @@
+
+############################################################
+                    GET INITIAL GENERALISATION
+############################################################
+I'm experimenting with a program and trying to find what makes an increasingly large set of inputs valid. So far I have found one possible set of correct constraints/ conditions (not the only one) which define a valid input. Here they are.
+
+Valid constraints for 1 inputs (N=1):
+in0 <= 122, in0 >= 97
+
+Valid constraints for 2 inputs (N=2):
+in1 <= 122, in1 >= 97, in0 <= 122, in0 >= 97
+
+Valid constraints for 3 inputs (N=3):
+in2 <= 122, in2 >= 97, in1 <= 122, in1 >= 97, in0 <= 122, in0 >= 97
+
+Valid constraints for 4 inputs (N=4):
+in3 <= 122, in3 >= 97, in2 <= 122, in2 >= 97, in1 <= 122, in1 >= 97, in0 <= 122, in0 >= 97
+
+Valid constraints for 5 inputs (N=5):
+in4 <= 122, in4 >= 97, in3 <= 122, in3 >= 97, in2 <= 122, in2 >= 97, in1 <= 122, in1 >= 97, in0 <= 122, in0 >= 97
+
+Valid constraints for 6 inputs (N=6):
+in5 <= 122, in5 >= 97, in4 <= 122, in4 >= 97, in3 <= 122, in3 >= 97, in2 <= 122, in2 >= 97, in1 <= 122, in1 >= 97, in0 <= 122, in0 >= 97
+
+Valid constraints for 7 inputs (N=7):
+in6 <= 122, in6 >= 97, in5 <= 122, in5 >= 97, in4 <= 122, in4 >= 97, in3 <= 122, in3 >= 97, in2 <= 122, in2 >= 97, in1 <= 122, in1 >= 97, in0 <= 122, in0 >= 97
+
+Valid constraints for 8 inputs (N=8):
+in7 <= 122, in7 >= 97, in6 <= 122, in6 >= 97, in5 <= 122, in5 >= 97, in4 <= 122, in4 >= 97, in3 <= 122, in3 >= 97, in2 <= 122, in2 >= 97, in1 <= 122, in1 >= 97, in0 <= 122, in0 >= 97
+
+Valid constraints for 9 inputs (N=9):
+in8 <= 122, in8 >= 97, in7 <= 122, in7 >= 97, in6 <= 122, in6 >= 97, in5 <= 122, in5 >= 97, in4 <= 122, in4 >= 97, in3 <= 122, in3 >= 97, in2 <= 122, in2 >= 97, in1 <= 122, in1 >= 97, in0 <= 122, in0 >= 97
+
+Valid constraints for 10 inputs (N=10):
+in9 <= 122, in9 >= 97, in8 <= 122, in8 >= 97, in7 <= 122, in7 >= 97, in6 <= 122, in6 >= 97, in5 <= 122, in5 >= 97, in4 <= 122, in4 >= 97, in3 <= 122, in3 >= 97, in2 <= 122, in2 >= 97, in1 <= 122, in1 >= 97, in0 <= 122, in0 >= 97
+
+Generalise what makes the set of constraints valid such that we can recover a valid set for N inputs. Don't overfit the data here but also dont oversimplify to the point of trivialness. Make sure none of the given examples contradict your generalisation.
+############################################################
+CASUAL:
+
+Looking at these constraints, it seems like for each input, there is a valid range, and that range doesn't change based on the number of inputs. So the key generalization is that each input must fall in the range 97 to 122 (inclusive), regardless of the total number of inputs. This holds true for all the given examples. It looks like the number next to 'in' progresses from 0 to N-1 for a given N.
+
+
+FORMAL:
+
+For any given number of N inputs, the conditions for each input inX are defined as, 
+
+- The subscript X of inX ranges from 0 to N-1. 
+- For all inX, 97 <= inX <= 122 
+
+This condition holds true for all the provided examples.
+############################################################
+                    ATTEMPT NUMBER 1
+############################################################
+Here is the correct set:
+```
+in0 <= 122, in0 >= 97
+```
+
+Here is the predicted set:
+```
+97 <= in0 <= 122
+```
+############################################################
+Here is the correct set:
+```
+in1 <= 122, in1 >= 97, in0 <= 122, in0 >= 97
+```
+
+Here is the predicted set:
+```
+97 <= in0 <= 122, 97 <= in1 <= 122
+```
+############################################################
+Here is the correct set:
+```
+in2 <= 122, in2 >= 97, in1 <= 122, in1 >= 97, in0 <= 122, in0 >= 97
+```
+
+Here is the predicted set:
+```
+97 <= in0 <= 122, 97 <= in1 <= 122, 97 <= in2 <= 122
+```
+############################################################
+Here is the correct set:
+```
+in3 <= 122, in3 >= 97, in2 <= 122, in2 >= 97, in1 <= 122, in1 >= 97, in0 <= 122, in0 >= 97
+```
+
+Here is the predicted set:
+```
+97 <= in0 <= 122, 97 <= in1 <= 122, 97 <= in2 <= 122, 97 <= in3 <= 122
+```
+############################################################
+Here is the correct set:
+```
+in4 <= 122, in4 >= 97, in3 <= 122, in3 >= 97, in2 <= 122, in2 >= 97, in1 <= 122, in1 >= 97, in0 <= 122, in0 >= 97
+```
+
+Here is the predicted set:
+```
+97 <= in0 <= 122,
+97 <= in1 <= 122,
+97 <= in2 <= 122,
+97 <= in3 <= 122,
+97 <= in4 <= 122
+```
+############################################################
+Here is the correct set:
+```
+in5 <= 122, in5 >= 97, in4 <= 122, in4 >= 97, in3 <= 122, in3 >= 97, in2 <= 122, in2 >= 97, in1 <= 122, in1 >= 97, in0 <= 122, in0 >= 97
+```
+
+Here is the predicted set:
+```
+97 <= in0 <= 122, 97 <= in1 <= 122, 97 <= in2 <= 122, 97 <= in3 <= 122, 97 <= in4 <= 122, 97 <= in5 <= 122
+```
+############################################################
+Here is the correct set:
+```
+in7 <= 122, in7 >= 97, in6 <= 122, in6 >= 97, in5 <= 122, in5 >= 97, in4 <= 122, in4 >= 97, in3 <= 122, in3 >= 97, in2 <= 122, in2 >= 97, in1 <= 122, in1 >= 97, in0 <= 122, in0 >= 97
+```
+
+Here is the predicted set:
+```
+97 <= in0 <= 122, 97 <= in1 <= 122, 97 <= in2 <= 122, 97 <= in3 <= 122, 97 <= in4 <= 122, 97 <= in5 <= 122, 97 <= in6 <= 122, 97 <= in7 <= 122
+```
+############################################################
+Here is the correct set:
+```
+in8 <= 122, in8 >= 97, in7 <= 122, in7 >= 97, in6 <= 122, in6 >= 97, in5 <= 122, in5 >= 97, in4 <= 122, in4 >= 97, in3 <= 122, in3 >= 97, in2 <= 122, in2 >= 97, in1 <= 122, in1 >= 97, in0 <= 122, in0 >= 97
+```
+
+Here is the predicted set:
+```
+(97 <= in0 <= 122), (97 <= in1 <= 122), (97 <= in2 <= 122), (97 <= in3 <= 122), (97 <= in4 <= 122), (97 <= in5 <= 122), (97 <= in6 <= 122), (97 <= in7 <= 122), (97 <= in8 <= 122)
+```
+############################################################
+Here is the correct set:
+```
+in9 <= 122, in9 >= 97, in8 <= 122, in8 >= 97, in7 <= 122, in7 >= 97, in6 <= 122, in6 >= 97, in5 <= 122, in5 >= 97, in4 <= 122, in4 >= 97, in3 <= 122, in3 >= 97, in2 <= 122, in2 >= 97, in1 <= 122, in1 >= 97, in0 <= 122, in0 >= 97
+```
+
+Here is the predicted set:
+```
+97 <= in0 <= 122, 97 <= in1 <= 122, 97 <= in2 <= 122, 97 <= in3 <= 122, 97 <= in4 <= 122, 97 <= in5 <= 122, 97 <= in6 <= 122, 97 <= in7 <= 122, 97 <= in8 <= 122, 97 <= in9 <= 122
+```
+############################################################
+                    #1  GET NEW GENERALISATION
+############################################################
+Remember to always structure your reply with the same headings. I have applied you generalisation for several concrete values of N. Some of the outputs were not correct. Change your generalisation to account for the following outputs (Remember to always structure your reply with the headings 'CASUAL' and 'FORMAL').
+
+For N=1, the generalisation output correctly fits the given data
+
+For N=2, the generalisation output correctly fits the given data
+
+For N=3, the generalisation output correctly fits the given data
+
+For N=4, the output constraint set should be:
+```
+in3 <= 122, in3 >= 97, in2 <= 122, in2 >= 97, in1 <= 122, in1 >= 97, in0 <= 122, in0 >= 97
+```
+But your generalisation implies the set:
+```
+97 <= in0 <= 122, 97 <= in1 <= 122, 97 <= in2 <= 122, 97 <= in3 <= 122
+```
+This is not right. Explanation: The first set specifies the bounds for each individual variable, while the second set uses a more compact and uniform notation using an inclusive range for all variables.
+
+For N=5, the generalisation output correctly fits the given data
+
+For N=6, the generalisation output correctly fits the given data
+
+For N=7, the generalisation output correctly fits the given data
+
+For N=8, the generalisation output correctly fits the given data
+
+For N=9, the generalisation output correctly fits the given data
+
+For N=10, the output constraint set should be:
+```
+in9 <= 122, in9 >= 97, in8 <= 122, in8 >= 97, in7 <= 122, in7 >= 97, in6 <= 122, in6 >= 97, in5 <= 122, in5 >= 97, in4 <= 122, in4 >= 97, in3 <= 122, in3 >= 97, in2 <= 122, in2 >= 97, in1 <= 122, in1 >= 97, in0 <= 122, in0 >= 97
+```
+But your generalisation implies the set:
+```
+97 <= in0 <= 122, 97 <= in1 <= 122, 97 <= in2 <= 122, 97 <= in3 <= 122, 97 <= in4 <= 122, 97 <= in5 <= 122, 97 <= in6 <= 122, 97 <= in7 <= 122, 97 <= in8 <= 122, 97 <= in9 <= 122
+```
+This is not right. Explanation: The given set has individual inequalities for each variable, while the predicted set has combined inequalities for all variables.
+############################################################
+CASUAL:
+
+The observation seems to be that the constraints for each input (denoted by inX, where X ranges from 0 to N-1) are presented in an exact format, and that format is that the upper bound appears first (inX <= 122), and then comes the lower bound (inX >= 97). While these two sets of constraints are mathematically equivalent, the order of presentation and the separate listing of upper and lower limits for each input seems to be the standard followed in your program. So, my previous generalization needs a small adjustment to reflect this correct order and format.
+
+FORMAL:
+
+For any given number of N inputs, the conditions for each input inX are as follows:
+
+- The subscript X of inX ranges from 0 to N-1. 
+- for each value of X, instead of 97 <= inX <= 122, the correct format is as follows:
+  - inX <= 122 
+  - inX >= 97 
+
+This prediction holds true for all the newly provided examples.
+############################################################
+                    ATTEMPT NUMBER 2
+############################################################
+Here is the correct set:
+```
+in7 <= 122, in7 >= 97, in6 <= 122, in6 >= 97, in5 <= 122, in5 >= 97, in4 <= 122, in4 >= 97, in3 <= 122, in3 >= 97, in2 <= 122, in2 >= 97, in1 <= 122, in1 >= 97, in0 <= 122, in0 >= 97
+```
+
+Here is the predicted set:
+```
+'in0 <= 122', 'in0 >= 97', 'in1 <= 122', 'in1 >= 97', 'in2 <= 122', 'in2 >= 97', 'in3 <= 122', 'in3 >= 97', 'in4 <= 122', 'in4 >= 97', 'in5 <= 122', 'in5 >= 97', 'in6 <= 122', 'in6 >= 97', 'in7 <= 122', 'in7 >= 97'
+```
+############################################################
+Here is the correct set:
+```
+in9 <= 122, in9 >= 97, in8 <= 122, in8 >= 97, in7 <= 122, in7 >= 97, in6 <= 122, in6 >= 97, in5 <= 122, in5 >= 97, in4 <= 122, in4 >= 97, in3 <= 122, in3 >= 97, in2 <= 122, in2 >= 97, in1 <= 122, in1 >= 97, in0 <= 122, in0 >= 97
+```
+
+Here is the predicted set:
+```
+'in0 <= 122', 'in0 >= 97', 'in1 <= 122', 'in1 >= 97', 'in2 <= 122', 'in2 >= 97', 'in3 <= 122', 'in3 >= 97', 'in4 <= 122', 'in4 >= 97', 'in5 <= 122', 'in5 >= 97', 'in6 <= 122', 'in6 >= 97', 'in7 <= 122', 'in7 >= 97', 'in8 <= 122', 'in8 >= 97', 'in9 <= 122', 'in9 >= 97'
+```
+############################################################
+DONE WITH THAT EXAMPLE

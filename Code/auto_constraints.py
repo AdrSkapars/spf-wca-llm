@@ -5,9 +5,10 @@ import time
 import subprocess
 
 import openai
-openai.api_key = "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"
-GENERAL_MODEL = "gpt-4"
-# GENERAL_MODEL = "gpt-3.5-turbo-1106"
+# openai.api_key = "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" # adrians
+openai.api_key = "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" # youchengs
+# GENERAL_MODEL = "gpt-4"
+GENERAL_MODEL = "gpt-3.5-turbo-1106"
 
 def get_response(history, prompt, model=GENERAL_MODEL):
 	# History is the chat log so far thats submitted to GPT for context
@@ -25,7 +26,7 @@ def get_response(history, prompt, model=GENERAL_MODEL):
 			history.append({"role": "assistant", "content": response['choices'][0]['message']['content']})
 			return response
 		except Exception as e:
-			print("--gpt error--")
+			print("(gpt error)")
 			print(e)
 			if str(e).startswith("This model's maximum context length"):
 				# Tokens per minute rate has not been exceeded, just message itself is too long to input
@@ -51,17 +52,17 @@ prompts = {
 	"get_gen_end": "\n\nGeneralise what makes the set of constraints valid such that we can recover a valid set for N inputs. Don't overfit the data here but also dont oversimplify to the point of trivialness. Make sure none of the given examples contradict your generalisation.",
 	"get_gen_end_code1": "\n\nUse this code template to formally express the generalisation for N constraints:\n```python\n",
 	"get_gen_end_code2": "```\n\nEach inequality is usually in the form \"x op y\" where x, y are some variable, constant or some formula of variables and/ or constants, and op is an operation or inequality.",
-	"apply_gen_sys": "Always respond first with a step by step application of the generalisation (under the heading 'WORKING OUT', all caps), then with the final answer (under the heading 'ANSWER', all caps). Make no further comments after the answer section, like 'This is what the generalisation says should hold' for example, just stop.",
+	"apply_gen_sys": "Always respond first with a step by step application of the generalisation (under the heading 'WORKING OUT', all caps), then with the final answer (under the heading 'ANSWER', all caps), giving the answer as a comma seperated list of constraints without any other natural language like 'here is the set'. If the answer is the empty set just put 'None' as the answer. Make no further comments after the answer section, like 'This is what the generalisation says should hold' for example, just stop.",
 	"apply_gen_start": "I have a generalisation definining a set of inequalities for a set of variables. The definition is general for an arbitrary N amount of variables. Here is the generalisation:\n\n```\n",
 	"compare_sys": "Always respond first with your thinking process (under the heading 'THINKING', all caps), then with the final answer of 'MATCHES'(all caps) if matches or 'DIFFERENT'(all caps) if doesnt match (under the heading 'ANSWER', all caps), then reiterate the place/ reason it does not match  (under the heading 'REASON', all caps).", 
-	"compare_start": "I have two sets of inequalities over variables. Tell me if these two sets are the same or not, and how they differ if they do. Ignore differences in formatting (like spaces, newline characters and exact variable names) though the numbers associated with variable names should be the same. 'None' is equivalent to '' or the empty set/ string. Try to keep your final reasons short but not generic and without using bullet points or numbered lists.\n\n",
+	"compare_start": "I have two sets of inequalities over variables. Tell me if these two sets are the same or not, and how they differ if they do. Ignore the order of constraints and differences in formatting (e.g spaces, newline characters and exact variable names ('s_0', 's0', 's(0)', '\{s_0\}' and so on are all the same), also ignore any text that isnt a constraints like 'here is the set:') though the numbers associated with variable names should be the same. 'There are no constraints' or 'None' or anything like that is equivalent to '' or the empty set/ string. If the only difference between the two is formatting then they actually match. They're only different if one set is bigger than the other or if they contain constraints that aren't in the other. Try to keep your final reasons short but not generic and without using bullet points or numbered lists.\n\n",
 	"new_gen_start_code": "I have run your code for several concrete values of N. Some of the outputs were not correct. Change your generalisation and code to account for the following outputs (Remember to always structure your reply with the headings 'CASUAL' and 'FORMAL').\n\n",
 	"new_gen_start_llm": "Remember to always structure your reply with the same headings. I have applied you generalisation for several concrete values of N. Some of the outputs were not correct. Change your generalisation to account for the following outputs (Remember to always structure your reply with the headings 'CASUAL' and 'FORMAL').\n\n",
 }
-
+	# "/home/adrians/Documents/Masters/Java_PathFinder/spf-wca/results_own/SameHundred/verbose/heuristic/own.SameHundred.csv",
+	# "/home/adrians/Documents/Masters/Java_PathFinder/spf-wca/results_own/SameLowercase/verbose/heuristic/own.SameLowercase.csv",
+	
 csv_files = [
-	"/home/adrians/Documents/Masters/Java_PathFinder/spf-wca/results_own/SameHundred/verbose/heuristic/own.SameHundred.csv",
-	"/home/adrians/Documents/Masters/Java_PathFinder/spf-wca/results_own/SameLowercase/verbose/heuristic/own.SameLowercase.csv",
 	"/home/adrians/Documents/Masters/Java_PathFinder/spf-wca/results_own/SameOnlyThird/verbose/heuristic/own.SameOnlyThird.csv",
 	"/home/adrians/Documents/Masters/Java_PathFinder/spf-wca/results_own/SameString/verbose/heuristic/own.SameString.csv",
 	"/home/adrians/Documents/Masters/Java_PathFinder/spf-wca/results_own/SimpleAscendingLast/verbose/heuristic/own.SimpleAscendingLast.csv",
@@ -91,8 +92,8 @@ csv_files = [
 #	"/home/adrians/Documents/Masters/Java_PathFinder/spf-wca/results/tsp_results/verbose/heuristic/wise.Tsp.csv",
 
 
-# USING_CODE = False
-USING_CODE = True
+USING_CODE = False
+# USING_CODE = True
 MAX_EXAMPLES = 10
 MAX_ATTEMPTS = 10
 experiment_stats = {}
@@ -206,16 +207,18 @@ for file_path in csv_files:
 				# print_and_save(conversation, content_apply_gen)
 
 				answer_limit = 10
-				answer_index_error = "ANSWER" in content_apply_gen and len(content_apply_gen.split("ANSWER")[1]) == 0
-				while ("ANSWER" not in content_apply_gen or answer_index_error) and answer_limit != 0:
+				answer_index_error = "ANSWER" in content_apply_gen and len(content_apply_gen.split("ANSWER")[1].replace("\n", "").replace(":", "").replace(" ", "")) == 0
+				while (("ANSWER" not in content_apply_gen) or answer_index_error) and answer_limit != 0:
 					# Response not using correct headings, repeat formatting instructions to LLM
 					# print_and_save(conversation, prompts["apply_gen_sys"])
+					print("(bad answer)")
+					# response_apply_gen = get_response(llm_apply_gen, "Please provide the comma seperated answer under the heading 'ANSWER'")
 					response_apply_gen = get_response(llm_apply_gen, prompts["apply_gen_sys"])
 					content_apply_gen = response_apply_gen['choices'][0]['message']['content']
 					# print_and_save(conversation, content_apply_gen)
 					answer_limit -= 1
 				prediction = content_apply_gen.split("ANSWER")[1]
-				while prediction[0] in ["\n", ":", " "]:
+				while len(prediction) != 0 and prediction[0] in ["\n", ":", " "]:
 					prediction = prediction[1:]
 				example_eval["prediction"] = prediction
 
@@ -272,9 +275,9 @@ for file_path in csv_files:
 			prompt_compare += "```\n" + constraints[example_id] + "\n```\n\n"
 			prompt_compare += "Here is the predicted set:\n"
 			prompt_compare += "```\n" + prediction + "\n```"
-			# print_and_save(conversation, prompt_compare)
+			print_and_save(conversation, prompt_compare[len(prompts["compare_start"]):])
 
-			response_compare = get_response(llm_compare, prompt_compare, model="gpt-3.5-turbo")
+			response_compare = get_response(llm_compare, prompt_compare, model="gpt-3.5-turbo-1106")
 			content_compare = response_compare['choices'][0]['message']['content']
 			# print_and_save(conversation, content_compare)
 
@@ -342,7 +345,7 @@ for file_path in csv_files:
 
 		response_get_gen = get_response(llm_get_gen, prompt_get_gen)
 		while response_get_gen == -1:
-			print("TRUNCATING CONVERSATION")
+			print("(truncating conversation)")
 			llm_get_gen.pop(1)
 			llm_get_gen.pop(1)
 			llm_get_gen.pop(1)
@@ -363,7 +366,7 @@ for file_path in csv_files:
 			print_and_save(conversation, gen_message)
 			response_get_gen = get_response(llm_get_gen, gen_message)
 			while response_get_gen == -1:
-				print("TRUNCATING CONVERSATION")
+				print("(truncating conversation)")
 				llm_get_gen.pop(1)
 				llm_get_gen.pop(1)
 				llm_get_gen.pop(1)
@@ -387,7 +390,7 @@ for file_path in csv_files:
 			if "return" in generalisation.split("\n")[-1]:
 				generalisation += "\n\nN = int(input(\"N=\"))\nconstraints = generate_constraints(N)\nconstraints = \", \".join(constraints)\nprint(constraints)"
 
-	print_and_save(conversation, "DONE WITH THAT EXAMPLE")
+	print_and_save(conversation, "(done with that example)")
 
 
 	# Save this files conversation and statistics

@@ -1,0 +1,62 @@
+
+############################################################
+                    GET INITIAL GENERALISATION
+############################################################
+I'm experimenting with a program and trying to find what makes an increasingly large set of inputs valid. So far I have found one possible set of correct constraints/ conditions (not the only one) which define a valid input. Here they are.
+
+Valid constraints for 1 inputs (N=1):
+None
+
+Valid constraints for 2 inputs (N=2):
+None
+
+Valid constraints for 3 inputs (N=3):
+in2 == 0
+
+Valid constraints for 4 inputs (N=4):
+in2 == 0
+
+Valid constraints for 5 inputs (N=5):
+in2 == 0
+
+Valid constraints for 6 inputs (N=6):
+in2 == 0
+
+Valid constraints for 7 inputs (N=7):
+in2 == 0
+
+Valid constraints for 8 inputs (N=8):
+in2 == 0
+
+Valid constraints for 9 inputs (N=9):
+in2 == 0
+
+Valid constraints for 10 inputs (N=10):
+in2 == 0
+
+Generalise what makes the set of constraints valid such that we can recover a valid set for N inputs. Don't overfit the data here but also dont oversimplify to the point of trivialness. Make sure none of the given examples contradict your generalisation.
+############################################################
+CASUAL:
+
+Looking at the provided list of constraints, it seems like there aren't any constraints on the inputs when there is either only 1 input or 2 inputs (N=1 or N=2). However, from N=3 through N=10, a consistent constraint emerges: the second input must always equal zero (in2 == 0). Therefore, it appears that this constraint could apply generally for any number of inputs greater than 2. There's no given example here that contradicts this notion.
+
+FORMAL:
+
+For an N number of inputs where N > 2, the constraint in2 == 0 would be valid. For N <= 2, there are no constraints on the inputs. This can be expressed as:
+
+If N > 2, then in2 == 0.
+If N <= 2, then no constraints apply.
+############################################################
+                    ATTEMPT NUMBER 1
+############################################################
+Here is the correct set:
+```
+in2 == 0
+```
+
+Here is the predicted set:
+```
+in2 == 0.
+```
+############################################################
+DONE WITH THAT EXAMPLE

@@ -1,0 +1,338 @@
+
+############################################################
+                    GET INITIAL GENERALISATION
+############################################################
+I'm experimenting with a program and trying to find what makes an increasingly large set of inputs valid. So far I have found one possible set of correct constraints/ conditions (not the only one) which define a valid input. Here they are.
+
+Valid constraints for 1 inputs (N=1):
+put0_0 != get0, 0 == ((get1 + get0) % 1), 0 == ((put0_1 + put0_0) % 1)
+
+Valid constraints for 2 inputs (N=2):
+put1_0 != get0, put0_0 != get0, 0 == ((get1 + get0) % 2), 0 == ((put1_1 + put1_0) % 2), 0 == ((put0_1 + put0_0) % 2)
+
+Valid constraints for 3 inputs (N=3):
+put2_0 != get0, put1_0 != get0, put0_0 != get0, 0 == ((get1 + get0) % 3), 0 == ((put2_1 + put2_0) % 3), 0 == ((put1_1 + put1_0) % 3), 0 == ((put0_1 + put0_0) % 3)
+
+Valid constraints for 4 inputs (N=4):
+put3_0 != get0, put2_0 != get0, put1_0 != get0, put0_0 != get0, 0 == ((get1 + get0) % 4), 0 == ((put3_1 + put3_0) % 4), 0 == ((put2_1 + put2_0) % 4), 0 == ((put1_1 + put1_0) % 4), 0 == ((put0_1 + put0_0) % 4)
+
+Valid constraints for 5 inputs (N=5):
+put4_0 != get0, put3_0 != get0, put2_0 != get0, put1_0 != get0, put0_0 != get0, 0 == ((get1 + get0) % 5), 0 == ((put4_1 + put4_0) % 5), 0 == ((put3_1 + put3_0) % 5), 0 == ((put2_1 + put2_0) % 5), 0 == ((put1_1 + put1_0) % 5), 0 == ((put0_1 + put0_0) % 5)
+
+Valid constraints for 6 inputs (N=6):
+put5_0 != get0, put4_0 != get0, put3_0 != get0, put2_0 != get0, put1_0 != get0, put0_0 != get0, 0 == ((get1 + get0) % 6), 0 == ((put5_1 + put5_0) % 6), 0 == ((put4_1 + put4_0) % 6), 0 == ((put3_1 + put3_0) % 6), 0 == ((put2_1 + put2_0) % 6), 0 == ((put1_1 + put1_0) % 6), 0 == ((put0_1 + put0_0) % 6)
+
+Valid constraints for 7 inputs (N=7):
+put6_0 != get0, put5_0 != get0, put4_0 != get0, put3_0 != get0, put2_0 != get0, put1_0 != get0, put0_0 != get0, 0 == ((get1 + get0) % 7), 0 == ((put6_1 + put6_0) % 7), 0 == ((put5_1 + put5_0) % 7), 0 == ((put4_1 + put4_0) % 7), 0 == ((put3_1 + put3_0) % 7), 0 == ((put2_1 + put2_0) % 7), 0 == ((put1_1 + put1_0) % 7), 0 == ((put0_1 + put0_0) % 7)
+
+Valid constraints for 8 inputs (N=8):
+put7_0 != get0, put6_0 != get0, put5_0 != get0, put4_0 != get0, put3_0 != get0, put2_0 != get0, put1_0 != get0, put0_0 != get0, 0 == ((get1 + get0) % 8), 0 == ((put7_1 + put7_0) % 8), 0 == ((put6_1 + put6_0) % 8), 0 == ((put5_1 + put5_0) % 8), 0 == ((put4_1 + put4_0) % 8), 0 == ((put3_1 + put3_0) % 8), 0 == ((put2_1 + put2_0) % 8), 0 == ((put1_1 + put1_0) % 8), 0 == ((put0_1 + put0_0) % 8)
+
+Valid constraints for 9 inputs (N=9):
+put8_0 != get0, put7_0 != get0, put6_0 != get0, put5_0 != get0, put4_0 != get0, put3_0 != get0, put2_0 != get0, put1_0 != get0, put0_0 != get0, 0 == ((get1 + get0) % 9), 0 == ((put8_1 + put8_0) % 9), 0 == ((put7_1 + put7_0) % 9), 0 == ((put6_1 + put6_0) % 9), 0 == ((put5_1 + put5_0) % 9), 0 == ((put4_1 + put4_0) % 9), 0 == ((put3_1 + put3_0) % 9), 0 == ((put2_1 + put2_0) % 9), 0 == ((put1_1 + put1_0) % 9), 0 == ((put0_1 + put0_0) % 9)
+
+Valid constraints for 10 inputs (N=10):
+put9_0 != get0, put8_0 != get0, put7_0 != get0, put6_0 != get0, put5_0 != get0, put4_0 != get0, put3_0 != get0, put2_0 != get0, put1_0 != get0, put0_0 != get0, 0 == ((get1 + get0) % 10), 0 == ((put9_1 + put9_0) % 10), 0 == ((put8_1 + put8_0) % 10), 0 == ((put7_1 + put7_0) % 10), 0 == ((put6_1 + put6_0) % 10), 0 == ((put5_1 + put5_0) % 10), 0 == ((put4_1 + put4_0) % 10), 0 == ((put3_1 + put3_0) % 10), 0 == ((put2_1 + put2_0) % 10), 0 == ((put1_1 + put1_0) % 10), 0 == ((put0_1 + put0_0) % 10)
+
+Generalise what makes the set of constraints valid such that we can recover a valid set for N inputs. Don't overfit the data here but also dont oversimplify to the point of trivialness. Make sure none of the given examples contradict your generalisation.
+############################################################
+CASUAL
+
+Alright, let's break this down. 
+
+Based on your data, we can see a couple patterns emerging. 
+
+Firstly, for a set of N inputs, there are N constraints of the form put(i)_0 != get0, where i ranges from 0 to N-1. This implies that for any given input, the value inserted at position 0 should be different from the value we're trying to get (get0).
+
+In addition to that, there are also N+1 constraints of the form 0 == ((put(i)_1 + put(i)_0) % N), where i ranges from 0 to N-1, and one more for the get values ((get1 + get0) % N). These constraints indicate that the sum of the values inserted into a specific spot and the value we're trying to get must be divisible by the total number of inputs (N). 
+
+In summary, for any given number of inputs N, the constraints are:
+
+1. The first value of each input is different from the get0 value.
+2. The sum of the two inserted values for each input and for the get values, when divided by N, must give a remainder of 0.
+
+FORMAL
+
+Generalizing the constraints for N inputs:
+
+1. For i from 0 to N-1, put(i)_0 != get0, ensuring the first value of each input is different from get0.
+2. For each i from 0 to N-1, 0 == ((put(i)_1 + put(i)_0) % N), ensuring the sum of the inserted values in each pair is divisible by the number of inputs. 
+3. 0 == ((get1 + get0) % N), ensuring that the sum of the get values is divisible by the number of inputs.
+############################################################
+                    ATTEMPT NUMBER 1
+############################################################
+Here is the correct set:
+```
+put0_0 != get0, 0 == ((get1 + get0) % 1), 0 == ((put0_1 + put0_0) % 1)
+```
+
+Here is the predicted set:
+```
+put(0)_0 != get0, None, None
+```
+############################################################
+Here is the correct set:
+```
+put1_0 != get0, put0_0 != get0, 0 == ((get1 + get0) % 2), 0 == ((put1_1 + put1_0) % 2), 0 == ((put0_1 + put0_0) % 2)
+```
+
+Here is the predicted set:
+```
+put(0)_0 != get0, put(1)_0 != get0, 0 == ((put(0)_1 + put(0)_0) % 2), 0 == ((put(1)_1 + put(1)_0) % 2), 0 == ((get1 + get0) % 2)
+```
+############################################################
+Here is the correct set:
+```
+put2_0 != get0, put1_0 != get0, put0_0 != get0, 0 == ((get1 + get0) % 3), 0 == ((put2_1 + put2_0) % 3), 0 == ((put1_1 + put1_0) % 3), 0 == ((put0_1 + put0_0) % 3)
+```
+
+Here is the predicted set:
+```
+put(0)_0 != get0, put(1)_0 != get0, put(2)_0 != get0, 0 == ((put(0)_1 + put(0)_0) % 3), 0 == ((put(1)_1 + put(1)_0) % 3), 0 == ((put(2)_1 + put(2)_0) % 3), 0 == ((get1 + get0) % 3)
+```
+############################################################
+Here is the correct set:
+```
+put3_0 != get0, put2_0 != get0, put1_0 != get0, put0_0 != get0, 0 == ((get1 + get0) % 4), 0 == ((put3_1 + put3_0) % 4), 0 == ((put2_1 + put2_0) % 4), 0 == ((put1_1 + put1_0) % 4), 0 == ((put0_1 + put0_0) % 4)
+```
+
+Here is the predicted set:
+```
+put(0)_0 != get0, put(1)_0 != get0, put(2)_0 != get0, put(3)_0 != get0, 0 == ((put(0)_1 + put(0)_0) % 4), 0 == ((put(1)_1 + put(1)_0) % 4), 0 == ((put(2)_1 + put(2)_0) % 4), 0 == ((put(3)_1 + put(3)_0) % 4), 0 == ((get1 + get0) % 4)
+```
+############################################################
+Here is the correct set:
+```
+put4_0 != get0, put3_0 != get0, put2_0 != get0, put1_0 != get0, put0_0 != get0, 0 == ((get1 + get0) % 5), 0 == ((put4_1 + put4_0) % 5), 0 == ((put3_1 + put3_0) % 5), 0 == ((put2_1 + put2_0) % 5), 0 == ((put1_1 + put1_0) % 5), 0 == ((put0_1 + put0_0) % 5)
+```
+
+Here is the predicted set:
+```
+put(0)_0 != get0, put(1)_0 != get0, put(2)_0 != get0, put(3)_0 != get0, put(4)_0 != get0, 0 == ((put(0)_1 + put(0)_0) % 5), 0 == ((put(1)_1 + put(1)_0) % 5), 0 == ((put(2)_1 + put(2)_0) % 5), 0 == ((put(3)_1 + put(3)_0) % 5), 0 == ((put(4)_1 + put(4)_0) % 5), 0 == ((get1 + get0) % 5)
+```
+############################################################
+Here is the correct set:
+```
+put5_0 != get0, put4_0 != get0, put3_0 != get0, put2_0 != get0, put1_0 != get0, put0_0 != get0, 0 == ((get1 + get0) % 6), 0 == ((put5_1 + put5_0) % 6), 0 == ((put4_1 + put4_0) % 6), 0 == ((put3_1 + put3_0) % 6), 0 == ((put2_1 + put2_0) % 6), 0 == ((put1_1 + put1_0) % 6), 0 == ((put0_1 + put0_0) % 6)
+```
+
+Here is the predicted set:
+```
+put(0)_0 != get0, put(1)_0 != get0, put(2)_0 != get0, put(3)_0 != get0, put(4)_0 != get0, put(5)_0 != get0, 0 == ((put(0)_1 + put(0)_0) % 6), 0 == ((put(1)_1 + put(1)_0) % 6), 0 == ((put(2)_1 + put(2)_0) % 6), 0 == ((put(3)_1 + put(3)_0) % 6), 0 == ((put(4)_1 + put(4)_0) % 6), 0 == ((put(5)_1 + put(5)_0) % 6), 0 == ((get1 + get0) % 6)
+```
+############################################################
+Here is the correct set:
+```
+put6_0 != get0, put5_0 != get0, put4_0 != get0, put3_0 != get0, put2_0 != get0, put1_0 != get0, put0_0 != get0, 0 == ((get1 + get0) % 7), 0 == ((put6_1 + put6_0) % 7), 0 == ((put5_1 + put5_0) % 7), 0 == ((put4_1 + put4_0) % 7), 0 == ((put3_1 + put3_0) % 7), 0 == ((put2_1 + put2_0) % 7), 0 == ((put1_1 + put1_0) % 7), 0 == ((put0_1 + put0_0) % 7)
+```
+
+Here is the predicted set:
+```
+put(0)_0 != get0, 
+put(1)_0 != get0, 
+put(2)_0 != get0, 
+put(3)_0 != get0, 
+put(4)_0 != get0, 
+put(5)_0 != get0, 
+put(6)_0 != get0, 
+0 == ((put(0)_1 + put(0)_0) % 7), 
+0 == ((put(1)_1 + put(1)_0) % 7), 
+0 == ((put(2)_1 + put(2)_0) % 7), 
+0 == ((put(3)_1 + put(3)_0) % 7), 
+0 == ((put(4)_1 + put(4)_0) % 7), 
+0 == ((put(5)_1 + put(5)_0) % 7), 
+0 == ((put(6)_1 + put(6)_0) % 7),
+0 == ((get1 + get0) % 7)
+```
+############################################################
+Here is the correct set:
+```
+put7_0 != get0, put6_0 != get0, put5_0 != get0, put4_0 != get0, put3_0 != get0, put2_0 != get0, put1_0 != get0, put0_0 != get0, 0 == ((get1 + get0) % 8), 0 == ((put7_1 + put7_0) % 8), 0 == ((put6_1 + put6_0) % 8), 0 == ((put5_1 + put5_0) % 8), 0 == ((put4_1 + put4_0) % 8), 0 == ((put3_1 + put3_0) % 8), 0 == ((put2_1 + put2_0) % 8), 0 == ((put1_1 + put1_0) % 8), 0 == ((put0_1 + put0_0) % 8)
+```
+
+Here is the predicted set:
+```
+put(0)_0 != get0, put(1)_0 != get0, put(2)_0 != get0, put(3)_0 != get0, put(4)_0 != get0, put(5)_0 != get0, put(6)_0 != get0, put(7)_0 != get0, 0 == ((put(0)_1 + put(0)_0) % 8), 0 == ((put(1)_1 + put(1)_0) % 8), 0 == ((put(2)_1 + put(2)_0) % 8), 0 == ((put(3)_1 + put(3)_0) % 8), 0 == ((put(4)_1 + put(4)_0) % 8), 0 == ((put(5)_1 + put(5)_0) % 8), 0 == ((put(6)_1 + put(6)_0) % 8), 0 == ((put(7)_1 + put(7)_0) % 8), 0 == ((get1 + get0) % 8)
+```
+############################################################
+Here is the correct set:
+```
+put8_0 != get0, put7_0 != get0, put6_0 != get0, put5_0 != get0, put4_0 != get0, put3_0 != get0, put2_0 != get0, put1_0 != get0, put0_0 != get0, 0 == ((get1 + get0) % 9), 0 == ((put8_1 + put8_0) % 9), 0 == ((put7_1 + put7_0) % 9), 0 == ((put6_1 + put6_0) % 9), 0 == ((put5_1 + put5_0) % 9), 0 == ((put4_1 + put4_0) % 9), 0 == ((put3_1 + put3_0) % 9), 0 == ((put2_1 + put2_0) % 9), 0 == ((put1_1 + put1_0) % 9), 0 == ((put0_1 + put0_0) % 9)
+```
+
+Here is the predicted set:
+```
+put(0)_0 != get0, put(1)_0 != get0, put(2)_0 != get0, put(3)_0 != get0, put(4)_0 != get0, put(5)_0 != get0, put(6)_0 != get0, put(7)_0 != get0, put(8)_0 != get0,
+0 == ((put(0)_1 + put(0)_0) % 9), 0 == ((put(1)_1 + put(1)_0) % 9), 0 == ((put(2)_1 + put(2)_0) % 9), 0 == ((put(3)_1 + put(3)_0) % 9), 0 == ((put(4)_1 + put(4)_0) % 9), 0 == ((put(5)_1 + put(5)_0) % 9), 0 == ((put(6)_1 + put(6)_0) % 9), 0 == ((put(7)_1 + put(7)_0) % 9), 0 == ((put(8)_1 + put(8)_0) % 9),
+0 == ((get1 + get0) % 9)
+```
+############################################################
+Here is the correct set:
+```
+put9_0 != get0, put8_0 != get0, put7_0 != get0, put6_0 != get0, put5_0 != get0, put4_0 != get0, put3_0 != get0, put2_0 != get0, put1_0 != get0, put0_0 != get0, 0 == ((get1 + get0) % 10), 0 == ((put9_1 + put9_0) % 10), 0 == ((put8_1 + put8_0) % 10), 0 == ((put7_1 + put7_0) % 10), 0 == ((put6_1 + put6_0) % 10), 0 == ((put5_1 + put5_0) % 10), 0 == ((put4_1 + put4_0) % 10), 0 == ((put3_1 + put3_0) % 10), 0 == ((put2_1 + put2_0) % 10), 0 == ((put1_1 + put1_0) % 10), 0 == ((put0_1 + put0_0) % 10)
+```
+
+Here is the predicted set:
+```
+put(0)_0 != get0, put(1)_0 != get0, put(2)_0 != get0, put(3)_0 != get0, put(4)_0 != get0, put(5)_0 != get0, put(6)_0 != get0, put(7)_0 != get0, put(8)_0 != get0, put(9)_0 != get0, 0 == (put(0)_1 + put(0)_0) % 10, 0 == (put(1)_1 + put(1)_0) % 10, 0 == (put(2)_1 + put(2)_0) % 10, 0 == (put(3)_1 + put(3)_0) % 10, 0 == (put(4)_1 + put(4)_0) % 10, 0 == (put(5)_1 + put(5)_0) % 10, 0 == (put(6)_1 + put(6)_0) % 10, 0 == (put(7)_1 + put(7)_0) % 10, 0 == (put(8)_1 + put(8)_0) % 10, 0 == (put(9)_1 + put(9)_0) % 10, 0 == (get1 + get0) % 10.
+```
+############################################################
+                    #1  GET NEW GENERALISATION
+############################################################
+Remember to always structure your reply with the same headings. I have applied you generalisation for several concrete values of N. Some of the outputs were not correct. Change your generalisation to account for the following outputs (Remember to always structure your reply with the headings 'CASUAL' and 'FORMAL').
+
+For N=1, the output constraint set should be:
+```
+put0_0 != get0, 0 == ((get1 + get0) % 1), 0 == ((put0_1 + put0_0) % 1)
+```
+But your generalisation implies the set:
+```
+put(0)_0 != get0, None, None
+```
+This is not right. Explanation: The predicted set only has one constraint, while the correct set has three constraints. Therefore, they do not match.
+
+For N=2, the output constraint set should be:
+```
+put1_0 != get0, put0_0 != get0, 0 == ((get1 + get0) % 2), 0 == ((put1_1 + put1_0) % 2), 0 == ((put0_1 + put0_0) % 2)
+```
+But your generalisation implies the set:
+```
+put(0)_0 != get0, put(1)_0 != get0, 0 == ((put(0)_1 + put(0)_0) % 2), 0 == ((put(1)_1 + put(1)_0) % 2), 0 == ((get1 + get0) % 2)
+```
+This is not right. Explanation: The variable names in the correct set and the predicted set do not match.
+
+For N=3, the generalisation output correctly fits the given data
+
+For N=4, the generalisation output correctly fits the given data
+
+For N=5, the generalisation output correctly fits the given data
+
+For N=6, the generalisation output correctly fits the given data
+
+For N=7, the output constraint set should be:
+```
+put6_0 != get0, put5_0 != get0, put4_0 != get0, put3_0 != get0, put2_0 != get0, put1_0 != get0, put0_0 != get0, 0 == ((get1 + get0) % 7), 0 == ((put6_1 + put6_0) % 7), 0 == ((put5_1 + put5_0) % 7), 0 == ((put4_1 + put4_0) % 7), 0 == ((put3_1 + put3_0) % 7), 0 == ((put2_1 + put2_0) % 7), 0 == ((put1_1 + put1_0) % 7), 0 == ((put0_1 + put0_0) % 7)
+```
+But your generalisation implies the set:
+```
+put(0)_0 != get0, 
+put(1)_0 != get0, 
+put(2)_0 != get0, 
+put(3)_0 != get0, 
+put(4)_0 != get0, 
+put(5)_0 != get0, 
+put(6)_0 != get0, 
+0 == ((put(0)_1 + put(0)_0) % 7), 
+0 == ((put(1)_1 + put(1)_0) % 7), 
+0 == ((put(2)_1 + put(2)_0) % 7), 
+0 == ((put(3)_1 + put(3)_0) % 7), 
+0 == ((put(4)_1 + put(4)_0) % 7), 
+0 == ((put(5)_1 + put(5)_0) % 7), 
+0 == ((put(6)_1 + put(6)_0) % 7),
+0 == ((get1 + get0) % 7)
+```
+This is not right. Explanation: The variable naming conventions and the order of constraints are different between the two sets.
+
+For N=8, the output constraint set should be:
+```
+put7_0 != get0, put6_0 != get0, put5_0 != get0, put4_0 != get0, put3_0 != get0, put2_0 != get0, put1_0 != get0, put0_0 != get0, 0 == ((get1 + get0) % 8), 0 == ((put7_1 + put7_0) % 8), 0 == ((put6_1 + put6_0) % 8), 0 == ((put5_1 + put5_0) % 8), 0 == ((put4_1 + put4_0) % 8), 0 == ((put3_1 + put3_0) % 8), 0 == ((put2_1 + put2_0) % 8), 0 == ((put1_1 + put1_0) % 8), 0 == ((put0_1 + put0_0) % 8)
+```
+But your generalisation implies the set:
+```
+put(0)_0 != get0, put(1)_0 != get0, put(2)_0 != get0, put(3)_0 != get0, put(4)_0 != get0, put(5)_0 != get0, put(6)_0 != get0, put(7)_0 != get0, 0 == ((put(0)_1 + put(0)_0) % 8), 0 == ((put(1)_1 + put(1)_0) % 8), 0 == ((put(2)_1 + put(2)_0) % 8), 0 == ((put(3)_1 + put(3)_0) % 8), 0 == ((put(4)_1 + put(4)_0) % 8), 0 == ((put(5)_1 + put(5)_0) % 8), 0 == ((put(6)_1 + put(6)_0) % 8), 0 == ((put(7)_1 + put(7)_0) % 8), 0 == ((get1 + get0) % 8)
+```
+This is not right. Explanation: The predicted set and the correct set do not match. They differ in the order of constraints associated with the variables. Also, the final constraint (0 == ((get1 + get0) % 8)) is present in the correct set but is absent from the predicted set. Therefore, the sets do not match.
+
+For N=9, the generalisation output correctly fits the given data
+
+For N=10, the generalisation output correctly fits the given data
+############################################################
+CASUAL
+
+Got it, the generalisation needs to be amended because it does not produce the correct constraints for all values of N. The problem lies in the ordering of the constraints, the prediction is not completely matching with your output. 
+
+Having looked at the constraints for different values of N, it is evident that we need to generate the constraints in decreasing order for the put(i)_ values starting from N-1 to 0. We start from put(N-1)_0 != get0 and work our way down to put0_0 != get0. Then we add the constraint for get values, which should also be in the order of N. After that, we calculate the constraints for the sum of put values, again starting from N-1 to 0. 
+
+To overcome the discrepancy of the constraints for N = 1, we will have to include the additional modulo constraints in the generalisation to get the correct output.
+
+FORMAL
+
+Revised generalisation for constraints for N inputs is:
+
+1. For each i from N-1 to 0 in decreasing order, generate the constraint: put(i)_0 != get0
+2. Append the constraint: 0 == ((get1 + get0) % N)
+3. For each i from N-1 to 0 in decreasing order, generate the constraint: 0 == ((put(i)_1 + put(i)_0) % N)
+############################################################
+                    ATTEMPT NUMBER 2
+############################################################
+Here is the correct set:
+```
+put0_0 != get0, 0 == ((get1 + get0) % 1), 0 == ((put0_1 + put0_0) % 1)
+```
+
+Here is the predicted set:
+```
+put(0)_0 != get0, 0 == ((get1 + get0) % 1), 0 == ((put(0)_1 + put(0)_0) % 1)
+```
+############################################################
+Here is the correct set:
+```
+put1_0 != get0, put0_0 != get0, 0 == ((get1 + get0) % 2), 0 == ((put1_1 + put1_0) % 2), 0 == ((put0_1 + put0_0) % 2)
+```
+
+Here is the predicted set:
+```
+put(1)_0 != get0, put(0)_0 != get0, 0 == ((get1 + get0) % 2), 0 == ((put(1)_1 + put(1)_0) % 2), 0 == ((put(0)_1 + put(0)_0) % 2)
+```
+############################################################
+Here is the correct set:
+```
+put2_0 != get0, put1_0 != get0, put0_0 != get0, 0 == ((get1 + get0) % 3), 0 == ((put2_1 + put2_0) % 3), 0 == ((put1_1 + put1_0) % 3), 0 == ((put0_1 + put0_0) % 3)
+```
+
+Here is the predicted set:
+```
+put(2)_0 != get0, put(1)_0 != get0, put(0)_0 != get0, 0 == ((get1 + get0) % 3), 0 == ((put(2)_1 + put(2)_0) % 3), 0 == ((put(1)_1 + put(1)_0) % 3), 0 == ((put(0)_1 + put(0)_0) % 3)
+```
+############################################################
+Here is the correct set:
+```
+put3_0 != get0, put2_0 != get0, put1_0 != get0, put0_0 != get0, 0 == ((get1 + get0) % 4), 0 == ((put3_1 + put3_0) % 4), 0 == ((put2_1 + put2_0) % 4), 0 == ((put1_1 + put1_0) % 4), 0 == ((put0_1 + put0_0) % 4)
+```
+
+Here is the predicted set:
+```
+put(3)_0 != get0, put(2)_0 != get0, put(1)_0 != get0, put(0)_0 != get0, 0 == ((get1 + get0) % 4), 0 == ((put(3)_1 + put(3)_0) % 4), 0 == ((put(2)_1 + put(2)_0) % 4), 0 == ((put(1)_1 + put(1)_0) % 4), 0 == ((put(0)_1 + put(0)_0) % 4)
+```
+############################################################
+Here is the correct set:
+```
+put5_0 != get0, put4_0 != get0, put3_0 != get0, put2_0 != get0, put1_0 != get0, put0_0 != get0, 0 == ((get1 + get0) % 6), 0 == ((put5_1 + put5_0) % 6), 0 == ((put4_1 + put4_0) % 6), 0 == ((put3_1 + put3_0) % 6), 0 == ((put2_1 + put2_0) % 6), 0 == ((put1_1 + put1_0) % 6), 0 == ((put0_1 + put0_0) % 6)
+```
+
+Here is the predicted set:
+```
+"put(5)_0 != get0", "put(4)_0 != get0", "put(3)_0 != get0", "put(2)_0 != get0", "put(1)_0 != get0", "put(0)_0 != get0", "0 == ((get1 + get0) % 6)", "0 == ((put(5)_1 + put(5)_0) % 6)", "0 == ((put(4)_1 + put(4)_0) % 6)", "0 == ((put(3)_1 + put(3)_0) % 6)", "0 == ((put(2)_1 + put(2)_0) % 6)", "0 == ((put(1)_1 + put(1)_0) % 6)", "0 == ((put(0)_1 + put(0)_0) % 6)"
+```
+############################################################
+Here is the correct set:
+```
+put6_0 != get0, put5_0 != get0, put4_0 != get0, put3_0 != get0, put2_0 != get0, put1_0 != get0, put0_0 != get0, 0 == ((get1 + get0) % 7), 0 == ((put6_1 + put6_0) % 7), 0 == ((put5_1 + put5_0) % 7), 0 == ((put4_1 + put4_0) % 7), 0 == ((put3_1 + put3_0) % 7), 0 == ((put2_1 + put2_0) % 7), 0 == ((put1_1 + put1_0) % 7), 0 == ((put0_1 + put0_0) % 7)
+```
+
+Here is the predicted set:
+```
+put(6)_0 != get0, put(5)_0 != get0, put(4)_0 != get0, put(3)_0 != get0, put(2)_0 != get0, put(1)_0 != get0, put(0)_0 != get0, 0 == ((get1 + get0) % 7), 0 == ((put(6)_1 + put(6)_0) % 7), 0 == ((put(5)_1 + put(5)_0) % 7), 0 == ((put(4)_1 + put(4)_0) % 7), 0 == ((put(3)_1 + put(3)_0) % 7), 0 == ((put(2)_1 + put(2)_0) % 7), 0 == ((put(1)_1 + put(1)_0) % 7), 0 == ((put(0)_1 + put(0)_0) % 7)
+```
+############################################################
+Here is the correct set:
+```
+put7_0 != get0, put6_0 != get0, put5_0 != get0, put4_0 != get0, put3_0 != get0, put2_0 != get0, put1_0 != get0, put0_0 != get0, 0 == ((get1 + get0) % 8), 0 == ((put7_1 + put7_0) % 8), 0 == ((put6_1 + put6_0) % 8), 0 == ((put5_1 + put5_0) % 8), 0 == ((put4_1 + put4_0) % 8), 0 == ((put3_1 + put3_0) % 8), 0 == ((put2_1 + put2_0) % 8), 0 == ((put1_1 + put1_0) % 8), 0 == ((put0_1 + put0_0) % 8)
+```
+
+Here is the predicted set:
+```
+"put(7)_0 != get0", "put(6)_0 != get0", "put(5)_0 != get0", "put(4)_0 != get0", "put(3)_0 != get0", "put(2)_0 != get0", "put(1)_0 != get0", "put(0)_0 != get0", "0 == ((get1 + get0) % 8)", "0 == ((put(7)_1 + put(7)_0) % 8)", "0 == ((put(6)_1 + put(6)_0) % 8)", "0 == ((put(5)_1 + put(5)_0) % 8)", "0 == ((put(4)_1 + put(4)_0) % 8)", "0 == ((put(3)_1 + put(3)_0) % 8)", "0 == ((put(2)_1 + put(2)_0) % 8)", "0 == ((put(1)_1 + put(1)_0) % 8)", "0 == ((put(0)_1 + put(0)_0) % 8)"
+```
+############################################################
+DONE WITH THAT EXAMPLE

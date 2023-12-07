@@ -1,0 +1,1737 @@
+
+############################################################
+                    GET INITIAL GENERALISATION
+############################################################
+I'm experimenting with a program and trying to find what makes an increasingly large set of inputs valid. So far I have found one possible set of correct constraints/ conditions (not the only one) which define a valid input. Here they are.
+
+Valid constraints for 1 inputs (N=1):
+None
+
+Valid constraints for 2 inputs (N=2):
+in1x0 == in0x1
+
+Valid constraints for 3 inputs (N=3):
+in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+
+Valid constraints for 4 inputs (N=4):
+in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+
+Valid constraints for 5 inputs (N=5):
+in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+
+Valid constraints for 6 inputs (N=6):
+in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+
+Valid constraints for 7 inputs (N=7):
+in6x5 == in5x6, in6x4 == in4x6, in6x3 == in3x6, in6x2 == in2x6, in6x1 == in1x6, in6x0 == in0x6, in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+
+Valid constraints for 8 inputs (N=8):
+in7x6 == in6x7, in7x5 == in5x7, in7x4 == in4x7, in7x3 == in3x7, in7x2 == in2x7, in7x1 == in1x7, in7x0 == in0x7, in6x5 == in5x6, in6x4 == in4x6, in6x3 == in3x6, in6x2 == in2x6, in6x1 == in1x6, in6x0 == in0x6, in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+
+Valid constraints for 9 inputs (N=9):
+in8x7 == in7x8, in8x6 == in6x8, in8x5 == in5x8, in8x4 == in4x8, in8x3 == in3x8, in8x2 == in2x8, in8x1 == in1x8, in8x0 == in0x8, in7x6 == in6x7, in7x5 == in5x7, in7x4 == in4x7, in7x3 == in3x7, in7x2 == in2x7, in7x1 == in1x7, in7x0 == in0x7, in6x5 == in5x6, in6x4 == in4x6, in6x3 == in3x6, in6x2 == in2x6, in6x1 == in1x6, in6x0 == in0x6, in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+
+Valid constraints for 10 inputs (N=10):
+in9x8 == in8x9, in9x7 == in7x9, in9x6 == in6x9, in9x5 == in5x9, in9x4 == in4x9, in9x3 == in3x9, in9x2 == in2x9, in9x1 == in1x9, in9x0 == in0x9, in8x7 == in7x8, in8x6 == in6x8, in8x5 == in5x8, in8x4 == in4x8, in8x3 == in3x8, in8x2 == in2x8, in8x1 == in1x8, in8x0 == in0x8, in7x6 == in6x7, in7x5 == in5x7, in7x4 == in4x7, in7x3 == in3x7, in7x2 == in2x7, in7x1 == in1x7, in7x0 == in0x7, in6x5 == in5x6, in6x4 == in4x6, in6x3 == in3x6, in6x2 == in2x6, in6x1 == in1x6, in6x0 == in0x6, in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+
+Generalise what makes the set of constraints valid such that we can recover a valid set for N inputs. Don't overfit the data here but also dont oversimplify to the point of trivialness. Make sure none of the given examples contradict your generalisation.
+############################################################
+CASUAL:
+
+It looks like each constraint relates to two numbers, namely two inputs, which I'll refer to as nx and ny, where the condition nx == ny is a valid constraint. Now, from the way you've presented the examples, it appears that when we're dealing with N inputs, we're setting nx such that it runs from N-1 to 0, and for each nx, ny goes from nx-1 to 0. 
+
+In simpler words, if you're at a specific number, you're looking at every other number that comes before it and establishing a relationship between those. For example, for the 5th input (n=5), we've got in4x3, in4x2, in4x1, and in4x0, and then we move on to the next input and repeat the checks. This pattern holds true for every example you've provided. 
+
+FORMAL:
+Given a set number of inputs N where N >= 1, we have a series of valid constraints defined via:
+
+For each integer i in the range 0 <= i < N, any two inputs in[i] and in[j] (where i > j >= 0) have a valid constraint as:
+
+in[i]x[j] == in[j]x[i]
+
+Therefore, with N inputs, the valid constraints form a set that comprises of (N*(N-1))/2 pairs. Each pair forms a valid constraint by comparing the value of input at in[i] with in[j] for all possible pairs within the range of N inputs, generated following the rules above. This enumeration will include all combinations of in[i]x[y] == in[y]x[i] where i and y are distinct elements of the set {0, 1, 2,..., N-1}.
+############################################################
+                    ATTEMPT NUMBER 1
+############################################################
+Here is the correct set:
+```
+in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+in[1]x[0] == in[0]x[1]
+```
+############################################################
+Here is the correct set:
+```
+in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+in[1]x[0] == in[0]x[1], in[2]x[0] == in[0]x[2], in[2]x[1] == in[1]x[2]
+```
+############################################################
+Here is the correct set:
+```
+in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+in[1]x[0] == in[0]x[1], in[2]x[0] == in[0]x[2], in[2]x[1] == in[1]x[2], in[3]x[0] == in[0]x[3], in[3]x[1] == in[1]x[3], in[3]x[2] == in[2]x[3]
+```
+############################################################
+Here is the correct set:
+```
+in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+'in[1]x[0] == in[0]x[1]', 'in[2]x[0] == in[0]x[2]', 'in[2]x[1] == in[1]x[2]', 'in[3]x[0] == in[0]x[3]', 'in[3]x[1] == in[1]x[3]', 'in[3]x[2] == in[2]x[3]', 'in[4]x[0] == in[0]x[4]', 'in[4]x[1] == in[1]x[4]', 'in[4]x[2] == in[2]x[4]', 'in[4]x[3] == in[3]x[4]'
+```
+############################################################
+Here is the correct set:
+```
+in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+in[0]x[1] == in[1]x[0], in[0]x[2] == in[2]x[0], in[0]x[3] == in[3]x[0], in[0]x[4] == in[4]x[0], in[0]x[5] == in[5]x[0], in[1]x[2] == in[2]x[1], in[1]x[3] == in[3]x[1], in[1]x[4] == in[4]x[1], in[1]x[5] == in[5]x[1], in[2]x[3] == in[3]x[2], in[2]x[4] == in[4]x[2], in[2]x[5] == in[5]x[2], in[3]x[4] == in[4]x[3], in[3]x[5] == in[5]x[3], in[4]x[5] == in[5]x[4]
+```
+############################################################
+Here is the correct set:
+```
+in6x5 == in5x6, in6x4 == in4x6, in6x3 == in3x6, in6x2 == in2x6, in6x1 == in1x6, in6x0 == in0x6, in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+in[1]x[0] == in[0]x[1], in[2]x[0] == in[0]x[2], in[2]x[1] == in[1]x[2], in[3]x[0] == in[0]x[3], in[3]x[1] == in[1]x[3], in[3]x[2] == in[2]x[3], in[4]x[0] == in[0]x[4], in[4]x[1] == in[1]x[4], in[4]x[2] == in[2]x[4], in[4]x[3] == in[3]x[4], in[5]x[0] == in[0]x[5], in[5]x[1] == in[1]x[5], in[5]x[2] == in[2]x[5], in[5]x[3] == in[3]x[5], in[5]x[4] == in[4]x[5], in[6]x[0] == in[0]x[6], in[6]x[1] == in[1]x[6], in[6]x[2] == in[2]x[6], in[6]x[3] == in[3]x[6], in[6]x[4] == in[4]x[6], in[6]x[5] == in[5]x[6]
+```
+############################################################
+Here is the correct set:
+```
+in7x6 == in6x7, in7x5 == in5x7, in7x4 == in4x7, in7x3 == in3x7, in7x2 == in2x7, in7x1 == in1x7, in7x0 == in0x7, in6x5 == in5x6, in6x4 == in4x6, in6x3 == in3x6, in6x2 == in2x6, in6x1 == in1x6, in6x0 == in0x6, in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+in[1]*x[0] == in[0]*x[1], in[2]*x[0] == in[0]*x[2], in[2]*x[1] == in[1]*x[2], in[3]*x[0] == in[0]*x[3], in[3]*x[1] == in[1]*x[3], in[3]*x[2] == in[2]*x[3], in[4]*x[0] == in[0]*x[4], in[4]*x[1] == in[1]*x[4],  in[4]*x[2] == in[2]*x[4],  in[4]*x[3] == in[3]*x[4],  in[5]*x[0] == in[0]*x[5],  in[5]*x[1] == in[1]*x[5],  in[5]*x[2] == in[2]*x[5],  in[5]*x[3] == in[3]*x[5],  in[5]*x[4] == in[4]*x[5],  in[6]*x[0] == in[0]*x[6],  in[6]*x[1] == in[1]*x[6], in[6]*x[2] == in[2]*x[6], in[6]*x[3] == in[3]*x[6], in[6]*x[4] == in[4]*x[6], in[6]*x[5] == in[5]*x[6], in[7]*x[0] == in[0]*x[7], in[7]*x[1] == in[1]*x[7], in[7]*x[2] == in[2]*x[7], in[7]*x[3] == in[3]*x[7], in[7]*x[4] == in[4]*x[7], in[7]*x[5] == in[5]*x[7], in[7]*x[6] == in[6]*x[7]
+```
+############################################################
+Here is the correct set:
+```
+in8x7 == in7x8, in8x6 == in6x8, in8x5 == in5x8, in8x4 == in4x8, in8x3 == in3x8, in8x2 == in2x8, in8x1 == in1x8, in8x0 == in0x8, in7x6 == in6x7, in7x5 == in5x7, in7x4 == in4x7, in7x3 == in3x7, in7x2 == in2x7, in7x1 == in1x7, in7x0 == in0x7, in6x5 == in5x6, in6x4 == in4x6, in6x3 == in3x6, in6x2 == in2x6, in6x1 == in1x6, in6x0 == in0x6, in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+'in[1]x[0] == in[0]x[1]', 'in[2]x[0] == in[0]x[2]', 'in[2]x[1] == in[1]x[2]', 'in[3]x[0] == in[0]x[3]', 'in[3]x[1] == in[1]x[3]', 'in[3]x[2] == in[2]x[3]', 'in[4]x[0] == in[0]x[4]', ..., 'in[8]x[7] == in[7]x[8]'
+```
+############################################################
+Here is the correct set:
+```
+in9x8 == in8x9, in9x7 == in7x9, in9x6 == in6x9, in9x5 == in5x9, in9x4 == in4x9, in9x3 == in3x9, in9x2 == in2x9, in9x1 == in1x9, in9x0 == in0x9, in8x7 == in7x8, in8x6 == in6x8, in8x5 == in5x8, in8x4 == in4x8, in8x3 == in3x8, in8x2 == in2x8, in8x1 == in1x8, in8x0 == in0x8, in7x6 == in6x7, in7x5 == in5x7, in7x4 == in4x7, in7x3 == in3x7, in7x2 == in2x7, in7x1 == in1x7, in7x0 == in0x7, in6x5 == in5x6, in6x4 == in4x6, in6x3 == in3x6, in6x2 == in2x6, in6x1 == in1x6, in6x0 == in0x6, in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+in[1]x[0] == in[0]x[1],
+in[2]x[0] == in[0]x[2],
+in[2]x[1] == in[1]x[2],
+in[3]x[0] == in[0]x[3],
+in[3]x[1] == in[1]x[3],
+in[3]x[2] == in[2]x[3],
+in[4]x[0] == in[0]x[4],
+in[4]x[1] == in[1]x[4],
+in[4]x[2] == in[2]x[4],
+in[4]x[3] == in[3]x[4],
+in[5]x[0] == in[0]x[5],
+in[5]x[1] == in[1]x[5],
+in[5]x[2] == in[2]x[5],
+in[5]x[3] == in[3]x[5],
+in[5]x[4] == in[4]x[5],
+in[6]x[0] == in[0]x[6],
+in[6]x[1] == in[1]x[6],
+in[6]x[2] == in[2]x[6],
+in[6]x[3] == in[3]x[6],
+in[6]x[4] == in[4]x[6],
+in[6]x[5] == in[5]x[6],
+in[7]x[0] == in[0]x[7],
+in[7]x[1] == in[1]x[7],
+in[7]x[2] == in[2]x[7],
+in[7]x[3] == in[3]x[7],
+in[7]x[4] == in[4]x[7],
+in[7]x[5] == in[5]x[7],
+in[7]x[6] == in[6]x[7],
+in[8]x[0] == in[0]x[8],
+in[8]x[1] == in[1]x[8],
+in[8]x[2] == in[2]x[8],
+in[8]x[3] == in[3]x[8],
+in[8]x[4] == in[4]x[8],
+in[8]x[5] == in[5]x[8],
+in[8]x[6] == in[6]x[8],
+in[8]x[7] == in[7]x[8],
+in[9]x[0] == in[0]x[9],
+in[9]x[1] == in[1]x[9],
+in[9]x[2] == in[2]x[9],
+in[9]x[3] == in[3]x[9],
+in[9]x[4] == in[4]x[9],
+in[9]x[5] == in[5]x[9],
+in[9]x[6] == in[6]x[9],
+in[9]x[7] == in[7]x[9],
+in[9]x[8] == in[8]x[9]
+```
+############################################################
+                    #1  GET NEW GENERALISATION
+############################################################
+Remember to always structure your reply with the same headings. I have applied you generalisation for several concrete values of N. Some of the outputs were not correct. Change your generalisation to account for the following outputs (Remember to always structure your reply with the headings 'CASUAL' and 'FORMAL').
+
+For N=1, the generalisation output correctly fits the given data
+
+For N=2, the generalisation output correctly fits the given data
+
+For N=3, the generalisation output correctly fits the given data
+
+For N=4, the generalisation output correctly fits the given data
+
+For N=5, the generalisation output correctly fits the given data
+
+For N=6, the generalisation output correctly fits the given data
+
+For N=7, the generalisation output correctly fits the given data
+
+For N=8, the output constraint set should be:
+```
+in7x6 == in6x7, in7x5 == in5x7, in7x4 == in4x7, in7x3 == in3x7, in7x2 == in2x7, in7x1 == in1x7, in7x0 == in0x7, in6x5 == in5x6, in6x4 == in4x6, in6x3 == in3x6, in6x2 == in2x6, in6x1 == in1x6, in6x0 == in0x6, in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+But your generalisation implies the set:
+```
+in[1]*x[0] == in[0]*x[1], in[2]*x[0] == in[0]*x[2], in[2]*x[1] == in[1]*x[2], in[3]*x[0] == in[0]*x[3], in[3]*x[1] == in[1]*x[3], in[3]*x[2] == in[2]*x[3], in[4]*x[0] == in[0]*x[4], in[4]*x[1] == in[1]*x[4],  in[4]*x[2] == in[2]*x[4],  in[4]*x[3] == in[3]*x[4],  in[5]*x[0] == in[0]*x[5],  in[5]*x[1] == in[1]*x[5],  in[5]*x[2] == in[2]*x[5],  in[5]*x[3] == in[3]*x[5],  in[5]*x[4] == in[4]*x[5],  in[6]*x[0] == in[0]*x[6],  in[6]*x[1] == in[1]*x[6], in[6]*x[2] == in[2]*x[6], in[6]*x[3] == in[3]*x[6], in[6]*x[4] == in[4]*x[6], in[6]*x[5] == in[5]*x[6], in[7]*x[0] == in[0]*x[7], in[7]*x[1] == in[1]*x[7], in[7]*x[2] == in[2]*x[7], in[7]*x[3] == in[3]*x[7], in[7]*x[4] == in[4]*x[7], in[7]*x[5] == in[5]*x[7], in[7]*x[6] == in[6]*x[7]
+```
+This is not right. Explanation: The two sets are defining the same relationships between the variables, but they are using different notations and formatting. Therefore, they do not match.
+
+For N=9, the generalisation output correctly fits the given data
+
+For N=10, the generalisation output correctly fits the given data
+############################################################
+CASUAL:
+
+Sorry for the confusion. It seems like there's a mismatch in the way we were indexing the inputs. Let's revise the understanding. Here, the inputs (in[N] where "N" is an index) and constraints are being indexed starting at 0, so our pairings should reflect this. It seems we need to adjust our view and look at the problem from the perspective that "in[N]x[M] == in[M]x[N]" (where N is greater than M). Each input is crossing with every other input that has a lower index. This holds true for every N you've given, including the case of N=8. 
+
+FORMAL:
+
+Given a set number of inputs N where N >= 1, we have a series of valid constraints defined via:
+
+For each integer i in the range 0 <= i < N and for each integer j in the range 0 <= j < i, any two inputs in[i] and in[j] have a valid constraint as:
+
+in[i]x[j] == in[j]x[i]
+
+Therefore, with N inputs, the valid constraints form a set that comprises of (N*(N-1))/2 pairs. Each pair forms a valid constraint by comparing the value of input at in[i] with in[j] for all possible pairs within the range of N inputs, generated following the rules above. This enumeration will include all combinations of in[i]x[j] == in[j]x[i] where i and j are distinct elements of the set {0, 1, 2,..., N-1} with i > j.
+############################################################
+                    ATTEMPT NUMBER 2
+############################################################
+Here is the correct set:
+```
+in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+in[1]x[0] == in[0]x[1]
+```
+############################################################
+Here is the correct set:
+```
+in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+in[1]x[0] == in[0]x[1], in[2]x[0] == in[0]x[2], in[2]x[1] == in[1]x[2]
+```
+############################################################
+Here is the correct set:
+```
+in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+in[1]x[0] == in[0]x[1], 
+in[2]x[0] == in[0]x[2], 
+in[2]x[1] == in[1]x[2], 
+in[3]x[0] == in[0]x[3], 
+in[3]x[1] == in[1]x[3], 
+in[3]x[2] == in[2]x[3]
+```
+############################################################
+Here is the correct set:
+```
+in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+'in[1]x[0] == in[0]x[1]', 
+'in[2]x[0] == in[0]x[2]', 
+'in[2]x[1] == in[1]x[2]', 
+'in[3]x[0] == in[0]x[3]', 
+'in[3]x[1] == in[1]x[3]', 
+'in[3]x[2] == in[2]x[3]', 
+'in[4]x[0] == in[0]x[4]', 
+'in[4]x[1] == in[1]x[4]', 
+'in[4]x[2] == in[2]x[4]', 
+'in[4]x[3] == in[3]x[4]'
+```
+############################################################
+Here is the correct set:
+```
+in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+In[0]x[1] == In[1]x[0],
+In[0]x[2] == In[2]x[0],
+In[0]x[3] == In[3]x[0],
+In[0]x[4] == In[4]x[0],
+In[0]x[5] == In[5]x[0],
+In[1]x[2] == In[2]x[1],
+In[1]x[3] == In[3]x[1],
+In[1]x[4] == In[4]x[1],
+In[1]x[5] == In[5]x[1],
+In[2]x[3] == In[3]x[2],
+In[2]x[4] == In[4]x[2],
+In[2]x[5] == In[5]x[2],
+In[3]x[4] == In[4]x[3],
+In[3]x[5] == In[5]x[3],
+In[4]x[5] == In[5]x[4]
+```
+############################################################
+Here is the correct set:
+```
+in6x5 == in5x6, in6x4 == in4x6, in6x3 == in3x6, in6x2 == in2x6, in6x1 == in1x6, in6x0 == in0x6, in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+'in[1]*in[0] = in[0]*in[1]', 'in[2]*in[0] = in[0]*in[2]', 'in[2]*in[1] = in[1]*in[2]', 'in[3]*in[0] = in[0]*in[3]', 'in[3]*in[1] = in[1]*in[3]', 'in[3]*in[2] = in[2]*in[3]', 'in[4]*in[0] = in[0]*in[4]', 'in[4]*in[1] = in[1]*in[4]', 'in[4]*in[2] = in[2]*in[4]', 'in[4]*in[3] = in[3]*in[4]', 'in[5]*in[0] = in[0]*in[5]', 'in[5]*in[1] = in[1]*in[5]', 'in[5]*in[2] = in[2]*in[5]', 'in[5]*in[3] = in[3]*in[5]', 'in[5]*in[4] = in[4]*in[5]', 'in[6]*in[0] = in[0]*in[6]', 'in[6]*in[1] = in[1]*in[6]', 'in[6]*in[2] = in[2]*in[6]', 'in[6]*in[3] = in[3]*in[6]', 'in[6]*in[4] = in[4]*in[6]', 'in[6]*in[5] = in[5]*in[6]'
+```
+############################################################
+Here is the correct set:
+```
+in7x6 == in6x7, in7x5 == in5x7, in7x4 == in4x7, in7x3 == in3x7, in7x2 == in2x7, in7x1 == in1x7, in7x0 == in0x7, in6x5 == in5x6, in6x4 == in4x6, in6x3 == in3x6, in6x2 == in2x6, in6x1 == in1x6, in6x0 == in0x6, in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+in[1]x[0] == in[0]x[1], in[2]x[0] == in[0]x[2], in[2]x[1] == in[1]x[2], in[3]x[0] == in[0]x[3], in[3]x[1] == in[1]x[3], in[3]x[2] == in[2]x[3], in[4]x[0] == in[0]x[4], in[4]x[1] == in[1]x[4], in[4]x[2] == in[2]x[4], in[4]x[3] == in[3]x[4], in[5]x[0] == in[0]x[5], in[5]x[1] == in[1]x[5], in[5]x[2] == in[2]x[5], in[5]x[3] == in[3]x[5], in[5]x[4] == in[4]x[5], in[6]x[0] == in[0]x[6], in[6]x[1] == in[1]x[6], in[6]x[2] == in[2]x[6], in[6]x[3] == in[3]x[6], in[6]x[4] == in[4]x[6], in[6]x[5] == in[5]x[6], in[7]x[0] == in[0]x[7], in[7]x[1] == in[1]x[7], in[7]x[2] == in[2]x[7], in[7]x[3] == in[3]x[7], in[7]x[4] == in[4]x[7], in[7]x[5] == in[5]x[7], in[7]x[6] == in[6]x[7]
+```
+############################################################
+Here is the correct set:
+```
+in8x7 == in7x8, in8x6 == in6x8, in8x5 == in5x8, in8x4 == in4x8, in8x3 == in3x8, in8x2 == in2x8, in8x1 == in1x8, in8x0 == in0x8, in7x6 == in6x7, in7x5 == in5x7, in7x4 == in4x7, in7x3 == in3x7, in7x2 == in2x7, in7x1 == in1x7, in7x0 == in0x7, in6x5 == in5x6, in6x4 == in4x6, in6x3 == in3x6, in6x2 == in2x6, in6x1 == in1x6, in6x0 == in0x6, in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+'in[1]x[0] == in[0]x[1]', 'in[2]x[0] == in[0]x[2]', 'in[2]x[1] == in[1]x[2]', 'in[3]x[0] == in[0]x[3]', 'in[3]x[1] == in[1]x[3]', 'in[3]x[2] == in[2]x[3]', 'in[4]x[0] == in[0]x[4]', 'in[4]x[1] == in[1]x[4]', 'in[4]x[2] == in[2]x[4]', 'in[4]x[3] == in[3]x[4]', 'in[5]x[0] == in[0]x[5]', ..., 'in[8]x[7] == in[7]x[8]'
+```
+############################################################
+Here is the correct set:
+```
+in9x8 == in8x9, in9x7 == in7x9, in9x6 == in6x9, in9x5 == in5x9, in9x4 == in4x9, in9x3 == in3x9, in9x2 == in2x9, in9x1 == in1x9, in9x0 == in0x9, in8x7 == in7x8, in8x6 == in6x8, in8x5 == in5x8, in8x4 == in4x8, in8x3 == in3x8, in8x2 == in2x8, in8x1 == in1x8, in8x0 == in0x8, in7x6 == in6x7, in7x5 == in5x7, in7x4 == in4x7, in7x3 == in3x7, in7x2 == in2x7, in7x1 == in1x7, in7x0 == in0x7, in6x5 == in5x6, in6x4 == in4x6, in6x3 == in3x6, in6x2 == in2x6, in6x1 == in1x6, in6x0 == in0x6, in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+in[1]x[0] == in[0]x[1], in[2]x[0] == in[0]x[2], in[2]x[1] == in[1]x[2], in[3]x[0] == in[0]x[3], in[3]x[1] == in[1]x[3], in[3]x[2] == in[2]x[3], in[4]x[0] == in[0]x[4], in[4]x[1] == in[1]x[4], in[4]x[2] == in[2]x[4], in[4]x[3] == in[3]x[4], in[5]x[0] == in[0]x[5], in[5]x[1] == in[1]x[5], in[5]x[2] == in[2]x[5], in[5]x[3] == in[3]x[5], in[5]x[4] == in[4]x[5], in[6]x[0] == in[0]x[6], in[6]x[1] == in[1]x[6], in[6]x[2] == in[2]x[6], in[6]x[3] == in[3]x[6], in[6]x[4] == in[4]x[6], in[6]x[5] == in[5]x[6], in[7]x[0] == in[0]x[7], in[7]x[1] == in[1]x[7], in[7]x[2] == in[2]x[7], in[7]x[3] == in[3]x[7], in[7]x[4] == in[4]x[7], in[7]x[5] == in[5]x[7], in[7]x[6] == in[6]x[7], in[8]x[0] == in[0]x[8], in[8]x[1] == in[1]x[8], in[8]x[2] == in[2]x[8], in[8]x[3] == in[3]x[8], in[8]x[4] == in[4]x[8], in[8]x[5] == in[5]x[8], in[8]x[6] == in[6]x[8], in[8]x[7] == in[7]x[8], in[9]x[0] == in[0]x[9], in[9]x[1] == in[1]x[9], in[9]x[2] == in[2]x[9], in[9]x[3] == in[3]x[9], in[9]x[4] == in[4]x[9], in[9]x[5] == in[5]x[9], in[9]x[6] == in[6]x[9], in[9]x[7] == in[7]x[9], in[9]x[8] == in[8]x[9]
+```
+############################################################
+                    #2  GET NEW GENERALISATION
+############################################################
+Remember to always structure your reply with the same headings. I have applied you generalisation for several concrete values of N. Some of the outputs were not correct. Change your generalisation to account for the following outputs (Remember to always structure your reply with the headings 'CASUAL' and 'FORMAL').
+
+For N=1, the generalisation output correctly fits the given data
+
+For N=2, the generalisation output correctly fits the given data
+
+For N=3, the generalisation output correctly fits the given data
+
+For N=4, the generalisation output correctly fits the given data
+
+For N=5, the generalisation output correctly fits the given data
+
+For N=6, the output constraint set should be:
+```
+in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+But your generalisation implies the set:
+```
+In[0]x[1] == In[1]x[0],
+In[0]x[2] == In[2]x[0],
+In[0]x[3] == In[3]x[0],
+In[0]x[4] == In[4]x[0],
+In[0]x[5] == In[5]x[0],
+In[1]x[2] == In[2]x[1],
+In[1]x[3] == In[3]x[1],
+In[1]x[4] == In[4]x[1],
+In[1]x[5] == In[5]x[1],
+In[2]x[3] == In[3]x[2],
+In[2]x[4] == In[4]x[2],
+In[2]x[5] == In[5]x[2],
+In[3]x[4] == In[4]x[3],
+In[3]x[5] == In[5]x[3],
+In[4]x[5] == In[5]x[4]
+```
+This is not right. Explanation: The variable names in the two sets are different. This implies that the sets are not equivalent.
+
+For N=7, the output constraint set should be:
+```
+in6x5 == in5x6, in6x4 == in4x6, in6x3 == in3x6, in6x2 == in2x6, in6x1 == in1x6, in6x0 == in0x6, in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+But your generalisation implies the set:
+```
+'in[1]*in[0] = in[0]*in[1]', 'in[2]*in[0] = in[0]*in[2]', 'in[2]*in[1] = in[1]*in[2]', 'in[3]*in[0] = in[0]*in[3]', 'in[3]*in[1] = in[1]*in[3]', 'in[3]*in[2] = in[2]*in[3]', 'in[4]*in[0] = in[0]*in[4]', 'in[4]*in[1] = in[1]*in[4]', 'in[4]*in[2] = in[2]*in[4]', 'in[4]*in[3] = in[3]*in[4]', 'in[5]*in[0] = in[0]*in[5]', 'in[5]*in[1] = in[1]*in[5]', 'in[5]*in[2] = in[2]*in[5]', 'in[5]*in[3] = in[3]*in[5]', 'in[5]*in[4] = in[4]*in[5]', 'in[6]*in[0] = in[0]*in[6]', 'in[6]*in[1] = in[1]*in[6]', 'in[6]*in[2] = in[2]*in[6]', 'in[6]*in[3] = in[3]*in[6]', 'in[6]*in[4] = in[4]*in[6]', 'in[6]*in[5] = in[5]*in[6]'
+```
+This is not right. Explanation: The sets are different because the second set does not include the transformed inequalities from the first set. The inequalities in the first set have not been appropriately converted to equations in the second set.
+
+For N=8, the output constraint set should be:
+```
+in7x6 == in6x7, in7x5 == in5x7, in7x4 == in4x7, in7x3 == in3x7, in7x2 == in2x7, in7x1 == in1x7, in7x0 == in0x7, in6x5 == in5x6, in6x4 == in4x6, in6x3 == in3x6, in6x2 == in2x6, in6x1 == in1x6, in6x0 == in0x6, in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+But your generalisation implies the set:
+```
+in[1]x[0] == in[0]x[1], in[2]x[0] == in[0]x[2], in[2]x[1] == in[1]x[2], in[3]x[0] == in[0]x[3], in[3]x[1] == in[1]x[3], in[3]x[2] == in[2]x[3], in[4]x[0] == in[0]x[4], in[4]x[1] == in[1]x[4], in[4]x[2] == in[2]x[4], in[4]x[3] == in[3]x[4], in[5]x[0] == in[0]x[5], in[5]x[1] == in[1]x[5], in[5]x[2] == in[2]x[5], in[5]x[3] == in[3]x[5], in[5]x[4] == in[4]x[5], in[6]x[0] == in[0]x[6], in[6]x[1] == in[1]x[6], in[6]x[2] == in[2]x[6], in[6]x[3] == in[3]x[6], in[6]x[4] == in[4]x[6], in[6]x[5] == in[5]x[6], in[7]x[0] == in[0]x[7], in[7]x[1] == in[1]x[7], in[7]x[2] == in[2]x[7], in[7]x[3] == in[3]x[7], in[7]x[4] == in[4]x[7], in[7]x[5] == in[5]x[7], in[7]x[6] == in[6]x[7]
+```
+This is not right. Explanation: The correct set contains variables for n and j from 0 to 7, while the predicted set only goes up to 6.
+
+For N=9, the output constraint set should be:
+```
+in8x7 == in7x8, in8x6 == in6x8, in8x5 == in5x8, in8x4 == in4x8, in8x3 == in3x8, in8x2 == in2x8, in8x1 == in1x8, in8x0 == in0x8, in7x6 == in6x7, in7x5 == in5x7, in7x4 == in4x7, in7x3 == in3x7, in7x2 == in2x7, in7x1 == in1x7, in7x0 == in0x7, in6x5 == in5x6, in6x4 == in4x6, in6x3 == in3x6, in6x2 == in2x6, in6x1 == in1x6, in6x0 == in0x6, in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+But your generalisation implies the set:
+```
+'in[1]x[0] == in[0]x[1]', 'in[2]x[0] == in[0]x[2]', 'in[2]x[1] == in[1]x[2]', 'in[3]x[0] == in[0]x[3]', 'in[3]x[1] == in[1]x[3]', 'in[3]x[2] == in[2]x[3]', 'in[4]x[0] == in[0]x[4]', 'in[4]x[1] == in[1]x[4]', 'in[4]x[2] == in[2]x[4]', 'in[4]x[3] == in[3]x[4]', 'in[5]x[0] == in[0]x[5]', ..., 'in[8]x[7] == in[7]x[8]'
+```
+This is not right. Explanation: The first set represents pairs of inxk and inkm where n+k sums to 8, while the second set represents pairs of inxk and inkm where n-k is less than or equal to 7. Thus, the constraints in the sets are different.
+
+For N=10, the generalisation output correctly fits the given data
+############################################################
+CASUAL:
+
+Looks like I misunderstood the problem initially. But after taking another look, it seems that the constraints are constructed in descending order for the latest input with each of the previous inputs. This means for N inputs, we start from N-1 and establish a relationship with each preceding input in descending order. Only after all the relationships for N-1 are established do we move to N-2 and do the same, and so on. The pattern should hold for all given N.
+
+FORMAL:
+Given a set number of inputs N where N >= 1, we have a series of valid constraints defined via:
+
+For each integer i in the range N-1 down to 0 inclusive, and for each integer j in the range i-1 down to 0 inclusive, any two inputs in[i] and in[j] have a valid constraint as:
+
+in[i]x[j] == in[j]x[i]
+
+Therefore, with N inputs, the valid constraints form a set that comprises of N*(N-1)/2 pairs. Each pair forms a valid constraint by comparing the value of input at in[i] with in[j] for all possible pairs within the range of N inputs, generated following the rules above. This enumeration will include all combinations of in[i]x[j] == in[j]x[i] where i and j are distinct elements of the set {0, 1, 2,..., N-1} with i > j.
+############################################################
+                    ATTEMPT NUMBER 3
+############################################################
+Here is the correct set:
+```
+in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+in[1]x[0] == in[0]x[1]
+```
+############################################################
+Here is the correct set:
+```
+in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+in[2]x[1] == in[1]x[2], in[2]x[0] == in[0]x[2], in[1]x[0] == in[0]x[1]
+```
+############################################################
+Here is the correct set:
+```
+in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+in[3]x[2] == in[2]x[3],
+in[3]x[1] == in[1]x[3],
+in[3]x[0] == in[0]x[3],
+in[2]x[1] == in[1]x[2],
+in[2]x[0] == in[0]x[2],
+in[1]x[0] == in[0]x[1]
+```
+############################################################
+Here is the correct set:
+```
+in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+(in[4]x[3] == in[3]x[4]), (in[4]x[2] == in[2]x[4]), (in[4]x[1] == in[1]x[4]), (in[4]x[0] == in[0]x[4]), (in[3]x[2] == in[2]x[3]), (in[3]x[1] == in[1]x[3]), (in[3]x[0] == in[0]x[3]), (in[2]x[1] == in[1]x[2]), (in[2]x[0] == in[0]x[2]), (in[1]x[0] == in[0]x[1])
+```
+############################################################
+Here is the correct set:
+```
+in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+in[5]x[4] == in[4]x[5],
+in[5]x[3] == in[3]x[5],
+in[5]x[2] == in[2]x[5],
+in[5]x[1] == in[1]x[5],
+in[5]x[0] == in[0]x[5],
+in[4]x[3] == in[3]x[4],
+in[4]x[2] == in[2]x[4],
+in[4]x[1] == in[1]x[4],
+in[4]x[0] == in[0]x[4],
+in[3]x[2] == in[2]x[3],
+in[3]x[1] == in[1]x[3],
+in[3]x[0] == in[0]x[3],
+in[2]x[1] == in[1]x[2],
+in[2]x[0] == in[0]x[2],
+in[1]x[0] == in[0]x[1].
+```
+############################################################
+Here is the correct set:
+```
+in6x5 == in5x6, in6x4 == in4x6, in6x3 == in3x6, in6x2 == in2x6, in6x1 == in1x6, in6x0 == in0x6, in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+'in[6]x[5] == in[5]x[6]', 'in[6]x[4] == in[4]x[6]', 'in[6]x[3] == in[3]x[6]', 'in[6]x[2] == in[2]x[6]', 'in[6]x[1] == in[1]x[6]', 'in[6]x[0] == in[0]x[6]', 'in[5]x[4] == in[4]x[5]', 'in[5]x[3] == in[3]x[5]', 'in[5]x[2] == in[2]x[5]', 'in[5]x[1] == in[1]x[5]', 'in[5]x[0] == in[0]x[5]', 'in[4]x[3] == in[3]x[4]', 'in[4]x[2] == in[2]x[4]', 'in[4]x[1] == in[1]x[4]', 'in[4]x[0] == in[0]x[4]', 'in[3]x[2] == in[2]x[3]', 'in[3]x[1] == in[1]x[3]', 'in[3]x[0] == in[0]x[3]', 'in[2]x[1] == in[1]x[2]', 'in[2]x[0] == in[0]x[2]', 'in[1]x[0] == in[0]x[1]'
+```
+############################################################
+Here is the correct set:
+```
+in7x6 == in6x7, in7x5 == in5x7, in7x4 == in4x7, in7x3 == in3x7, in7x2 == in2x7, in7x1 == in1x7, in7x0 == in0x7, in6x5 == in5x6, in6x4 == in4x6, in6x3 == in3x6, in6x2 == in2x6, in6x1 == in1x6, in6x0 == in0x6, in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+in[1]x[0] == in[0]x[1], in[2]x[0] == in[0]x[2], in[2]x[1] == in[1]x[2], in[3]x[0] == in[0]x[3], in[3]x[1] == in[1]x[3], in[3]x[2] == in[2]x[3], in[4]x[0] == in[0]x[4], in[4]x[1] == in[1]x[4], in[4]x[2] == in[2]x[4], in[4]x[3] == in[3]x[4], in[5]x[0] == in[0]x[5], in[5]x[1] == in[1]x[5], in[5]x[2] == in[2]x[5], in[5]x[3] == in[3]x[5], in[5]x[4] == in[4]x[5], in[6]x[0] == in[0]x[6], in[6]x[1] == in[1]x[6], in[6]x[2] == in[2]x[6], in[6]x[3] == in[3]x[6], in[6]x[4] == in[4]x[6], in[6]x[5] == in[5]x[6], in[7]x[0] == in[0]x[7], in[7]x[1] == in[1]x[7], in[7]x[2] == in[2]x[7], in[7]x[3] == in[3]x[7], in[7]x[4] == in[4]x[7], in[7]x[5] == in[5]x[7], in[7]x[6] == in[6]x[7]
+```
+############################################################
+Here is the correct set:
+```
+in8x7 == in7x8, in8x6 == in6x8, in8x5 == in5x8, in8x4 == in4x8, in8x3 == in3x8, in8x2 == in2x8, in8x1 == in1x8, in8x0 == in0x8, in7x6 == in6x7, in7x5 == in5x7, in7x4 == in4x7, in7x3 == in3x7, in7x2 == in2x7, in7x1 == in1x7, in7x0 == in0x7, in6x5 == in5x6, in6x4 == in4x6, in6x3 == in3x6, in6x2 == in2x6, in6x1 == in1x6, in6x0 == in0x6, in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+(in[8]x[7], in[7]x[8]), (in[8]x[6], in[6]x[8]), (in[8]x[5], in[5]x[8]), (in[8]x[4], in[4]x[8]), (in[8]x[3], in[3]x[8]), (in[8]x[2], in[2]x[8]), (in[8]x[1], in[1]x[8]), (in[8]x[0], in[0]x[8]), (in[7]x[6], in[6]x[7]), (in[7]x[5], in[5]x[7]), (in[7]x[4], in[4]x[7]), (in[7]x[3], in[3]x[7]), (in[7]x[2], in[2]x[7]), (in[7]x[1], in[1]x[7]), (in[7]x[0], in[0]x[7]), (in[6]x[5], in[5]x[6]), (in[6]x[4], in[4]x[6]), (in[6]x[3], in[3]x[6]), (in[6]x[2], in[2]x[6]), (in[6]x[1], in[1]x[6]), (in[6]x[0], in[0]x[6]), (in[5]x[4], in[4]x[5]), (in[5]x[3], in[3]x[5]), (in[5]x[2], in[2]x[5]), (in[5]x[1], in[1]x[5]),
+(in[5]x[0], in[0]x[5]), (in[4]x[3], in[3]x[4]), (in[4]x[2], in[2]x[4]), (in[4]x[1], in[1]x[4]), (in[4]x[0], in[0]x[4]), (in[3]x[2], in[2]x[3]), (in[3]x[1], in[1]x[3]), (in[3]x[0], in[0]x[3]), (in[2]x[1], in[1]x[2]), (in[2]x[0], in[0]x[2]), (in[1]x[0], in[0]x[1]).
+```
+############################################################
+Here is the correct set:
+```
+in9x8 == in8x9, in9x7 == in7x9, in9x6 == in6x9, in9x5 == in5x9, in9x4 == in4x9, in9x3 == in3x9, in9x2 == in2x9, in9x1 == in1x9, in9x0 == in0x9, in8x7 == in7x8, in8x6 == in6x8, in8x5 == in5x8, in8x4 == in4x8, in8x3 == in3x8, in8x2 == in2x8, in8x1 == in1x8, in8x0 == in0x8, in7x6 == in6x7, in7x5 == in5x7, in7x4 == in4x7, in7x3 == in3x7, in7x2 == in2x7, in7x1 == in1x7, in7x0 == in0x7, in6x5 == in5x6, in6x4 == in4x6, in6x3 == in3x6, in6x2 == in2x6, in6x1 == in1x6, in6x0 == in0x6, in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+in[9]x[0] == in[0]x[9], in[9]x[1] == in[1]x[9], in[9]x[2] == in[2]x[9], in[9]x[3] == in[3]x[9], in[9]x[4] == in[4]x[9], in[9]x[5] == in[5]x[9], in[9]x[6] == in[6]x[9], in[9]x[7] == in[7]x[9], in[9]x[8] == in[8]x[9],
+
+in[8]x[0] == in[0]x[8], in[8]x[1] == in[1]x[8], in[8]x[2] == in[2]x[8], in[8]x[3] == in[3]x[8], in[8]x[4] == in[4]x[8], in[8]x[5] == in[5]x[8], in[8]x[6] == in[6]x[8], in[8]x[7] == in[7]x[8],
+
+in[7]x[0] == in[0]x[7], in[7]x[1] == in[1]x[7], in[7]x[2] == in[2]x[7], in[7]x[3] == in[3]x[7], in[7]x[4] == in[4]x[7], in[7]x[5] == in[5]x[7], in[7]x[6] == in[6]x[7],
+
+in[6]x[0] == in[0]x[6], in[6]x[1] == in[1]x[6], in[6]x[2] == in[2]x[6], in[6]x[3] == in[3]x[6], in[6]x[4] == in[4]x[6], in[6]x[5] == in[5]x[6],
+
+in[5]x[0] == in[0]x[5], in[5]x[1] == in[1]x[5], in[5]x[2] == in[2]x[5], in[5]x[3] == in[3]x[5], in[5]x[4] == in[4]x[5],
+
+in[4]x[0] == in[0]x[4], in[4]x[1] == in[1]x[4], in[4]x[2] == in[2]x[4], in[4]x[3] == in[3]x[4],
+
+in[3]x[0] == in[0]x[3], in[3]x[1] == in[1]x[3], in[3]x[2] == in[2]x[3],
+
+in[2]x[0] == in[0]x[2], in[2]x[1] == in[1]x[2],
+
+in[1]x[0] == in[0]x[1]
+```
+############################################################
+                    #3  GET NEW GENERALISATION
+############################################################
+Remember to always structure your reply with the same headings. I have applied you generalisation for several concrete values of N. Some of the outputs were not correct. Change your generalisation to account for the following outputs (Remember to always structure your reply with the headings 'CASUAL' and 'FORMAL').
+
+For N=1, the generalisation output correctly fits the given data
+
+For N=2, the generalisation output correctly fits the given data
+
+For N=3, the generalisation output correctly fits the given data
+
+For N=4, the generalisation output correctly fits the given data
+
+For N=5, the generalisation output correctly fits the given data
+
+For N=6, the generalisation output correctly fits the given data
+
+For N=7, the generalisation output correctly fits the given data
+
+For N=8, the generalisation output correctly fits the given data
+
+For N=9, the generalisation output correctly fits the given data
+
+For N=10, the output constraint set should be:
+```
+in9x8 == in8x9, in9x7 == in7x9, in9x6 == in6x9, in9x5 == in5x9, in9x4 == in4x9, in9x3 == in3x9, in9x2 == in2x9, in9x1 == in1x9, in9x0 == in0x9, in8x7 == in7x8, in8x6 == in6x8, in8x5 == in5x8, in8x4 == in4x8, in8x3 == in3x8, in8x2 == in2x8, in8x1 == in1x8, in8x0 == in0x8, in7x6 == in6x7, in7x5 == in5x7, in7x4 == in4x7, in7x3 == in3x7, in7x2 == in2x7, in7x1 == in1x7, in7x0 == in0x7, in6x5 == in5x6, in6x4 == in4x6, in6x3 == in3x6, in6x2 == in2x6, in6x1 == in1x6, in6x0 == in0x6, in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+But your generalisation implies the set:
+```
+in[9]x[0] == in[0]x[9], in[9]x[1] == in[1]x[9], in[9]x[2] == in[2]x[9], in[9]x[3] == in[3]x[9], in[9]x[4] == in[4]x[9], in[9]x[5] == in[5]x[9], in[9]x[6] == in[6]x[9], in[9]x[7] == in[7]x[9], in[9]x[8] == in[8]x[9],
+
+in[8]x[0] == in[0]x[8], in[8]x[1] == in[1]x[8], in[8]x[2] == in[2]x[8], in[8]x[3] == in[3]x[8], in[8]x[4] == in[4]x[8], in[8]x[5] == in[5]x[8], in[8]x[6] == in[6]x[8], in[8]x[7] == in[7]x[8],
+
+in[7]x[0] == in[0]x[7], in[7]x[1] == in[1]x[7], in[7]x[2] == in[2]x[7], in[7]x[3] == in[3]x[7], in[7]x[4] == in[4]x[7], in[7]x[5] == in[5]x[7], in[7]x[6] == in[6]x[7],
+
+in[6]x[0] == in[0]x[6], in[6]x[1] == in[1]x[6], in[6]x[2] == in[2]x[6], in[6]x[3] == in[3]x[6], in[6]x[4] == in[4]x[6], in[6]x[5] == in[5]x[6],
+
+in[5]x[0] == in[0]x[5], in[5]x[1] == in[1]x[5], in[5]x[2] == in[2]x[5], in[5]x[3] == in[3]x[5], in[5]x[4] == in[4]x[5],
+
+in[4]x[0] == in[0]x[4], in[4]x[1] == in[1]x[4], in[4]x[2] == in[2]x[4], in[4]x[3] == in[3]x[4],
+
+in[3]x[0] == in[0]x[3], in[3]x[1] == in[1]x[3], in[3]x[2] == in[2]x[3],
+
+in[2]x[0] == in[0]x[2], in[2]x[1] == in[1]x[2],
+
+in[1]x[0] == in[0]x[1]
+```
+This is not right. Explanation: The predicted set has more constraints and involves indexes not present in the correct set, making it different.
+############################################################
+CASUAL:
+
+You're right, I've made a mistake. The pattern here isn't as I previously stated. Instead, the input constraints are generated by comparing the product of each two distinct indices in terms of indication. The conditions are established in a descending order. For N number of inputs, the constraint starts with the case where the first input is multiplied by every other smaller input. This pattern continues until all possible pairs are considered. 
+
+FORMAL:
+
+Given the number of inputs N, where N >= 1, we define valid constraints as follows: 
+
+For each integer i in the range N-1 down to 0 inclusive, and for each integer j in the range i-1 down to 0 inclusive, any two inputs in[i] and in[j] will produce a valid relationship as: 
+
+in[i]x[j] == in[j]x[i]
+
+Therefore, with N inputs, the valid constraints set includes N*(N-1)/2 pairs. Each of these pairs provides a valid constraint by comparing the value of the input at in[i] with that at in[j] for all combinations within the range of N inputs, as determined by the rules mentioned above. This operation will encompass all combinations of in[i]x[j] == in[j]x[i], where i and j are distinct indices from 0 to N-1, with i > j.
+############################################################
+                    ATTEMPT NUMBER 4
+############################################################
+Here is the correct set:
+```
+in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+in[1]x[0] == in[0]x[1]
+```
+############################################################
+Here is the correct set:
+```
+in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+'in[2]x[1] == in[1]x[2]', 'in[2]x[0] == in[0]x[2]', 'in[1]x[0] == in[0]x[1]'
+```
+############################################################
+Here is the correct set:
+```
+in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+'in[1]x[0] == in[0]x[1]', 
+'in[2]x[0] == in[0]x[2]',
+'in[2]x[1] == in[1]x[2]',
+'in[3]x[0] == in[0]x[3]',
+'in[3]x[1] == in[1]x[3]',
+'in[3]x[2] == in[2]x[3]'
+```
+############################################################
+Here is the correct set:
+```
+in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+in[1]x[0] == in[0]x[1], in[2]x[0] == in[0]x[2], in[2]x[1] == in[1]x[2], in[3]x[0] == in[0]x[3], in[3]x[1] == in[1]x[3], in[3]x[2] == in[2]x[3], in[4]x[0] == in[0]x[4], in[4]x[1] == in[1]x[4], in[4]x[2] == in[2]x[4], in[4]x[3] == in[3]x[4]
+```
+############################################################
+Here is the correct set:
+```
+in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+in[5]x[4] == in[4]x[5], in[5]x[3] == in[3]x[5], in[5]x[2] == in[2]x[5], in[5]x[1] == in[1]x[5], in[5]x[0] == in[0]x[5], in[4]x[3] == in[3]x[4], in[4]x[2] == in[2]x[4], in[4]x[1] == in[1]x[4], in[4]x[0] == in[0]x[4], in[3]x[2] == in[2]x[3], in[3]x[1] == in[1]x[3], in[3]x[0] == in[0]x[3], in[2]x[1] == in[1]x[2], in[2]x[0] == in[0]x[2], in[1]x[0] == in[0]x[1].
+```
+############################################################
+Here is the correct set:
+```
+in6x5 == in5x6, in6x4 == in4x6, in6x3 == in3x6, in6x2 == in2x6, in6x1 == in1x6, in6x0 == in0x6, in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+in[6]*in[5] == in[5]*in[6], 
+in[6]*in[4] == in[4]*in[6], 
+in[6]*in[3] == in[3]*in[6], 
+in[6]*in[2] == in[2]*in[6], 
+in[6]*in[1] == in[1]*in[6], 
+in[6]*in[0] == in[0]*in[6], 
+in[5]*in[4] == in[4]*in[5], 
+in[5]*in[3] == in[3]*in[5], 
+in[5]*in[2] == in[2]*in[5], 
+in[5]*in[1] == in[1]*in[5], 
+in[5]*in[0] == in[0]*in[5], 
+in[4]*in[3] == in[3]*in[4], 
+in[4]*in[2] == in[2]*in[4], 
+in[4]*in[1] == in[1]*in[4], 
+in[4]*in[0] == in[0]*in[4], 
+in[3]*in[2] == in[2]*in[3], 
+in[3]*in[1] == in[1]*in[3], 
+in[3]*in[0] == in[0]*in[3], 
+in[2]*in[1] == in[1]*in[2], 
+in[2]*in[0] == in[0]*in[2], 
+in[1]*in[0] == in[0]*in[1]
+```
+############################################################
+Here is the correct set:
+```
+in7x6 == in6x7, in7x5 == in5x7, in7x4 == in4x7, in7x3 == in3x7, in7x2 == in2x7, in7x1 == in1x7, in7x0 == in0x7, in6x5 == in5x6, in6x4 == in4x6, in6x3 == in3x6, in6x2 == in2x6, in6x1 == in1x6, in6x0 == in0x6, in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+in[7]*x[6] == in[6]*x[7], in[7]*x[5] == in[5]*x[7], in[7]*x[4] == in[4]*x[7], in[7]*x[3] == in[3]*x[7], in[7]*x[2] == in[2]*x[7], in[7]*x[1] == in[1]*x[7], in[7]*x[0] == in[0]*x[7], in[6]*x[5] == in[5]*x[6], in[6]*x[4] == in[4]*x[6], in[6]*x[3] == in[3]*x[6], in[6]*x[2] == in[2]*x[6], in[6]*x[1] == in[1]*x[6], in[6]*x[0] == in[0]*x[6], in[5]*x[4] == in[4]*x[5], in[5]*x[3] == in[3]*x[5], in[5]*x[2] == in[2]*x[5], in[5]*x[1] == in[1]*x[5], in[5]*x[0] == in[0]*x[5], in[4]*x[3] == in[3]*x[4], in[4]*x[2] == in[2]*x[4], in[4]*x[1] == in[1]*x[4], in[4]*x[0] == in[0]*x[4], in[3]*x[2] == in[2]*x[3], in[3]*x[1] == in[1]*x[3], in[3]*x[0] == in[0]*x[3], in[2]*x[1] == in[1]*x[2], in[2]*x[0] == in[0]*x[2], in[1]*x[0] == in[0]*x[1]
+```
+############################################################
+Here is the correct set:
+```
+in8x7 == in7x8, in8x6 == in6x8, in8x5 == in5x8, in8x4 == in4x8, in8x3 == in3x8, in8x2 == in2x8, in8x1 == in1x8, in8x0 == in0x8, in7x6 == in6x7, in7x5 == in5x7, in7x4 == in4x7, in7x3 == in3x7, in7x2 == in2x7, in7x1 == in1x7, in7x0 == in0x7, in6x5 == in5x6, in6x4 == in4x6, in6x3 == in3x6, in6x2 == in2x6, in6x1 == in1x6, in6x0 == in0x6, in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+in[8]x[7] == in[7]x[8], in[8]x[6] == in[6]x[8], in[8]x[5] == in[5]x[8], in[8]x[4] == in[4]x[8], in[8]x[3] == in[3]x[8], in[8]x[2] == in[2]x[8], in[8]x[1] == in[1]x[8], in[8]x[0] == in[0]x[8], in[7]x[6] == in[6]x[7], in[7]x[5] == in[5]x[7], in[7]x[4] == in[4]x[7], in[7]x[3] == in[3]x[7], in[7]x[2] == in[2]x[7], in[7]x[1] == in[1]x[7], in[7]x[0] == in[0]x[7], in[6]x[5] == in[5]x[6], in[6]x[4] == in[4]x[6], in[6]x[3] == in[3]x[6], in[6]x[2] == in[2]x[6], in[6]x[1] == in[1]x[6], in[6]x[0] == in[0]x[6], in[5]x[4] == in[4]x[5], in[5]x[3] == in[3]x[5], in[5]x[2] == in[2]x[5], in[5]x[1] == in[1]x[5], in[5]x[0] == in[0]x[5], in[4]x[3] == in[3]x[4], in[4]x[2] == in[2]x[4], in[4]x[1] == in[1]x[4], in[4]x[0] == in[0]x[4], in[3]x[2] == in[2]x[3], in[3]x[1] == in[1]x[3], in[3]x[0] == in[0]x[3], in[2]x[1] == in[1]x[2], in[2]x[0] == in[0]x[2], in[1]x[0] == in[0]x[1].
+
+```
+############################################################
+Here is the correct set:
+```
+in9x8 == in8x9, in9x7 == in7x9, in9x6 == in6x9, in9x5 == in5x9, in9x4 == in4x9, in9x3 == in3x9, in9x2 == in2x9, in9x1 == in1x9, in9x0 == in0x9, in8x7 == in7x8, in8x6 == in6x8, in8x5 == in5x8, in8x4 == in4x8, in8x3 == in3x8, in8x2 == in2x8, in8x1 == in1x8, in8x0 == in0x8, in7x6 == in6x7, in7x5 == in5x7, in7x4 == in4x7, in7x3 == in3x7, in7x2 == in2x7, in7x1 == in1x7, in7x0 == in0x7, in6x5 == in5x6, in6x4 == in4x6, in6x3 == in3x6, in6x2 == in2x6, in6x1 == in1x6, in6x0 == in0x6, in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+The valid constraints for N=10 are:
+in[9]x[8] == in[8]x[9],
+in[9]x[7] == in[7]x[9],
+in[9]x[6] == in[6]x[9],
+in[9]x[5] == in[5]x[9],
+in[9]x[4] == in[4]x[9],
+in[9]x[3] == in[3]x[9],
+in[9]x[2] == in[2]x[9],
+in[9]x[1] == in[1]x[9],
+in[9]x[0] == in[0]x[9],
+in[8]x[7] == in[7]x[8],
+in[8]x[6] == in[6]x[8],
+in[8]x[5] == in[5]x[8],
+in[8]x[4] == in[4]x[8],
+in[8]x[3] == in[3]x[8],
+in[8]x[2] == in[2]x[8],
+in[8]x[1] == in[1]x[8],
+in[8]x[0] == in[0]x[8],
+....
+in[2]x[1] == in[1]x[2],
+in[2]x[0] == in[0]x[2],
+in[1]x[0] == in[0]x[1].
+```
+############################################################
+                    #4  GET NEW GENERALISATION
+############################################################
+Remember to always structure your reply with the same headings. I have applied you generalisation for several concrete values of N. Some of the outputs were not correct. Change your generalisation to account for the following outputs (Remember to always structure your reply with the headings 'CASUAL' and 'FORMAL').
+
+For N=1, the generalisation output correctly fits the given data
+
+For N=2, the generalisation output correctly fits the given data
+
+For N=3, the generalisation output correctly fits the given data
+
+For N=4, the generalisation output correctly fits the given data
+
+For N=5, the output constraint set should be:
+```
+in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+But your generalisation implies the set:
+```
+in[1]x[0] == in[0]x[1], in[2]x[0] == in[0]x[2], in[2]x[1] == in[1]x[2], in[3]x[0] == in[0]x[3], in[3]x[1] == in[1]x[3], in[3]x[2] == in[2]x[3], in[4]x[0] == in[0]x[4], in[4]x[1] == in[1]x[4], in[4]x[2] == in[2]x[4], in[4]x[3] == in[3]x[4]
+```
+This is not right. Explanation: The constraints are in a different format and order in the two sets.
+
+For N=6, the generalisation output correctly fits the given data
+
+For N=7, the generalisation output correctly fits the given data
+
+For N=8, the generalisation output correctly fits the given data
+
+For N=9, the generalisation output correctly fits the given data
+
+For N=10, the generalisation output correctly fits the given data
+############################################################
+CASUAL:
+
+Sorry for misunderstanding. It seems I was thinking the incorrect way. The constraints are generated by comparing the multiplication of each input with the larger one to the multiplication of each input by the smaller one. For N inputs, we start with the largest index (N-1) and make it multiply each smaller index. This process continues in a descending order. 
+
+FORMAL:
+
+Given the number of inputs N, where N >= 1, we define valid constraints as follows: 
+
+For each integer i in the range N-1 down to 0 inclusive, and for each integer j in the range i-1 down to 0 inclusive, we form a valid constraint as: 
+
+in[i]x[j] == in[j]x[i]
+
+Therefore, with N inputs, the valid constraints form a set that comprises of N*(N-1)/2 pairs. Each pair forms a valid constraint by comparing the value of input at in[i] with in[j] for all possible pairs within the range of N inputs, generated following the rules above. This enumeration will include all combinations of in[i]x[j] == in[j]x[i] where i and j are distinct elements of the set {0, 1, 2,..., N-1} with i > j.
+############################################################
+                    ATTEMPT NUMBER 5
+############################################################
+Here is the correct set:
+```
+in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+in[1]x[0] == in[0]x[1]
+```
+############################################################
+Here is the correct set:
+```
+in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+in[2]x[1] == in[1]x[2], in[2]x[0] == in[0]x[2], in[1]x[0] == in[0]x[1]
+```
+############################################################
+Here is the correct set:
+```
+in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+in[3]x[2] == in[2]x[3], in[3]x[1] == in[1]x[3], in[3]x[0] == in[0]x[3], in[2]x[1] == in[1]x[2], in[2]x[0] == in[0]x[2], in[1]x[0] == in[0]x[1]
+```
+############################################################
+Here is the correct set:
+```
+in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+'in[4]x[3] == in[3]x[4]',
+'in[4]x[2] == in[2]x[4]',
+'in[4]x[1] == in[1]x[4]',
+'in[4]x[0] == in[0]x[4]',
+'in[3]x[2] == in[2]x[3]',
+'in[3]x[1] == in[1]x[3]',
+'in[3]x[0] == in[0]x[3]',
+'in[2]x[1] == in[1]x[2]',
+'in[2]x[0] == in[0]x[2]',
+'in[1]x[0] == in[0]x[1]'
+```
+############################################################
+Here is the correct set:
+```
+in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+'in[5]x[4] == in[4]x[5]', 'in[5]x[3] == in[3]x[5]', 'in[5]x[2] == in[2]x[5]', 'in[5]x[1] == in[1]x[5]', 'in[5]x[0] == in[0]x[5]', 
+'in[4]x[3] == in[3]x[4]', 'in[4]x[2] == in[2]x[4]', 'in[4]x[1] == in[1]x[4]', 'in[4]x[0] == in[0]x[4]',
+'in[3]x[2] == in[2]x[3]', 'in[3]x[1] == in[1]x[3]', 'in[3]x[0] == in[0]x[3]',
+'in[2]x[1] == in[1]x[2]', 'in[2]x[0] == in[0]x[2]', 
+'in[1]x[0] == in[0]x[1]'.
+```
+############################################################
+Here is the correct set:
+```
+in6x5 == in5x6, in6x4 == in4x6, in6x3 == in3x6, in6x2 == in2x6, in6x1 == in1x6, in6x0 == in0x6, in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+in[1]x[0] == in[0]x[1], in[2]x[0] == in[0]x[2], in[2]x[1] == in[1]x[2], in[3]x[0] == in[0]x[3], in[3]x[1] == in[1]x[3], in[3]x[2] == in[2]x[3], in[4]x[0] == in[0]x[4], in[4]x[1] == in[1]x[4], in[4]x[2] == in[2]x[4], in[4]x[3] == in[3]x[4], in[5]x[0] == in[0]x[5], in[5]x[1] == in[1]x[5], in[5]x[2] == in[2]x[5], in[5]x[3] == in[3]x[5], in[5]x[4] == in[4]x[5], in[6]x[0] == in[0]x[6], in[6]x[1] == in[1]x[6], in[6]x[2] == in[2]x[6], in[6]x[3] == in[3]x[6], in[6]x[4] == in[4]x[6], in[6]x[5] == in[5]x[6].
+```
+############################################################
+Here is the correct set:
+```
+in7x6 == in6x7, in7x5 == in5x7, in7x4 == in4x7, in7x3 == in3x7, in7x2 == in2x7, in7x1 == in1x7, in7x0 == in0x7, in6x5 == in5x6, in6x4 == in4x6, in6x3 == in3x6, in6x2 == in2x6, in6x1 == in1x6, in6x0 == in0x6, in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+in[7]x[6] == in[6]x[7], in[7]x[5] == in[5]x[7], in[7]x[4] == in[4]x[7], in[7]x[3] == in[3]x[7], in[7]x[2] == in[2]x[7], in[7]x[1] == in[1]x[7], in[7]x[0] == in[0]x[7], in[6]x[5] == in[5]x[6], in[6]x[4] == in[4]x[6], in[6]x[3] == in[3]x[6], in[6]x[2] == in[2]x[6], in[6]x[1] == in[1]x[6], in[6]x[0] == in[0]x[6], in[5]x[4] == in[4]x[5], in[5]x[3] == in[3]x[5], in[5]x[2] == in[2]x[5], in[5]x[1] == in[1]x[5], in[5]x[0] == in[0]x[5], in[4]x[3] == in[3]x[4], in[4]x[2] == in[2]x[4], in[4]x[1] == in[1]x[4], in[4]x[0] == in[0]x[4], in[3]x[2] == in[2]x[3], in[3]x[1] == in[1]x[3], in[3]x[0] == in[0]x[3], in[2]x[1] == in[1]x[2], in[2]x[0] == in[0]x[2], in[1]x[0] == in[0]x[1]
+
+```
+############################################################
+Here is the correct set:
+```
+in8x7 == in7x8, in8x6 == in6x8, in8x5 == in5x8, in8x4 == in4x8, in8x3 == in3x8, in8x2 == in2x8, in8x1 == in1x8, in8x0 == in0x8, in7x6 == in6x7, in7x5 == in5x7, in7x4 == in4x7, in7x3 == in3x7, in7x2 == in2x7, in7x1 == in1x7, in7x0 == in0x7, in6x5 == in5x6, in6x4 == in4x6, in6x3 == in3x6, in6x2 == in2x6, in6x1 == in1x6, in6x0 == in0x6, in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+in[8]x[7] == in[7]x[8], in[8]x[6] == in[6]x[8], in[8]x[5] == in[5]x[8], in[8]x[4] == in[4]x[8], in[8]x[3] == in[3]x[8], in[8]x[2] == in[2]x[8], in[8]x[1] == in[1]x[8], in[8]x[0] == in[0]x[8],
+
+in[7]x[6] == in[6]x[7], in[7]x[5] == in[5]x[7], in[7]x[4] == in[4]x[7], in[7]x[3] == in[3]x[7], in[7]x[2] == in[2]x[7], in[7]x[1] == in[1]x[7], in[7]x[0] == in[0]x[7],
+
+in[6]x[5] == in[5]x[6], in[6]x[4] == in[4]x[6], in[6]x[3] == in[3]x[6], in[6]x[2] == in[2]x[6], in[6]x[1] == in[1]x[6], in[6]x[0] == in[0]x[6],
+
+in[5]x[4] == in[4]x[5], in[5]x[3] == in[3]x[5], in[5]x[2] == in[2]x[5], in[5]x[1] == in[1]x[5], in[5]x[0] == in[0]x[5],
+
+in[4]x[3] == in[3]x[4], in[4]x[2] == in[2]x[4], in[4]x[1] == in[1]x[4], in[4]x[0] == in[0]x[4],
+
+in[3]x[2] == in[2]x[3], in[3]x[1] == in[1]x[3], in[3]x[0] == in[0]x[3],
+
+in[2]x[1] == in[1]x[2], in[2]x[0] == in[0]x[2],
+
+in[1]x[0] == in[0]x[1]
+```
+############################################################
+Here is the correct set:
+```
+in9x8 == in8x9, in9x7 == in7x9, in9x6 == in6x9, in9x5 == in5x9, in9x4 == in4x9, in9x3 == in3x9, in9x2 == in2x9, in9x1 == in1x9, in9x0 == in0x9, in8x7 == in7x8, in8x6 == in6x8, in8x5 == in5x8, in8x4 == in4x8, in8x3 == in3x8, in8x2 == in2x8, in8x1 == in1x8, in8x0 == in0x8, in7x6 == in6x7, in7x5 == in5x7, in7x4 == in4x7, in7x3 == in3x7, in7x2 == in2x7, in7x1 == in1x7, in7x0 == in0x7, in6x5 == in5x6, in6x4 == in4x6, in6x3 == in3x6, in6x2 == in2x6, in6x1 == in1x6, in6x0 == in0x6, in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+in[9]x[8] == in[8]x[9], in[9]x[7] == in[7]x[9], in[9]x[6] == in[6]x[9], in[9]x[5] == in[5]x[9], in[9]x[4] == in[4]x[9], in[9]x[3] == in[3]x[9], in[9]x[2] == in[2]x[9], in[9]x[1] == in[1]x[9], in[9]x[0] == in[0]x[9],
+
+in[8]x[7] == in[7]x[8], in[8]x[6] == in[6]x[8], in[8]x[5] == in[5]x[8], in[8]x[4] == in[4]x[8], in[8]x[3] == in[3]x[8], in[8]x[2] == in[2]x[8], in[8]x[1] == in[1]x[8], in[8]x[0] == in[0]x[8], 
+
+in[7]x[6] == in[6]x[7], in[7]x[5] == in[5]x[7], in[7]x[4] == in[4]x[7], in[7]x[3] == in[3]x[7], in[7]x[2] == in[2]x[7], in[7]x[1] == in[1]x[7], in[7]x[0] == in[0]x[7],
+
+in[6]x[5] == in[5]x[6], in[6]x[4] == in[4]x[6], in[6]x[3] == in[3]x[6], in[6]x[2] == in[2]x[6], in[6]x[1] == in[1]x[6], in[6]x[0] == in[0]x[6], 
+
+in[5]x[4] == in[4]x[5], in[5]x[3] == in[3]x[5], in[5]x[2] == in[2]x[5], in[5]x[1] == in[1]x[5], in[5]x[0] == in[0]x[5], 
+
+in[4]x[3] == in[3]x[4], in[4]x[2] == in[2]x[4], in[4]x[1] == in[1]x[4], in[4]x[0] == in[0]x[4],
+
+in[3]x[2] == in[2]x[3], in[3]x[1] == in[1]x[3], in[3]x[0] == in[0]x[3], 
+
+in[2]x[1] == in[1]x[2], in[2]x[0] == in[0]x[2],
+
+in[1]x[0] == in[0]x[1].
+```
+############################################################
+                    #5  GET NEW GENERALISATION
+############################################################
+Remember to always structure your reply with the same headings. I have applied you generalisation for several concrete values of N. Some of the outputs were not correct. Change your generalisation to account for the following outputs (Remember to always structure your reply with the headings 'CASUAL' and 'FORMAL').
+
+For N=1, the generalisation output correctly fits the given data
+
+For N=2, the generalisation output correctly fits the given data
+
+For N=3, the generalisation output correctly fits the given data
+
+For N=4, the generalisation output correctly fits the given data
+
+For N=5, the generalisation output correctly fits the given data
+
+For N=6, the generalisation output correctly fits the given data
+
+For N=7, the generalisation output correctly fits the given data
+
+For N=8, the generalisation output correctly fits the given data
+
+For N=9, the generalisation output correctly fits the given data
+
+For N=10, the output constraint set should be:
+```
+in9x8 == in8x9, in9x7 == in7x9, in9x6 == in6x9, in9x5 == in5x9, in9x4 == in4x9, in9x3 == in3x9, in9x2 == in2x9, in9x1 == in1x9, in9x0 == in0x9, in8x7 == in7x8, in8x6 == in6x8, in8x5 == in5x8, in8x4 == in4x8, in8x3 == in3x8, in8x2 == in2x8, in8x1 == in1x8, in8x0 == in0x8, in7x6 == in6x7, in7x5 == in5x7, in7x4 == in4x7, in7x3 == in3x7, in7x2 == in2x7, in7x1 == in1x7, in7x0 == in0x7, in6x5 == in5x6, in6x4 == in4x6, in6x3 == in3x6, in6x2 == in2x6, in6x1 == in1x6, in6x0 == in0x6, in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+But your generalisation implies the set:
+```
+in[9]x[8] == in[8]x[9], in[9]x[7] == in[7]x[9], in[9]x[6] == in[6]x[9], in[9]x[5] == in[5]x[9], in[9]x[4] == in[4]x[9], in[9]x[3] == in[3]x[9], in[9]x[2] == in[2]x[9], in[9]x[1] == in[1]x[9], in[9]x[0] == in[0]x[9],
+
+in[8]x[7] == in[7]x[8], in[8]x[6] == in[6]x[8], in[8]x[5] == in[5]x[8], in[8]x[4] == in[4]x[8], in[8]x[3] == in[3]x[8], in[8]x[2] == in[2]x[8], in[8]x[1] == in[1]x[8], in[8]x[0] == in[0]x[8], 
+
+in[7]x[6] == in[6]x[7], in[7]x[5] == in[5]x[7], in[7]x[4] == in[4]x[7], in[7]x[3] == in[3]x[7], in[7]x[2] == in[2]x[7], in[7]x[1] == in[1]x[7], in[7]x[0] == in[0]x[7],
+
+in[6]x[5] == in[5]x[6], in[6]x[4] == in[4]x[6], in[6]x[3] == in[3]x[6], in[6]x[2] == in[2]x[6], in[6]x[1] == in[1]x[6], in[6]x[0] == in[0]x[6], 
+
+in[5]x[4] == in[4]x[5], in[5]x[3] == in[3]x[5], in[5]x[2] == in[2]x[5], in[5]x[1] == in[1]x[5], in[5]x[0] == in[0]x[5], 
+
+in[4]x[3] == in[3]x[4], in[4]x[2] == in[2]x[4], in[4]x[1] == in[1]x[4], in[4]x[0] == in[0]x[4],
+
+in[3]x[2] == in[2]x[3], in[3]x[1] == in[1]x[3], in[3]x[0] == in[0]x[3], 
+
+in[2]x[1] == in[1]x[2], in[2]x[0] == in[0]x[2],
+
+in[1]x[0] == in[0]x[1].
+```
+This is not right. Explanation: The variables in the given set are not enclosed within square brackets like the predicted set, making them different.
+############################################################
+CASUAL:
+
+You're absolutely right, I see what has gone wrong here. My previous generalisation used square brackets to indicate indexing, but based on the given sets, it looks like the correct output should use the variable name directly followed by the index without any brackets. 
+
+FORMAL:
+
+Given the number of inputs N, where N >= 1, we define valid constraints as follows: 
+
+For each integer i in the range N-1 down to 0 inclusive, and for each integer j in the range i-1 down to 0 inclusive, any two inputs in[i] and in[j] will produce a valid relationship as: 
+
+inixj == injxi
+
+Therefore, with N inputs, the valid constraints form a set that comprises of N*(N-1)/2 pairs. Each pair forms a valid constraint by comparing the value of input at in[i] with in[j] for all possible pairs within the range of N inputs, generated following the rules above. This enumeration will include all combinations of inixj == injxi where i and j are distinct elements of the set {0, 1, 2,..., N-1} with i > j.
+############################################################
+                    ATTEMPT NUMBER 6
+############################################################
+Here is the correct set:
+```
+in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+in[1]*in[0] == in[0]*in[1]
+```
+############################################################
+Here is the correct set:
+```
+in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+in2in1 == in1in2, in2in0 == in0in2, in1in0 == in0in1
+```
+############################################################
+Here is the correct set:
+```
+in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+"n4x3 == n3x4", "n4x2 == n2x4", "n4x1 == n1x4", "n4x0 == n0x4", "n3x2 == n2x3", "n3x1 == n1x3", "n3x0 == n0x3", "n2x1 == n1x2", "n2x0 == n0x2", "n1x0 == n0x1"
+```
+############################################################
+Here is the correct set:
+```
+in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+in1x0 == in0x1, 
+
+in2x1 == in1x2, in2x0 == in0x2, 
+
+in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, 
+
+in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, 
+
+in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5.
+```
+############################################################
+Here is the correct set:
+```
+in6x5 == in5x6, in6x4 == in4x6, in6x3 == in3x6, in6x2 == in2x6, in6x1 == in1x6, in6x0 == in0x6, in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+'in6x5==in5x6', 'in6x4==in4x6', 'in6x3==in3x6', 'in6x2==in2x6', 'in6x1==in1x6', 'in6x0==in0x6', 'in5x4==in4x5', 'in5x3==in3x5', 'in5x2==in2x5', 'in5x1==in1x5', 'in5x0==in0x5', 'in4x3==in3x4', 'in4x2==in2x4', 'in4x1==in1x4', 'in4x0==in0x4', 'in3x2==in2x3', 'in3x1==in1x3', 'in3x0==in0x3', 'in2x1==in1x2', 'in2x0==in0x2', 'in1x0==in0x1'
+```
+############################################################
+Here is the correct set:
+```
+in7x6 == in6x7, in7x5 == in5x7, in7x4 == in4x7, in7x3 == in3x7, in7x2 == in2x7, in7x1 == in1x7, in7x0 == in0x7, in6x5 == in5x6, in6x4 == in4x6, in6x3 == in3x6, in6x2 == in2x6, in6x1 == in1x6, in6x0 == in0x6, in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+'in7x6 == in6x7', 'in7x5 == in5x7', 'in7x4 == in4x7', 'in7x3 == in3x7', 'in7x2 == in2x7', 'in7x1 == in1x7', 'in7x0 == in0x7', 'in6x5 == in5x6', 'in6x4 == in4x6', 'in6x3 == in3x6', 'in6x2 == in2x6', 'in6x1 == in1x6', 'in6x0 == in0x6', 'in5x4 == in4x5', 'in5x3 == in3x5', 'in5x2 == in2x5', 'in5x1 == in1x5', 'in5x0 == in0x5', 'in4x3 == in3x4', 'in4x2 == in2x4', 'in4x1 == in1x4', 'in4x0 == in0x4', 'in3x2 == in2x3', 'in3x1 == in1x3', 'in3x0 == in0x3', 'in2x1 == in1x2', 'in2x0 == in0x2', 'in1x0 == in0x1'.
+```
+############################################################
+Here is the correct set:
+```
+in8x7 == in7x8, in8x6 == in6x8, in8x5 == in5x8, in8x4 == in4x8, in8x3 == in3x8, in8x2 == in2x8, in8x1 == in1x8, in8x0 == in0x8, in7x6 == in6x7, in7x5 == in5x7, in7x4 == in4x7, in7x3 == in3x7, in7x2 == in2x7, in7x1 == in1x7, in7x0 == in0x7, in6x5 == in5x6, in6x4 == in4x6, in6x3 == in3x6, in6x2 == in2x6, in6x1 == in1x6, in6x0 == in0x6, in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+in[8]*in[7] == in[7]*in[8], in[8]*in[6] == in[6]*in[8], in[8]*in[5] == in[5]*in[8], in[8]*in[4] == in[4]*in[8], in[8]*in[3] == in[3]*in[8], in[8]*in[2] == in[2]*in[8], in[8]*in[1] == in[1]*in[8], in[8]*in[0] == in[0]*in[8],
+in[7]*in[6] == in[6]*in[7], in[7]*in[5] == in[5]*in[7], in[7]*in[4] == in[4]*in[7], in[7]*in[3] == in[3]*in[7], in[7]*in[2] == in[2]*in[7], in[7]*in[1] == in[1]*in[7], in[7]*in[0] == in[0]*in[7],
+in[6]*in[5] == in[5]*in[6], in[6]*in[4] == in[4]*in[6], in[6]*in[3] == in[3]*in[6], in[6]*in[2] == in[2]*in[6], in[6]*in[1] == in[1]*in[6], in[6]*in[0] == in[0]*in[6],
+in[5]*in[4] == in[4]*in[5], in[5]*in[3] == in[3]*in[5], in[5]*in[2] == in[2]*in[5], in[5]*in[1] == in[1]*in[5], in[5]*in[0] == in[0]*in[5],
+in[4]*in[3] == in[3]*in[4], in[4]*in[2] == in[2]*in[4], in[4]*in[1] == in[1]*in[4], in[4]*in[0] == in[0]*in[4],
+in[3]*in[2] == in[2]*in[3], in[3]*in[1] == in[1]*in[3], in[3]*in[0] == in[0]*in[3],
+in[2]*in[1] == in[1]*in[2], in[2]*in[0] == in[0]*in[2],
+in[1]*in[0] == in[0]*in[1]
+```
+############################################################
+Here is the correct set:
+```
+in9x8 == in8x9, in9x7 == in7x9, in9x6 == in6x9, in9x5 == in5x9, in9x4 == in4x9, in9x3 == in3x9, in9x2 == in2x9, in9x1 == in1x9, in9x0 == in0x9, in8x7 == in7x8, in8x6 == in6x8, in8x5 == in5x8, in8x4 == in4x8, in8x3 == in3x8, in8x2 == in2x8, in8x1 == in1x8, in8x0 == in0x8, in7x6 == in6x7, in7x5 == in5x7, in7x4 == in4x7, in7x3 == in3x7, in7x2 == in2x7, in7x1 == in1x7, in7x0 == in0x7, in6x5 == in5x6, in6x4 == in4x6, in6x3 == in3x6, in6x2 == in2x6, in6x1 == in1x6, in6x0 == in0x6, in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+in9x8 == in8x9, in9x7 == in7x9, in9x6 == in6x9, in9x5 == in5x9, in9x4 == in4x9, in9x3 == in3x9, in9x2 == in2x9, in9x1 == in1x9, in9x0 == in0x9, ..., till the last constraint in1x0 == in0x1 (total of 45 constraints).
+```
+############################################################
+                    #6  GET NEW GENERALISATION
+############################################################
+Remember to always structure your reply with the same headings. I have applied you generalisation for several concrete values of N. Some of the outputs were not correct. Change your generalisation to account for the following outputs (Remember to always structure your reply with the headings 'CASUAL' and 'FORMAL').
+
+For N=1, the generalisation output correctly fits the given data
+
+For N=2, the generalisation output correctly fits the given data
+
+For N=3, the generalisation output correctly fits the given data
+
+For N=4, the generalisation output correctly fits the given data
+
+For N=5, the generalisation output correctly fits the given data
+
+For N=6, the generalisation output correctly fits the given data
+
+For N=7, the generalisation output correctly fits the given data
+
+For N=8, the generalisation output correctly fits the given data
+
+For N=9, the generalisation output correctly fits the given data
+
+For N=10, the output constraint set should be:
+```
+in9x8 == in8x9, in9x7 == in7x9, in9x6 == in6x9, in9x5 == in5x9, in9x4 == in4x9, in9x3 == in3x9, in9x2 == in2x9, in9x1 == in1x9, in9x0 == in0x9, in8x7 == in7x8, in8x6 == in6x8, in8x5 == in5x8, in8x4 == in4x8, in8x3 == in3x8, in8x2 == in2x8, in8x1 == in1x8, in8x0 == in0x8, in7x6 == in6x7, in7x5 == in5x7, in7x4 == in4x7, in7x3 == in3x7, in7x2 == in2x7, in7x1 == in1x7, in7x0 == in0x7, in6x5 == in5x6, in6x4 == in4x6, in6x3 == in3x6, in6x2 == in2x6, in6x1 == in1x6, in6x0 == in0x6, in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+But your generalisation implies the set:
+```
+in9x8 == in8x9, in9x7 == in7x9, in9x6 == in6x9, in9x5 == in5x9, in9x4 == in4x9, in9x3 == in3x9, in9x2 == in2x9, in9x1 == in1x9, in9x0 == in0x9, ..., till the last constraint in1x0 == in0x1 (total of 45 constraints).
+```
+This is not right. Explanation: The predicted set is a shortened version of the correct set containing only some of the constraints.
+############################################################
+CASUAL:
+
+I understand the problem; it seems I misunderstood the instructions before and didn't manage to give you the correct generalization. From what you've explained, it seems for each input index from the highest value(N-1), we must generate all valid constraints against the indices less than itself. It's needed to generate all comparisons step by step from the highest input index to the lowest input index.
+
+FORMAL:
+
+Given the number of inputs N, where N>=1, we define the output constraints as follows:
+
+Starting from the highest index (N-1), we generate constraints down to the zeroth index. On each step for a current index i, from N-1 down to 0, we generate a constraint comparing input i  with every input j, where j is an index smaller than i (from i-1 down to 0). 
+
+Therefore, for each index i, we generate i constraints. The whole output should contain a total sum of N*(N-1)/2 constraints. Each constraint is of the form:
+
+inixj == injxi
+
+Where i is a specific input (from the set of N-1 down to 0) and j is every input less than i (from the set of i-1 down to 0). This process repeats for all valid i values, thus capturing all possible input pairs.
+############################################################
+                    ATTEMPT NUMBER 7
+############################################################
+Here is the correct set:
+```
+in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+ini1xj0 == inj0xi1
+```
+############################################################
+Here is the correct set:
+```
+in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+ini21 == inj12, ini20 == inj02, ini10 == inj01.
+```
+############################################################
+Here is the correct set:
+```
+in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+ini3x0 == inj0x3, 
+ini3x1 == inj1x3, 
+ini3x2 == inj2x3, 
+ini2x0 == inj0x2, 
+ini2x1 == inj1x2, 
+ini1x0 == inj0x1
+```
+############################################################
+Here is the correct set:
+```
+in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+ini4xj == inj3xi,
+ini4xj == inj2xi,
+ini4xj == inj1xi,
+ini4xj == inj0xi,
+ini3xj == inj2xi,
+ini3xj == inj1xi,
+ini3xj == inj0xi,
+ini2xj == inj1xi,
+ini2xj == inj0xi,
+ini1xj == inj0xi
+
+```
+############################################################
+Here is the correct set:
+```
+in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+'in5x4 == in4x5', 'in5x3 == in3x5', 'in5x2 == in2x5', 'in5x1 == in1x5', 'in5x0 == in0x5', 'in4x3 == in3x4', 'in4x2 == in2x4', 'in4x1 == in1x4', 'in4x0 == in0x4', 'in3x2 == in2x3', 'in3x1 == in1x3', 'in3x0 == in0x3', 'in2x1 == in1x2', 'in2x0 == in0x2', 'in1x0 == in0x1'
+```
+############################################################
+Here is the correct set:
+```
+in6x5 == in5x6, in6x4 == in4x6, in6x3 == in3x6, in6x2 == in2x6, in6x1 == in1x6, in6x0 == in0x6, in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+ini6x5 == inj5x6, ini6x4 == inj4x6, ini6x3 == inj3x6, ini6x2 == inj2x6, ini6x1 == inj1x6, ini6x0 == inj0x6, ini5x4 == inj4x5, ini5x3 == inj3x5, ini5x2 == inj2x5, ini5x1 == inj1x5, ini5x0 == inj0x5, ini4x3 == inj3x4, ini4x2 == inj2x4, ini4x1 == inj1x4, ini4x0 == inj0x4, ini3x2 == inj2x3, ini3x1 == inj1x3, ini3x0 == inj0x3, ini2x1 == inj1x2, ini2x0 == inj0x2, ini1x0 == inj0x1
+```
+############################################################
+Here is the correct set:
+```
+in7x6 == in6x7, in7x5 == in5x7, in7x4 == in4x7, in7x3 == in3x7, in7x2 == in2x7, in7x1 == in1x7, in7x0 == in0x7, in6x5 == in5x6, in6x4 == in4x6, in6x3 == in3x6, in6x2 == in2x6, in6x1 == in1x6, in6x0 == in0x6, in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+"ini7 == in7i6", "ini7 == in7i5", "ini7 == in7i4", "ini7 == in7i3", "ini7 == in7i2", "ini7 == in7i1", "ini7 == in7i0", "ini6 == in6i5", "ini6 == in6i4", "ini6 == in6i3", "ini6 == in6i2", "ini6 == in6i1", "ini6 == in6i0", "ini5 == in5i4", "ini5 == in5i3", "ini5 == in5i2", "ini5 == in5i1", "ini5 == in5i0", "ini4 == in4i3", "ini4 == in4i2", "ini4 == in4i1", "ini4 == in4i0", "ini3 == in3i2", "ini3 == in3i1", "ini3 == in3i0", "ini2 == in2i1", "ini2 == in2i0", "ini1 == in1i0"
+```
+############################################################
+Here is the correct set:
+```
+in8x7 == in7x8, in8x6 == in6x8, in8x5 == in5x8, in8x4 == in4x8, in8x3 == in3x8, in8x2 == in2x8, in8x1 == in1x8, in8x0 == in0x8, in7x6 == in6x7, in7x5 == in5x7, in7x4 == in4x7, in7x3 == in3x7, in7x2 == in2x7, in7x1 == in1x7, in7x0 == in0x7, in6x5 == in5x6, in6x4 == in4x6, in6x3 == in3x6, in6x2 == in2x6, in6x1 == in1x6, in6x0 == in0x6, in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+ini8j0 == inj0i8, ini8j1 == inj1i8, ini8j2 == inj2i8, ini8j3 == inj3i8, ini8j4 == inj4i8, ini8j5 == inj5i8, ini8j6 == inj6i8, ini8j7 == inj7i8, ini7j0 == inj0i7, ini7j1 == inj1i7, ini7j2 == inj2i7, ini7j3 == inj3i7, ini7j4 == inj4i7, ini7j5 == inj5i7, ini7j6 == inj6i7, ini6j0 == inj0i6, ini6j1 == inj1i6, ini6j2 == inj2i6, ini6j3 == inj3i6, ini6j4 == inj4i6, ini6j5 == inj5i6, ini5j0 == inj0i5, ini5j1 == inj1i5, ini5j2 == inj2i5, ini5j3 == inj3i5, ini5j4 == inj4i5, ini4j0 == inj0i4, ini4j1 == inj1i4, ini4j2 == inj2i4, ini4j3 == inj3i4, ini3j0 == inj0i3, ini3j1 == inj1i3, ini3j2 == inj2i3, ini2j0 == inj0i2, ini2j1 == inj1i2, ini1j0 == inj0i1.
+```
+############################################################
+                    #7  GET NEW GENERALISATION
+############################################################
+Remember to always structure your reply with the same headings. I have applied you generalisation for several concrete values of N. Some of the outputs were not correct. Change your generalisation to account for the following outputs (Remember to always structure your reply with the headings 'CASUAL' and 'FORMAL').
+
+For N=1, the generalisation output correctly fits the given data
+
+For N=2, the output constraint set should be:
+```
+in1x0 == in0x1
+```
+But your generalisation implies the set:
+```
+ini1xj0 == inj0xi1
+```
+This is not right. Explanation: The predicted set has different variables and constraints than the correct set.
+
+For N=3, the generalisation output correctly fits the given data
+
+For N=4, the output constraint set should be:
+```
+in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+But your generalisation implies the set:
+```
+ini3x0 == inj0x3, 
+ini3x1 == inj1x3, 
+ini3x2 == inj2x3, 
+ini2x0 == inj0x2, 
+ini2x1 == inj1x2, 
+ini1x0 == inj0x1
+```
+This is not right. Explanation: The predicted set uses different variable names (ini and inj) compared to the correct set, which uses specific numeric indices (in3, in2, in1, in0). This makes the sets different.
+
+For N=5, the output constraint set should be:
+```
+in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+But your generalisation implies the set:
+```
+ini4xj == inj3xi,
+ini4xj == inj2xi,
+ini4xj == inj1xi,
+ini4xj == inj0xi,
+ini3xj == inj2xi,
+ini3xj == inj1xi,
+ini3xj == inj0xi,
+ini2xj == inj1xi,
+ini2xj == inj0xi,
+ini1xj == inj0xi
+
+```
+This is not right. Explanation: The sets are different because the variable names and format are different. While both sets follow the same pattern of inequalities, the predicted set uses different variable names and formats.
+
+For N=6, the generalisation output correctly fits the given data
+
+For N=7, the generalisation output correctly fits the given data
+
+For N=8, the generalisation output correctly fits the given data
+
+For N=9, the output constraint set should be:
+```
+in8x7 == in7x8, in8x6 == in6x8, in8x5 == in5x8, in8x4 == in4x8, in8x3 == in3x8, in8x2 == in2x8, in8x1 == in1x8, in8x0 == in0x8, in7x6 == in6x7, in7x5 == in5x7, in7x4 == in4x7, in7x3 == in3x7, in7x2 == in2x7, in7x1 == in1x7, in7x0 == in0x7, in6x5 == in5x6, in6x4 == in4x6, in6x3 == in3x6, in6x2 == in2x6, in6x1 == in1x6, in6x0 == in0x6, in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+But your generalisation implies the set:
+```
+ini8j0 == inj0i8, ini8j1 == inj1i8, ini8j2 == inj2i8, ini8j3 == inj3i8, ini8j4 == inj4i8, ini8j5 == inj5i8, ini8j6 == inj6i8, ini8j7 == inj7i8, ini7j0 == inj0i7, ini7j1 == inj1i7, ini7j2 == inj2i7, ini7j3 == inj3i7, ini7j4 == inj4i7, ini7j5 == inj5i7, ini7j6 == inj6i7, ini6j0 == inj0i6, ini6j1 == inj1i6, ini6j2 == inj2i6, ini6j3 == inj3i6, ini6j4 == inj4i6, ini6j5 == inj5i6, ini5j0 == inj0i5, ini5j1 == inj1i5, ini5j2 == inj2i5, ini5j3 == inj3i5, ini5j4 == inj4i5, ini4j0 == inj0i4, ini4j1 == inj1i4, ini4j2 == inj2i4, ini4j3 == inj3i4, ini3j0 == inj0i3, ini3j1 == inj1i3, ini3j2 == inj2i3, ini2j0 == inj0i2, ini2j1 == inj1i2, ini1j0 == inj0i1.
+```
+This is not right. Explanation: The given correct set contains inequalities over variables such as in8x7, in7x6, in6x5, and so on, while the predicted set contains inequalities over variables such as ini8j0, ini7j2, ini6j5, and so on. The variables involved in these inequalities are different, hence the sets are different.
+
+For N=10, the generalisation output correctly fits the given data
+############################################################
+CASUAL:
+
+My previous approaches didn't work out correctly, I admit. It seems I misunderstood. While generating constraints, I should have used numerical indices directly, rather than denoting the indices by "i" and "j". What we need to do is iterate over all input pairs (i, j), with i being larger than j, and then generate constraints for these pairs, using numerical indices for i and j.
+
+FORMAL:
+
+Given the number of inputs N, where N>=1, we define valid constraints as follows:
+
+For every integer i in the range of N-1 down to 1 (inclusive), and for every integer j in the range of i-1 down to 0 (inclusive), we have a valid constraint:
+
+inixj == injxi
+
+Each i steps over the range from N-1 to 1, and each j steps over the range from i-1 to 0, which produces a total of N*(N-1)/2 constraints confirming all input pairs where i > j. Note that "i" and "j" represent actual numerical values, not variable labels.
+############################################################
+                    ATTEMPT NUMBER 8
+############################################################
+Here is the correct set:
+```
+in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+' in23==in32',
+'in13==in31', 
+'in03==in30', 
+'in12==in21', 
+'in02==in20', 
+'in01==in10'
+```
+############################################################
+Here is the correct set:
+```
+in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+in43 == in34, in42 == in24, in41 == in14, in40 == in04, in32 == in23, in31 == in13, in30 == in03, in21 == in12, in20 == in02, in10 == in01
+```
+############################################################
+Here is the correct set:
+```
+in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1.
+```
+############################################################
+Here is the correct set:
+```
+in7x6 == in6x7, in7x5 == in5x7, in7x4 == in4x7, in7x3 == in3x7, in7x2 == in2x7, in7x1 == in1x7, in7x0 == in0x7, in6x5 == in5x6, in6x4 == in4x6, in6x3 == in3x6, in6x2 == in2x6, in6x1 == in1x6, in6x0 == in0x6, in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+ini7 == in7i6, ini7 == in7i5, ini7 == in7i4, ini7 == in7i3, ini7 == in7i2, ini7 == in7i1, ini7 == in7i0, ini6 == in6i5, ini6 == in6i4, ini6 == in6i3, ini6 == in6i2, ini6 == in6i1, ini6 == in6i0, ini5 == in5i4, ini5 == in5i3, ini5 == in5i2, ini5 == in5i1, ini5 == in5i0, ini4 == in4i3, ini4 == in4i2, ini4 == in4i1, ini4 == in4i0, ini3 == in3i2, ini3 == in3i1, ini3 == in3i0, ini2 == in2i1, ini2 == in2i0, ini1 == in1i0.
+```
+############################################################
+Here is the correct set:
+```
+in8x7 == in7x8, in8x6 == in6x8, in8x5 == in5x8, in8x4 == in4x8, in8x3 == in3x8, in8x2 == in2x8, in8x1 == in1x8, in8x0 == in0x8, in7x6 == in6x7, in7x5 == in5x7, in7x4 == in4x7, in7x3 == in3x7, in7x2 == in2x7, in7x1 == in1x7, in7x0 == in0x7, in6x5 == in5x6, in6x4 == in4x6, in6x3 == in3x6, in6x2 == in2x6, in6x1 == in1x6, in6x0 == in0x6, in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+in87 = in78, in86 = in68, in85 = in58, in84 = in48, in83 = in38, in82 = in28, in81 = in18, in80 = in08, in76 = in67, in75 = in57, in74 = in47, in73 = in37, in72 = in27, in71 = in17, in70 = in07, in65 = in56, in64 = in46, in63 = in36, in62 = in26, in61 = in16, in60 = in06, in54 = in45, in53 = in35, in52 = in25, in51 = in15, in50 = in05, in43 = in34, in42 = in24, in41 = in14, in40 = in04, in32 = in23, in31 = in13, in30 = in03, in21 = in12, in20 = in02, in10 = in01
+```
+############################################################
+Here is the correct set:
+```
+in9x8 == in8x9, in9x7 == in7x9, in9x6 == in6x9, in9x5 == in5x9, in9x4 == in4x9, in9x3 == in3x9, in9x2 == in2x9, in9x1 == in1x9, in9x0 == in0x9, in8x7 == in7x8, in8x6 == in6x8, in8x5 == in5x8, in8x4 == in4x8, in8x3 == in3x8, in8x2 == in2x8, in8x1 == in1x8, in8x0 == in0x8, in7x6 == in6x7, in7x5 == in5x7, in7x4 == in4x7, in7x3 == in3x7, in7x2 == in2x7, in7x1 == in1x7, in7x0 == in0x7, in6x5 == in5x6, in6x4 == in4x6, in6x3 == in3x6, in6x2 == in2x6, in6x1 == in1x6, in6x0 == in0x6, in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+'in9x8 == in8x9', 'in9x7 == in7x9', 'in9x6 == in6x9', 'in9x5 == in5x9', 'in9x4 == in4x9', 'in9x3 == in3x9', 'in9x2 == in2x9', 'in9x1 == in1x9', 'in9x0 == in0x9', 'in8x7 == in7x8', 'in8x6 == in6x8', 'in8x5 == in5x8', 'in8x4 == in4x8', 'in8x3 == in3x8', 'in8x2 == in2x8', 'in8x1 == in1x8', 'in8x0 == in0x8', 'in7x6 == in6x7', 'in7x5 == in5x7', 'in7x4 == in4x7', 'in7x3 == in3x7', 'in7x2 == in2x7', 'in7x1 == in1x7', 'in7x0 == in0x7', 'in6x5 == in5x6', 'in6x4 == in4x6', 'in6x3 == in3x6', 'in6x2 == in2x6', 'in6x1 == in1x6', 'in6x0 == in0x6', 'in5x4 == in4x5', 'in5x3 == in3x5', 'in5x2 == in2x5', 'in5x1 == in1x5', 'in5x0 == in0x5', 'in4x3 == in3x4', 'in4x2 == in2x4', 'in4x1 == in1x4', 'in4x0 == in0x4', 'in3x2 == in2x3', 'in3x1 == in1x3', 'in3x0 == in0x3', 'in2x1 == in1x2', 'in2x0 == in0x2', 'in1x0 == in0x1'
+```
+############################################################
+                    #8  GET NEW GENERALISATION
+############################################################
+Remember to always structure your reply with the same headings. I have applied you generalisation for several concrete values of N. Some of the outputs were not correct. Change your generalisation to account for the following outputs (Remember to always structure your reply with the headings 'CASUAL' and 'FORMAL').
+
+For N=1, the generalisation output correctly fits the given data
+
+For N=2, the generalisation output correctly fits the given data
+
+For N=3, the generalisation output correctly fits the given data
+
+For N=4, the generalisation output correctly fits the given data
+
+For N=5, the generalisation output correctly fits the given data
+
+For N=6, the generalisation output correctly fits the given data
+
+For N=7, the generalisation output correctly fits the given data
+
+For N=8, the output constraint set should be:
+```
+in7x6 == in6x7, in7x5 == in5x7, in7x4 == in4x7, in7x3 == in3x7, in7x2 == in2x7, in7x1 == in1x7, in7x0 == in0x7, in6x5 == in5x6, in6x4 == in4x6, in6x3 == in3x6, in6x2 == in2x6, in6x1 == in1x6, in6x0 == in0x6, in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+But your generalisation implies the set:
+```
+ini7 == in7i6, ini7 == in7i5, ini7 == in7i4, ini7 == in7i3, ini7 == in7i2, ini7 == in7i1, ini7 == in7i0, ini6 == in6i5, ini6 == in6i4, ini6 == in6i3, ini6 == in6i2, ini6 == in6i1, ini6 == in6i0, ini5 == in5i4, ini5 == in5i3, ini5 == in5i2, ini5 == in5i1, ini5 == in5i0, ini4 == in4i3, ini4 == in4i2, ini4 == in4i1, ini4 == in4i0, ini3 == in3i2, ini3 == in3i1, ini3 == in3i0, ini2 == in2i1, ini2 == in2i0, ini1 == in1i0.
+```
+This is not right. Explanation: The first set has constraints over variables like 'in7x6' while the second set has constraints over variables like 'ini7'. Additionally, the constraints involving variables like 'in7x6, in7x5, ...' are missing in the second set. Therefore, the two sets are different.
+
+For N=9, the output constraint set should be:
+```
+in8x7 == in7x8, in8x6 == in6x8, in8x5 == in5x8, in8x4 == in4x8, in8x3 == in3x8, in8x2 == in2x8, in8x1 == in1x8, in8x0 == in0x8, in7x6 == in6x7, in7x5 == in5x7, in7x4 == in4x7, in7x3 == in3x7, in7x2 == in2x7, in7x1 == in1x7, in7x0 == in0x7, in6x5 == in5x6, in6x4 == in4x6, in6x3 == in3x6, in6x2 == in2x6, in6x1 == in1x6, in6x0 == in0x6, in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+But your generalisation implies the set:
+```
+in87 = in78, in86 = in68, in85 = in58, in84 = in48, in83 = in38, in82 = in28, in81 = in18, in80 = in08, in76 = in67, in75 = in57, in74 = in47, in73 = in37, in72 = in27, in71 = in17, in70 = in07, in65 = in56, in64 = in46, in63 = in36, in62 = in26, in61 = in16, in60 = in06, in54 = in45, in53 = in35, in52 = in25, in51 = in15, in50 = in05, in43 = in34, in42 = in24, in41 = in14, in40 = in04, in32 = in23, in31 = in13, in30 = in03, in21 = in12, in20 = in02, in10 = in01
+```
+This is not right. Explanation: The sets of inequalities are different due to the difference in representation, such as '==' vs '=' and 'in8x7' vs 'in87'.
+
+For N=10, the generalisation output correctly fits the given data
+############################################################
+CASUAL:
+
+I appreciate your patience and thank you for pointing out the errors. It seems I made a mistake in my generalisation. The conditions you showed represent equality of two expressions, where an element with a larger index is multiplied by an element with a smaller index and that is equal to the element with the smaller index multiplied by the element with the larger index. I also see that my notation was wrong in my previous responses where I should have had 'x' to represent multiplication and '==' to represent equality.
+
+FORMAL:
+
+Given the number of inputs N, where N>=1, the correct generalisation should be as follows:
+
+For each integer i in the range N-1 down to 0 inclusive, and for each integer j in the range i-1 down to 0 inclusive, the valid constraint is:
+
+inixj == injxi
+
+This means, when we are at a certain index i, we compare it with each input index less than i. We do this for each input index. The total number of constraints will be N*(N-1)/2. Every constraint is in the form of inixj == injxi where i and j are distinct and i > j representing the specific numerical index of input.
+############################################################
+                    ATTEMPT NUMBER 9
+############################################################
+Here is the correct set:
+```
+in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+ini1x0 = in0xi1
+```
+############################################################
+Here is the correct set:
+```
+in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+ini2x1 == ini1x2, ini2x0 == ini0x2, ini1x0 == ini0x1
+```
+############################################################
+Here is the correct set:
+```
+in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+"in3x2 == in2x3", "in3x1 == in1x3", "in3x0 == in0x3", "in2x1 == in1x2", "in2x0 == in0x2", "in1x0 == in0x1"
+```
+############################################################
+Here is the correct set:
+```
+in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+in43 = in34, in42 = in24, in41 = in14, in40 = in04, in32 = in23, in31 = in13, in30 = in03, in21 = in12, in20 = in02, in10 = in01
+```
+############################################################
+Here is the correct set:
+```
+in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+"in5x4 == in4x5", "in5x3 == in3x5", "in5x2 == in2x5", "in5x1 == in1x5", "in5x0 == in0x5", "in4x3 == in3x4", "in4x2 == in2x4", "in4x1 == in1x4", "in4x0 == in0x4", "in3x2 == in2x3", "in3x1 == in1x3", "in3x0 == in0x3", "in2x1 == in1x2", "in2x0 == in0x2", "in1x0 == in0x1"
+```
+############################################################
+Here is the correct set:
+```
+in6x5 == in5x6, in6x4 == in4x6, in6x3 == in3x6, in6x2 == in2x6, in6x1 == in1x6, in6x0 == in0x6, in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+ini6x5 == inj5xi, ini6x4 == inj4xi, ini6x3 == inj3xi, ini6x2 == inj2xi, ini6x1 == inj1xi, ini6x0 == inj0xi, ini5x4 == inj4xi, ini5x3 == inj3xi, ini5x2 == inj2xi, ini5x1 == inj1xi, ini5x0 == inj0xi, ini4x3 == inj3xi, ini4x2 == inj2xi, ini4x1 == inj1xi, ini4x0 == inj0xi, ini3x2 == inj2xi, ini3x1 == inj1xi, ini3x0 == inj0xi, ini2x1 == inj1xi, ini2x0 == inj0xi, ini1x0 == inj0xi
+```
+############################################################
+Here is the correct set:
+```
+in7x6 == in6x7, in7x5 == in5x7, in7x4 == in4x7, in7x3 == in3x7, in7x2 == in2x7, in7x1 == in1x7, in7x0 == in0x7, in6x5 == in5x6, in6x4 == in4x6, in6x3 == in3x6, in6x2 == in2x6, in6x1 == in1x6, in6x0 == in0x6, in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+in76 == in67, in75 == in57, in74 == in47, in73 == in37, in72 == in27, in71 == in17, in70 == in07, in65 == in56, in64 == in46, in63 == in36, in62 == in26, in61 == in16, in60 == in06, in54 == in45, in53 == in35, in52 == in25, in51 == in15, in50 == in05, in43 == in34, in42 == in24, in41 == in14, in40 == in04, in32 == in23, in31 == in13, in30 == in03, in21 == in12, in20 == in02, in10 == in01
+```
+############################################################
+Here is the correct set:
+```
+in8x7 == in7x8, in8x6 == in6x8, in8x5 == in5x8, in8x4 == in4x8, in8x3 == in3x8, in8x2 == in2x8, in8x1 == in1x8, in8x0 == in0x8, in7x6 == in6x7, in7x5 == in5x7, in7x4 == in4x7, in7x3 == in3x7, in7x2 == in2x7, in7x1 == in1x7, in7x0 == in0x7, in6x5 == in5x6, in6x4 == in4x6, in6x3 == in3x6, in6x2 == in2x6, in6x1 == in1x6, in6x0 == in0x6, in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+ini8x7 == in7xi8, ini8x6 == in6xi8, ini8x5 == in5xi8, ini8x4 == in4xi8, ini8x3 == in3xi8, ini8x2 == in2xi8, ini8x1 == in1xi8, ini8x0 == in0xi8, ini7x6 == in6xi7, ini7x5 == in5xi7, ini7x4 == in4xi7, ini7x3 == in3xi7, ini7x2 == in2xi7, ini7x1 == in1xi7, ini7x0 == in0xi7, ini6x5 == in5xi6, ini6x4 == in4xi6, ini6x3 == in3xi6,ini6x2 == in2xi6, ini6x1 == in1xi6, ini6x0 == in0xi6, ini5x4 == in4xi5, ini5x3 == in3xi5, ini5x2 == in2xi5, ini5x1 == in1xi5, ini5x0 == in0xi5,ini4x3 == in3xi4, ini4x2 == in2xi4, ini4x1 == in1xi4, ini4x0 == in0xi4, ini3x2 == in2xi3, ini3x1 == in1xi3, ini3x0 == in0xi3, ini2x1 == in1xi2, ini2x0 == in0xi2,  ini1x0 == in0xi1
+
+```
+############################################################
+Here is the correct set:
+```
+in9x8 == in8x9, in9x7 == in7x9, in9x6 == in6x9, in9x5 == in5x9, in9x4 == in4x9, in9x3 == in3x9, in9x2 == in2x9, in9x1 == in1x9, in9x0 == in0x9, in8x7 == in7x8, in8x6 == in6x8, in8x5 == in5x8, in8x4 == in4x8, in8x3 == in3x8, in8x2 == in2x8, in8x1 == in1x8, in8x0 == in0x8, in7x6 == in6x7, in7x5 == in5x7, in7x4 == in4x7, in7x3 == in3x7, in7x2 == in2x7, in7x1 == in1x7, in7x0 == in0x7, in6x5 == in5x6, in6x4 == in4x6, in6x3 == in3x6, in6x2 == in2x6, in6x1 == in1x6, in6x0 == in0x6, in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+ini9x8 == in8x9, ini9x7 == in7x9, ini9x6 == in6x9, ini9x5 == in5x9, ini9x4 == in4x9, 
+ini9x3 == in3x9, ini9x2 == in2x9, ini9x1 == in1x9, ini9x0 == in0x9, ini8x7 == in7x8, 
+ini8x6 == in6x8, ini8x5 == in5x8, ini8x4 == in4x8, ini8x3 == in3x8, ini8x2 == in2x8, 
+ini8x1 == in1x8, ini8x0 == in0x8, ini7x6 == in6x7, ini7x5 == in5x7, ini7x4 == in4x7, 
+ini7x3 == in3x7, ini7x2 == in2x7, ini7x1 == in1x7, ini7x0 == in0x7, ini6x5 == in5x6,
+ini6x4 == in4x6, ini6x3 == in3x6, ini6x2 == in2x6, ini6x1 == in1x6, ini6x0 == in0x6, 
+ini5x4 == in4x5, ini5x3 == in3x5, ini5x2 == in2x5, ini5x1 == in1x5, ini5x0 == in0x5, 
+ini4x3 == in3x4, ini4x2 == in2x4, ini4x1 == in1x4, ini4x0 == in0x4, ini3x2 == in2x3, 
+ini3x1 == in1x3, ini3x0 == in0x3, ini2x1 == in1x2, ini2x0 == in0x2, ini1x0 == in0x1
+```
+############################################################
+                    #9  GET NEW GENERALISATION
+############################################################
+Remember to always structure your reply with the same headings. I have applied you generalisation for several concrete values of N. Some of the outputs were not correct. Change your generalisation to account for the following outputs (Remember to always structure your reply with the headings 'CASUAL' and 'FORMAL').
+
+For N=1, the generalisation output correctly fits the given data
+
+For N=2, the output constraint set should be:
+```
+in1x0 == in0x1
+```
+But your generalisation implies the set:
+```
+ini1x0 = in0xi1
+```
+This is not right. Explanation: The predicted set differs in the formatting of the equality sign and the variable names.
+
+For N=3, the output constraint set should be:
+```
+in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+But your generalisation implies the set:
+```
+ini2x1 == ini1x2, ini2x0 == ini0x2, ini1x0 == ini0x1
+```
+This is not right. Explanation: The predicted set uses 'ini' instead of 'in' before the indices of the variables, making it different from the correct set.
+
+For N=4, the generalisation output correctly fits the given data
+
+For N=5, the generalisation output correctly fits the given data
+
+For N=6, the generalisation output correctly fits the given data
+
+For N=7, the generalisation output correctly fits the given data
+
+For N=8, the output constraint set should be:
+```
+in7x6 == in6x7, in7x5 == in5x7, in7x4 == in4x7, in7x3 == in3x7, in7x2 == in2x7, in7x1 == in1x7, in7x0 == in0x7, in6x5 == in5x6, in6x4 == in4x6, in6x3 == in3x6, in6x2 == in2x6, in6x1 == in1x6, in6x0 == in0x6, in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+But your generalisation implies the set:
+```
+in76 == in67, in75 == in57, in74 == in47, in73 == in37, in72 == in27, in71 == in17, in70 == in07, in65 == in56, in64 == in46, in63 == in36, in62 == in26, in61 == in16, in60 == in06, in54 == in45, in53 == in35, in52 == in25, in51 == in15, in50 == in05, in43 == in34, in42 == in24, in41 == in14, in40 == in04, in32 == in23, in31 == in13, in30 == in03, in21 == in12, in20 == in02, in10 == in01
+```
+This is not right. Explanation: The two sets are not the same since the second set contains variables without 'x'.
+
+For N=9, the generalisation output correctly fits the given data
+
+For N=10, the output constraint set should be:
+```
+in9x8 == in8x9, in9x7 == in7x9, in9x6 == in6x9, in9x5 == in5x9, in9x4 == in4x9, in9x3 == in3x9, in9x2 == in2x9, in9x1 == in1x9, in9x0 == in0x9, in8x7 == in7x8, in8x6 == in6x8, in8x5 == in5x8, in8x4 == in4x8, in8x3 == in3x8, in8x2 == in2x8, in8x1 == in1x8, in8x0 == in0x8, in7x6 == in6x7, in7x5 == in5x7, in7x4 == in4x7, in7x3 == in3x7, in7x2 == in2x7, in7x1 == in1x7, in7x0 == in0x7, in6x5 == in5x6, in6x4 == in4x6, in6x3 == in3x6, in6x2 == in2x6, in6x1 == in1x6, in6x0 == in0x6, in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+But your generalisation implies the set:
+```
+ini9x8 == in8x9, ini9x7 == in7x9, ini9x6 == in6x9, ini9x5 == in5x9, ini9x4 == in4x9, 
+ini9x3 == in3x9, ini9x2 == in2x9, ini9x1 == in1x9, ini9x0 == in0x9, ini8x7 == in7x8, 
+ini8x6 == in6x8, ini8x5 == in5x8, ini8x4 == in4x8, ini8x3 == in3x8, ini8x2 == in2x8, 
+ini8x1 == in1x8, ini8x0 == in0x8, ini7x6 == in6x7, ini7x5 == in5x7, ini7x4 == in4x7, 
+ini7x3 == in3x7, ini7x2 == in2x7, ini7x1 == in1x7, ini7x0 == in0x7, ini6x5 == in5x6,
+ini6x4 == in4x6, ini6x3 == in3x6, ini6x2 == in2x6, ini6x1 == in1x6, ini6x0 == in0x6, 
+ini5x4 == in4x5, ini5x3 == in3x5, ini5x2 == in2x5, ini5x1 == in1x5, ini5x0 == in0x5, 
+ini4x3 == in3x4, ini4x2 == in2x4, ini4x1 == in1x4, ini4x0 == in0x4, ini3x2 == in2x3, 
+ini3x1 == in1x3, ini3x0 == in0x3, ini2x1 == in1x2, ini2x0 == in0x2, ini1x0 == in0x1
+```
+This is not right. Explanation: The added 'i' prefix to the variable names in the predicted set is incorrect and not present in the correct set.
+############################################################
+CASUAL:
+
+Thanks for pointing out the details. Looking at the constraints for different values of N, it seems like we're trying to express that multiplication is commutative. So, for each pair of different inputs, multiplying one by the other gives the same result, regardless of the order. For each input with a larger index, we specify equality for all corresponding pairs of inputs with smaller indices. It seems like my generalisation was incorrect due to issues with notation.
+
+FORMAL:
+
+Given the number of inputs N with N >= 1, the correct generalisation should be defined as follows:
+
+For each integer i in the range from (N-1) down to 0, both inclusive, and for each integer j in the range from (i-1) down to 0, both inclusive, a valid constraint is:
+
+'in' + str(i) + 'x' + str(j) + ' == ' + 'in' + str(j) + 'x' + str(i)
+
+This means that we are taking every input index i from N-1 to 0 and for each such i, we're taking every input index j from i-1 to 0 and generating a constraint that expresses the equality of the product of inputs i and j with the product of inputs j and i, and doing this for every valid pair of i and j. The total number of constraints will be N*(N-1)/2. In the constraint format above, str(i) and str(j) are the string representations of the numerical values of i and j.
+############################################################
+                    ATTEMPT NUMBER 10
+############################################################
+Here is the correct set:
+```
+in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+"in1x0 == in0x1"
+```
+############################################################
+Here is the correct set:
+```
+in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+'in2x1 == in1x2', 'in2x0 == in0x2', 'in1x0 == in0x1'
+```
+############################################################
+Here is the correct set:
+```
+in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+'in3x2 == in2x3', 'in3x1 == in1x3', 'in3x0 == in0x3', 'in2x1 == in1x2', 'in2x0 == in0x2', 'in1x0 == in0x1'
+```
+############################################################
+Here is the correct set:
+```
+in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+'In4x3 == In3x4', 'In4x2 == In2x4', 'In4x1 == In1x4', 'In4x0 == In0x4', 'In3x2 == In2x3', 'In3x1 == In1x3', 'In3x0 == In0x3', 'In2x1 == In1x2', 'In2x0 == In0x2', 'In1x0 == In0x1'
+```
+############################################################
+Here is the correct set:
+```
+in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+'in5x4 == in4x5', 'in5x3 == in3x5', 'in5x2 == in2x5', 'in5x1 == in1x5', 'in5x0 == in0x5', 'in4x3 == in3x4', 'in4x2 == in2x4', 'in4x1 == in1x4', 'in4x0 == in0x4', 'in3x2 == in2x3', 'in3x1 == in1x3', 'in3x0 == in0x3', 'in2x1 == in1x2', 'in2x0 == in0x2', 'in1x0 == in0x1'
+```
+############################################################
+Here is the correct set:
+```
+in6x5 == in5x6, in6x4 == in4x6, in6x3 == in3x6, in6x2 == in2x6, in6x1 == in1x6, in6x0 == in0x6, in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+'in6x5 == in5x6', 'in6x4 == in4x6', 'in6x3 == in3x6', 'in6x2 == in2x6', 'in6x1 == in1x6', 'in6x0 == in0x6', 'in5x4 == in4x5', 'in5x3 == in3x5', 'in5x2 == in2x5', 'in5x1 == in1x5', 'in5x0 == in0x5', 'in4x3 == in3x4', 'in4x2 == in2x4', 'in4x1 == in1x4', 'in4x0 == in0x4', 'in3x2 == in2x3', 'in3x1 == in1x3', 'in3x0 == in0x3', 'in2x1 == in1x2', 'in2x0 == in0x2', 'in1x0 == in0x1'
+```
+############################################################
+Here is the correct set:
+```
+in7x6 == in6x7, in7x5 == in5x7, in7x4 == in4x7, in7x3 == in3x7, in7x2 == in2x7, in7x1 == in1x7, in7x0 == in0x7, in6x5 == in5x6, in6x4 == in4x6, in6x3 == in3x6, in6x2 == in2x6, in6x1 == in1x6, in6x0 == in0x6, in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+'in7x6 == in6x7', 'in7x5 == in5x7', 'in7x4 == in4x7', 'in7x3 == in3x7', 
+'in7x2 == in2x7', 'in7x1 == in1x7', 'in7x0 == in0x7', 'in6x5 == in5x6', 
+'in6x4 == in4x6', 'in6x3 == in3x6', 'in6x2 == in2x6', 'in6x1 == in1x6', 
+'in6x0 == in0x6', 'in5x4 == in4x5', 'in5x3 == in3x5', 'in5x2 == in2x5', 
+'in5x1 == in1x5', 'in5x0 == in0x5', 'in4x3 == in3x4', 'in4x2 == in2x4',
+'in4x1 == in1x4', 'in4x0 == in0x4', 'in3x2 == in2x3', 'in3x1 == in1x3', 
+'in3x0 == in0x3', 'in2x1 == in1x2', 'in2x0 == in0x2', 'in1x0 == in0x1'
+```
+############################################################
+Here is the correct set:
+```
+in8x7 == in7x8, in8x6 == in6x8, in8x5 == in5x8, in8x4 == in4x8, in8x3 == in3x8, in8x2 == in2x8, in8x1 == in1x8, in8x0 == in0x8, in7x6 == in6x7, in7x5 == in5x7, in7x4 == in4x7, in7x3 == in3x7, in7x2 == in2x7, in7x1 == in1x7, in7x0 == in0x7, in6x5 == in5x6, in6x4 == in4x6, in6x3 == in3x6, in6x2 == in2x6, in6x1 == in1x6, in6x0 == in0x6, in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+'in8x7 == in7x8', 'in8x6 == in6x8', 'in8x5 == in5x8', 'in8x4 == in4x8', 'in8x3 == in3x8', 'in8x2 == in2x8', 'in8x1 == in1x8', 'in8x0 == in0x8', 'in7x6 == in6x7', 'in7x5 == in5x7', 'in7x4 == in4x7', 'in7x3 == in3x7', 'in7x2 == in2x7', 'in7x1 == in1x7', 'in7x0 == in0x7', 'in6x5 == in5x6', 'in6x4 == in4x6', 'in6x3 == in3x6', 'in6x2 == in2x6', 'in6x1 == in1x6', 'in6x0 == in0x6', 'in5x4 == in4x5', 'in5x3 == in3x5', 'in5x2 == in2x5', 'in5x1 == in1x5', 'in5x0 == in0x5', 'in4x3 == in3x4', 'in4x2 == in2x4', 'in4x1 == in1x4', 'in4x0 == in0x4', 'in3x2 == in2x3', 'in3x1 == in1x3', 'in3x0 == in0x3', 'in2x1 == in1x2', 'in2x0 == in0x2', 'in1x0 == in0x1'
+```
+############################################################
+Here is the correct set:
+```
+in9x8 == in8x9, in9x7 == in7x9, in9x6 == in6x9, in9x5 == in5x9, in9x4 == in4x9, in9x3 == in3x9, in9x2 == in2x9, in9x1 == in1x9, in9x0 == in0x9, in8x7 == in7x8, in8x6 == in6x8, in8x5 == in5x8, in8x4 == in4x8, in8x3 == in3x8, in8x2 == in2x8, in8x1 == in1x8, in8x0 == in0x8, in7x6 == in6x7, in7x5 == in5x7, in7x4 == in4x7, in7x3 == in3x7, in7x2 == in2x7, in7x1 == in1x7, in7x0 == in0x7, in6x5 == in5x6, in6x4 == in4x6, in6x3 == in3x6, in6x2 == in2x6, in6x1 == in1x6, in6x0 == in0x6, in5x4 == in4x5, in5x3 == in3x5, in5x2 == in2x5, in5x1 == in1x5, in5x0 == in0x5, in4x3 == in3x4, in4x2 == in2x4, in4x1 == in1x4, in4x0 == in0x4, in3x2 == in2x3, in3x1 == in1x3, in3x0 == in0x3, in2x1 == in1x2, in2x0 == in0x2, in1x0 == in0x1
+```
+
+Here is the predicted set:
+```
+'in9x8 == in8x9', 'in9x7 == in7x9', 'in9x6 == in6x9', 'in9x5 == in5x9', 'in9x4 == in4x9', 'in9x3 == in3x9', 'in9x2 == in2x9', 'in9x1 == in1x9', 'in9x0 == in0x9', 'in8x7 == in7x8', 'in8x6 == in6x8', 'in8x5 == in5x8', 'in8x4 == in4x8', 'in8x3 == in3x8', 'in8x2 == in2x8', 'in8x1 == in1x8', 'in8x0 == in0x8', 'in7x6 == in6x7', 'in7x5 == in5x7', 'in7x4 == in4x7', 'in7x3 == in3x7', 'in7x2 == in2x7', 'in7x1 == in1x7', 'in7x0 == in0x7', 'in6x5 == in5x6', 'in6x4 == in4x6', 'in6x3 == in3x6', 'in6x2 == in2x6', 'in6x1 == in1x6', 'in6x0 == in0x6', 'in5x4 == in4x5', 'in5x3 == in3x5', 'in5x2 == in2x5', 'in5x1 == in1x5', 'in5x0 == in0x5', 'in4x3 == in3x4', 'in4x2 == in2x4', 'in4x1 == in1x4', 'in4x0 == in0x4', 'in3x2 == in2x3', 'in3x1 == in1x3', 'in3x0 == in0x3', 'in2x1 == in1x2', 'in2x0 == in0x2', 'in1x0 == in0x1'
+```
+############################################################
+DONE WITH THAT EXAMPLE

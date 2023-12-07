@@ -1,0 +1,283 @@
+
+############################################################
+                    GET INITIAL GENERALISATION
+############################################################
+I'm experimenting with a program and trying to find what makes an increasingly large set of inputs valid. So far I have found one possible set of correct constraints/ conditions (not the only one) which define a valid input. Here they are.
+
+Valid constraints for 1 inputs (N=1):
+None
+
+Valid constraints for 2 inputs (N=2):
+in0 != in1
+
+Valid constraints for 3 inputs (N=3):
+in1 != in2, in0 != in2, in0 != in1
+
+Valid constraints for 4 inputs (N=4):
+in2 != in3, in1 != in3, in1 != in2, in0 != in3, in0 != in2, in0 != in1
+
+Valid constraints for 5 inputs (N=5):
+in3 != in4, in2 != in4, in2 != in3, in1 != in4, in1 != in3, in1 != in2, in0 != in4, in0 != in3, in0 != in2, in0 != in1
+
+Valid constraints for 6 inputs (N=6):
+in4 != in5, in3 != in5, in3 != in4, in2 != in5, in2 != in4, in2 != in3, in1 != in5, in1 != in4, in1 != in3, in1 != in2, in0 != in5, in0 != in4, in0 != in3, in0 != in2, in0 != in1
+
+Valid constraints for 7 inputs (N=7):
+in5 != in6, in4 != in6, in4 != in5, in3 != in6, in3 != in5, in3 != in4, in2 != in6, in2 != in5, in2 != in4, in2 != in3, in1 != in6, in1 != in5, in1 != in4, in1 != in3, in1 != in2, in0 != in6, in0 != in5, in0 != in4, in0 != in3, in0 != in2, in0 != in1
+
+Valid constraints for 8 inputs (N=8):
+in6 != in7, in5 != in7, in5 != in6, in4 != in7, in4 != in6, in4 != in5, in3 != in7, in3 != in6, in3 != in5, in3 != in4, in2 != in7, in2 != in6, in2 != in5, in2 != in4, in2 != in3, in1 != in7, in1 != in6, in1 != in5, in1 != in4, in1 != in3, in1 != in2, in0 != in7, in0 != in6, in0 != in5, in0 != in4, in0 != in3, in0 != in2, in0 != in1
+
+Valid constraints for 9 inputs (N=9):
+in7 != in8, in6 != in8, in6 != in7, in5 != in8, in5 != in7, in5 != in6, in4 != in8, in4 != in7, in4 != in6, in4 != in5, in3 != in8, in3 != in7, in3 != in6, in3 != in5, in3 != in4, in2 != in8, in2 != in7, in2 != in6, in2 != in5, in2 != in4, in2 != in3, in1 != in8, in1 != in7, in1 != in6, in1 != in5, in1 != in4, in1 != in3, in1 != in2, in0 != in8, in0 != in7, in0 != in6, in0 != in5, in0 != in4, in0 != in3, in0 != in2, in0 != in1
+
+Valid constraints for 10 inputs (N=10):
+in8 != in9, in7 != in9, in7 != in8, in6 != in9, in6 != in8, in6 != in7, in5 != in9, in5 != in8, in5 != in7, in5 != in6, in4 != in9, in4 != in8, in4 != in7, in4 != in6, in4 != in5, in3 != in9, in3 != in8, in3 != in7, in3 != in6, in3 != in5, in3 != in4, in2 != in9, in2 != in8, in2 != in7, in2 != in6, in2 != in5, in2 != in4, in2 != in3, in1 != in9, in1 != in8, in1 != in7, in1 != in6, in1 != in5, in1 != in4, in1 != in3, in1 != in2, in0 != in9, in0 != in8, in0 != in7, in0 != in6, in0 != in5, in0 != in4, in0 != in3, in0 != in2, in0 != in1
+
+Generalise what makes the set of constraints valid such that we can recover a valid set for N inputs. Don't overfit the data here but also dont oversimplify to the point of trivialness. Make sure none of the given examples contradict your generalisation.
+############################################################
+CASUAL:
+
+Looking at the constraints outlined, it seems that the key pattern is that each input must not be equal to any of the other inputs. For example, for 2 inputs, the constraint is that 'in0' is not equal to 'in1'. As the number of inputs increases, the constraints become more complex, but it's the same idea: none of the inputs should be equal to any of the others. For instance, for 3 inputs, we see that none of the inputs is the same as any of the others, that is 'in0' is not equal to 'in1' or 'in2', and similarly for 'in1' and 'in2'.
+
+FORMAL:
+
+Suppose we have N inputs, denoted as {in0, in1, in2, ..., in(N-1)}. The valid constraints such that the set of inputs is valid can be generalized as follows: For each set of inputs, no input should be equal to any of the other inputs, that is 'in0' != 'in1', 'in0' != 'in2', ..., 'in0' != 'in(N-1)', and similarly for the rest of the inputs. This can also be formally represented in pseudocode/ pseudo-mathematics:
+
+For i from 0 to N-1:
+    For j from i+1 to N-1:
+        Add the constraint 'in[i] != in[j]'
+
+By doing this, we ensure that each input is compared for equality with every other input exactly once. This results in N(N-1)/2 unique comparisons, or constraints, which matches the pattern seen in the provided examples. Therefore, this formal representation generalizes the pattern found in the given examples without violating any of them.
+############################################################
+                    ATTEMPT NUMBER 1
+############################################################
+Here is the correct set:
+```
+in0 != in1
+```
+
+Here is the predicted set:
+```
+'in0 != in1'
+```
+############################################################
+Here is the correct set:
+```
+in1 != in2, in0 != in2, in0 != in1
+```
+
+Here is the predicted set:
+```
+'in0 != in1', 'in0 != in2', 'in1 != in2'
+```
+############################################################
+Here is the correct set:
+```
+in2 != in3, in1 != in3, in1 != in2, in0 != in3, in0 != in2, in0 != in1
+```
+
+Here is the predicted set:
+```
+'in0 != in1', 'in0 != in2', 'in0 != in3', 'in1 != in2', 'in1 != in3', 'in2 != in3'
+```
+############################################################
+Here is the correct set:
+```
+in3 != in4, in2 != in4, in2 != in3, in1 != in4, in1 != in3, in1 != in2, in0 != in4, in0 != in3, in0 != in2, in0 != in1
+```
+
+Here is the predicted set:
+```
+'in0' != 'in1', 'in0' != 'in2', 'in0' != 'in3', 'in0' != 'in4', 'in1' != 'in2', 'in1' != 'in3', 'in1' != 'in4', 'in2' != 'in3', 'in2' != 'in4', 'in3' != 'in4'
+```
+############################################################
+Here is the correct set:
+```
+in4 != in5, in3 != in5, in3 != in4, in2 != in5, in2 != in4, in2 != in3, in1 != in5, in1 != in4, in1 != in3, in1 != in2, in0 != in5, in0 != in4, in0 != in3, in0 != in2, in0 != in1
+```
+
+Here is the predicted set:
+```
+'in0 != in1', 'in0 != in2', 'in0 != in3', 'in0 != in4', 'in0 != in5', 'in1 != in2', 'in1 != in3', 'in1 != in4', 'in1 != in5', 'in2 != in3', 'in2 != in4', 'in2 != in5', 'in3 != in4', 'in3 != in5', 'in4 != in5'.
+```
+############################################################
+Here is the correct set:
+```
+in5 != in6, in4 != in6, in4 != in5, in3 != in6, in3 != in5, in3 != in4, in2 != in6, in2 != in5, in2 != in4, in2 != in3, in1 != in6, in1 != in5, in1 != in4, in1 != in3, in1 != in2, in0 != in6, in0 != in5, in0 != in4, in0 != in3, in0 != in2, in0 != in1
+```
+
+Here is the predicted set:
+```
+'in0' != 'in1', 'in0' != 'in2', 'in0' != 'in3', 'in0' != 'in4', 'in0' != 'in5', 'in0' != 'in6', 'in1' != 'in2', 'in1' != 'in3', 'in1' != 'in4', 'in1' != 'in5', 'in1' != 'in6', 'in2' != 'in3', 'in2' != 'in4', 'in2' != 'in5', 'in2' != 'in6', 'in3' != 'in4', 'in3' != 'in5', 'in3' != 'in6', 'in4' != 'in5', 'in4' != 'in6', 'in5' != 'in6'
+```
+############################################################
+Here is the correct set:
+```
+in6 != in7, in5 != in7, in5 != in6, in4 != in7, in4 != in6, in4 != in5, in3 != in7, in3 != in6, in3 != in5, in3 != in4, in2 != in7, in2 != in6, in2 != in5, in2 != in4, in2 != in3, in1 != in7, in1 != in6, in1 != in5, in1 != in4, in1 != in3, in1 != in2, in0 != in7, in0 != in6, in0 != in5, in0 != in4, in0 != in3, in0 != in2, in0 != in1
+```
+
+Here is the predicted set:
+```
+'in0 != in1', 'in0 != in2', 'in0 != in3', 'in0 != in4', 'in0 != in5', 'in0 != in6', 'in0 != in7', 'in1 != in2', 'in1 != in3', 'in1 != in4', 'in1 != in5', 'in1 != in6', 'in1 != in7', 'in2 != in3', 'in2 != in4', 'in2 != in5', 'in2 != in6', 'in2 != in7', 'in3 != in4', 'in3 != in5', 'in3 != in6', 'in3 != in7', 'in4 != in5', 'in4 != in6', 'in4 != in7', 'in5 != in6', 'in5 != in7', 'in6 != in7'
+```
+############################################################
+Here is the correct set:
+```
+in7 != in8, in6 != in8, in6 != in7, in5 != in8, in5 != in7, in5 != in6, in4 != in8, in4 != in7, in4 != in6, in4 != in5, in3 != in8, in3 != in7, in3 != in6, in3 != in5, in3 != in4, in2 != in8, in2 != in7, in2 != in6, in2 != in5, in2 != in4, in2 != in3, in1 != in8, in1 != in7, in1 != in6, in1 != in5, in1 != in4, in1 != in3, in1 != in2, in0 != in8, in0 != in7, in0 != in6, in0 != in5, in0 != in4, in0 != in3, in0 != in2, in0 != in1
+```
+
+Here is the predicted set:
+```
+'in0' != 'in1', 'in0' != 'in2', 'in0' != 'in3', 'in0' != 'in4', 'in0' != 'in5', 'in0' != 'in6', 'in0' != 'in7', 'in0' != 'in8', 'in1' != 'in2', 'in1' != 'in3', 'in1' != 'in4', 'in1' != 'in5', 'in1' != 'in6', 'in1' != 'in7', 'in1' != 'in8', 'in2' != 'in3', 'in2' != 'in4', 'in2' != 'in5', 'in2' != 'in6', 'in2' != 'in7', 'in2' != 'in8', 'in3' != 'in4', 'in3' != 'in5', 'in3' != 'in6', 'in3' != 'in7', 'in3' != 'in8', 'in4' != 'in5', 'in4' != 'in6', 'in4' != 'in7', 'in4' != 'in8', 'in5' != 'in6', 'in5' != 'in7', 'in5' != 'in8', 'in6' != 'in7', 'in6' != 'in8', 'in7' != 'in8'
+```
+############################################################
+Here is the correct set:
+```
+in8 != in9, in7 != in9, in7 != in8, in6 != in9, in6 != in8, in6 != in7, in5 != in9, in5 != in8, in5 != in7, in5 != in6, in4 != in9, in4 != in8, in4 != in7, in4 != in6, in4 != in5, in3 != in9, in3 != in8, in3 != in7, in3 != in6, in3 != in5, in3 != in4, in2 != in9, in2 != in8, in2 != in7, in2 != in6, in2 != in5, in2 != in4, in2 != in3, in1 != in9, in1 != in8, in1 != in7, in1 != in6, in1 != in5, in1 != in4, in1 != in3, in1 != in2, in0 != in9, in0 != in8, in0 != in7, in0 != in6, in0 != in5, in0 != in4, in0 != in3, in0 != in2, in0 != in1
+```
+
+Here is the predicted set:
+```
+in[0] != in[1], in[0] != in[2], in[0] != in[3], in[0] != in[4], in[0] != in[5], in[0] != in[6], in[0] != in[7], in[0] != in[8], in[0] != in[9], in[1] != in[2], in[1] != in[3], in[1] != in[4], in[1] != in[5], in[1] != in[6], in[1] != in[7], in[1] != in[8], in[1] != in[9], in[2] != in[3], in[2] != in[4], in[2] != in[5], in[2] != in[6], in[2] != in[7], in[2] != in[8], in[2] != in[9], in[3] != in[4], in[3] != in[5], in[3] != in[6], in[3] != in[7], in[3] != in[8], in[3] != in[9], in[4] != in[5], in[4] != in[6], in[4] != in[7], in[4] != in[8], in[4] != in[9], in[5] != in[6], in[5] != in[7], in[5] != in[8], in[5] != in[9], in[6] != in[7], in[6] != in[8], in[6] != in[9], in[7] != in[8], in[7] != in[9], in[8] != in[9]
+```
+############################################################
+                    #1  GET NEW GENERALISATION
+############################################################
+Remember to always structure your reply with the same headings. I have applied you generalisation for several concrete values of N. Some of the outputs were not correct. Change your generalisation to account for the following outputs (Remember to always structure your reply with the headings 'CASUAL' and 'FORMAL').
+
+For N=1, the generalisation output correctly fits the given data
+
+For N=2, the generalisation output correctly fits the given data
+
+For N=3, the generalisation output correctly fits the given data
+
+For N=4, the generalisation output correctly fits the given data
+
+For N=5, the generalisation output correctly fits the given data
+
+For N=6, the generalisation output correctly fits the given data
+
+For N=7, the generalisation output correctly fits the given data
+
+For N=8, the generalisation output correctly fits the given data
+
+For N=9, the generalisation output correctly fits the given data
+
+For N=10, the output constraint set should be:
+```
+in8 != in9, in7 != in9, in7 != in8, in6 != in9, in6 != in8, in6 != in7, in5 != in9, in5 != in8, in5 != in7, in5 != in6, in4 != in9, in4 != in8, in4 != in7, in4 != in6, in4 != in5, in3 != in9, in3 != in8, in3 != in7, in3 != in6, in3 != in5, in3 != in4, in2 != in9, in2 != in8, in2 != in7, in2 != in6, in2 != in5, in2 != in4, in2 != in3, in1 != in9, in1 != in8, in1 != in7, in1 != in6, in1 != in5, in1 != in4, in1 != in3, in1 != in2, in0 != in9, in0 != in8, in0 != in7, in0 != in6, in0 != in5, in0 != in4, in0 != in3, in0 != in2, in0 != in1
+```
+But your generalisation implies the set:
+```
+in[0] != in[1], in[0] != in[2], in[0] != in[3], in[0] != in[4], in[0] != in[5], in[0] != in[6], in[0] != in[7], in[0] != in[8], in[0] != in[9], in[1] != in[2], in[1] != in[3], in[1] != in[4], in[1] != in[5], in[1] != in[6], in[1] != in[7], in[1] != in[8], in[1] != in[9], in[2] != in[3], in[2] != in[4], in[2] != in[5], in[2] != in[6], in[2] != in[7], in[2] != in[8], in[2] != in[9], in[3] != in[4], in[3] != in[5], in[3] != in[6], in[3] != in[7], in[3] != in[8], in[3] != in[9], in[4] != in[5], in[4] != in[6], in[4] != in[7], in[4] != in[8], in[4] != in[9], in[5] != in[6], in[5] != in[7], in[5] != in[8], in[5] != in[9], in[6] != in[7], in[6] != in[8], in[6] != in[9], in[7] != in[8], in[7] != in[9], in[8] != in[9]
+```
+This is not right. Explanation: The sets are different because they use different variable names and have different formatting.
+############################################################
+CASUAL:
+
+My previous generalisation interpreted the ordering of constraints as inconsequential due to the fact that each comparison is a simple equality check and does not impact other comparisons. However, your example for N=10 suggests the order of constraints matters and the variable names used should decrease sequentially, starting from N-2 down to 0. The constraints are then arranged in an order that each 'in[i]' is compared in a descending manner, i.e 'in[i]' != 'in[i+1]', 'in[i]' != 'in[i+2]', ... 'in[i]' != 'in[N-1]'.
+
+FORMAL:
+
+Taking into account that the constraints should be ordered in a descending order as per the variables used and the input values (i.e., greatest to smallest), a generalisation of these constraints for N inputs would be formatted as:
+
+For i from N-2 down to 0:
+    For j from N-1 down to i+1:
+        Add the constraint 'in[i] != in[j]'
+
+This adds a sequence of constraints starting from 'inN-2', and each 'in[i]' is compared for inequality with the next higher inputs ('in[i+1]', 'in[i+2]', ..., 'in[N-1]'). Our interpretation of the given constraints pattern is now consistent with the examples presented, including N=10.
+############################################################
+                    ATTEMPT NUMBER 2
+############################################################
+Here is the correct set:
+```
+in0 != in1
+```
+
+Here is the predicted set:
+```
+'in[0] != in[1]'
+```
+############################################################
+Here is the correct set:
+```
+in1 != in2, in0 != in2, in0 != in1
+```
+
+Here is the predicted set:
+```
+'in[1] != in[2]'
+```
+############################################################
+Here is the correct set:
+```
+in2 != in3, in1 != in3, in1 != in2, in0 != in3, in0 != in2, in0 != in1
+```
+
+Here is the predicted set:
+```
+'in[2] != in[3]', 'in[1] != in[3]', 'in[1] != in[2]', 'in[0] != in[3]', 'in[0] != in[2]', 'in[0] != in[1]'
+```
+############################################################
+Here is the correct set:
+```
+in3 != in4, in2 != in4, in2 != in3, in1 != in4, in1 != in3, in1 != in2, in0 != in4, in0 != in3, in0 != in2, in0 != in1
+```
+
+Here is the predicted set:
+```
+"in[3] != in[4]", "in[2] != in[4]", "in[2] != in[3]", "in[1] != in[4]", "in[1] != in[3]", "in[1] != in[2]", "in[0] != in[4]", "in[0] != in[3]", "in[0] != in[2]", "in[0] != in[1]"
+```
+############################################################
+Here is the correct set:
+```
+in4 != in5, in3 != in5, in3 != in4, in2 != in5, in2 != in4, in2 != in3, in1 != in5, in1 != in4, in1 != in3, in1 != in2, in0 != in5, in0 != in4, in0 != in3, in0 != in2, in0 != in1
+```
+
+Here is the predicted set:
+```
+'in4 != in5', 'in3 != in5', 'in3 != in4', 'in2 != in5', 'in2 != in4', 'in2 != in3', 'in1 != in5', 'in1 != in4', 'in1 != in3', 'in1 != in2', 'in0 != in5', 'in0 != in4', 'in0 != in3', 'in0 != in2', 'in0 != in1'
+```
+############################################################
+Here is the correct set:
+```
+in5 != in6, in4 != in6, in4 != in5, in3 != in6, in3 != in5, in3 != in4, in2 != in6, in2 != in5, in2 != in4, in2 != in3, in1 != in6, in1 != in5, in1 != in4, in1 != in3, in1 != in2, in0 != in6, in0 != in5, in0 != in4, in0 != in3, in0 != in2, in0 != in1
+```
+
+Here is the predicted set:
+```
+'in[5] != in[6]', 'in[4] != in[5]', 'in[4] != in[6]', 'in[3] != in[4]', 'in[3] != in[5]', 'in[3] != in[6]', 'in[2] != in[3]', 'in[2] != in[4]', 'in[2] != in[5]', 'in[2] != in[6]', 'in[1] != in[2]', 'in[1] != in[3]', 'in[1] != in[4]', 'in[1] != in[5]', 'in[1] != in[6]', 'in[0] != in[1]', 'in[0] != in[2]', 'in[0] != in[3]', 'in[0] != in[4]', 'in[0] != in[5]', 'in[0] != in[6]'
+```
+############################################################
+Here is the correct set:
+```
+in6 != in7, in5 != in7, in5 != in6, in4 != in7, in4 != in6, in4 != in5, in3 != in7, in3 != in6, in3 != in5, in3 != in4, in2 != in7, in2 != in6, in2 != in5, in2 != in4, in2 != in3, in1 != in7, in1 != in6, in1 != in5, in1 != in4, in1 != in3, in1 != in2, in0 != in7, in0 != in6, in0 != in5, in0 != in4, in0 != in3, in0 != in2, in0 != in1
+```
+
+Here is the predicted set:
+```
+'in6 != in7', 'in5 != in7', 'in5 != in6', 'in4 != in7', 'in4 != in6', 'in4 != in5', 'in3 != in7', 'in3 != in6', 'in3 != in5', 'in3 != in4', 'in2 != in7', 'in2 != in6', 'in2 != in5', 'in2 != in4', 'in2 != in3', 'in1 != in7', 'in1 != in6', 'in1 != in5', 'in1 != in4', 'in1 != in3', 'in1 != in2', 'in0 != in7', 'in0 != in6', 'in0 != in5', 'in0 != in4', 'in0 != in3', 'in0 != in2', 'in0 != in1'
+```
+############################################################
+Here is the correct set:
+```
+in7 != in8, in6 != in8, in6 != in7, in5 != in8, in5 != in7, in5 != in6, in4 != in8, in4 != in7, in4 != in6, in4 != in5, in3 != in8, in3 != in7, in3 != in6, in3 != in5, in3 != in4, in2 != in8, in2 != in7, in2 != in6, in2 != in5, in2 != in4, in2 != in3, in1 != in8, in1 != in7, in1 != in6, in1 != in5, in1 != in4, in1 != in3, in1 != in2, in0 != in8, in0 != in7, in0 != in6, in0 != in5, in0 != in4, in0 != in3, in0 != in2, in0 != in1
+```
+
+Here is the predicted set:
+```
+'in[7] != in[8]', 'in[6] != in[8]', 'in[6] != in[7]', 'in[5] != in[8]', 'in[5] != in[7]', 'in[5] != in[6]', 'in[4] != in[8]', 'in[4] != in[7]', 'in[4] != in[6]', 'in[4] != in[5]', 'in[3] != in[8]', 'in[3] != in[7]', 'in[3] != in[6]', 'in[3] != in[5]', 'in[3] != in[4]', 'in[2] != in[8]', 'in[2] != in[7]', 'in[2] != in[6]', 'in[2] != in[5]', 'in[2] != in[4]', 'in[2] != in[3]', 'in[1] != in[8]', 'in[1] != in[7]', 'in[1] != in[6]', 'in[1] != in[5]', 'in[1] != in[4]', 'in[1] != in[3]', 'in[1] != in[2]', 'in[0] != in[8]', 'in[0] != in[7]', 'in[0] != in[6]', 'in[0] != in[5]', 'in[0] != in[4]', 'in[0] != in[3]', 'in[0] != in[2]', 'in[0] != in[1]'
+```
+############################################################
+Here is the correct set:
+```
+in8 != in9, in7 != in9, in7 != in8, in6 != in9, in6 != in8, in6 != in7, in5 != in9, in5 != in8, in5 != in7, in5 != in6, in4 != in9, in4 != in8, in4 != in7, in4 != in6, in4 != in5, in3 != in9, in3 != in8, in3 != in7, in3 != in6, in3 != in5, in3 != in4, in2 != in9, in2 != in8, in2 != in7, in2 != in6, in2 != in5, in2 != in4, in2 != in3, in1 != in9, in1 != in8, in1 != in7, in1 != in6, in1 != in5, in1 != in4, in1 != in3, in1 != in2, in0 != in9, in0 != in8, in0 != in7, in0 != in6, in0 != in5, in0 != in4, in0 != in3, in0 != in2, in0 != in1
+```
+
+Here is the predicted set:
+```
+'in[8] != in[9]', 'in[7] != in[9]', 'in[7] != in[8]', 'in[6] != in[9]', 'in[6] != in[8]', 'in[6] != in[7]', 'in[5] != in[9]', 'in[5] != in[8]', 'in[5] != in[7]', 'in[5] != in[6]', 'in[4] != in[9]', 'in[4] != in[8]', 'in[4] != in[7]', 'in[4] != in[6]', 'in[4] != in[5]', 'in[3] != in[9]', 'in[3] != in[8]', 'in[3] != in[7]', 'in[3] != in[6]', 'in[3] != in[5]', 'in[3] != in[4]', 'in[2] != in[9]', 'in[2] != in[8]', 'in[2] != in[7]', 'in[2] != in[6]', 'in[2] != in[5]', 'in[2] != in[4]', 'in[2] != in[3]', 'in[1] != in[9]', 'in[1] != in[8]', 'in[1] != in[7]', 'in[1] != in[6]', 'in[1] != in[5]', 'in[1] != in[4]', 'in[1] != in[3]', 'in[1] != in[2]', 'in[0] != in[9]', 'in[0] != in[8]', 'in[0] != in[7]', 'in[0] != in[6]', 'in[0] != in[5]', 'in[0] != in[4]', 'in[0] != in[3]', 'in[0] != in[2]', 'in[0] != in[1]'
+```
+############################################################
+DONE WITH THAT EXAMPLE

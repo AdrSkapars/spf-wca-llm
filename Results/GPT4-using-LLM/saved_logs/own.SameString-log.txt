@@ -1,0 +1,265 @@
+
+############################################################
+                    GET INITIAL GENERALISATION
+############################################################
+I'm experimenting with a program and trying to find what makes an increasingly large set of inputs valid. So far I have found one possible set of correct constraints/ conditions (not the only one) which define a valid input. Here they are.
+
+Valid constraints for 1 inputs (N=1):
+in0 == 120
+
+Valid constraints for 2 inputs (N=2):
+in1 == 120, in0 == 120
+
+Valid constraints for 3 inputs (N=3):
+in2 == 120, in1 == 120, in0 == 120
+
+Valid constraints for 4 inputs (N=4):
+in3 == 120, in2 == 120, in1 == 120, in0 == 120
+
+Valid constraints for 5 inputs (N=5):
+in4 == 120, in3 == 120, in2 == 120, in1 == 120, in0 == 120
+
+Valid constraints for 6 inputs (N=6):
+in5 == 120, in4 == 120, in3 == 120, in2 == 120, in1 == 120, in0 == 120
+
+Valid constraints for 7 inputs (N=7):
+in6 == 120, in5 == 120, in4 == 120, in3 == 120, in2 == 120, in1 == 120, in0 == 120
+
+Valid constraints for 8 inputs (N=8):
+in7 == 120, in6 == 120, in5 == 120, in4 == 120, in3 == 120, in2 == 120, in1 == 120, in0 == 120
+
+Valid constraints for 9 inputs (N=9):
+in8 == 120, in7 == 120, in6 == 120, in5 == 120, in4 == 120, in3 == 120, in2 == 120, in1 == 120, in0 == 120
+
+Valid constraints for 10 inputs (N=10):
+in9 == 120, in8 == 120, in7 == 120, in6 == 120, in5 == 120, in4 == 120, in3 == 120, in2 == 120, in1 == 120, in0 == 120
+
+Generalise what makes the set of constraints valid such that we can recover a valid set for N inputs. Don't overfit the data here but also dont oversimplify to the point of trivialness. Make sure none of the given examples contradict your generalisation.
+############################################################
+CASUAL
+
+Looking at your data, it seems like the program wants every input to be strictly the number 120, regardless of how many inputs there are. In each case you've shown, each input (in0, in1, in2, and so on) must be equal to 120. There doesn't seem to be a varying pattern or any sort of progression; every arrow simply points to the same value, 120, regardless of the index of the input. So, if we were to check for success, we would evaluate the conditions of all inputs 'in' in the set (0 to N-1), and verify that they are all equal to 120.
+
+FORMAL 
+
+For a set of N inputs to be valid under the constraints provided:
+
+1) The inputs are denoted as in0, in1, in2, ..., inN-1.
+
+2) Each input in_i (where i ranges from 0 to N-1) must be equal to 120.
+
+Therefore, a valid set of N inputs can be defined as:
+
+{in_0, in_1, in_2, ..., in_N-1} where for every input in_i in the set, in_i == 120.
+############################################################
+                    ATTEMPT NUMBER 1
+############################################################
+Here is the correct set:
+```
+in0 == 120
+```
+
+Here is the predicted set:
+```
+in_0 == 120
+```
+############################################################
+Here is the correct set:
+```
+in3 == 120, in2 == 120, in1 == 120, in0 == 120
+```
+
+Here is the predicted set:
+```
+in0 = 120, in1 = 120, in2 = 120, in3 = 120
+```
+############################################################
+Here is the correct set:
+```
+in4 == 120, in3 == 120, in2 == 120, in1 == 120, in0 == 120
+```
+
+Here is the predicted set:
+```
+in0 = 120, in1 = 120, in2 = 120, in3 = 120, in4 = 120
+```
+############################################################
+Here is the correct set:
+```
+in5 == 120, in4 == 120, in3 == 120, in2 == 120, in1 == 120, in0 == 120
+```
+
+Here is the predicted set:
+```
+in0 = 120, in1 = 120, in2 = 120, in3 = 120, in4 = 120, in5 = 120
+```
+############################################################
+Here is the correct set:
+```
+in8 == 120, in7 == 120, in6 == 120, in5 == 120, in4 == 120, in3 == 120, in2 == 120, in1 == 120, in0 == 120
+```
+
+Here is the predicted set:
+```
+in0=120, in1=120, in2=120, in3=120, in4=120, in5=120, in6=120, in7=120, in8=120
+```
+############################################################
+Here is the correct set:
+```
+in9 == 120, in8 == 120, in7 == 120, in6 == 120, in5 == 120, in4 == 120, in3 == 120, in2 == 120, in1 == 120, in0 == 120
+```
+
+Here is the predicted set:
+```
+'in0==120', 'in1==120', 'in2==120', 'in3==120', 'in4==120', 'in5==120', 'in6==120', 'in7==120', 'in8==120', 'in9==120'
+```
+############################################################
+                    #1  GET NEW GENERALISATION
+############################################################
+Remember to always structure your reply with the same headings. I have applied you generalisation for several concrete values of N. Some of the outputs were not correct. Change your generalisation to account for the following outputs (Remember to always structure your reply with the headings 'CASUAL' and 'FORMAL').
+
+For N=1, the generalisation output correctly fits the given data
+
+For N=2, the generalisation output correctly fits the given data
+
+For N=3, the generalisation output correctly fits the given data
+
+For N=4, the generalisation output correctly fits the given data
+
+For N=5, the generalisation output correctly fits the given data
+
+For N=6, the output constraint set should be:
+```
+in5 == 120, in4 == 120, in3 == 120, in2 == 120, in1 == 120, in0 == 120
+```
+But your generalisation implies the set:
+```
+in0 = 120, in1 = 120, in2 = 120, in3 = 120, in4 = 120, in5 = 120
+```
+This is not right. Explanation: The two sets are different because the assignment operators and variable order are different in the predicted set.
+
+For N=7, the generalisation output correctly fits the given data
+
+For N=8, the generalisation output correctly fits the given data
+
+For N=9, the generalisation output correctly fits the given data
+
+For N=10, the generalisation output correctly fits the given data
+############################################################
+CASUAL
+
+I see the issue here; it hinges on the order of constraints and the direction of the equality. In most contexts, these details would be irrelevant because equalities are symmetric (if in0 == 120, then 120 == in0). However, it seems that for your specific program, the order of the variables and the direction of equalities are both crucial parts of the constraint set validation. Therefore, for a given N, it seems that we need to list out constraints starting from inN-1 to in0, each equalling 120.
+
+FORMAL
+
+To correctly represent the constraints for any given N inputs, we should present them in reverse order with the number 120 shown on the left side of the equality. In this case, for any N:
+
+Our constraints should be represented in the format: 
+
+120 == in_i for i descending from N-1 down to 0.
+
+This implies: {120 == in_N-1, 120 == in_N-2, ..., 120 == in_0}, which correctly fits the format of the constraints given in the data.
+############################################################
+                    ATTEMPT NUMBER 2
+############################################################
+Here is the correct set:
+```
+in0 == 120
+```
+
+Here is the predicted set:
+```
+120 == in_0
+```
+############################################################
+Here is the correct set:
+```
+in1 == 120, in0 == 120
+```
+
+Here is the predicted set:
+```
+120 == in_1, 120 == in_0
+```
+############################################################
+Here is the correct set:
+```
+in2 == 120, in1 == 120, in0 == 120
+```
+
+Here is the predicted set:
+```
+120 == in_2, 120 == in_1, 120 == in_0
+```
+############################################################
+Here is the correct set:
+```
+in3 == 120, in2 == 120, in1 == 120, in0 == 120
+```
+
+Here is the predicted set:
+```
+120 == in_3, 120 == in_2, 120 == in_1, 120 == in_0
+```
+############################################################
+Here is the correct set:
+```
+in4 == 120, in3 == 120, in2 == 120, in1 == 120, in0 == 120
+```
+
+Here is the predicted set:
+```
+120 == in_4, 120 == in_3, 120 == in_2, 120 == in_1, 120 == in_0
+```
+############################################################
+Here is the correct set:
+```
+in5 == 120, in4 == 120, in3 == 120, in2 == 120, in1 == 120, in0 == 120
+```
+
+Here is the predicted set:
+```
+120 == in_5, 120 == in_4, 120 == in_3, 120 == in_2, 120 == in_1, 120 == in_0.
+```
+############################################################
+Here is the correct set:
+```
+in6 == 120, in5 == 120, in4 == 120, in3 == 120, in2 == 120, in1 == 120, in0 == 120
+```
+
+Here is the predicted set:
+```
+120 == in_6, 120 == in_5, 120 == in_4, 120 == in_3, 120 == in_2, 120 == in_1, 120 == in_0
+```
+############################################################
+Here is the correct set:
+```
+in7 == 120, in6 == 120, in5 == 120, in4 == 120, in3 == 120, in2 == 120, in1 == 120, in0 == 120
+```
+
+Here is the predicted set:
+```
+120 == in_7, 120 == in_6, 120 == in_5, 120 == in_4, 120 == in_3, 120 == in_2, 120 == in_1, 120 == in_0.
+```
+############################################################
+Here is the correct set:
+```
+in8 == 120, in7 == 120, in6 == 120, in5 == 120, in4 == 120, in3 == 120, in2 == 120, in1 == 120, in0 == 120
+```
+
+Here is the predicted set:
+```
+120 == in_8, 120 == in_7, 120 == in_6, 120 == in_5, 120 == in_4, 120 == in_3, 120 == in_2, 120 == in_1, 120 == in_0
+```
+############################################################
+Here is the correct set:
+```
+in9 == 120, in8 == 120, in7 == 120, in6 == 120, in5 == 120, in4 == 120, in3 == 120, in2 == 120, in1 == 120, in0 == 120
+```
+
+Here is the predicted set:
+```
+120 == in_9, 120 == in_8, 120 == in_7, 120 == in_6, 120 == in_5, 120 == in_4, 120 == in_3, 120 == in_2, 120 == in_1, 120 == in_0
+```
+############################################################
+DONE WITH THAT EXAMPLE

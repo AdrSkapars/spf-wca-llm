@@ -1,0 +1,280 @@
+
+############################################################
+                    GET INITIAL GENERALISATION
+############################################################
+I'm experimenting with a program and trying to find what makes an increasingly large set of inputs valid. So far I have found one possible set of correct constraints/ conditions (not the only one) which define a valid input. Here they are.
+
+Valid constraints for 1 inputs (N=1):
+None
+
+Valid constraints for 2 inputs (N=2):
+None
+
+Valid constraints for 3 inputs (N=3):
+in2 == (in0 + in1)
+
+Valid constraints for 4 inputs (N=4):
+in3 == (in1 + in2), in2 == (in0 + in1)
+
+Valid constraints for 5 inputs (N=5):
+in4 == (in2 + in3), in3 == (in1 + in2), in2 == (in0 + in1)
+
+Valid constraints for 6 inputs (N=6):
+in5 == (in3 + in4), in4 == (in2 + in3), in3 == (in1 + in2), in2 == (in0 + in1)
+
+Valid constraints for 7 inputs (N=7):
+in6 == (in4 + in5), in5 == (in3 + in4), in4 == (in2 + in3), in3 == (in1 + in2), in2 == (in0 + in1)
+
+Valid constraints for 8 inputs (N=8):
+in7 == (in5 + in6), in6 == (in4 + in5), in5 == (in3 + in4), in4 == (in2 + in3), in3 == (in1 + in2), in2 == (in0 + in1)
+
+Valid constraints for 9 inputs (N=9):
+in8 == (in6 + in7), in7 == (in5 + in6), in6 == (in4 + in5), in5 == (in3 + in4), in4 == (in2 + in3), in3 == (in1 + in2), in2 == (in0 + in1)
+
+Valid constraints for 10 inputs (N=10):
+in9 == (in7 + in8), in8 == (in6 + in7), in7 == (in5 + in6), in6 == (in4 + in5), in5 == (in3 + in4), in4 == (in2 + in3), in3 == (in1 + in2), in2 == (in0 + in1)
+
+Generalise what makes the set of constraints valid such that we can recover a valid set for N inputs. Don't overfit the data here but also dont oversimplify to the point of trivialness. Make sure none of the given examples contradict your generalisation.
+############################################################
+CASUAL
+
+Looking through the set of constraints valid for inputs from 3 to 10, it appears that there is a repeating pattern. From input 3 and onwards, each constraint seems to be that the current input ("in" followed by a number) is equal to the sum of the inputs two steps and one step back. This pattern continues down to the base case of in2 == (in0 + in1). 
+
+For N inputs, the valid set of constraints appear to start at the Nth input and iterate backwards, providing that each input from N down to 3 is the sum of the two previous inputs (i.e. input N is the sum of inputs N-2 and N-1 and this continues down until reaching in2 == (in0 + in1)).
+
+FORMAL 
+
+For a program with N inputs, where N >= 3, the valid constraints can be defined as follows:
+
+For every integer i from N-1 down to 2, create a constraint:
+
+in_i == in_(i-2) + in_(i-1)
+
+This will generate a list of constraints for input N that fulfills the pattern observed in the provided examples. For N < 3, no constraints are defined.
+############################################################
+                    ATTEMPT NUMBER 1
+############################################################
+Here is the correct set:
+```
+in2 == (in0 + in1)
+```
+
+Here is the predicted set:
+```
+"in_2 == in_0 + in_1"
+```
+############################################################
+Here is the correct set:
+```
+in3 == (in1 + in2), in2 == (in0 + in1)
+```
+
+Here is the predicted set:
+```
+in_3 == in_1 + in_2, in_2 == in_0 + in_1
+```
+############################################################
+Here is the correct set:
+```
+in4 == (in2 + in3), in3 == (in1 + in2), in2 == (in0 + in1)
+```
+
+Here is the predicted set:
+```
+in_4 == in_2 + in_3, in_3 == in_1 + in_2
+
+```
+############################################################
+Here is the correct set:
+```
+in5 == (in3 + in4), in4 == (in2 + in3), in3 == (in1 + in2), in2 == (in0 + in1)
+```
+
+Here is the predicted set:
+```
+"in_5 = in_3 + in_4", "in_4 = in_2 + in_3", "in_3 = in_1 + in_2"
+```
+############################################################
+Here is the correct set:
+```
+in6 == (in4 + in5), in5 == (in3 + in4), in4 == (in2 + in3), in3 == (in1 + in2), in2 == (in0 + in1)
+```
+
+Here is the predicted set:
+```
+in_6 == in_4 + in_5, in_5 == in_3 + in_4, in_4 == in_2 + in_3, in_3 == in_1 + in_2, in_2 == in_0 + in_1
+
+```
+############################################################
+Here is the correct set:
+```
+in7 == (in5 + in6), in6 == (in4 + in5), in5 == (in3 + in4), in4 == (in2 + in3), in3 == (in1 + in2), in2 == (in0 + in1)
+```
+
+Here is the predicted set:
+```
+"in_7 == in_5 + in_6", "in_6 == in_4 + in_5", "in_5 == in_3 + in_4", "in_4 == in_2 + in_3", "in_3 == in_1 + in_2"
+```
+############################################################
+Here is the correct set:
+```
+in8 == (in6 + in7), in7 == (in5 + in6), in6 == (in4 + in5), in5 == (in3 + in4), in4 == (in2 + in3), in3 == (in1 + in2), in2 == (in0 + in1)
+```
+
+Here is the predicted set:
+```
+'in_8 == in_6 + in_7', 'in_7 == in_5 + in_6', 'in_6 == in_4 + in_5', 'in_5 == in_3 + in_4', 'in_4 == in_2 + in_3', 'in_3 == in_1 + in_2', 'in_2 == in_0 + in_1'
+```
+############################################################
+Here is the correct set:
+```
+in9 == (in7 + in8), in8 == (in6 + in7), in7 == (in5 + in6), in6 == (in4 + in5), in5 == (in3 + in4), in4 == (in2 + in3), in3 == (in1 + in2), in2 == (in0 + in1)
+```
+
+Here is the predicted set:
+```
+`in_9 == in_7 + in_8`, `in_8 == in_6 + in_7`, `in_7 == in_5 + in_6`, `in_6 == in_4 + in_5`, `in_5 == in_3 + in_4`, `in_4 == in_2 + in_3`, `in_3 == in_1 + in_2`, `in_2 == in_0 + in_1`
+```
+############################################################
+                    #1  GET NEW GENERALISATION
+############################################################
+Remember to always structure your reply with the same headings. I have applied you generalisation for several concrete values of N. Some of the outputs were not correct. Change your generalisation to account for the following outputs (Remember to always structure your reply with the headings 'CASUAL' and 'FORMAL').
+
+For N=1, the generalisation output correctly fits the given data
+
+For N=2, the generalisation output correctly fits the given data
+
+For N=3, the generalisation output correctly fits the given data
+
+For N=4, the generalisation output correctly fits the given data
+
+For N=5, the generalisation output correctly fits the given data
+
+For N=6, the generalisation output correctly fits the given data
+
+For N=7, the generalisation output correctly fits the given data
+
+For N=8, the output constraint set should be:
+```
+in7 == (in5 + in6), in6 == (in4 + in5), in5 == (in3 + in4), in4 == (in2 + in3), in3 == (in1 + in2), in2 == (in0 + in1)
+```
+But your generalisation implies the set:
+```
+"in_7 == in_5 + in_6", "in_6 == in_4 + in_5", "in_5 == in_3 + in_4", "in_4 == in_2 + in_3", "in_3 == in_1 + in_2"
+```
+This is not right. Explanation: The variable names are different in the two sets of inequalities. The first set uses 'in' followed by numbers, while the second set uses 'in_' followed by numbers.
+
+For N=9, the generalisation output correctly fits the given data
+
+For N=10, the generalisation output correctly fits the given data
+############################################################
+CASUAL
+
+Ah, I see where the confusion lies. This is actually more to do with the formatting of the variable names rather than the generalisation itself. The inputs in the constraints have been labeled as 'in0', 'in1', 'in2', etc., whereas in our generalisation, we wrote them as 'in_0', 'in_1', 'in_2' and so forth. In terms of the actual mechanics of the constraints derived from the generalising rule, they still align with the pattern found in the data.
+
+FORMAL
+
+Amending the naming conventions used in the generalisation, we find:
+
+For a program with N inputs, where N >= 3, the valid constraints can be defined as follows:
+
+For every integer i from N-1 down to 2, create a constraint:
+
+'in'+i == 'in'+(i-2) + 'in'+(i-1)
+
+Once again, for N < 3, no constraints are defined.
+############################################################
+                    ATTEMPT NUMBER 2
+############################################################
+Here is the correct set:
+```
+in2 == (in0 + in1)
+```
+
+Here is the predicted set:
+```
+'in2' = 'in0' + 'in1'
+```
+############################################################
+Here is the correct set:
+```
+in3 == (in1 + in2), in2 == (in0 + in1)
+```
+
+Here is the predicted set:
+```
+'in3 == in1 + in2'
+```
+############################################################
+Here is the correct set:
+```
+in4 == (in2 + in3), in3 == (in1 + in2), in2 == (in0 + in1)
+```
+
+Here is the predicted set:
+```
+'in4 == in2 + in3', 'in3 == in1 + in2', 'in2 == in0 + in1'
+```
+############################################################
+Here is the correct set:
+```
+in5 == (in3 + in4), in4 == (in2 + in3), in3 == (in1 + in2), in2 == (in0 + in1)
+```
+
+Here is the predicted set:
+```
+in5 == in3 + in4, in4 == in2 + in3, in3 == in1 + in2
+```
+############################################################
+Here is the correct set:
+```
+in6 == (in4 + in5), in5 == (in3 + in4), in4 == (in2 + in3), in3 == (in1 + in2), in2 == (in0 + in1)
+```
+
+Here is the predicted set:
+```
+'in'6 == 'in'4 + 'in'5, 
+'in'5 == 'in'3 + 'in'4, 
+'in'4 == 'in'2 + 'in'3,
+'in'3 == 'in'1 + 'in'2
+```
+############################################################
+Here is the correct set:
+```
+in7 == (in5 + in6), in6 == (in4 + in5), in5 == (in3 + in4), in4 == (in2 + in3), in3 == (in1 + in2), in2 == (in0 + in1)
+```
+
+Here is the predicted set:
+```
+in7 == in5 + in6, in6 == in4 + in5, in5 == in3 + in4, in4 == in2 + in3, in3 == in1 + in2
+```
+############################################################
+Here is the correct set:
+```
+in8 == (in6 + in7), in7 == (in5 + in6), in6 == (in4 + in5), in5 == (in3 + in4), in4 == (in2 + in3), in3 == (in1 + in2), in2 == (in0 + in1)
+```
+
+Here is the predicted set:
+```
+'in8' == 'in6' + 'in7', 'in7' == 'in5' + 'in6', 'in6' == 'in4' + 'in5', 'in5' == 'in3' + 'in4', 'in4' == 'in2' + 'in3', 'in3' == 'in1' + 'in2', 'in2' == 'in0' + 'in1'
+```
+############################################################
+Here is the correct set:
+```
+in9 == (in7 + in8), in8 == (in6 + in7), in7 == (in5 + in6), in6 == (in4 + in5), in5 == (in3 + in4), in4 == (in2 + in3), in3 == (in1 + in2), in2 == (in0 + in1)
+```
+
+Here is the predicted set:
+```
+---
+'in9 = in7 + in8',
+'in8 = in6 + in7',
+'in7 = in5 + in6',
+'in6 = in4 + in5',
+'in5 = in3 + in4',
+'in4 = in2 + in3',
+'in3 = in1 + in2',
+'in2 = in0 + in1'
+```
+############################################################
+DONE WITH THAT EXAMPLE
