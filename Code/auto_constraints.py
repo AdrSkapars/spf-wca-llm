@@ -59,10 +59,10 @@ prompts = {
 	"new_gen_start_code": "I have run your code for several concrete values of N. Some of the outputs were not correct. Change your generalisation and code to account for the following outputs (Remember to always structure your reply with the headings 'CASUAL' and 'FORMAL').\n\n",
 	"new_gen_start_llm": "Remember to always structure your reply with the same headings. I have applied you generalisation for several concrete values of N. Some of the outputs were not correct. Change your generalisation to account for the following outputs (Remember to always structure your reply with the headings 'CASUAL' and 'FORMAL').\n\n",
 }
-	# "/home/adrians/Documents/Masters/Java_PathFinder/spf-wca/results_own/SameHundred/verbose/heuristic/own.SameHundred.csv",
-	# "/home/adrians/Documents/Masters/Java_PathFinder/spf-wca/results_own/SameLowercase/verbose/heuristic/own.SameLowercase.csv",
-	
+
 csv_files = [
+	"/home/adrians/Documents/Masters/Java_PathFinder/spf-wca/results_own/SameHundred/verbose/heuristic/own.SameHundred.csv",
+	"/home/adrians/Documents/Masters/Java_PathFinder/spf-wca/results_own/SameLowercase/verbose/heuristic/own.SameLowercase.csv",
 	"/home/adrians/Documents/Masters/Java_PathFinder/spf-wca/results_own/SameOnlyThird/verbose/heuristic/own.SameOnlyThird.csv",
 	"/home/adrians/Documents/Masters/Java_PathFinder/spf-wca/results_own/SameString/verbose/heuristic/own.SameString.csv",
 	"/home/adrians/Documents/Masters/Java_PathFinder/spf-wca/results_own/SimpleAscendingLast/verbose/heuristic/own.SimpleAscendingLast.csv",
@@ -77,12 +77,12 @@ csv_files = [
 	"/home/adrians/Documents/Masters/Java_PathFinder/spf-wca/results_own/BadgerHash/verbose/heuristic/own.BadgerHash.csv",
 	"/home/adrians/Documents/Masters/Java_PathFinder/spf-wca/results_own/BadgerPassword/verbose/heuristic/own.BadgerPassword.csv",
 	"/home/adrians/Documents/Masters/Java_PathFinder/spf-wca/results_own/BadgerUsername/verbose/heuristic/own.BadgerUsername.csv",
-	"/home/adrians/Documents/Masters/Java_PathFinder/spf-wca/results_own/ComplexFlipPos_2/verbose/heuristic/own.ComplexFlipPos.csv",#
+	"/home/adrians/Documents/Masters/Java_PathFinder/spf-wca/results_own/ComplexFlipPos_1/verbose/heuristic/own.ComplexFlipPos_1.csv",
+	"/home/adrians/Documents/Masters/Java_PathFinder/spf-wca/results_own/ComplexFlipPos_2/verbose/heuristic/own.ComplexFlipPos_2.csv",
 	"/home/adrians/Documents/Masters/Java_PathFinder/spf-wca/results_own/ComplexHalfEqual/verbose/heuristic/own.ComplexHalfEqual.csv",
 	"/home/adrians/Documents/Masters/Java_PathFinder/spf-wca/results_own/ComplexMidPeak/verbose/heuristic/own.ComplexMidPeak.csv",
 	"/home/adrians/Documents/Masters/Java_PathFinder/spf-wca/results_own/ComplexPalindrome/verbose/heuristic/own.ComplexPalindrome.csv",
 	"/home/adrians/Documents/Masters/Java_PathFinder/spf-wca/results_own/ComplexOddsEvens/verbose/heuristic/own.ComplexOddsEvens.csv",
-	"/home/adrians/Documents/Masters/Java_PathFinder/spf-wca/results_own/ComplexFlipPos_1/verbose/heuristic/own.ComplexFlipPos.csv",
 ]
 
 # Constraints too long
@@ -125,7 +125,7 @@ for file_path in csv_files:
 	prompt_get_gen += prompts["get_gen_end"]
 	if USING_CODE:
 		prompt_get_gen += prompts["get_gen_end_code1"]
-		with open("python_code_runs/python_code_template.py", "r") as file:
+		with open("python_code_template.py", "r") as file:
 			prompt_get_gen += file.read()
 		prompt_get_gen += prompts["get_gen_end_code2"]
 	print_and_save(conversation, prompt_get_gen)
@@ -167,11 +167,11 @@ for file_path in csv_files:
 		print_and_save(conversation, " "*20+f"ATTEMPT NUMBER {attempt_id+1}")
 		# Use available N examples to evaluate
 		eval_results = []
-		if USING_CODE:
-			test_name = file_path.split("/")[-1][:-4]
-			test_path = "python_code_runs/"+str(test_name)+".py"
-			with open(test_path, "w") as file:
-				file.write(generalisation)
+		test_name = file_path.split("/")[-1][:-4]
+		test_path = "generals/"+str(test_name)
+		test_path = test_path+".py" if USING_CODE else test_path+".txt"
+		with open(test_path, "w") as file:
+			file.write(generalisation)
 
 		for example_id in range(MAX_EXAMPLES):
 			# print_and_save(conversation, " "*20+f"#{attempt_id+1}  EVALUATING EXAMPLE NUMBER {example_id+1}")
