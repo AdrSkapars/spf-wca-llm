@@ -1,0 +1,1 @@
+The updated generalisation for the valid constraint for N inputs is that for N=1 and N=2, there are no constraints. For N=3 to N=6, and N=8 to N=10, the valid constraint is in2 == 0. For N=7, the valid constraint is specifically in2 == 0 and no other constraints for in1, in3, and so on.

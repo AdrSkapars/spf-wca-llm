@@ -1,0 +1,21 @@
+Let's adjust the previous generalisation to account for the case where N equals 2. Given a system with N inputs, and the constraints for the N inputs denoted by C, each constraint can be placed as an inequality in(i) < in(j).
+
+For each constraint at position p (starting from 0 from the bottom) and a particular N, the indices i and j for the order of inputs can be determined as:
+
+i = p,
+j = ceiling(N/2) + p,
+
+where 'in(i)' and 'in(j)' denote the i-th and j-th input respectively.
+
+Therefore, the constraints for each N can be defined as:
+
+If N equals 1:
+C = {}
+
+If N equals 2:
+C = {"in0 < in1"}
+
+If N > 2:
+C = { "in" + str(i) + " < in" + str(j) | i runs from 0 to floor(N/2) - 1, and j = ceiling(N/2) + i }
+
+By making these adjustments, the generalisation should now correctly produce the constraints for all N.

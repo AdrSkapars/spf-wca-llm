@@ -1,0 +1,6 @@
+The updated generalization for N inputs is:
+- If N > 1:
+  - For each i from 0 to N-1:
+    - in(i) == 45, in(i) != 95
+- If N = 1:
+  - None

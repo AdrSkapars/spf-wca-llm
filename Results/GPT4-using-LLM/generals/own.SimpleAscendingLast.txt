@@ -1,0 +1,9 @@
+Let's redefine the constraints for total inputs N:
+
+The first condition always holds: in(N-1) < in(0).
+
+Then, for N>4, for every i running from N-2 down to N/2 (inclusive) in steps of -2, we have: in(i) < in(i+1). This then switches to a pattern of steps of -1, iterating from either (N/2) for even N or (N/2 - 1) for odd N, running down to 0. For these, in(i) < in(i+1).
+
+However, for N less than or equal to 4, we only run the step of -1 pattern, starting from (N/2 - 1) for N=3 and from (N/2) for N=4, running down to 0 with in(i) < in(i+1).
+
+This special handling for lower N should accurately cater to the observed patterns. Machines refer to in(i) as the i-th input. For N=1, no constraints apply.

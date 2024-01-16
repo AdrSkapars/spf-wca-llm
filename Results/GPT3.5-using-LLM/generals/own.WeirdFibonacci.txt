@@ -1,0 +1,7 @@
+The revised generalization for the valid set of constraints for a sequence of N inputs (in0, in1, ..., inN-1) is:
+For N=1: No constraints
+For N=2: No constraints
+For N=3: in2 == (in0 + in1)
+For N=4: in3 == (in1 + in2), in2 == (in0 + in1)
+For N=6: in5 == (in3 + in4), in4 == (in2 + in3), in3 == (in1 + in2), in2 == (in0 + in1)
+For N=9: in8 == (in6 + in7), in7 == (in5 + in6), in6 == (in4 + in5), in5 == (in3 + in4), in4 == (in2 + in3), in3 == (in1 + in2), in2 == (in0 + in1)

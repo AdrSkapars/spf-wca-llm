@@ -1,0 +1,3 @@
+Further corrected general valid constraint for N inputs, where N >= 1, is:
+- For N=1: None
+- For N>1: in(N-2) > in(N-1), in(N-3) > in(N-2), ..., in(1) < in(2), in(0) < in(1) if N > 1

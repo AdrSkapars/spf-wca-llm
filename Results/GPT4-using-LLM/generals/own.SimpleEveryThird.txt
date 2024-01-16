@@ -1,0 +1,5 @@
+
+For any N:
+
+1. If N < 4, no constraints exist.
+2. If N >= 4, and when 3K <= N < 3K + 3 for some integer K >= 1, the constraints are 'inX == 0', where X is in the set {3, 6, ..., 3K}, where 3K < N. In simpler terms, new constraints 'inX == 0' arise for every third step from 4 onward (inclusive), with X being the largest multiple of 3 less than N. Previous constraints remain valid for three steps until a new constraint is added.

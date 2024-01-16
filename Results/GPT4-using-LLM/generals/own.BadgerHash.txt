@@ -1,0 +1,5 @@
+Revised generalisation for constraints for N inputs is:
+
+1. For each i from N-1 to 0 in decreasing order, generate the constraint: put(i)_0 != get0
+2. Append the constraint: 0 == ((get1 + get0) % N)
+3. For each i from N-1 to 0 in decreasing order, generate the constraint: 0 == ((put(i)_1 + put(i)_0) % N)

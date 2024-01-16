@@ -1,0 +1,9 @@
+
+For an input set of size N (where N>=3), the constraints should be:
+
+(in_{i} - in_{i-1}) == (in_{i-1} - in_{i-2})  
+for all 2 <= i < N
+
+where in represents the inputs. This ensures that the difference between consecutive inputs remains constant.
+
+For N=1 and N=2, there are no constraints.

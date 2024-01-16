@@ -1,0 +1,2 @@
+A revised generalization for the valid constraints on a set of N inputs would be:
+For a set of N inputs, the valid constraints involve the pairwise inequalities in(i) < in(N-i-1) for i = 0 to ⌊N/2⌋-1.

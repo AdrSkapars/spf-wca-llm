@@ -1,0 +1,3 @@
+For N inputs, the valid constraints should be generalised as follows:
+For any input at position i (0-indexed):
+1. in(i) < in(i-1) for all i from 1 to N-1, where 'in(i)' represents the value at position i.

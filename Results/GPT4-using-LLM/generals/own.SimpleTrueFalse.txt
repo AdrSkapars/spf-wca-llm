@@ -1,0 +1,10 @@
+
+Given a number of inputs N and an index X in the input constraints (0 <= X < N), the generalized constraints for valid inputs can be given by:
+
+for inX:
+- if X is even then inX == 1
+- if X is odd then inX == 0
+
+This can also be represented mathematically as:
+
+inX == 1 - (X mod 2)

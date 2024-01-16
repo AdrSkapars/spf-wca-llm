@@ -1,0 +1,4 @@
+For an N number of inputs where N > 2, the constraint in2 == 0 would be valid. For N <= 2, there are no constraints on the inputs. This can be expressed as:
+
+If N > 2, then in2 == 0.
+If N <= 2, then no constraints apply.

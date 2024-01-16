@@ -1,0 +1,2 @@
+For a set of N inputs {in0, in1, ..., inN-1}, the valid constraints can be defined as follows:
+- For each i in {0, 1, ..., N-2}, there should be constraints of the form in(i) != in(j) for all j in {i+1, i+2, ..., N-1}. This means that for each input index i, it should be unequal to all subsequent inputs indices j.

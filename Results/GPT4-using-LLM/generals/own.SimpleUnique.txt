@@ -1,0 +1,7 @@
+Taking into account that the constraints should be ordered in a descending order as per the variables used and the input values (i.e., greatest to smallest), a generalisation of these constraints for N inputs would be formatted as:
+
+For i from N-2 down to 0:
+    For j from N-1 down to i+1:
+        Add the constraint 'in[i] != in[j]'
+
+This adds a sequence of constraints starting from 'inN-2', and each 'in[i]' is compared for inequality with the next higher inputs ('in[i+1]', 'in[i+2]', ..., 'in[N-1]'). Our interpretation of the given constraints pattern is now consistent with the examples presented, including N=10.

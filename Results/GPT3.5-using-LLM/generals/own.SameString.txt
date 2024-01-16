@@ -1,0 +1,2 @@
+The valid constraint for N inputs is:
+in(N-1) == 120, in(N-2) == 120, ..., in1 == 120, in0 == 120

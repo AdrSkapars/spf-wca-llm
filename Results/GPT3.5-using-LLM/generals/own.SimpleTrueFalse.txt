@@ -1,0 +1,2 @@
+The corrected valid constraints for N inputs are:
+- For i = 0 to N-1, in{i} == (i+1) mod 2

@@ -1,0 +1,8 @@
+For any given number of N inputs, the conditions for each input inX are as follows:
+
+- The subscript X of inX ranges from 0 to N-1. 
+- for each value of X, instead of 97 <= inX <= 122, the correct format is as follows:
+  - inX <= 122 
+  - inX >= 97 
+
+This prediction holds true for all the newly provided examples.

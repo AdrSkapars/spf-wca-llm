@@ -1,0 +1,5 @@
+The corrected general constraints for a valid set of inputs for N inputs are:
+- For N=1, 2, 3: None
+- For N=4, 5, 6: in3 == 0
+- For N=7, 8, 9: in6 == 0, in3 == 0
+- For N=10: in9 == 0, in6 == 0, in3 == 0

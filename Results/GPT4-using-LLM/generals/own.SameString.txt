@@ -1,0 +1,7 @@
+To correctly represent the constraints for any given N inputs, we should present them in reverse order with the number 120 shown on the left side of the equality. In this case, for any N:
+
+Our constraints should be represented in the format: 
+
+120 == in_i for i descending from N-1 down to 0.
+
+This implies: {120 == in_N-1, 120 == in_N-2, ..., 120 == in_0}, which correctly fits the format of the constraints given in the data.

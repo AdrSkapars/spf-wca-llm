@@ -1,0 +1,9 @@
+Given 'N' inputs, the constraints that make them valid can be generalised as follows:
+
+- For 0 ≤ i < N, 
+
+  - If i < 2 or i ≥ N-4, add 'in[i] == in[i+1]' to the set of constraints. 
+
+  - If i >= 2 and i < N-4, add 'in[i] < in[i+1]' to the set of constraints.
+
+This pattern takes into account the equality constraints in the start and inequality constraints from i=N-4 onward and should hold true for the cases given in the examples.

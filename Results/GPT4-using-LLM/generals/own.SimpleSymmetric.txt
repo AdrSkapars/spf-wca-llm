@@ -1,0 +1,7 @@
+Given the number of inputs N with N >= 1, the correct generalisation should be defined as follows:
+
+For each integer i in the range from (N-1) down to 0, both inclusive, and for each integer j in the range from (i-1) down to 0, both inclusive, a valid constraint is:
+
+'in' + str(i) + 'x' + str(j) + ' == ' + 'in' + str(j) + 'x' + str(i)
+
+This means that we are taking every input index i from N-1 to 0 and for each such i, we're taking every input index j from i-1 to 0 and generating a constraint that expresses the equality of the product of inputs i and j with the product of inputs j and i, and doing this for every valid pair of i and j. The total number of constraints will be N*(N-1)/2. In the constraint format above, str(i) and str(j) are the string representations of the numerical values of i and j.

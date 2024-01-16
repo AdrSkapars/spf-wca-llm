@@ -1,0 +1,5 @@
+A corrected generalisation of the constraints for valid inputs is then:
+
+For N inputs and where N > 1, every input with index i, where 1 <= i < N, should satisfy: in[i] == (in0 * (i+1)).
+
+The constraints should be listed in reverse order with respect to i, i.e., starting from i=N-1 down to i=1. When N=1, no constraint exists.

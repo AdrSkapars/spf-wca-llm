@@ -1,0 +1,14 @@
+For a given number N of inputs, where the inputs are in0, in1, ..., inN-1, the set of valid constraints C can be generalised as follows:
+
+If N=2:
+- C: in1 < in0
+
+If N=3:
+- C: in0 < in2, in1 < in0
+
+For N≥4:
+
+- For i from 0 to N-3: C[i] = "in" + str(i) + " < in" + str(i+2)
+- An additional constraint: in[N - (4 - N%2)] < in0
+
+This should conform to all patterns observed in the example constraints, from 1 to 10 inputs.

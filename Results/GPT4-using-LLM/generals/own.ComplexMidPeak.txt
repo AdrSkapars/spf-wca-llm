@@ -1,0 +1,10 @@
+Given this observation, a revised generalisation for a given N inputs would be:
+
+1. For N = 1, C = {}
+2. For N = 2, C = {in0 < in1}
+3. For N > 2, the constraints are defined as follows:
+
+- Let M = ceil(N/2).
+- For each i from 0 to M-1, enforce the constraint in[i] > in[i+1].
+- After reaching M-1, we begin a new cycle, starting with in[M] > in[M+1] (provided M+1 < N, which is true for N>4).
+- Continue alternating between '>' and '<' every two steps until the end. If N is even, end with in[N-1] < in[N] (which is equivalent to in[N/2 - 1] < in[N/2]), and if N is odd, end with in[N-1] > in[N].

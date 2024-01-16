@@ -1,0 +1,9 @@
+Amending the naming conventions used in the generalisation, we find:
+
+For a program with N inputs, where N >= 3, the valid constraints can be defined as follows:
+
+For every integer i from N-1 down to 2, create a constraint:
+
+'in'+i == 'in'+(i-2) + 'in'+(i-1)
+
+Once again, for N < 3, no constraints are defined.

@@ -1,0 +1,11 @@
+For an arbitrary N (where N is number of inputs and N >=2), a set of valid constraints can be defined as follows:
+
+- if N is even, for i in range(0, N-1):
+  - if i%2 == 0: in[i] == in[i+1]
+  - else if i%2 != 0: in[i] < in[i+1]
+
+- if N is odd, for i in range(0, N-1):
+  - if i%2 == 0: in[i] < in[i+1]
+  - else if i%2 != 0: in[i] == in[i+1]
+
+For N=1, no constraints are needed. This pattern should accurately categorise the provided examples and can be generalised to any number of inputs N.

@@ -1,0 +1,11 @@
+The revised generalization for the constraints for N inputs is:
+- For N=1, the constraint is: in0 <= 122, in0 >= 97
+- For N=2, the constraint is: in1 <= 122, in1 >= 97, in0 <= 122, in0 >= 97
+- For N=3, the constraint is: in2 <= 122, in2 >= 97, in1 <= 122, in1 >= 97, in0 <= 122, in0 >= 97
+- For N=4, the constraint is: in3 <= 122, in3 >= 97, in2 <= 122, in2 >= 97, in1 <= 122, in1 >= 97, in0 <= 122, in0 >= 97
+- For N=5, the constraint is: in4 <= 122, in4 >= 97, in3 <= 122, in3 >= 97, in2 <= 122, in2 >= 97, in1 <= 122, in1 >= 97, in0 <= 122, in0 >= 97
+- For N=6, the constraint is: in5 <= 122, in5 >= 97, in4 <= 122, in4 >= 97, in3 <= 122, in3 >= 97, in2 <= 122, in2 >= 97, in1 <= 122, in1 >= 97, in0 <= 122, in0 >= 97
+- For N=7, the constraint is: in6 <= 122, in6 >= 97, in5 <= 122, in5 >= 97, in4 <= 122, in4 >= 97, in3 <= 122, in3 >= 97, in2 <= 122, in2 >= 97, in1 <= 122, in1 >= 97, in0 <= 122, in0 >= 97
+- For N=8, the constraint is: in7 <= 122, in7 >= 97, in6 <= 122, in6 >= 97, in5 <= 122, in5 >= 97, in4 <= 122, in4 >= 97, in3 <= 122, in3 >= 97, in2 <= 122, in2 >= 97, in1 <= 122, in1 >= 97, in0 <= 122, in0 >= 97
+- For N=9, the constraint is: in8 <= 122, in8 >= 97, in7 <= 122, in7 >= 97, in6 <= 122, in6 >= 97, in5 <= 122, in5 >= 97, in4 <= 122, in4 >= 97, in3 <= 122, in3 >= 97, in2 <= 122, in2 >= 97, in1 <= 122, in1 >= 97, in0 <= 122, in0 >= 97
+- For N=10, the constraint is: in9 <= 122, in9 >= 97, in8 <= 122, in8 >= 97, in7 <= 122, in7 >= 97, in6 <= 122, in6 >= 97, in5 <= 122, in5 >= 97, in4 <= 122, in4 >= 97, in3 <= 122, in3 >= 97, in2 <= 122, in2 >= 97, in1 <= 122, in1 >= 97, in0 <= 122, in0 >= 97
