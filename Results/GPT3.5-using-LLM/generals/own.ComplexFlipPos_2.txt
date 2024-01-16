@@ -1,0 +1,2 @@
+A general rule for the valid constraints for N inputs is:
+- For each i in the range [0, (N-2)/2], in(N-1-i) < in(i) and in(i) < in(N-1-i)

@@ -1,0 +1,8 @@
+The pattern of constraints for a set of N inputs — when N > 3 — can be defined as follows:
+
+1. Always insert "in1 < in0" and "in0 < in3".
+2. For each new N input, add the constraint "in(N-1) < in(N-2)".
+3. From N=5 forward, add the constraint "in(N-3) < in(N-4)" whenever N isn't a multiple of 4.
+4. From N=5 forward, add either "in(N-2) < in(N-1)", if N is a multiple of 4, or "in(N-2) < in(N-3)", if N isn't a multiple of 4.
+
+This revised generalisation better accounts for the persisting pairs, the changing constraints as we add new inputs (especially when the N isn't a multiple of 4), and the consistency of the original "in1 < in0" and "in0 < in3" constraints.

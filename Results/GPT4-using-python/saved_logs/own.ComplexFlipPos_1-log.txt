@@ -1,0 +1,2115 @@
+
+############################################################
+                    GET INITIAL GENERALISATION
+############################################################
+I'm experimenting with a program and trying to find what makes an increasingly large set of inputs valid. So far I have found one possible set of correct constraints/ conditions (not the only one) which define a valid input. Here they are.
+
+Valid constraints for 1 inputs (N=1):
+None
+
+Valid constraints for 2 inputs (N=2):
+in1 < in0
+
+Valid constraints for 3 inputs (N=3):
+in1 < in0
+
+Valid constraints for 4 inputs (N=4):
+in3 < in2, in1 < in0, in0 < in3
+
+Valid constraints for 5 inputs (N=5):
+in3 < in2, in1 < in0, in0 < in3
+
+Valid constraints for 6 inputs (N=6):
+in5 < in4, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+
+Valid constraints for 7 inputs (N=7):
+in5 < in4, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+
+Valid constraints for 8 inputs (N=8):
+in7 < in6, in5 < in4, in4 < in7, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+
+Valid constraints for 9 inputs (N=9):
+in7 < in6, in5 < in4, in4 < in7, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+
+Valid constraints for 10 inputs (N=10):
+in9 < in8, in7 < in6, in6 < in9, in5 < in4, in4 < in7, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+
+Generalise what makes the set of constraints valid such that we can recover a valid set for N inputs. Don't overfit the data here but also dont oversimplify to the point of trivialness. Make sure none of the given examples contradict your generalisation.
+
+Use this code template to formally express the generalisation for N constraints:
+```python
+def generate_constraints(N):
+    constraints = []
+
+    # Do some logic here to append constraints
+
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)```
+
+Each inequality is usually in the form "x op y" where x, y are some variable, constant or some formula of variables and/ or constants, and op is an operation or inequality.
+############################################################
+CASUAL:
+
+In this problem, we observe that the constraints for valid inputs follow a particular pattern. Each number N has a set of inequalities, where each inequality involves an input (denoted as 'in') and an index.
+
+In the case of N=1, there is no constraint. Then, for each number N>=2, there are certain rules observed:
+
+1. For N less than 4, the constraint is always "in1 < in0".
+
+2. When N is 4 or higher, the constraints appear to have a pattern that repeats every 4 inputs, i.e. "inX < inY, inZ < inW", where X, Y, Z, and W can be deduced by integer division and remainder from N.
+
+Based on the pattern, the constraints for input N could be generalized as follows:
+
+For N < 4:
+If N equals 2 or 3, the constraint is "in1 < in0". No constraint for N=1.
+
+For N >= 4:
+N is divided by 4. Let's denote the quotient as Q (using integer division) and remainder as R. Then the conditions "in{4*Q+1} < in{(4*Q)}" and "in{(4*Q-2)} < in{(4*Q-1)}" always hold.
+
+Then, depending on the value of R:
+
+- When R equals 0, we have additional constraints: "in{(4*Q-1)} < in{(4*Q+3)}" and "in{(4*Q+3)} < in{(4*Q+2)}".
+- When R equals 1 or 2, there's no additional constraint.
+- When R equals 3, we have an additional constraint: "in{(4*Q+1)} < in{(4*Q+3)}".
+
+The indexes are always non-negative, so if any index becomes negative the associated condition is not included. Any references to inX where X>=N should be ignored too as they're referencing inputs that do not exist.
+
+Remember that in Python, array indexes start with 0.
+
+FORMAL:
+
+```python
+def generate_constraints(N):
+    constraints = []
+
+    # if N is less than 4
+    if N < 4:
+        if N >= 2:
+            constraints.append("in1 < in0")
+    
+    else:
+        R = N % 4   # remainder
+        Q = N // 4  # quotient
+
+        for i in range(Q+1):
+            # append the common constraints for each Q
+            for j in [1,0,-2,-1]:
+                if (4*i+j < N) and (4*i+j >= 0):
+                    constraints.append("in{} < in{}".format(4*i+j, 4*i+j-1))
+                    
+        # depending on the value of R, append the additional constraints
+        if R == 0:
+            if 4*Q+2 < N:
+                constraints.append("in{} < in{}".format(4*Q-1, 4*Q+2))
+            if 4*Q+3 < N:
+                constraints.append("in{} < in{}".format(4*Q+2, 4*Q+3))
+        elif R == 3:
+            if 4*Q+3 < N:
+                constraints.append("in{} < in{}".format(4*Q+1, 4*Q+3))
+
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)
+```
+############################################################
+                    ATTEMPT NUMBER 1
+############################################################
+Here is the correct set:
+```
+None
+```
+
+Here is the predicted set:
+```
+
+
+```
+############################################################
+Here is the correct set:
+```
+in3 < in2, in1 < in0, in0 < in3
+```
+
+Here is the predicted set:
+```
+in1 < in0, in0 < in-1, in2 < in1, in3 < in2
+
+```
+############################################################
+Here is the correct set:
+```
+in3 < in2, in1 < in0, in0 < in3
+```
+
+Here is the predicted set:
+```
+in1 < in0, in0 < in-1, in4 < in3, in2 < in1, in3 < in2
+
+```
+############################################################
+Here is the correct set:
+```
+in5 < in4, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+
+Here is the predicted set:
+```
+in1 < in0, in0 < in-1, in5 < in4, in4 < in3, in2 < in1, in3 < in2
+
+```
+############################################################
+Here is the correct set:
+```
+in5 < in4, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+
+Here is the predicted set:
+```
+in1 < in0, in0 < in-1, in5 < in4, in4 < in3, in2 < in1, in3 < in2
+
+```
+############################################################
+Here is the correct set:
+```
+in7 < in6, in5 < in4, in4 < in7, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+
+Here is the predicted set:
+```
+in1 < in0, in0 < in-1, in5 < in4, in4 < in3, in2 < in1, in3 < in2, in6 < in5, in7 < in6
+
+```
+############################################################
+Here is the correct set:
+```
+in7 < in6, in5 < in4, in4 < in7, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+
+Here is the predicted set:
+```
+in1 < in0, in0 < in-1, in5 < in4, in4 < in3, in2 < in1, in3 < in2, in8 < in7, in6 < in5, in7 < in6
+
+```
+############################################################
+Here is the correct set:
+```
+in9 < in8, in7 < in6, in6 < in9, in5 < in4, in4 < in7, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+
+Here is the predicted set:
+```
+in1 < in0, in0 < in-1, in5 < in4, in4 < in3, in2 < in1, in3 < in2, in9 < in8, in8 < in7, in6 < in5, in7 < in6
+
+```
+############################################################
+                    #1  GET NEW GENERALISATION
+############################################################
+I have run your code for several concrete values of N. Some of the outputs were not correct. Change your generalisation and code to account for the following outputs (Remember to always structure your reply with the headings 'CASUAL' and 'FORMAL').
+
+For N=1, the generalisation output correctly fits the given data
+
+For N=2, the generalisation output correctly fits the given data
+
+For N=3, the generalisation output correctly fits the given data
+
+For N=4, the output constraint set should be:
+```
+in3 < in2, in1 < in0, in0 < in3
+```
+But your generalisation implies the set:
+```
+in1 < in0, in0 < in-1, in2 < in1, in3 < in2
+
+```
+This is not right. Explanation: The predicted set contains additional inequalities (in0 < in-1, in2 < in1) that are not present in the correct set.
+
+For N=5, the output constraint set should be:
+```
+in3 < in2, in1 < in0, in0 < in3
+```
+But your generalisation implies the set:
+```
+in1 < in0, in0 < in-1, in4 < in3, in2 < in1, in3 < in2
+
+```
+This is not right. Explanation: The predicted set contains more inequalities, negative numbers, and a new variable which are not present in the correct set.
+
+For N=6, the output constraint set should be:
+```
+in5 < in4, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+But your generalisation implies the set:
+```
+in1 < in0, in0 < in-1, in5 < in4, in4 < in3, in2 < in1, in3 < in2
+
+```
+This is not right. Explanation: The sets contain different inequalities.
+
+For N=7, the output constraint set should be:
+```
+in5 < in4, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+But your generalisation implies the set:
+```
+in1 < in0, in0 < in-1, in5 < in4, in4 < in3, in2 < in1, in3 < in2
+
+```
+This is not right. Explanation: The first set contains the inequality in2 < in5, which does not appear in the second set. Therefore, the sets do not match.
+
+For N=8, the generalisation output correctly fits the given data
+
+For N=9, the output constraint set should be:
+```
+in7 < in6, in5 < in4, in4 < in7, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+But your generalisation implies the set:
+```
+in1 < in0, in0 < in-1, in5 < in4, in4 < in3, in2 < in1, in3 < in2, in8 < in7, in6 < in5, in7 < in6
+
+```
+This is not right. Explanation: The predicted set contains inequalities that are not present in the correct set, and vice versa.
+
+For N=10, the output constraint set should be:
+```
+in9 < in8, in7 < in6, in6 < in9, in5 < in4, in4 < in7, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+But your generalisation implies the set:
+```
+in1 < in0, in0 < in-1, in5 < in4, in4 < in3, in2 < in1, in3 < in2, in9 < in8, in8 < in7, in6 < in5, in7 < in6
+
+```
+This is not right. Explanation: The second set has the constraint in0 < in-1, which is not present in the first set. Hence, the sets are different.
+############################################################
+CASUAL:
+
+I apologize for the previous misunderstanding. After examining the given examples again, it becomes clear that constraints for an input N are built using the constraints from the maximum M<N such that M mod 4 = 0 (M is a multiple of 4). 
+
+For N<4, there are no constraints for N=1 and "in1<in0" for N=2 and N=3 (N=0 is technically not valid here because there are no inputs to provide constraints for). We then build on these constraints when N>4. 
+
+For an even N, we append "inN-1 < inN-2, inN-2 < inN-1". If N is a multiple of 4, we also append "inN-4 < inN-3", and if N is not a multiple of 4 but N>4, we append "in0 < inN-4". 
+
+For an odd N, if N is a multiple of 4 plus 1 (like 5, 9, 13 etc), we do not add anything to the constraints from N-1. If N is a multiple of 4 plus 3 (like 7, 11, 15 etc), we append "inN-2 < inN-1".
+
+
+FORMAL:
+
+```python
+def generate_constraints(N):
+    constraints = []
+
+    if N>4:
+        constraints = generate_constraints(N-1).copy()
+    
+    if N == 2 or N==3:
+        constraints.append("in1 < in0")
+    elif N >= 4:
+        if N%2 == 0:
+            constraints.append("in{} < in{}".format(N-1, N-2))
+            constraints.append("in{} < in{}".format(N-2, N-1))
+            if N % 4 == 0:
+                constraints.append("in{} < in{}".format(N-4, N-3))
+            else:
+                constraints.append("in0 < in{}".format(N-4))
+        elif N%4 == 3 and N!=3: 
+            constraints.append("in{} < in{}".format(N-2, N-1))
+
+    return constraints
+
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)
+```
+############################################################
+                    ATTEMPT NUMBER 2
+############################################################
+Here is the correct set:
+```
+None
+```
+
+Here is the predicted set:
+```
+
+
+```
+############################################################
+Here is the correct set:
+```
+in3 < in2, in1 < in0, in0 < in3
+```
+
+Here is the predicted set:
+```
+in3 < in2, in2 < in3, in0 < in1
+
+```
+############################################################
+Here is the correct set:
+```
+in3 < in2, in1 < in0, in0 < in3
+```
+
+Here is the predicted set:
+```
+in3 < in2, in2 < in3, in0 < in1
+
+```
+############################################################
+Here is the correct set:
+```
+in5 < in4, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+
+Here is the predicted set:
+```
+in3 < in2, in2 < in3, in0 < in1, in5 < in4, in4 < in5, in0 < in2
+
+```
+############################################################
+Here is the correct set:
+```
+in5 < in4, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+
+Here is the predicted set:
+```
+in3 < in2, in2 < in3, in0 < in1, in5 < in4, in4 < in5, in0 < in2, in5 < in6
+
+```
+############################################################
+Here is the correct set:
+```
+in7 < in6, in5 < in4, in4 < in7, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+
+Here is the predicted set:
+```
+in3 < in2, in2 < in3, in0 < in1, in5 < in4, in4 < in5, in0 < in2, in5 < in6, in7 < in6, in6 < in7, in4 < in5
+
+```
+############################################################
+Here is the correct set:
+```
+in7 < in6, in5 < in4, in4 < in7, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+
+Here is the predicted set:
+```
+in3 < in2, in2 < in3, in0 < in1, in5 < in4, in4 < in5, in0 < in2, in5 < in6, in7 < in6, in6 < in7, in4 < in5
+
+```
+############################################################
+Here is the correct set:
+```
+in9 < in8, in7 < in6, in6 < in9, in5 < in4, in4 < in7, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+
+Here is the predicted set:
+```
+in3 < in2, in2 < in3, in0 < in1, in5 < in4, in4 < in5, in0 < in2, in5 < in6, in7 < in6, in6 < in7, in4 < in5, in9 < in8, in8 < in9, in0 < in6
+
+```
+############################################################
+                    #2  GET NEW GENERALISATION
+############################################################
+I have run your code for several concrete values of N. Some of the outputs were not correct. Change your generalisation and code to account for the following outputs (Remember to always structure your reply with the headings 'CASUAL' and 'FORMAL').
+
+For N=1, the generalisation output correctly fits the given data
+
+For N=2, the generalisation output correctly fits the given data
+
+For N=3, the generalisation output correctly fits the given data
+
+For N=4, the output constraint set should be:
+```
+in3 < in2, in1 < in0, in0 < in3
+```
+But your generalisation implies the set:
+```
+in3 < in2, in2 < in3, in0 < in1
+
+```
+This is not right. Explanation: The two sets of inequalities differ in the order of constraints related to in0 and in3. Specifically, the constraint in0 < in1 in the predicted set is not present in the correct set. This makes the two sets different.
+
+For N=5, the output constraint set should be:
+```
+in3 < in2, in1 < in0, in0 < in3
+```
+But your generalisation implies the set:
+```
+in3 < in2, in2 < in3, in0 < in1
+
+```
+This is not right. Explanation: The second constraint in the predicted set is different from the first set.
+
+For N=6, the generalisation output correctly fits the given data
+
+For N=7, the output constraint set should be:
+```
+in5 < in4, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+But your generalisation implies the set:
+```
+in3 < in2, in2 < in3, in0 < in1, in5 < in4, in4 < in5, in0 < in2, in5 < in6
+
+```
+This is not right. Explanation: The predicted set contains additional inequalities not present in the correct set, making them different.
+
+For N=8, the output constraint set should be:
+```
+in7 < in6, in5 < in4, in4 < in7, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+But your generalisation implies the set:
+```
+in3 < in2, in2 < in3, in0 < in1, in5 < in4, in4 < in5, in0 < in2, in5 < in6, in7 < in6, in6 < in7, in4 < in5
+
+```
+This is not right. Explanation: The predicted set contains additional constraints that are not present in the correct set and vice versa. This means that they are not the same.
+
+For N=9, the output constraint set should be:
+```
+in7 < in6, in5 < in4, in4 < in7, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+But your generalisation implies the set:
+```
+in3 < in2, in2 < in3, in0 < in1, in5 < in4, in4 < in5, in0 < in2, in5 < in6, in7 < in6, in6 < in7, in4 < in5
+
+```
+This is not right. Explanation: The predicted set lacks the inequality in7 < in6 which exists in the correct set.
+
+For N=10, the output constraint set should be:
+```
+in9 < in8, in7 < in6, in6 < in9, in5 < in4, in4 < in7, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+But your generalisation implies the set:
+```
+in3 < in2, in2 < in3, in0 < in1, in5 < in4, in4 < in5, in0 < in2, in5 < in6, in7 < in6, in6 < in7, in4 < in5, in9 < in8, in8 < in9, in0 < in6
+
+```
+This is not right. Explanation: The two sets contain different inequalities. For example, the predicted set contains "in0 < in2" which is not present in the correct set.
+############################################################
+CASUAL:
+
+Apologies for the confusion. After looking at it again, I can see a clearer pattern:
+
+For each multiple of 4 up to N:
+- We have the constraint "in{i+3} < in{i+2}, in{i+1} < in{i}, in{i} < in{i+3}" (for i such that i+3<N)
+
+When N is a multiple of 4 plus 2 (like 2, 6, 10, etc):
+- We also have the constraints "in{N-1} < in{N-2}, in{N-2} < in{N-1}"
+
+Note, in the case of N=4, there are 3 constraints and for N=2, there is 1 constraint.
+
+FORMAL:
+
+```python
+def generate_constraints(N):
+    constraints = []
+    
+    # For each multiple of 4
+    for i in range(0, N, 4):
+        if i+3 < N:
+            constraints.append(f"in{i+3} < in{i+2}")
+            constraints.append(f"in{i+1} < in{i}")
+            constraints.append(f"in{i} < in{i+3}")
+
+    # When N is a multiple of 4 plus 2
+    if N%4 == 2:
+        constraints.append(f"in{N-1} < in{N-2}")
+        constraints.append(f"in{N-2} < in{N-1}")
+
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)
+```
+############################################################
+                    ATTEMPT NUMBER 3
+############################################################
+Here is the correct set:
+```
+None
+```
+
+Here is the predicted set:
+```
+
+
+```
+############################################################
+Here is the correct set:
+```
+in1 < in0
+```
+
+Here is the predicted set:
+```
+in1 < in0, in0 < in1
+
+```
+############################################################
+Here is the correct set:
+```
+in1 < in0
+```
+
+Here is the predicted set:
+```
+
+
+```
+############################################################
+Here is the correct set:
+```
+in5 < in4, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+
+Here is the predicted set:
+```
+in3 < in2, in1 < in0, in0 < in3, in5 < in4, in4 < in5
+
+```
+############################################################
+Here is the correct set:
+```
+in5 < in4, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+
+Here is the predicted set:
+```
+in3 < in2, in1 < in0, in0 < in3
+
+```
+############################################################
+Here is the correct set:
+```
+in7 < in6, in5 < in4, in4 < in7, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+
+Here is the predicted set:
+```
+in3 < in2, in1 < in0, in0 < in3, in7 < in6, in5 < in4, in4 < in7
+
+```
+############################################################
+Here is the correct set:
+```
+in7 < in6, in5 < in4, in4 < in7, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+
+Here is the predicted set:
+```
+in3 < in2, in1 < in0, in0 < in3, in7 < in6, in5 < in4, in4 < in7
+
+```
+############################################################
+Here is the correct set:
+```
+in9 < in8, in7 < in6, in6 < in9, in5 < in4, in4 < in7, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+
+Here is the predicted set:
+```
+in3 < in2, in1 < in0, in0 < in3, in7 < in6, in5 < in4, in4 < in7, in9 < in8, in8 < in9
+
+```
+############################################################
+                    #3  GET NEW GENERALISATION
+############################################################
+I have run your code for several concrete values of N. Some of the outputs were not correct. Change your generalisation and code to account for the following outputs (Remember to always structure your reply with the headings 'CASUAL' and 'FORMAL').
+
+For N=1, the generalisation output correctly fits the given data
+
+For N=2, the output constraint set should be:
+```
+in1 < in0
+```
+But your generalisation implies the set:
+```
+in1 < in0, in0 < in1
+
+```
+This is not right. Explanation: The predicted set contains an additional inequality "in0 < in1" which is not present in the correct set.
+
+For N=3, the output constraint set should be:
+```
+in1 < in0
+```
+But your generalisation implies the set:
+```
+
+
+```
+This is not right. Explanation: The predicted set is empty, while the correct set has one constraint "in1 < in0". Therefore, they are not the same.
+
+For N=4, the generalisation output correctly fits the given data
+
+For N=5, the generalisation output correctly fits the given data
+
+For N=6, the generalisation output correctly fits the given data
+
+For N=7, the output constraint set should be:
+```
+in5 < in4, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+But your generalisation implies the set:
+```
+in3 < in2, in1 < in0, in0 < in3
+
+```
+This is not right. Explanation: The correct set contains additional inequalities (in5 < in4, in2 < in5) that are not present in the predicted set. Therefore, they are different.
+
+For N=8, the generalisation output correctly fits the given data
+
+For N=9, the generalisation output correctly fits the given data
+
+For N=10, the output constraint set should be:
+```
+in9 < in8, in7 < in6, in6 < in9, in5 < in4, in4 < in7, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+But your generalisation implies the set:
+```
+in3 < in2, in1 < in0, in0 < in3, in7 < in6, in5 < in4, in4 < in7, in9 < in8, in8 < in9
+
+```
+This is not right. Explanation: The order of constraints in the 'predicted set' does not match the 'correct set'.
+############################################################
+CASUAL:
+
+I apologize for the confusion earlier. I misunderstood the pattern of the constraints. The pattern seems to be that for each completed group of four inputs, we have three constraints, specifically, "in{i+3} < in{i+2}", "in{i+1} < in{i}", and "in{i} < in{i+3}" for i equal to multiples of 4 (i.e., 0, 4, 8, ...). 
+
+And then, on every 2nth input where n is odd (i.e., non-multiple of 4), we add the constraint "in{n} < in{n-1}" and another constraint "in{n-3} < in{n}". 
+
+Thus, on every 6th input (6=4+2), we would add "in{4+2} < in{4+1}", "in{4+1-3} < in{4+2}", which would be "in5 < in4" and "in1 < in5". 
+
+I missed the point that each group of four starts again. So when we reach 9 (which is 4*2+1), we would append "in9 < in8" and "in5 < in9".  
+
+FORMAL:
+
+```python
+def generate_constraints(N):
+    constraints = []
+
+    # For each multiple of 4 (e.g., 0, 4, 8)
+    for i in range(0, N-3, 4):
+        constraints.append(f"in{i+3} < in{i+2}")
+        constraints.append(f"in{i+1} < in{i}")
+        constraints.append(f"in{i} < in{i+3}")
+
+    # For every 2nth input, where n is odd (i.e., non-multiple of 4)
+    for i in range(1, ((N-1)//2)+1):
+        i *= 2
+        if i < N:
+            constraints.append(f"in{i} < in{i-1}")
+            if i-3 >= 0:
+                constraints.append(f"in{i-3} < in{i}")
+
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)
+```
+############################################################
+                    ATTEMPT NUMBER 4
+############################################################
+Here is the correct set:
+```
+None
+```
+
+Here is the predicted set:
+```
+
+
+```
+############################################################
+Here is the correct set:
+```
+in1 < in0
+```
+
+Here is the predicted set:
+```
+
+
+```
+############################################################
+Here is the correct set:
+```
+in1 < in0
+```
+
+Here is the predicted set:
+```
+in2 < in1
+
+```
+############################################################
+Here is the correct set:
+```
+in3 < in2, in1 < in0, in0 < in3
+```
+
+Here is the predicted set:
+```
+in3 < in2, in1 < in0, in0 < in3, in2 < in1
+
+```
+############################################################
+Here is the correct set:
+```
+in3 < in2, in1 < in0, in0 < in3
+```
+
+Here is the predicted set:
+```
+in3 < in2, in1 < in0, in0 < in3, in2 < in1, in4 < in3, in1 < in4
+
+```
+############################################################
+Here is the correct set:
+```
+in5 < in4, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+
+Here is the predicted set:
+```
+in3 < in2, in1 < in0, in0 < in3, in2 < in1, in4 < in3, in1 < in4
+
+```
+############################################################
+Here is the correct set:
+```
+in5 < in4, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+
+Here is the predicted set:
+```
+in3 < in2, in1 < in0, in0 < in3, in2 < in1, in4 < in3, in1 < in4, in6 < in5, in3 < in6
+
+```
+############################################################
+Here is the correct set:
+```
+in7 < in6, in5 < in4, in4 < in7, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+
+Here is the predicted set:
+```
+in3 < in2, in1 < in0, in0 < in3, in7 < in6, in5 < in4, in4 < in7, in2 < in1, in4 < in3, in1 < in4, in6 < in5, in3 < in6
+
+```
+############################################################
+Here is the correct set:
+```
+in7 < in6, in5 < in4, in4 < in7, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+
+Here is the predicted set:
+```
+in3 < in2, in1 < in0, in0 < in3, in7 < in6, in5 < in4, in4 < in7, in2 < in1, in4 < in3, in1 < in4, in6 < in5, in3 < in6, in8 < in7, in5 < in8
+
+```
+############################################################
+Here is the correct set:
+```
+in9 < in8, in7 < in6, in6 < in9, in5 < in4, in4 < in7, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+
+Here is the predicted set:
+```
+in3 < in2, in1 < in0, in0 < in3, in7 < in6, in5 < in4, in4 < in7, in2 < in1, in4 < in3, in1 < in4, in6 < in5, in3 < in6, in8 < in7, in5 < in8
+
+```
+############################################################
+                    #4  GET NEW GENERALISATION
+############################################################
+I have run your code for several concrete values of N. Some of the outputs were not correct. Change your generalisation and code to account for the following outputs (Remember to always structure your reply with the headings 'CASUAL' and 'FORMAL').
+
+For N=1, the generalisation output correctly fits the given data
+
+For N=2, the output constraint set should be:
+```
+in1 < in0
+```
+But your generalisation implies the set:
+```
+
+
+```
+This is not right. Explanation: The predicted set is empty, while the correct set contains the constraint "in1 < in0", so they do not match.
+
+For N=3, the output constraint set should be:
+```
+in1 < in0
+```
+But your generalisation implies the set:
+```
+in2 < in1
+
+```
+This is not right. Explanation: The constraints are on different variables and have a reversed order.
+
+For N=4, the output constraint set should be:
+```
+in3 < in2, in1 < in0, in0 < in3
+```
+But your generalisation implies the set:
+```
+in3 < in2, in1 < in0, in0 < in3, in2 < in1
+
+```
+This is not right. Explanation: The predicted set contains an additional constraint "in2 < in1" that is not present in the correct set.
+
+For N=5, the output constraint set should be:
+```
+in3 < in2, in1 < in0, in0 < in3
+```
+But your generalisation implies the set:
+```
+in3 < in2, in1 < in0, in0 < in3, in2 < in1, in4 < in3, in1 < in4
+
+```
+This is not right. Explanation: The predicted set has more inequalities and contains additional constraints that are not present in the correct set.
+
+For N=6, the output constraint set should be:
+```
+in5 < in4, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+But your generalisation implies the set:
+```
+in3 < in2, in1 < in0, in0 < in3, in2 < in1, in4 < in3, in1 < in4
+
+```
+This is not right. Explanation: The correct set does not have the inequalities in4 < in3 and in1 < in4, whereas the predicted set has these inequalities.
+
+For N=7, the output constraint set should be:
+```
+in5 < in4, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+But your generalisation implies the set:
+```
+in3 < in2, in1 < in0, in0 < in3, in2 < in1, in4 < in3, in1 < in4, in6 < in5, in3 < in6
+
+```
+This is not right. Explanation: The predicted set contains extra constraints 'in2 < in1', 'in4 < in3', 'in1 < in4', 'in6 < in5', 'in3 < in6' not present in the correct set.
+
+For N=8, the generalisation output correctly fits the given data
+
+For N=9, the output constraint set should be:
+```
+in7 < in6, in5 < in4, in4 < in7, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+But your generalisation implies the set:
+```
+in3 < in2, in1 < in0, in0 < in3, in7 < in6, in5 < in4, in4 < in7, in2 < in1, in4 < in3, in1 < in4, in6 < in5, in3 < in6, in8 < in7, in5 < in8
+
+```
+This is not right. Explanation: The predicted set contains additional inequalities not present in the correct set.
+
+For N=10, the output constraint set should be:
+```
+in9 < in8, in7 < in6, in6 < in9, in5 < in4, in4 < in7, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+But your generalisation implies the set:
+```
+in3 < in2, in1 < in0, in0 < in3, in7 < in6, in5 < in4, in4 < in7, in2 < in1, in4 < in3, in1 < in4, in6 < in5, in3 < in6, in8 < in7, in5 < in8
+
+```
+This is not right. Explanation: The predicted set contains extra constraints and also has the opposite inequality "in4 < in3" while the correct set has "in3 < in4".
+############################################################
+CASUAL:
+
+Sorry for the previous misinterpretations. Let's try another approach. The constraints seem to be:
+
+- For N = 2, 3: "in1 < in0"
+- For N >= 4, and for every group i of four numbers ending with N:
+  *  If it's the first group (0 <= i <= 3), then: "in3 < in2, in1 < in0, in0 < in3"
+  *  For every group after: "in(i+3) < in(i+2), in(i-1) < in(i-2), in(i-2) < in(i+3)"
+
+Please notice that we use zero-based indexing and always skip i+1 and i in the set of input of a group of four.
+
+FORMAL:
+
+```python
+def generate_constraints(N):
+    constraints = []
+    
+    if N < 4 and N >= 2:
+        constraints.append("in1 < in0")
+        
+    for i in range(0, N, 4):
+        if i + 3 < N:
+            constraints.append(f"in{i+3} < in{i+2}")
+            if i == 0:
+                constraints.append("in1 < in0")
+                constraints.append("in0 < in3")
+            else:
+                constraints.append(f"in{i-1} < in{i-2}")
+                constraints.append(f"in{i-2} < in{i+3}")
+        
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)
+```
+############################################################
+                    ATTEMPT NUMBER 5
+############################################################
+Here is the correct set:
+```
+None
+```
+
+Here is the predicted set:
+```
+
+
+```
+############################################################
+Here is the correct set:
+```
+in5 < in4, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+
+Here is the predicted set:
+```
+in3 < in2, in1 < in0, in0 < in3
+
+```
+############################################################
+Here is the correct set:
+```
+in5 < in4, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+
+Here is the predicted set:
+```
+in3 < in2, in1 < in0, in0 < in3
+
+```
+############################################################
+Here is the correct set:
+```
+in7 < in6, in5 < in4, in4 < in7, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+
+Here is the predicted set:
+```
+in3 < in2, in1 < in0, in0 < in3, in7 < in6, in3 < in2, in2 < in7
+
+```
+############################################################
+Here is the correct set:
+```
+in7 < in6, in5 < in4, in4 < in7, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+
+Here is the predicted set:
+```
+in3 < in2, in1 < in0, in0 < in3, in7 < in6, in3 < in2, in2 < in7
+
+```
+############################################################
+Here is the correct set:
+```
+in9 < in8, in7 < in6, in6 < in9, in5 < in4, in4 < in7, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+
+Here is the predicted set:
+```
+in3 < in2, in1 < in0, in0 < in3, in7 < in6, in3 < in2, in2 < in7
+
+```
+############################################################
+                    #5  GET NEW GENERALISATION
+############################################################
+I have run your code for several concrete values of N. Some of the outputs were not correct. Change your generalisation and code to account for the following outputs (Remember to always structure your reply with the headings 'CASUAL' and 'FORMAL').
+
+For N=1, the generalisation output correctly fits the given data
+
+For N=2, the generalisation output correctly fits the given data
+
+For N=3, the generalisation output correctly fits the given data
+
+For N=4, the generalisation output correctly fits the given data
+
+For N=5, the generalisation output correctly fits the given data
+
+For N=6, the output constraint set should be:
+```
+in5 < in4, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+But your generalisation implies the set:
+```
+in3 < in2, in1 < in0, in0 < in3
+
+```
+This is not right. Explanation: The correct set contains an extra inequality in2 < in5 and the condition in5 < in4, which are not present in the predicted set.
+
+For N=7, the output constraint set should be:
+```
+in5 < in4, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+But your generalisation implies the set:
+```
+in3 < in2, in1 < in0, in0 < in3
+
+```
+This is not right. Explanation: The correct set is larger and more restrictive as it contains two additional inequalities compared to the predicted set.
+
+For N=8, the generalisation output correctly fits the given data
+
+For N=9, the generalisation output correctly fits the given data
+
+For N=10, the output constraint set should be:
+```
+in9 < in8, in7 < in6, in6 < in9, in5 < in4, in4 < in7, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+But your generalisation implies the set:
+```
+in3 < in2, in1 < in0, in0 < in3, in7 < in6, in3 < in2, in2 < in7
+
+```
+This is not right. Explanation: The predicted set is missing some inequalities regarding in9 and in4 which are included in the correct set, as well as it includes an additional inequality about in7 which isn't present in the correct set.
+############################################################
+CASUAL:
+
+I apologize for the confusion. Let's try solving this again. It looks like the constraints are present for every set of four inputs. The constraints for each set of four follow the pattern:
+
+- "in{i+3} < in{i+2}, in{i+1} < in{i}, in{i} < in{i+3}"
+
+for every i in {0, 4, 8, ...} until i+3 < N.
+
+Then within every set of four that starts with a number which is 1 more than a multiple of 2 (like 1, 6, 11, etc), we also have to have:
+
+- "in{i+1} < in{i}, in{i-1} < in{i+2}"
+
+This is not accurate for the last group of four if N is not a multiple of 4, so we need to make special cases when we have 1, 2 or 3 numbers beyond the last completed group of four.
+
+FORMAL:
+
+```python
+def generate_constraints(N):
+    constraints = []
+    
+    for i in range(0, N, 4):
+        # In each group of four add the base constraints
+        if i + 3 < N:
+            constraints.append(f"in{i+3} < in{i+2}")
+            constraints.append(f"in{i+1} < in{i}")
+            constraints.append(f"in{i} < in{i+3}")
+
+    remainder = N % 4
+
+    # For the last incomplete group of four add the special cases
+    if remainder==2:
+        last_four_position=(N//4)*4
+        constraints.append(f"in{last_four_position+1} < in{last_four_position}")
+        constraints.append(f"in{last_four_position-1} < in{last_four_position+1}")
+    elif remainder==1 or remainder==3:
+        last_four_position=(N//4)*4
+        constraints.append(f"in{last_four_position+1} < in{last_four_position}")
+        constraints.append(f"in{last_four_position-1} < in{last_four_position+2}")
+        
+        
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)
+```
+############################################################
+                    ATTEMPT NUMBER 6
+############################################################
+Here is the correct set:
+```
+None
+```
+
+Here is the predicted set:
+```
+in1 < in0, in-1 < in2
+
+```
+############################################################
+Here is the correct set:
+```
+in1 < in0
+```
+
+Here is the predicted set:
+```
+in1 < in0, in-1 < in1
+
+```
+############################################################
+Here is the correct set:
+```
+in1 < in0
+```
+
+Here is the predicted set:
+```
+in1 < in0, in-1 < in2
+
+```
+############################################################
+Here is the correct set:
+```
+in3 < in2, in1 < in0, in0 < in3
+```
+
+Here is the predicted set:
+```
+in3 < in2, in1 < in0, in0 < in3, in5 < in4, in3 < in6
+
+```
+############################################################
+Here is the correct set:
+```
+in5 < in4, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+
+Here is the predicted set:
+```
+in3 < in2, in1 < in0, in0 < in3, in5 < in4, in3 < in5
+
+```
+############################################################
+Here is the correct set:
+```
+in5 < in4, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+
+Here is the predicted set:
+```
+in3 < in2, in1 < in0, in0 < in3, in5 < in4, in3 < in6
+
+```
+############################################################
+Here is the correct set:
+```
+in7 < in6, in5 < in4, in4 < in7, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+
+Here is the predicted set:
+```
+in3 < in2, in1 < in0, in0 < in3, in7 < in6, in5 < in4, in4 < in7
+
+```
+############################################################
+Here is the correct set:
+```
+in7 < in6, in5 < in4, in4 < in7, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+
+Here is the predicted set:
+```
+in3 < in2, in1 < in0, in0 < in3, in7 < in6, in5 < in4, in4 < in7, in9 < in8, in7 < in10
+
+```
+############################################################
+Here is the correct set:
+```
+in9 < in8, in7 < in6, in6 < in9, in5 < in4, in4 < in7, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+
+Here is the predicted set:
+```
+in3 < in2, in1 < in0, in0 < in3, in7 < in6, in5 < in4, in4 < in7, in9 < in8, in7 < in9
+
+```
+############################################################
+                    #6  GET NEW GENERALISATION
+############################################################
+I have run your code for several concrete values of N. Some of the outputs were not correct. Change your generalisation and code to account for the following outputs (Remember to always structure your reply with the headings 'CASUAL' and 'FORMAL').
+
+For N=1, the output constraint set should be:
+```
+None
+```
+But your generalisation implies the set:
+```
+in1 < in0, in-1 < in2
+
+```
+This is not right. Explanation: The correct set has no constraints, while the predicted set has constraints.
+
+For N=2, the output constraint set should be:
+```
+in1 < in0
+```
+But your generalisation implies the set:
+```
+in1 < in0, in-1 < in1
+
+```
+This is not right. Explanation: The two sets are different because the predicted set has an additional constraint 'in-1 < in1' which is not present in the correct set.
+
+For N=3, the output constraint set should be:
+```
+in1 < in0
+```
+But your generalisation implies the set:
+```
+in1 < in0, in-1 < in2
+
+```
+This is not right. Explanation: The predicted set contains an additional constraint "in-1 < in2" which is not present in the correct set.
+
+For N=4, the generalisation output correctly fits the given data
+
+For N=5, the output constraint set should be:
+```
+in3 < in2, in1 < in0, in0 < in3
+```
+But your generalisation implies the set:
+```
+in3 < in2, in1 < in0, in0 < in3, in5 < in4, in3 < in6
+
+```
+This is not right. Explanation: The predicted set contains additional inequalities between variables in5, in4, and in6 which are not present in the correct set.
+
+For N=6, the output constraint set should be:
+```
+in5 < in4, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+But your generalisation implies the set:
+```
+in3 < in2, in1 < in0, in0 < in3, in5 < in4, in3 < in5
+
+```
+This is not right. Explanation: The inequalities are not in the same order in the two sets. So, they do not match.
+
+For N=7, the output constraint set should be:
+```
+in5 < in4, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+But your generalisation implies the set:
+```
+in3 < in2, in1 < in0, in0 < in3, in5 < in4, in3 < in6
+
+```
+This is not right. Explanation: The predicted set contains an extra constraint 'in3 < in6' that is not present in the correct set.
+
+For N=8, the output constraint set should be:
+```
+in7 < in6, in5 < in4, in4 < in7, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+But your generalisation implies the set:
+```
+in3 < in2, in1 < in0, in0 < in3, in7 < in6, in5 < in4, in4 < in7
+
+```
+This is not right. Explanation: The order of constraints is different in the two sets.
+
+For N=9, the output constraint set should be:
+```
+in7 < in6, in5 < in4, in4 < in7, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+But your generalisation implies the set:
+```
+in3 < in2, in1 < in0, in0 < in3, in7 < in6, in5 < in4, in4 < in7, in9 < in8, in7 < in10
+
+```
+This is not right. Explanation: The predicted set contains additional inequalities involving in9, in8, and in10 that do not appear in the correct set. Therefore, the two sets are different.
+
+For N=10, the output constraint set should be:
+```
+in9 < in8, in7 < in6, in6 < in9, in5 < in4, in4 < in7, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+But your generalisation implies the set:
+```
+in3 < in2, in1 < in0, in0 < in3, in7 < in6, in5 < in4, in4 < in7, in9 < in8, in7 < in9
+
+```
+This is not right. Explanation: The predicted set contains in7 < in9, which is not present in the correct set. Therefore, they are not the same.
+############################################################
+CASUAL:
+
+It appears we went wrong in the last incomplete group of four elements. Let's break the problem down:
+
+The pattern "in{i+3} < in{i+2}, in{i+1} < in{i}, in{i} < in{i+3}" should indeed be repeated for every i in {0, 4, 8, ...} until i+3 < N. For N = 1, 2, or 3, the constraints are fewer because we do not have completes set of fours.
+
+Then for every set of four that starts with a number which is 1 more than a multiple of 2 (like 1, 6, 11, etc), in addition to the base constraints, we also include "in{i+1} < in{i}, in{i-1} < in{i+2}".
+
+However, we went wrong when it comes to the last incomplete group of four. Instead of adding placeholder constraints for missing variables, it seems we should add whatever constraints we can from "in{i+3} < in{i+2}, in{i+1} < in{i}, in{i} < in{i+3}" for the remaining numbers.
+
+FORMAL:
+
+```python
+def generate_constraints(N):
+    constraints = []
+    
+    for i in range(0, N, 4):
+        # Last group of four might have less than 4 numbers
+        if i + 3 < N:
+            constraints.append(f"in{i+3} < in{i+2}")
+        if i + 2 < N:
+            constraints.append(f"in{i+1} < in{i}")
+        if i + 1 < N:
+            constraints.append(f"in{i} < in{i+3}")
+            
+        # Every set of 4 starting with a number 1 more than a multiple of 2 also get extra constraints
+        if i != 0 and i % 4 == 1:
+            if i + 1 < N:
+                constraints.append(f"in{i+1} < in{i}")
+            if i - 1 >= 0 and i + 2 < N:
+                constraints.append(f"in{i-1} < in{i+2}")
+        
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)
+```
+############################################################
+                    ATTEMPT NUMBER 7
+############################################################
+Here is the correct set:
+```
+None
+```
+
+Here is the predicted set:
+```
+
+
+```
+############################################################
+Here is the correct set:
+```
+in1 < in0
+```
+
+Here is the predicted set:
+```
+in0 < in3
+
+```
+############################################################
+Here is the correct set:
+```
+in1 < in0
+```
+
+Here is the predicted set:
+```
+in1 < in0, in0 < in3
+
+```
+############################################################
+Here is the correct set:
+```
+in5 < in4, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+
+Here is the predicted set:
+```
+in3 < in2, in1 < in0, in0 < in3, in4 < in7
+
+```
+############################################################
+Here is the correct set:
+```
+in5 < in4, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+
+Here is the predicted set:
+```
+in3 < in2, in1 < in0, in0 < in3, in5 < in4, in4 < in7
+
+```
+############################################################
+Here is the correct set:
+```
+in7 < in6, in5 < in4, in4 < in7, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+
+Here is the predicted set:
+```
+in3 < in2, in1 < in0, in0 < in3, in7 < in6, in5 < in4, in4 < in7
+
+```
+############################################################
+Here is the correct set:
+```
+in7 < in6, in5 < in4, in4 < in7, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+
+Here is the predicted set:
+```
+in3 < in2, in1 < in0, in0 < in3, in7 < in6, in5 < in4, in4 < in7
+
+```
+############################################################
+Here is the correct set:
+```
+in9 < in8, in7 < in6, in6 < in9, in5 < in4, in4 < in7, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+
+Here is the predicted set:
+```
+in3 < in2, in1 < in0, in0 < in3, in7 < in6, in5 < in4, in4 < in7, in8 < in11
+
+```
+############################################################
+                    #7  GET NEW GENERALISATION
+############################################################
+I have run your code for several concrete values of N. Some of the outputs were not correct. Change your generalisation and code to account for the following outputs (Remember to always structure your reply with the headings 'CASUAL' and 'FORMAL').
+
+For N=1, the generalisation output correctly fits the given data
+
+For N=2, the output constraint set should be:
+```
+in1 < in0
+```
+But your generalisation implies the set:
+```
+in0 < in3
+
+```
+This is not right. Explanation: The constraints in the correct and predicted sets are different, 'in1 < in0' does not match 'in0 < in3'.
+
+For N=3, the output constraint set should be:
+```
+in1 < in0
+```
+But your generalisation implies the set:
+```
+in1 < in0, in0 < in3
+
+```
+This is not right. Explanation: The predicted set has an additional constraint 'in0 < in3' that is not present in the correct set. Therefore, they do not match.
+
+For N=4, the generalisation output correctly fits the given data
+
+For N=5, the generalisation output correctly fits the given data
+
+For N=6, the output constraint set should be:
+```
+in5 < in4, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+But your generalisation implies the set:
+```
+in3 < in2, in1 < in0, in0 < in3, in4 < in7
+
+```
+This is not right. Explanation: The predicted set has fewer inequalities than the correct set.
+
+For N=7, the output constraint set should be:
+```
+in5 < in4, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+But your generalisation implies the set:
+```
+in3 < in2, in1 < in0, in0 < in3, in5 < in4, in4 < in7
+
+```
+This is not right. Explanation: The predicted set contains an additional constraint, in4 < in7, that is not present in the correct set.
+
+For N=8, the generalisation output correctly fits the given data
+
+For N=9, the generalisation output correctly fits the given data
+
+For N=10, the output constraint set should be:
+```
+in9 < in8, in7 < in6, in6 < in9, in5 < in4, in4 < in7, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+But your generalisation implies the set:
+```
+in3 < in2, in1 < in0, in0 < in3, in7 < in6, in5 < in4, in4 < in7, in8 < in11
+
+```
+This is not right. Explanation: The predicted set is missing constraints 'in9 < in8' and 'in6 < in9' from the correct set.
+############################################################
+CASUAL:
+
+It appears there was a mistake in the constraints for when i + 1 < N (for the last group of four when we don't have all 4 numbers).  I incorrectly used i+3 instead of the immediate next number. I structured it as "in{i} < in{i+3}", but instead, it should be "in{i} < in{i+1}", if i+1 is within the limit of N.
+
+Therefore, the pattern appears as follows:
+- "in{i+3} < in{i+2}", "in{i+1} < in{i}", and "in{i} < in{i+1}" for i in {0, 4, 8, ...} until i+3 < N.
+- If i + 2 < N and i + 1 < N and i < N, then "in{i+1} < in{i}" and "in{i} < in{i+1}".
+- For any set of four that starts with a number which is 1 more than a multiple of 2 (like 1, 6, 11, etc), in addition to the base constraints, we also include "in{i+1} < in{i}", "in{i-1} < in{i+2}".
+
+FORMAL:
+
+```python
+def generate_constraints(N):
+    constraints = []
+    
+    for i in range(0, N, 4):
+        # Constrain in every group of four
+        if i + 3 < N:
+            constraints.append(f"in{i+3} < in{i+2}")
+        if i + 2 < N:
+            constraints.append(f"in{i+1} < in{i}")
+        if i + 1 < N:
+            constraints.append(f"in{i} < in{i+1}")
+            
+        # Every set of 4 starting with a number 1 more than a multiple of 2 also get extra constraints
+        if i != 0 and i % 4 == 1:
+            if i + 1 < N:
+                constraints.append(f"in{i+1} < in{i}")
+            if i - 1 >= 0 and i + 2 < N:
+                constraints.append(f"in{i-1} < in{i+2}")
+        
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)
+```
+############################################################
+                    ATTEMPT NUMBER 8
+############################################################
+Here is the correct set:
+```
+None
+```
+
+Here is the predicted set:
+```
+
+
+```
+############################################################
+Here is the correct set:
+```
+in1 < in0
+```
+
+Here is the predicted set:
+```
+in0 < in1
+
+```
+############################################################
+Here is the correct set:
+```
+in1 < in0
+```
+
+Here is the predicted set:
+```
+in1 < in0, in0 < in1
+
+```
+############################################################
+Here is the correct set:
+```
+in3 < in2, in1 < in0, in0 < in3
+```
+
+Here is the predicted set:
+```
+in3 < in2, in1 < in0, in0 < in1
+
+```
+############################################################
+Here is the correct set:
+```
+in3 < in2, in1 < in0, in0 < in3
+```
+
+Here is the predicted set:
+```
+in3 < in2, in1 < in0, in0 < in1
+
+```
+############################################################
+Here is the correct set:
+```
+in5 < in4, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+
+Here is the predicted set:
+```
+in3 < in2, in1 < in0, in0 < in1, in4 < in5
+
+```
+############################################################
+Here is the correct set:
+```
+in5 < in4, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+
+Here is the predicted set:
+```
+in3 < in2, in1 < in0, in0 < in1, in5 < in4, in4 < in5
+
+```
+############################################################
+Here is the correct set:
+```
+in7 < in6, in5 < in4, in4 < in7, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+
+Here is the predicted set:
+```
+in3 < in2, in1 < in0, in0 < in1, in7 < in6, in5 < in4, in4 < in5
+
+```
+############################################################
+Here is the correct set:
+```
+in7 < in6, in5 < in4, in4 < in7, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+
+Here is the predicted set:
+```
+in3 < in2, in1 < in0, in0 < in1, in7 < in6, in5 < in4, in4 < in5
+
+```
+############################################################
+Here is the correct set:
+```
+in9 < in8, in7 < in6, in6 < in9, in5 < in4, in4 < in7, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+
+Here is the predicted set:
+```
+in3 < in2, in1 < in0, in0 < in1, in7 < in6, in5 < in4, in4 < in5, in8 < in9
+
+```
+############################################################
+                    #8  GET NEW GENERALISATION
+############################################################
+I have run your code for several concrete values of N. Some of the outputs were not correct. Change your generalisation and code to account for the following outputs (Remember to always structure your reply with the headings 'CASUAL' and 'FORMAL').
+
+For N=1, the generalisation output correctly fits the given data
+
+For N=2, the generalisation output correctly fits the given data
+
+For N=3, the output constraint set should be:
+```
+in1 < in0
+```
+But your generalisation implies the set:
+```
+in1 < in0, in0 < in1
+
+```
+This is not right. Explanation: The predicted set has an extra constraint "in0 < in1" which is not present in the correct set. Therefore, they are different.
+
+For N=4, the output constraint set should be:
+```
+in3 < in2, in1 < in0, in0 < in3
+```
+But your generalisation implies the set:
+```
+in3 < in2, in1 < in0, in0 < in1
+
+```
+This is not right. Explanation: The correct set has the constraint in0 < in3, whereas the predicted set has the constraint in0 < in1.
+
+For N=5, the output constraint set should be:
+```
+in3 < in2, in1 < in0, in0 < in3
+```
+But your generalisation implies the set:
+```
+in3 < in2, in1 < in0, in0 < in1
+
+```
+This is not right. Explanation: The constraint in0 < in3 is present in the correct set but is missing in the predicted set.
+
+For N=6, the output constraint set should be:
+```
+in5 < in4, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+But your generalisation implies the set:
+```
+in3 < in2, in1 < in0, in0 < in1, in4 < in5
+
+```
+This is not right. Explanation: The predicted set is missing the in2 < in5 inequality and has the in0 < in1 inequality instead, and has the adding in4 < in5 inequality
+
+For N=7, the generalisation output correctly fits the given data
+
+For N=8, the generalisation output correctly fits the given data
+
+For N=9, the generalisation output correctly fits the given data
+
+For N=10, the output constraint set should be:
+```
+in9 < in8, in7 < in6, in6 < in9, in5 < in4, in4 < in7, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+But your generalisation implies the set:
+```
+in3 < in2, in1 < in0, in0 < in1, in7 < in6, in5 < in4, in4 < in5, in8 < in9
+
+```
+This is not right. Explanation: The predicted set has an extra inequality in0 < in1 that is not present in the correct set.
+############################################################
+CASUAL:
+
+It seems the additional constraints "in{i} < in{i+1}" are generated incorrectly for N not multiple of 4. We have set it so that "in{i} < in{i+1}" is always added if i + 1 < N, however, this is incorrect for the last one to three elements when N is not a multiple of four.
+
+To correct this, we should only include "in{i} < in{i+1}" if i != 0 and i % 4 == 0 which means the input is the first input in a group of four.
+
+Let's fix this in our code.
+
+FORMAL:
+
+```python
+def generate_constraints(N):
+    constraints = []
+    
+    for i in range(0, N, 4):
+        # Add constraint for every group of four
+        if i + 3 < N:
+            constraints.append(f"in{i+3} < in{i+2}")
+        if i + 2 < N:
+            constraints.append(f"in{i+1} < in{i}")
+        if i + 1 < N and  i % 4 == 0:
+            constraints.append(f"in{i} < in{i+1}")
+            
+        # Add extra constraints for every set of 4 starting with a number 1 more than a multiple of 2
+        if i != 0 and i % 4 == 1:
+            if i + 1 < N:
+                constraints.append(f"in{i+1} < in{i}")
+            if i - 1 >= 0 and i + 2 < N:
+                constraints.append(f"in{i-1} < in{i+2}")
+        
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)
+```
+############################################################
+                    ATTEMPT NUMBER 9
+############################################################
+Here is the correct set:
+```
+None
+```
+
+Here is the predicted set:
+```
+
+
+```
+############################################################
+Here is the correct set:
+```
+in1 < in0
+```
+
+Here is the predicted set:
+```
+in0 < in1
+
+```
+############################################################
+Here is the correct set:
+```
+in1 < in0
+```
+
+Here is the predicted set:
+```
+in1 < in0, in0 < in1
+
+```
+############################################################
+Here is the correct set:
+```
+in3 < in2, in1 < in0, in0 < in3
+```
+
+Here is the predicted set:
+```
+in3 < in2, in1 < in0, in0 < in1
+
+```
+############################################################
+Here is the correct set:
+```
+in3 < in2, in1 < in0, in0 < in3
+```
+
+Here is the predicted set:
+```
+in3 < in2, in1 < in0, in0 < in1
+
+```
+############################################################
+Here is the correct set:
+```
+in5 < in4, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+
+Here is the predicted set:
+```
+in3 < in2, in1 < in0, in0 < in1, in4 < in5
+
+```
+############################################################
+Here is the correct set:
+```
+in5 < in4, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+
+Here is the predicted set:
+```
+in3 < in2, in1 < in0, in0 < in1, in5 < in4, in4 < in5
+
+```
+############################################################
+Here is the correct set:
+```
+in7 < in6, in5 < in4, in4 < in7, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+
+Here is the predicted set:
+```
+in3 < in2, in1 < in0, in0 < in1, in7 < in6, in5 < in4, in4 < in5
+
+```
+############################################################
+Here is the correct set:
+```
+in7 < in6, in5 < in4, in4 < in7, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+
+Here is the predicted set:
+```
+in3 < in2, in1 < in0, in0 < in1, in7 < in6, in5 < in4, in4 < in5
+
+```
+############################################################
+Here is the correct set:
+```
+in9 < in8, in7 < in6, in6 < in9, in5 < in4, in4 < in7, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+
+Here is the predicted set:
+```
+in3 < in2, in1 < in0, in0 < in1, in7 < in6, in5 < in4, in4 < in5, in8 < in9
+
+```
+############################################################
+                    #9  GET NEW GENERALISATION
+############################################################
+I have run your code for several concrete values of N. Some of the outputs were not correct. Change your generalisation and code to account for the following outputs (Remember to always structure your reply with the headings 'CASUAL' and 'FORMAL').
+
+For N=1, the generalisation output correctly fits the given data
+
+For N=2, the output constraint set should be:
+```
+in1 < in0
+```
+But your generalisation implies the set:
+```
+in0 < in1
+
+```
+This is not right. Explanation: The constraints in the two sets have opposite directions, 'in1 < in0' versus 'in0 < in1'. This means the sets are different.
+
+For N=3, the output constraint set should be:
+```
+in1 < in0
+```
+But your generalisation implies the set:
+```
+in1 < in0, in0 < in1
+
+```
+This is not right. Explanation: The predicted set contains an additional constraint "in0 < in1" which is not present in the correct set.
+
+For N=4, the output constraint set should be:
+```
+in3 < in2, in1 < in0, in0 < in3
+```
+But your generalisation implies the set:
+```
+in3 < in2, in1 < in0, in0 < in1
+
+```
+This is not right. Explanation: The two sets differ because the constraint in0 < in3 in the first set does not appear in the second set.
+
+For N=5, the output constraint set should be:
+```
+in3 < in2, in1 < in0, in0 < in3
+```
+But your generalisation implies the set:
+```
+in3 < in2, in1 < in0, in0 < in1
+
+```
+This is not right. Explanation: The last constraints in both sets are different. In Set 1, it's in0 < in3, while in Set 2, it's in0 < in1.
+
+For N=6, the output constraint set should be:
+```
+in5 < in4, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+But your generalisation implies the set:
+```
+in3 < in2, in1 < in0, in0 < in1, in4 < in5
+
+```
+This is not right. Explanation: The predicted set does not contain the constraint in2 < in5 from the correct set, and contains the constraints in0 < in1 and in4 < in5 that are not in the correct set.
+
+For N=7, the generalisation output correctly fits the given data
+
+For N=8, the generalisation output correctly fits the given data
+
+For N=9, the generalisation output correctly fits the given data
+
+For N=10, the output constraint set should be:
+```
+in9 < in8, in7 < in6, in6 < in9, in5 < in4, in4 < in7, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+But your generalisation implies the set:
+```
+in3 < in2, in1 < in0, in0 < in1, in7 < in6, in5 < in4, in4 < in5, in8 < in9
+
+```
+This is not right. Explanation: The two sets of inequalities contain different constraints. For example, the first set has in9 < in8, in6 < in9, and in2 < in5, which are not present in the second set. Similarly, the second set has in0 < in1, in4 < in5, and in8 < in9, which are not present in the first set. Therefore, the sets are different.
+############################################################
+CASUAL:
+
+I see where the problem is. The constraints for each group of four should be formatted as:
+- "in{i+3} < in{i+2}, in{i+1} < in{i}, in{i} < in{i+3}"
+But it was incorrectly formatted for cases when N wasn't a multiple of 4. Basically, for groups with less than 4 inputs, the condition "in{i} < in{i+1}" should not be applied since it refers to an input that doesn't exist. 
+
+Also, I made a mistake with extra constraints for sets starting with a number 1 more than a multiple of 2. The constraints should be placed on the second and last digits of the group, and not on the digits of the previous group.
+
+Here is how to improve the rules according to these insights:
+- For each i in {0, 4, 8, ...} until i+3 < N, add the constraints "in{i+3} < in{i+2}, in{i+1} < in{i}, in{i} < in{i+3}".
+- If i % 4 == 1, add the constraints "in{i+2} < in{i+1}, in{i+1} < in{i+3}".
+
+FORMAL:
+
+```python
+def generate_constraints(N):
+    constraints = []
+    
+    for i in range(0, N, 4):
+        # Base constraints for each group of four
+        if i + 3 < N:
+            constraints.append(f"in{i+3} < in{i+2}")
+            constraints.append(f"in{i+1} < in{i}")
+            constraints.append(f"in{i} < in{i+3}")
+        elif i + 2 < N:
+            constraints.append(f"in{i+2} < in{i+1}")
+            constraints.append(f"in{i+1} < in{i+2}")
+        elif i + 1 < N:
+            constraints.append(f"in{i+1} < in{i}")
+        
+        # Extra constraints for sets starting with a number 1 more than a multiple of 2
+        if i != 0 and i % 4 == 1:
+            if i + 3 < N:
+                constraints.append(f"in{i+2} < in{i+1}")
+                constraints.append(f"in{i+1} < in{i+3}")
+        
+    return constraints
+
+N = int(input("N="))
+constraints = generate_constraints(N)
+constraints = ", ".join(constraints)
+print(constraints)
+```
+############################################################
+                    ATTEMPT NUMBER 10
+############################################################
+Here is the correct set:
+```
+None
+```
+
+Here is the predicted set:
+```
+
+
+```
+############################################################
+Here is the correct set:
+```
+in1 < in0
+```
+
+Here is the predicted set:
+```
+in2 < in1, in1 < in2
+
+```
+############################################################
+Here is the correct set:
+```
+in5 < in4, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+
+Here is the predicted set:
+```
+in3 < in2, in1 < in0, in0 < in3, in5 < in4
+
+```
+############################################################
+Here is the correct set:
+```
+in5 < in4, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+
+Here is the predicted set:
+```
+in3 < in2, in1 < in0, in0 < in3, in6 < in5, in5 < in6
+
+```
+############################################################
+Here is the correct set:
+```
+in7 < in6, in5 < in4, in4 < in7, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+
+Here is the predicted set:
+```
+in3 < in2, in1 < in0, in0 < in3, in7 < in6, in5 < in4, in4 < in7
+
+```
+############################################################
+Here is the correct set:
+```
+in7 < in6, in5 < in4, in4 < in7, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+
+Here is the predicted set:
+```
+in3 < in2, in1 < in0, in0 < in3, in7 < in6, in5 < in4, in4 < in7
+
+```
+############################################################
+Here is the correct set:
+```
+in9 < in8, in7 < in6, in6 < in9, in5 < in4, in4 < in7, in3 < in2, in2 < in5, in1 < in0, in0 < in3
+```
+
+Here is the predicted set:
+```
+in3 < in2, in1 < in0, in0 < in3, in7 < in6, in5 < in4, in4 < in7, in9 < in8
+
+```
+############################################################
+(done with that example)
