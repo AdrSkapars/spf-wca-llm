@@ -11,7 +11,7 @@ j = Int('j')
 k = Int('k')
 
 # Define constraints
-M_def = M == ceil(N/2)
+M_def = M == (N/2)
 
 set1 = ForAll(i, Implies(And(0 <= i, i < M, i + 1 < N), ss(i) > ss(i + 1)))
 set2 = ForAll(j, Implies(And(M <= j, j < N, j + 1 < N, (j-M) % 2 == 0), ss(j) > ss(j + 1)))

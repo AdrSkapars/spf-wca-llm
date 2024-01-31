@@ -6,8 +6,8 @@ i = Int('i')
 j = Int('j')
 
 # Floor and ceiling functions using z3 Div and Mod
-floor_div = lambda x,y: Div(x, y)
-ceiling_div = lambda x,y: If(x % y == 0, Div(x, y), Div(x, y) + 1)
+floor_div = lambda x,y: (x/ y)
+ceiling_div = lambda x,y: If(x % y == 0, (x/ y), (x/ y) + 1)
 
 # If-then-else expressions for the specific conditions
 condition1 = And(0 <= i, i < j, j < N)

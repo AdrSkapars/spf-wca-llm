@@ -7,7 +7,7 @@ ss = Function('ss', IntSort(), IntSort())
 i = Int('i')
 
 ## First set as a z3 Predictor
-set1 = ForAll([i], Implies(And(i == N-1, N > 1), ss(N-1) < ss(0)))
+set1 = Implies(N > 1, ss(N-1) < ss(0))
 
 ## Second set as a z3 Predictor
 set2 = ForAll([i], Implies(And(i >= 1, i < N-1), ss(i-1) < ss(i)))
